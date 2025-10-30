@@ -28,7 +28,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 0;
 }
 
 /* ============================================
@@ -37,13 +37,29 @@ body {
 .question-sidebar {
     position: fixed;
     left: 50%;
-    transform: translateX(calc(-700px/2 - 120px)) translateY(-50%);
+    transform: translateX(calc(-700px/2 - 40px)) translateY(-50%);
     top: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 1000;
-    height: 240px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -1px 3px 6px rgba(0,0,0,0.1);
+    padding: 8px 0;
+}
+
+.question-sidebar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background: var(--border-color);
 }
 
 .question-sidebar-scrollable {
