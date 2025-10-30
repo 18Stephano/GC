@@ -23,6 +23,7 @@ let currentQuestionIndex = 0;
 const progressText = document.getElementById('progressText');
 const totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
 const questionsContainer = document.getElementById('questionsContainer');
+const questionSidebar = document.getElementById('questionSidebar');
 const submitBtn = document.getElementById('submitBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     startTime = Date.now();
+    createQuestionSidebar();
     renderQuestions();
     updateNavigation();
     updateProgress();
@@ -82,6 +84,62 @@ async function loadQuestions(questionSet) {
         // Show error message to user
         questionsContainer.innerHTML = '<div class="error-message">Error loading questions. Please refresh the page.</div>';
     }
+}
+
+// ============================================
+// QUESTION SIDEBAR
+// ============================================
+function createQuestionSidebar() {
+    if (!questionSidebar) return;
+    
+    questionSidebar.innerHTML = '';
+    
+    exercises.forEach((exercise, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'question-dot';
+        dot.dataset.questionIndex = index;
+        dot.setAttribute('data-question-num', index + 1);
+        
+        dot.addEventListener('click', () => {
+            currentQuestionIndex = index;
+            renderQuestions();
+            updateNavigation();
+            updateProgress();
+        });
+        
+        questionSidebar.appendChild(dot);
+    });
+}
+
+function updateQuestionSidebar() {
+    if (!questionSidebar) return;
+    
+    const dots = questionSidebar.querySelectorAll('.question-dot');
+    
+    dots.forEach((dot, index) => {
+        const exercise = exercises[index];
+        const questionId = exercise.id;
+        const isAnswered = selectedAnswers[questionId] !== undefined;
+        const isCurrent = index === currentQuestionIndex;
+        
+        // Remove all state classes
+        dot.classList.remove('current', 'answered', 'correct', 'incorrect');
+        
+        // Add current class
+        if (isCurrent) {
+            dot.classList.add('current');
+        }
+        
+        // Add answered class
+        if (isAnswered) {
+            dot.classList.add('answered');
+            
+            // Add correct/incorrect if answered
+            const userAnswer = selectedAnswers[questionId];
+            const isCorrect = userAnswer === exercise.correct;
+            dot.classList.add(isCorrect ? 'correct' : 'incorrect');
+        }
+    });
 }
 
 // ============================================
@@ -252,6 +310,9 @@ function updateNavigation() {
         const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
         submitButtonsContainer.style.display = isLastQuestion ? 'flex' : 'none';
     }
+    
+    // Update sidebar
+    updateQuestionSidebar();
 }
 
 function handlePrevious() {
