@@ -484,7 +484,56 @@ body::before {
 }
 
 /* ============================================
-   ACTION BUTTONS
+   FEEDBACK MESSAGE
+   ============================================ */
+.feedback-message {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feedback-message.correct {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border: 2px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.feedback-message.incorrect {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 2px solid var(--error-color);
+    color: var(--error-color);
+}
+
+/* ============================================
+   NAVIGATION BUTTONS
+   ============================================ */
+.navigation-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 2px solid var(--border-color);
+}
+
+/* ============================================
+   ACTION BUTTONS (Legacy - kept for compatibility)
    ============================================ */
 .action-buttons {
     display: flex;
@@ -634,7 +683,8 @@ body::before {
         padding: 20px;
     }
 
-    .action-buttons {
+    .action-buttons,
+    .navigation-buttons {
         flex-direction: column;
     }
 

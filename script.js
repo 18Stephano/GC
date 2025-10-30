@@ -1,5 +1,5 @@
 // ============================================
-// GERMAN VOCABULARY QUIZ - ENHANCED VERSION
+// GERMAN VOCABULARY QUIZ - ONE-BY-ONE VERSION
 // ============================================
 
 /**
@@ -61,10 +61,9 @@ const exercises = [
 // ============================================
 // STATE MANAGEMENT
 // ============================================
-let answeredCount = 0;
-let submitted = false;
-let selectedAnswers = {};
-let startTime = null;
+let currentQuestionIndex = 0;
+let userAnswers = {}; // Store answers: { questionId: { selected: value, isCorrect: bool } }
+let correctCount = 0;
 
 // ============================================
 // DOM ELEMENTS
@@ -72,222 +71,227 @@ let startTime = null;
 const progressCounter = document.getElementById('progressCounter');
 const progressPercent = document.getElementById('progressPercent');
 const progressBar = document.getElementById('progressBar');
-const questionsContainer = document.getElementById('questionsContainer');
-const submitBtn = document.getElementById('submitBtn');
-const clearBtn = document.getElementById('clearBtn');
-const resetBtn = document.getElementById('resetBtn');
-const quizForm = document.getElementById('quizForm');
+const questionContainer = document.getElementById('questionContainer');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 const resultsPanel = document.getElementById('resultsPanel');
 const quizSection = document.getElementById('quizSection');
 const finalScore = document.getElementById('finalScore');
 const resultsTitle = document.getElementById('resultsTitle');
 const resultsMessage = document.getElementById('resultsMessage');
 const trophyIcon = document.getElementById('trophyIcon');
+const resetBtn = document.getElementById('resetBtn');
 
 // ============================================
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    startTime = Date.now();
-    renderQuestions();
-    attachEventListeners();
+    renderCurrentQuestion();
+    updateProgress();
+    updateNavigationButtons();
 });
 
 // ============================================
 // RENDERING FUNCTIONS
 // ============================================
-function renderQuestions() {
-    questionsContainer.innerHTML = '';
-    
-    exercises.forEach((exercise, index) => {
-        const questionCard = createQuestionCard(exercise, index + 1);
-        questionsContainer.appendChild(questionCard);
+function renderCurrentQuestion() {
+    const exercise = exercises[currentQuestionIndex];
+    const questionNum = currentQuestionIndex + 1;
+    const previousAnswer = userAnswers[exercise.id];
+
+    questionContainer.innerHTML = `
+        <div class="question-card" data-question-id="${exercise.id}">
+            <div class="question-header">
+                <span class="question-badge badge-number">Question ${questionNum} of 50</span>
+                <span class="question-badge badge-category">${exercise.category}</span>
+            </div>
+            <div class="question-text">${exercise.question}</div>
+            <div class="options-container" id="optionsContainer">
+                ${exercise.options.map((option, idx) => {
+                    const isChecked = previousAnswer && previousAnswer.selected === option ? 'checked' : '';
+                    const isAnswered = previousAnswer !== undefined;
+                    const isCorrect = option === exercise.correct;
+                    const isIncorrect = previousAnswer && previousAnswer.selected === option && !previousAnswer.isCorrect;
+
+                    let optionClass = 'radio-option';
+                    if (isAnswered) {
+                        if (isCorrect) {
+                            optionClass += ' correct';
+                        } else if (isIncorrect) {
+                            optionClass += ' incorrect';
+                        }
+                    }
+
+                    return `
+                        <div class="${optionClass}">
+                            <input
+                                type="radio"
+                                id="q${exercise.id}_opt${idx}"
+                                name="question_${exercise.id}"
+                                value="${option}"
+                                ${isChecked}
+                                ${isAnswered ? 'disabled' : ''}
+                            />
+                            <label for="q${exercise.id}_opt${idx}">${option}</label>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+            ${previousAnswer ? `
+                <div class="feedback-message ${previousAnswer.isCorrect ? 'correct' : 'incorrect'}">
+                    ${previousAnswer.isCorrect ? '✅ Correct!' : '❌ Incorrect. The correct answer is: ' + exercise.correct}
+                </div>
+            ` : ''}
+        </div>
+    `;
+
+    // Add event listener for radio changes
+    const radios = questionContainer.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => {
+        radio.addEventListener('change', handleAnswerSelection);
     });
 }
 
-function createQuestionCard(exercise, questionNum) {
-    const card = document.createElement('div');
-    card.className = 'question-card';
-    card.dataset.questionId = exercise.id;
-    
-    card.innerHTML = `
-        <div class="question-header">
-            <span class="question-badge badge-number">Question ${questionNum}</span>
-            <span class="question-badge badge-category">${exercise.category}</span>
-        </div>
-        <div class="question-text">${exercise.question}</div>
-        <div class="options-container">
-            ${exercise.options.map((option, idx) => `
-                <div class="radio-option">
-                    <input 
-                        type="radio" 
-                        id="q${exercise.id}_opt${idx}" 
-                        name="question_${exercise.id}" 
-                        value="${option}"
-                    />
-                    <label for="q${exercise.id}_opt${idx}">${option}</label>
-                </div>
-            `).join('')}
+function handleAnswerSelection(e) {
+    const exercise = exercises[currentQuestionIndex];
+    const selectedValue = e.target.value;
+    const isCorrect = selectedValue === exercise.correct;
+
+    // Store the answer
+    userAnswers[exercise.id] = {
+        selected: selectedValue,
+        isCorrect: isCorrect
+    };
+
+    // Show immediate feedback
+    showFeedback(exercise, selectedValue, isCorrect);
+
+    // Update progress
+    updateProgress();
+
+    // Update navigation buttons
+    updateNavigationButtons();
+}
+
+function showFeedback(exercise, selectedValue, isCorrect) {
+    const optionsContainer = document.getElementById('optionsContainer');
+    const options = optionsContainer.querySelectorAll('.radio-option');
+
+    // Disable all radio buttons after selection
+    const radios = optionsContainer.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => radio.disabled = true);
+
+    // Apply correct/incorrect styling
+    options.forEach(option => {
+        const input = option.querySelector('input');
+        const optionValue = input.value;
+
+        if (optionValue === exercise.correct) {
+            option.classList.add('correct');
+        } else if (optionValue === selectedValue && !isCorrect) {
+            option.classList.add('incorrect');
+        }
+    });
+
+    // Show feedback message
+    const feedbackHTML = `
+        <div class="feedback-message ${isCorrect ? 'correct' : 'incorrect'}">
+            ${isCorrect ? '✅ Correct!' : '❌ Incorrect. The correct answer is: ' + exercise.correct}
         </div>
     `;
-    
-    return card;
+
+    const existingFeedback = questionContainer.querySelector('.feedback-message');
+    if (!existingFeedback) {
+        questionContainer.querySelector('.question-card').insertAdjacentHTML('beforeend', feedbackHTML);
+    }
 }
 
 // ============================================
-// EVENT HANDLERS
+// NAVIGATION
 // ============================================
-function attachEventListeners() {
-    questionsContainer.addEventListener('change', handleAnswerChange);
-    quizForm.addEventListener('submit', handleSubmit);
-    clearBtn.addEventListener('click', handleClear);
-    resetBtn.addEventListener('click', handleReset);
-}
+function updateNavigationButtons() {
+    const isFirstQuestion = currentQuestionIndex === 0;
+    const isLastQuestion = currentQuestionIndex === exercises.length - 1;
+    const hasAnsweredCurrent = userAnswers[exercises[currentQuestionIndex].id] !== undefined;
 
-function handleAnswerChange(e) {
-    if (e.target.type === 'radio' && !submitted) {
-        const questionId = parseInt(e.target.name.split('_')[1]);
-        const selectedValue = e.target.value;
-        
-        selectedAnswers[questionId] = selectedValue;
-        answeredCount = Object.keys(selectedAnswers).length;
-        
-        updateProgress();
-        updateCardState(e.target);
+    prevBtn.disabled = isFirstQuestion;
+
+    if (isLastQuestion && hasAnsweredCurrent) {
+        nextBtn.textContent = '🏁 Finish';
+        nextBtn.disabled = false;
+    } else if (hasAnsweredCurrent) {
+        nextBtn.textContent = 'Next →';
+        nextBtn.disabled = false;
+    } else {
+        nextBtn.textContent = 'Next →';
+        nextBtn.disabled = true;
     }
 }
 
-function updateCardState(radioInput) {
-    const card = radioInput.closest('.question-card');
-    if (card) {
-        card.classList.add('answered');
+prevBtn.addEventListener('click', () => {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderCurrentQuestion();
+        updateNavigationButtons();
+        scrollToTop();
     }
-}
+});
 
-function handleSubmit(e) {
-    e.preventDefault();
-    if (!submitted && answeredCount > 0) {
-        checkAnswers();
+nextBtn.addEventListener('click', () => {
+    const isLastQuestion = currentQuestionIndex === exercises.length - 1;
+
+    if (isLastQuestion) {
+        // Show results
+        showResults();
+    } else {
+        // Go to next question
+        currentQuestionIndex++;
+        renderCurrentQuestion();
+        updateNavigationButtons();
+        scrollToTop();
     }
-}
-
-function handleClear() {
-    if (!submitted) {
-        clearAllAnswers();
-    }
-}
-
-function handleReset() {
-    resetQuiz();
-}
+});
 
 // ============================================
 // PROGRESS MANAGEMENT
 // ============================================
 function updateProgress() {
+    const answeredCount = Object.keys(userAnswers).length;
     const percentage = (answeredCount / 50) * 100;
-    
+
     progressCounter.textContent = answeredCount;
     progressPercent.textContent = `${Math.round(percentage)}%`;
     progressBar.style.width = `${percentage}%`;
-    
-    submitBtn.disabled = answeredCount === 0;
-    
-    // Add visual feedback when progress increases
-    if (answeredCount > 0 && answeredCount % 10 === 0) {
-        playProgressAnimation();
-    }
-}
-
-function playProgressAnimation() {
-    progressBar.style.animation = 'none';
-    setTimeout(() => {
-        progressBar.style.animation = 'shimmer 2s infinite';
-    }, 10);
-}
-
-// ============================================
-// ANSWER CHECKING
-// ============================================
-function checkAnswers() {
-    submitted = true;
-    let correctCount = 0;
-    
-    // Disable all inputs and buttons
-    disableAllInputs();
-    
-    // Check each question
-    exercises.forEach(exercise => {
-        const userAnswer = selectedAnswers[exercise.id];
-        const isCorrect = userAnswer === exercise.correct;
-        
-        if (isCorrect) {
-            correctCount++;
-        }
-        
-        showFeedback(exercise, userAnswer);
-    });
-    
-    // Calculate and display results
-    displayResults(correctCount);
-    
-    // Scroll to results
-    scrollToResults();
-}
-
-function showFeedback(exercise, userAnswer) {
-    const card = document.querySelector(`[data-question-id="${exercise.id}"]`);
-    if (!card) return;
-    
-    const options = card.querySelectorAll('.radio-option');
-    
-    options.forEach(option => {
-        const input = option.querySelector('input');
-        const optionValue = input.value;
-        
-        option.classList.remove('correct', 'incorrect');
-        
-        if (optionValue === exercise.correct) {
-            option.classList.add('correct');
-        } else if (optionValue === userAnswer && userAnswer !== exercise.correct) {
-            option.classList.add('incorrect');
-            card.classList.add('incorrect');
-        }
-    });
-    
-    // Stagger animation for better visual effect
-    setTimeout(() => {
-        card.style.animation = 'none';
-        card.offsetHeight; // Trigger reflow
-        card.style.animation = null;
-    }, 100);
-}
-
-function disableAllInputs() {
-    const inputs = questionsContainer.querySelectorAll('input[type="radio"]');
-    inputs.forEach(input => input.disabled = true);
-    
-    submitBtn.disabled = true;
-    clearBtn.disabled = true;
 }
 
 // ============================================
 // RESULTS DISPLAY
 // ============================================
-function displayResults(score) {
-    finalScore.textContent = score;
-    
-    const { title, message, icon } = getResultsData(score);
-    
+function showResults() {
+    // Calculate final score
+    correctCount = 0;
+    exercises.forEach(exercise => {
+        const answer = userAnswers[exercise.id];
+        if (answer && answer.isCorrect) {
+            correctCount++;
+        }
+    });
+
+    finalScore.textContent = correctCount;
+
+    const { title, message, icon } = getResultsData(correctCount);
+
     resultsTitle.textContent = title;
     resultsMessage.textContent = message;
     trophyIcon.textContent = icon;
-    
+
     quizSection.classList.add('hidden');
     resultsPanel.classList.remove('hidden');
-    
+
     // Animate score counting
-    animateScore(score);
+    animateScore(correctCount);
+
+    scrollToTop();
 }
 
 function getResultsData(score) {
@@ -324,7 +328,7 @@ function animateScore(targetScore) {
     const steps = 50;
     const increment = targetScore / steps;
     const stepDuration = duration / steps;
-    
+
     const interval = setInterval(() => {
         currentScore += increment;
         if (currentScore >= targetScore) {
@@ -338,43 +342,20 @@ function animateScore(targetScore) {
 // ============================================
 // RESET FUNCTIONS
 // ============================================
-function clearAllAnswers() {
-    const inputs = questionsContainer.querySelectorAll('input[type="radio"]');
-    inputs.forEach(input => input.checked = false);
-    
-    selectedAnswers = {};
-    answeredCount = 0;
-    
-    updateProgress();
-    
-    const cards = questionsContainer.querySelectorAll('.question-card');
-    cards.forEach(card => {
-        card.classList.remove('answered', 'incorrect', 'show-feedback');
-    });
-}
+resetBtn.addEventListener('click', () => {
+    currentQuestionIndex = 0;
+    userAnswers = {};
+    correctCount = 0;
 
-function resetQuiz() {
-    submitted = false;
-    selectedAnswers = {};
-    answeredCount = 0;
-    startTime = Date.now();
-    
-    // Re-enable inputs
-    const inputs = questionsContainer.querySelectorAll('input[type="radio"]');
-    inputs.forEach(input => input.disabled = false);
-    
-    clearAllAnswers();
-    
-    // Show quiz, hide results
     quizSection.classList.remove('hidden');
     resultsPanel.classList.add('hidden');
-    
-    // Re-enable buttons
-    submitBtn.disabled = false;
-    clearBtn.disabled = false;
-    
+
+    renderCurrentQuestion();
+    updateProgress();
+    updateNavigationButtons();
+
     scrollToTop();
-}
+});
 
 // ============================================
 // UTILITY FUNCTIONS
@@ -385,38 +366,6 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
-
-function scrollToResults() {
-    setTimeout(() => {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
-    }, 300);
-}
-
-// ============================================
-// PERFORMANCE OPTIMIZATION
-// ============================================
-// Debounce function for performance
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Optimize scroll events
-const handleOptimizedScroll = debounce(() => {
-    // Any scroll-based functionality can go here
-}, 100);
-
-window.addEventListener('scroll', handleOptimizedScroll);
 
 // ============================================
 // ERROR HANDLING
