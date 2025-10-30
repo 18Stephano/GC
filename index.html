@@ -64,23 +64,21 @@
 
             <!-- Quiz Questions Section -->
             <section class="quiz-section" id="quizSection">
-                <form id="quizForm">
-                    <div class="questions-container" id="questionsContainer">
-                        <!-- Questions will be dynamically inserted here -->
-                    </div>
-                    
-                    <!-- Action Buttons -->
-                    <div class="action-buttons">
-                        <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
-                            <span class="btn-icon">✅</span>
-                            <span class="btn-text">Submit Answers</span>
-                        </button>
-                        <button type="button" class="btn btn-secondary" id="clearBtn">
-                            <span class="btn-icon">🗑️</span>
-                            <span class="btn-text">Clear All</span>
-                        </button>
-                    </div>
-                </form>
+                <!-- Single Question Container -->
+                <div id="questionContainer">
+                    <!-- Current question will be dynamically inserted here -->
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="navigation-buttons">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" disabled>
+                        <span class="btn-icon">←</span>
+                        <span class="btn-text">Previous</span>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" disabled>
+                        <span class="btn-text">Next →</span>
+                    </button>
+                </div>
             </section>
         </main>
 
