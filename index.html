@@ -23,8 +23,8 @@
             <section class="progress-panel">
                 <div class="progress-stats">
                     <div class="stat-item">
-                        <div class="stat-value" id="progressCounter">0</div>
-                        <div class="stat-label">Questions Answered</div>
+                        <div class="stat-value" id="currentQuestion">1</div>
+                        <div class="stat-label">Current Question</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
@@ -33,8 +33,8 @@
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
-                        <div class="stat-value" id="progressPercent">0%</div>
-                        <div class="stat-label">Complete</div>
+                        <div class="stat-value" id="progressCounter">0</div>
+                        <div class="stat-label">Answered</div>
                     </div>
                 </div>
                 <div class="progress-bar-wrapper">
@@ -69,15 +69,23 @@
                         <!-- Questions will be dynamically inserted here -->
                     </div>
                     
-                    <!-- Action Buttons -->
+                    <!-- Navigation Buttons -->
                     <div class="action-buttons">
-                        <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
-                            <span class="btn-icon">✅</span>
-                            <span class="btn-text">Submit Answers</span>
+                        <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">
+                            <span class="btn-icon">⬅️</span>
+                            <span class="btn-text">Previous</span>
                         </button>
-                        <button type="button" class="btn btn-secondary" id="clearBtn">
-                            <span class="btn-icon">🗑️</span>
-                            <span class="btn-text">Clear All</span>
+                        <button type="button" class="btn btn-secondary" id="nextBtn" style="display: none;">
+                            <span class="btn-icon">➡️</span>
+                            <span class="btn-text">Next</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="action-buttons" id="submitButtonsContainer" style="display: none;">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="btn-icon">✅</span>
+                            <span class="btn-text">Submit Quiz</span>
                         </button>
                     </div>
                 </form>

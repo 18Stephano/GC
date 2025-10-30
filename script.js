@@ -15,17 +15,21 @@ let answeredCount = 0;
 let submitted = false;
 let selectedAnswers = {};
 let startTime = null;
+let currentQuestionIndex = 0;
 
 // ============================================
 // DOM ELEMENTS
 // ============================================
 const progressCounter = document.getElementById('progressCounter');
-const progressPercent = document.getElementById('progressPercent');
+const currentQuestion = document.getElementById('currentQuestion');
 const progressBar = document.getElementById('progressBar');
 const totalQuestions = document.getElementById('totalQuestions');
 const totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
 const questionsContainer = document.getElementById('questionsContainer');
 const submitBtn = document.getElementById('submitBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const submitButtonsContainer = document.getElementById('submitButtonsContainer');
 const clearBtn = document.getElementById('clearBtn');
 const resetBtn = document.getElementById('resetBtn');
 const quizForm = document.getElementById('quizForm');
@@ -55,6 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     startTime = Date.now();
     renderQuestions();
+    updateNavigation();
     attachEventListeners();
 });
 
@@ -90,10 +95,24 @@ async function loadQuestions(questionSet) {
 function renderQuestions() {
     questionsContainer.innerHTML = '';
     
-    exercises.forEach((exercise, index) => {
-        const questionCard = createQuestionCard(exercise, index + 1);
-        questionsContainer.appendChild(questionCard);
-    });
+    if (exercises.length === 0) {
+        questionsContainer.innerHTML = '<div class="error-message">No questions available. Please check your question set.</div>';
+        return;
+    }
+    
+    // Only render the current question
+    const exercise = exercises[currentQuestionIndex];
+    const questionCard = createQuestionCard(exercise, currentQuestionIndex + 1);
+    questionsContainer.appendChild(questionCard);
+    
+    // Set the selected answer if already answered
+    if (selectedAnswers[exercise.id]) {
+        const radioInput = document.querySelector(`input[name="question_${exercise.id}"][value="${selectedAnswers[exercise.id]}"]`);
+        if (radioInput) {
+            radioInput.checked = true;
+            showImmediateFeedback(radioInput, exercise.id);
+        }
+    }
 }
 
 function createQuestionCard(exercise, questionNum) {
@@ -131,7 +150,8 @@ function createQuestionCard(exercise, questionNum) {
 function attachEventListeners() {
     questionsContainer.addEventListener('change', handleAnswerChange);
     quizForm.addEventListener('submit', handleSubmit);
-    clearBtn.addEventListener('click', handleClear);
+    prevBtn.addEventListener('click', handlePrevious);
+    nextBtn.addEventListener('click', handleNext);
     resetBtn.addEventListener('click', handleReset);
 }
 
@@ -148,6 +168,13 @@ function handleAnswerChange(e) {
         
         // Show immediate feedback for the selected answer
         showImmediateFeedback(e.target, questionId);
+        
+        // Auto-advance to next question after a short delay
+        setTimeout(() => {
+            if (currentQuestionIndex < exercises.length - 1) {
+                handleNext();
+            }
+        }, 1000);
     }
 }
 
@@ -209,17 +236,61 @@ function handleReset() {
 }
 
 // ============================================
+// NAVIGATION
+// ============================================
+function updateNavigation() {
+    const totalQuestions = exercises.length;
+    
+    // Show/hide Previous button
+    if (prevBtn) {
+        prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-flex' : 'none';
+    }
+    
+    // Show/hide Next button
+    if (nextBtn) {
+        const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
+        nextBtn.style.display = isLastQuestion ? 'none' : 'inline-flex';
+    }
+    
+    // Show Submit button only on last question
+    if (submitButtonsContainer) {
+        const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
+        submitButtonsContainer.style.display = isLastQuestion ? 'flex' : 'none';
+    }
+}
+
+function handlePrevious() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderQuestions();
+        updateNavigation();
+        updateProgress();
+    }
+}
+
+function handleNext() {
+    if (currentQuestionIndex < exercises.length - 1) {
+        currentQuestionIndex++;
+        renderQuestions();
+        updateNavigation();
+        updateProgress();
+    }
+}
+
+// ============================================
 // PROGRESS MANAGEMENT
 // ============================================
 function updateProgress() {
-    const totalQuestions = exercises.length;
-    const percentage = (answeredCount / totalQuestions) * 100;
+    const totalQs = exercises.length;
+    const percentage = (answeredCount / totalQs) * 100;
     
     progressCounter.textContent = answeredCount;
-    progressPercent.textContent = `${Math.round(percentage)}%`;
     progressBar.style.width = `${percentage}%`;
     
-    submitBtn.disabled = answeredCount === 0;
+    // Update current question display
+    if (currentQuestion) {
+        currentQuestion.textContent = currentQuestionIndex + 1;
+    }
     
     // Add visual feedback when progress increases
     if (answeredCount > 0 && answeredCount % 10 === 0) {
@@ -396,6 +467,7 @@ function resetQuiz() {
     submitted = false;
     selectedAnswers = {};
     answeredCount = 0;
+    currentQuestionIndex = 0;
     startTime = Date.now();
     
     // Re-enable inputs
@@ -408,9 +480,9 @@ function resetQuiz() {
     quizSection.classList.remove('hidden');
     resultsPanel.classList.add('hidden');
     
-    // Re-enable buttons
-    submitBtn.disabled = false;
-    clearBtn.disabled = false;
+    // Re-render and update navigation
+    renderQuestions();
+    updateNavigation();
     
     scrollToTop();
 }
