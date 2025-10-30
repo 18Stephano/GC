@@ -36,14 +36,90 @@ body {
    ============================================ */
 .question-sidebar {
     position: fixed;
-    left: 20px;
+    left: 50%;
+    transform: translateX(calc(-700px/2 - 120px)) translateY(-50%);
     top: 50%;
-    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 6px;
     align-items: center;
     z-index: 1000;
+    height: 240px;
+}
+
+.question-sidebar-scrollable {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    flex: 1;
+    width: 100%;
+    padding: 24px 8px;
+    position: relative;
+    mask-image: linear-gradient(to bottom, 
+        transparent 0%, 
+        black 15%, 
+        black 85%, 
+        transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, 
+        transparent 0%, 
+        black 15%, 
+        black 85%, 
+        transparent 100%);
+}
+
+.question-sidebar-scrollable::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.sidebar-arrow {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    transition: all 0.2s;
+    opacity: 0.6;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.sidebar-arrow:hover {
+    opacity: 1;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-arrow.hidden {
+    display: none;
+}
+
+.sidebar-arrow::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+}
+
+.sidebar-arrow.up {
+    top: 0;
+}
+
+.sidebar-arrow.up::after {
+    border-bottom: 6px solid var(--primary-color);
+}
+
+.sidebar-arrow.down {
+    bottom: 0;
+}
+
+.sidebar-arrow.down::after {
+    border-top: 6px solid var(--primary-color);
 }
 
 .question-dot {
@@ -54,6 +130,8 @@ body {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    margin: 4px 0;
+    flex-shrink: 0;
 }
 
 .question-dot:hover {

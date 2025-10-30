@@ -94,6 +94,22 @@ function createQuestionSidebar() {
     
     questionSidebar.innerHTML = '';
     
+    // Create up arrow
+    const upArrow = document.createElement('div');
+    upArrow.className = 'sidebar-arrow up';
+    upArrow.id = 'sidebarArrowUp';
+    
+    // Create scrollable container
+    const scrollable = document.createElement('div');
+    scrollable.className = 'question-sidebar-scrollable';
+    scrollable.id = 'sidebarScrollable';
+    
+    // Create down arrow
+    const downArrow = document.createElement('div');
+    downArrow.className = 'sidebar-arrow down';
+    downArrow.id = 'sidebarArrowDown';
+    
+    // Add dots to scrollable container
     exercises.forEach((exercise, index) => {
         const dot = document.createElement('div');
         dot.className = 'question-dot';
@@ -105,10 +121,95 @@ function createQuestionSidebar() {
             renderQuestions();
             updateNavigation();
             updateProgress();
+            scrollToCurrentQuestion();
         });
         
-        questionSidebar.appendChild(dot);
+        scrollable.appendChild(dot);
     });
+    
+    // Add hover-to-scroll functionality
+    let scrollInterval = null;
+    const scrollSpeed = 3; // pixels per frame
+    
+    upArrow.addEventListener('mouseenter', () => {
+        scrollInterval = setInterval(() => {
+            scrollable.scrollTop -= scrollSpeed;
+        }, 16);
+    });
+    
+    upArrow.addEventListener('mouseleave', () => {
+        if (scrollInterval) {
+            clearInterval(scrollInterval);
+            scrollInterval = null;
+        }
+    });
+    
+    downArrow.addEventListener('mouseenter', () => {
+        scrollInterval = setInterval(() => {
+            scrollable.scrollTop += scrollSpeed;
+        }, 16);
+    });
+    
+    downArrow.addEventListener('mouseleave', () => {
+        if (scrollInterval) {
+            clearInterval(scrollInterval);
+            scrollInterval = null;
+        }
+    });
+    
+    // Update arrow visibility on scroll
+    scrollable.addEventListener('scroll', updateArrowVisibility);
+    
+    // Append to sidebar
+    questionSidebar.appendChild(upArrow);
+    questionSidebar.appendChild(scrollable);
+    questionSidebar.appendChild(downArrow);
+    
+    // Initial arrow visibility
+    updateArrowVisibility();
+}
+
+function scrollToCurrentQuestion() {
+    const scrollable = document.getElementById('sidebarScrollable');
+    if (!scrollable) return;
+    
+    const dots = scrollable.querySelectorAll('.question-dot');
+    const currentDot = dots[currentQuestionIndex];
+    
+    if (currentDot) {
+        const scrollableHeight = scrollable.clientHeight;
+        const dotTop = currentDot.offsetTop;
+        const dotHeight = currentDot.offsetHeight;
+        
+        // Center the current dot in the visible area
+        scrollable.scrollTop = dotTop - (scrollableHeight / 2) + (dotHeight / 2);
+    }
+}
+
+function updateArrowVisibility() {
+    const scrollable = document.getElementById('sidebarScrollable');
+    const upArrow = document.getElementById('sidebarArrowUp');
+    const downArrow = document.getElementById('sidebarArrowDown');
+    
+    if (!scrollable || !upArrow || !downArrow) return;
+    
+    const scrollTop = scrollable.scrollTop;
+    const scrollHeight = scrollable.scrollHeight;
+    const clientHeight = scrollable.clientHeight;
+    
+    // Show up arrow if not at top
+    if (scrollTop > 0) {
+        upArrow.classList.remove('hidden');
+    } else {
+        upArrow.classList.add('hidden');
+    }
+    
+    // Show down arrow if not at bottom
+    if (scrollTop < scrollHeight - clientHeight - 1) {
+        downArrow.classList.remove('hidden');
+    } else {
+        downArrow.classList.add('hidden');
+    }
 }
 
 function updateQuestionSidebar() {
@@ -313,6 +414,7 @@ function updateNavigation() {
     
     // Update sidebar
     updateQuestionSidebar();
+    scrollToCurrentQuestion();
 }
 
 function handlePrevious() {
