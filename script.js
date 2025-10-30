@@ -44,9 +44,9 @@ const trophyIcon = document.getElementById('trophyIcon');
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', async () => {
-    // Get the question set from URL parameter (default to vocab-week1)
+    // Get the question set from URL parameter (default to tag-1)
     const urlParams = new URLSearchParams(window.location.search);
-    const questionSet = urlParams.get('set') || 'vocab-week1';
+    const questionSet = urlParams.get('set') || 'tag-1';
     
     // Load questions from JSON
     await loadQuestions(questionSet);
