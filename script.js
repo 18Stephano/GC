@@ -127,46 +127,87 @@ function createQuestionSidebar() {
         scrollable.appendChild(dot);
     });
     
-    // Add hover-to-scroll functionality
-    let scrollInterval = null;
-    const scrollSpeed = 3; // pixels per frame
-    
-    upArrow.addEventListener('mouseenter', () => {
-        scrollInterval = setInterval(() => {
-            scrollable.scrollTop -= scrollSpeed;
-        }, 16);
-    });
-    
-    upArrow.addEventListener('mouseleave', () => {
-        if (scrollInterval) {
-            clearInterval(scrollInterval);
-            scrollInterval = null;
-        }
-    });
-    
-    downArrow.addEventListener('mouseenter', () => {
-        scrollInterval = setInterval(() => {
-            scrollable.scrollTop += scrollSpeed;
-        }, 16);
-    });
-    
-    downArrow.addEventListener('mouseleave', () => {
-        if (scrollInterval) {
-            clearInterval(scrollInterval);
-            scrollInterval = null;
-        }
-    });
-    
-    // Update arrow visibility on scroll
-    scrollable.addEventListener('scroll', updateArrowVisibility);
-    
     // Append to sidebar
     questionSidebar.appendChild(upArrow);
     questionSidebar.appendChild(scrollable);
     questionSidebar.appendChild(downArrow);
     
+    // Set sidebar height to match quiz section
+    updateSidebarHeight();
+    
+    // Add hover-to-scroll functionality
+    let scrollInterval = null;
+    const scrollSpeed = 2; // pixels per frame
+    
+    const startScrolling = (direction) => {
+        if (scrollInterval) clearInterval(scrollInterval);
+        scrollInterval = setInterval(() => {
+            const currentScroll = scrollable.scrollTop || 0;
+            if (direction === 'up') {
+                scrollable.scrollTop = Math.max(0, currentScroll - scrollSpeed);
+            } else {
+                scrollable.scrollTop = Math.min(
+                    scrollable.scrollHeight - scrollable.clientHeight,
+                    currentScroll + scrollSpeed
+                );
+            }
+            updateArrowVisibility();
+        }, 16);
+    };
+    
+    const stopScrolling = () => {
+        if (scrollInterval) {
+            clearInterval(scrollInterval);
+            scrollInterval = null;
+        }
+    };
+    
+    upArrow.addEventListener('mouseenter', () => startScrolling('up'));
+    upArrow.addEventListener('mouseleave', stopScrolling);
+    downArrow.addEventListener('mouseenter', () => startScrolling('down'));
+    downArrow.addEventListener('mouseleave', stopScrolling);
+    
+    // Update arrow visibility on scroll
+    scrollable.addEventListener('scroll', updateArrowVisibility);
+    
     // Initial arrow visibility
     updateArrowVisibility();
+    
+    // Update height on window resize and scroll
+    window.addEventListener('resize', updateSidebarHeight);
+    window.addEventListener('scroll', updateSidebarHeight);
+}
+
+function updateSidebarHeight() {
+    if (!questionSidebar || !quizSection) return;
+    
+    // Position sidebar next to quiz-section using fixed positioning
+    const quizSectionRect = quizSection.getBoundingClientRect();
+    const quizSectionHeight = quizSectionRect.height;
+    
+    // Position sidebar 5px to the left of the quiz section (29px = 24px width + 5px gap)
+    questionSidebar.style.left = `${quizSectionRect.left - 29}px`;
+    questionSidebar.style.top = `${quizSectionRect.top}px`;
+    questionSidebar.style.height = `${quizSectionHeight}px`;
+    
+    // Limit visible dots (12-15 visible at a time)
+    const scrollable = document.getElementById('sidebarScrollable');
+    if (!scrollable) return;
+    
+    const dots = scrollable.querySelectorAll('.question-dot');
+    if (dots.length === 0) return;
+    
+    // Calculate how many dots fit in the visible area
+    const dotHeight = 8 + 6; // dot height + margin
+    const arrowHeight = 16 + 8; // arrow height + margins
+    const availableHeight = quizSectionHeight - (arrowHeight * 2);
+    const visibleDots = Math.floor(availableHeight / dotHeight);
+    const maxVisibleDots = Math.min(15, Math.max(12, visibleDots));
+    
+    // Set max height to show only visible dots
+    const maxHeight = maxVisibleDots * dotHeight;
+    scrollable.style.maxHeight = `${maxHeight}px`;
+    scrollable.style.overflowY = scrollable.scrollHeight > maxHeight ? 'auto' : 'hidden';
 }
 
 function scrollToCurrentQuestion() {
@@ -179,10 +220,14 @@ function scrollToCurrentQuestion() {
     if (currentDot) {
         const scrollableHeight = scrollable.clientHeight;
         const dotTop = currentDot.offsetTop;
-        const dotHeight = currentDot.offsetHeight;
+        const dotHeight = 8 + 6; // dot height + margin
         
         // Center the current dot in the visible area
-        scrollable.scrollTop = dotTop - (scrollableHeight / 2) + (dotHeight / 2);
+        const targetScroll = dotTop - (scrollableHeight / 2) + (dotHeight / 2);
+        scrollable.scrollTo({
+            top: Math.max(0, Math.min(targetScroll, scrollable.scrollHeight - scrollable.clientHeight)),
+            behavior: 'smooth'
+        });
     }
 }
 
@@ -193,12 +238,12 @@ function updateArrowVisibility() {
     
     if (!scrollable || !upArrow || !downArrow) return;
     
-    const scrollTop = scrollable.scrollTop;
+    const scrollTop = scrollable.scrollTop || 0;
     const scrollHeight = scrollable.scrollHeight;
     const clientHeight = scrollable.clientHeight;
     
     // Show up arrow if not at top
-    if (scrollTop > 0) {
+    if (scrollTop > 1) {
         upArrow.classList.remove('hidden');
     } else {
         upArrow.classList.add('hidden');
@@ -259,14 +304,61 @@ function renderQuestions() {
     const questionCard = createQuestionCard(exercise, currentQuestionIndex + 1);
     questionsContainer.appendChild(questionCard);
     
-    // Set the selected answer if already answered
+    // Set initial state: show button, hide options, hide Next button
+    const showOptionsBtn = document.getElementById('showOptionsBtn');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (showOptionsBtn) {
+        showOptionsBtn.style.display = 'block';
+        showOptionsBtn.addEventListener('click', handleShowOptions);
+    }
+    
+    if (optionsContainer) {
+        optionsContainer.style.display = 'none';
+        optionsContainer.style.opacity = '0';
+    }
+    
+    // Hide Next button initially (but keep action-buttons container visible for Previous button)
+    if (nextBtn) {
+        nextBtn.style.display = 'none';
+    }
+    
+    // Show Previous button if not on first question
+    if (prevBtn) {
+        prevBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
+    }
+    
+    // Ensure action-buttons container is visible
+    const actionButtonsContainer = document.querySelector('.action-buttons');
+    if (actionButtonsContainer && actionButtonsContainer.id !== 'submitButtonsContainer') {
+        actionButtonsContainer.style.display = 'flex';
+    }
+    
+    // Set the selected answer if already answered (skip show options flow)
     if (selectedAnswers[exercise.id]) {
         const radioInput = document.querySelector(`input[name="question_${exercise.id}"][value="${selectedAnswers[exercise.id]}"]`);
         if (radioInput) {
+            // If already answered, show options and hide button wrapper
+            const showOptionsWrapper = document.querySelector('.show-options-wrapper');
+            if (showOptionsWrapper) {
+                showOptionsWrapper.style.display = 'none';
+            }
+            if (optionsContainer) {
+                optionsContainer.style.display = 'block';
+                optionsContainer.style.opacity = '1';
+            }
             radioInput.checked = true;
             showImmediateFeedback(radioInput, exercise.id);
+            // Show Next button if answer is selected
+            if (nextBtn) {
+                nextBtn.style.display = 'block';
+            }
         }
     }
+    
+    // Update sidebar height after rendering
+    setTimeout(updateSidebarHeight, 0);
 }
 
 function createQuestionCard(exercise, questionNum) {
@@ -280,7 +372,11 @@ function createQuestionCard(exercise, questionNum) {
             <span class="question-badge badge-category">${exercise.category}</span>
         </div>
         <div class="question-text">${exercise.question}</div>
-        <div class="options-container">
+        <div class="show-options-wrapper">
+            <div class="helper-text">Try to recall the answer first</div>
+            <button type="button" class="show-options-btn" id="showOptionsBtn">Show Options</button>
+        </div>
+        <div class="options-container" id="optionsContainer" style="display: none; opacity: 0;">
             ${exercise.options.map((option, idx) => `
                 <div class="radio-option">
                     <input 
@@ -309,6 +405,24 @@ function attachEventListeners() {
     resetBtn.addEventListener('click', handleReset);
 }
 
+function handleShowOptions() {
+    const showOptionsBtn = document.getElementById('showOptionsBtn');
+    const showOptionsWrapper = showOptionsBtn ? showOptionsBtn.closest('.show-options-wrapper') : null;
+    const optionsContainer = document.getElementById('optionsContainer');
+    
+    if (showOptionsWrapper) {
+        showOptionsWrapper.style.display = 'none';
+    }
+    
+    if (optionsContainer) {
+        optionsContainer.style.display = 'block';
+        // Use setTimeout to trigger fade-in transition
+        setTimeout(() => {
+            optionsContainer.style.opacity = '1';
+        }, 10);
+    }
+}
+
 function handleAnswerChange(e) {
     if (e.target.type === 'radio' && !submitted) {
         const questionId = parseInt(e.target.name.split('_')[1]);
@@ -323,12 +437,13 @@ function handleAnswerChange(e) {
         // Show immediate feedback for the selected answer
         showImmediateFeedback(e.target, questionId);
         
-        // Auto-advance to next question after a short delay
-        setTimeout(() => {
-            if (currentQuestionIndex < exercises.length - 1) {
-                handleNext();
-            }
-        }, 1000);
+        // Show Next button when an option is selected
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) {
+            nextBtn.style.display = 'block';
+        }
+        
+        // Remove auto-advance - wait for Next button click
     }
 }
 
@@ -400,11 +515,9 @@ function updateNavigation() {
         prevBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
     }
     
-    // Show/hide Next button
-    if (nextBtn) {
-        const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
-        nextBtn.style.display = isLastQuestion ? 'none' : 'block';
-    }
+    // Next button visibility is now controlled by answer selection in renderQuestions
+    // Only show if answer is already selected (handled in renderQuestions)
+    // Don't auto-show Next button here - it's hidden initially and shown when answer is selected
     
     // Show Submit button only on last question
     if (submitButtonsContainer) {
@@ -415,6 +528,7 @@ function updateNavigation() {
     // Update sidebar
     updateQuestionSidebar();
     scrollToCurrentQuestion();
+    updateSidebarHeight();
 }
 
 function handlePrevious() {
