@@ -3,60 +3,10 @@
 // ============================================
 
 /**
- * Quiz Data - 50 A1 Level German Vocabulary Questions
+ * Quiz Data - Loaded from questions.json based on URL parameter
  */
-const exercises = [
-    { id: 1, question: "TIRED", options: ["MÜDE", "GLÜCKLICH"], correct: "MÜDE", category: "Feelings" },
-    { id: 2, question: "ICH BIN _____. (I AM HAPPY)", options: ["GLÜCKLICH", "TRAURIG"], correct: "GLÜCKLICH", category: "Feelings" },
-    { id: 3, question: "SICK", options: ["KRANK", "GESUND"], correct: "KRANK", category: "Feelings" },
-    { id: 4, question: "SIE IST _____. (SHE IS HEALTHY)", options: ["GESUND", "KRANK"], correct: "GESUND", category: "Feelings" },
-    { id: 5, question: "HUNGRY", options: ["HUNGRIG", "DURSTIG"], correct: "HUNGRIG", category: "Feelings" },
-    { id: 6, question: "ER IST _____. (HE IS THIRSTY)", options: ["DURSTIG", "HUNGRIG"], correct: "DURSTIG", category: "Feelings" },
-    { id: 7, question: "CONTENT/SATISFIED", options: ["ZUFRIEDEN", "NERVÖS"], correct: "ZUFRIEDEN", category: "Feelings" },
-    { id: 8, question: "WIR SIND _____. (WE ARE NERVOUS)", options: ["NERVÖS", "RUHIG"], correct: "NERVÖS", category: "Feelings" },
-    { id: 9, question: "CALM/QUIET", options: ["RUHIG", "AUFGEREGT"], correct: "RUHIG", category: "Feelings" },
-    { id: 10, question: "DU BIST _____. (YOU ARE EXCITED)", options: ["AUFGEREGT", "FERTIG"], correct: "AUFGEREGT", category: "Feelings" },
-    { id: 11, question: "READY/FINISHED", options: ["FERTIG", "BESCHÄFTIGT"], correct: "FERTIG", category: "States" },
-    { id: 12, question: "IHR SEID _____. (YOU ALL ARE BUSY)", options: ["BESCHÄFTIGT", "FREI"], correct: "BESCHÄFTIGT", category: "States" },
-    { id: 13, question: "FREE", options: ["FREI", "VERHEIRATET"], correct: "FREI", category: "States" },
-    { id: 14, question: "ICH BIN _____. (I AM MARRIED)", options: ["VERHEIRATET", "FREI"], correct: "VERHEIRATET", category: "States" },
-    { id: 15, question: "BIG/TALL", options: ["GROSS", "KLEIN"], correct: "GROSS", category: "Descriptions" },
-    { id: 16, question: "DAS KIND IST _____. (THE CHILD IS SMALL)", options: ["KLEIN", "GROSS"], correct: "KLEIN", category: "Descriptions" },
-    { id: 17, question: "YOUNG", options: ["JUNG", "ALT"], correct: "JUNG", category: "Descriptions" },
-    { id: 18, question: "MEIN VATER IST _____. (MY FATHER IS OLD)", options: ["ALT", "JUNG"], correct: "ALT", category: "Descriptions" },
-    { id: 19, question: "NEW", options: ["NEU", "ALT"], correct: "NEU", category: "Descriptions" },
-    { id: 20, question: "DAS AUTO IST _____. (THE CAR IS GOOD)", options: ["GUT", "SCHLECHT"], correct: "GUT", category: "Descriptions" },
-    { id: 21, question: "BAD", options: ["SCHLECHT", "GUT"], correct: "SCHLECHT", category: "Descriptions" },
-    { id: 22, question: "DIE BLUME IST _____. (THE FLOWER IS BEAUTIFUL)", options: ["SCHÖN", "HÄSSLICH"], correct: "SCHÖN", category: "Descriptions" },
-    { id: 23, question: "UGLY", options: ["HÄSSLICH", "SCHÖN"], correct: "HÄSSLICH", category: "Descriptions" },
-    { id: 24, question: "DER WEG IST _____. (THE PATH IS LONG)", options: ["LANG", "KURZ"], correct: "LANG", category: "Descriptions" },
-    { id: 25, question: "GERMAN", options: ["DEUTSCH", "ENGLISCH"], correct: "DEUTSCH", category: "Nationalities" },
-    { id: 26, question: "ICH BIN _____. (I AM AMERICAN)", options: ["AMERIKANISCH", "KANADISCH"], correct: "AMERIKANISCH", category: "Nationalities" },
-    { id: 27, question: "ENGLISH", options: ["ENGLISCH", "FRANZÖSISCH"], correct: "ENGLISCH", category: "Nationalities" },
-    { id: 28, question: "ER IST _____. (HE IS SPANISH)", options: ["SPANISCH", "ITALIENISCH"], correct: "SPANISCH", category: "Nationalities" },
-    { id: 29, question: "ITALIAN", options: ["ITALIENISCH", "FRANZÖSISCH"], correct: "ITALIENISCH", category: "Nationalities" },
-    { id: 30, question: "SIE IST _____. (SHE IS FRENCH)", options: ["FRANZÖSISCH", "DEUTSCH"], correct: "FRANZÖSISCH", category: "Nationalities" },
-    { id: 31, question: "CHINESE", options: ["CHINESISCH", "JAPANISCH"], correct: "CHINESISCH", category: "Nationalities" },
-    { id: 32, question: "WIR SIND _____. (WE ARE JAPANESE)", options: ["JAPANISCH", "CHINESISCH"], correct: "JAPANISCH", category: "Nationalities" },
-    { id: 33, question: "MEXICAN", options: ["MEXIKANISCH", "SPANISCH"], correct: "MEXIKANISCH", category: "Nationalities" },
-    { id: 34, question: "IHR SEID _____. (YOU ALL ARE CANADIAN)", options: ["KANADISCH", "AMERIKANISCH"], correct: "KANADISCH", category: "Nationalities" },
-    { id: 35, question: "STUDENT (MALE)", options: ["DER STUDENT", "DER LEHRER"], correct: "DER STUDENT", category: "Professions" },
-    { id: 36, question: "ICH BIN _____. (I AM A TEACHER - FEMALE)", options: ["DIE LEHRERIN", "DIE STUDENTIN"], correct: "DIE LEHRERIN", category: "Professions" },
-    { id: 37, question: "DOCTOR (MALE)", options: ["DER ARZT", "DER KOCH"], correct: "DER ARZT", category: "Professions" },
-    { id: 38, question: "ER IST _____. (HE IS A COOK/CHEF)", options: ["DER KOCH", "DER ARZT"], correct: "DER KOCH", category: "Professions" },
-    { id: 39, question: "ENGINEER (FEMALE)", options: ["DIE INGENIEURIN", "DIE VERKÄUFERIN"], correct: "DIE INGENIEURIN", category: "Professions" },
-    { id: 40, question: "SIE IST _____. (SHE IS A SALESPERSON)", options: ["DIE VERKÄUFERIN", "DIE KELLNERIN"], correct: "DIE VERKÄUFERIN", category: "Professions" },
-    { id: 41, question: "WAITER (MALE)", options: ["DER KELLNER", "DER VERKÄUFER"], correct: "DER KELLNER", category: "Professions" },
-    { id: 42, question: "ICH BIN _____. (I AM A PROGRAMMER - FEMALE)", options: ["DIE PROGRAMMIERERIN", "DIE MANAGERIN"], correct: "DIE PROGRAMMIERERIN", category: "Professions" },
-    { id: 43, question: "MANAGER (MALE)", options: ["DER MANAGER", "DER KÜNSTLER"], correct: "DER MANAGER", category: "Professions" },
-    { id: 44, question: "ER IST _____. (HE IS AN ARTIST)", options: ["DER KÜNSTLER", "DER MANAGER"], correct: "DER KÜNSTLER", category: "Professions" },
-    { id: 45, question: "FRIEND (FEMALE)", options: ["DIE FREUNDIN", "DIE LEHRERIN"], correct: "DIE FREUNDIN", category: "Nouns" },
-    { id: 46, question: "DU BIST MEIN _____. (YOU ARE MY FRIEND - MALE)", options: ["FREUND", "LEHRER"], correct: "FREUND", category: "Nouns" },
-    { id: 47, question: "PERSON/HUMAN", options: ["DER MENSCH", "DAS KIND"], correct: "DER MENSCH", category: "Nouns" },
-    { id: 48, question: "DAS IST EIN _____. (THAT IS A CHILD)", options: ["KIND", "MENSCH"], correct: "KIND", category: "Nouns" },
-    { id: 49, question: "FAMILY", options: ["DIE FAMILIE", "DER FREUND"], correct: "DIE FAMILIE", category: "Nouns" },
-    { id: 50, question: "WIE IST DEIN _____? (WHAT IS YOUR NAME?)", options: ["NAME", "FAMILIE"], correct: "NAME", category: "Nouns" }
-];
+let exercises = [];
+let allQuestionsData = {};
 
 // ============================================
 // STATE MANAGEMENT
@@ -72,6 +22,8 @@ let startTime = null;
 const progressCounter = document.getElementById('progressCounter');
 const progressPercent = document.getElementById('progressPercent');
 const progressBar = document.getElementById('progressBar');
+const totalQuestions = document.getElementById('totalQuestions');
+const totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
 const questionsContainer = document.getElementById('questionsContainer');
 const submitBtn = document.getElementById('submitBtn');
 const clearBtn = document.getElementById('clearBtn');
@@ -87,11 +39,50 @@ const trophyIcon = document.getElementById('trophyIcon');
 // ============================================
 // INITIALIZATION
 // ============================================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Get the question set from URL parameter (default to vocab-week1)
+    const urlParams = new URLSearchParams(window.location.search);
+    const questionSet = urlParams.get('set') || 'vocab-week1';
+    
+    // Load questions from JSON
+    await loadQuestions(questionSet);
+    
+    // Update total questions display
+    if (totalQuestions && totalQuestionsDisplay) {
+        totalQuestions.textContent = exercises.length;
+        totalQuestionsDisplay.textContent = exercises.length;
+    }
+    
     startTime = Date.now();
     renderQuestions();
     attachEventListeners();
 });
+
+// ============================================
+// LOAD QUESTIONS FROM JSON
+// ============================================
+async function loadQuestions(questionSet) {
+    try {
+        const response = await fetch('questions.json');
+        allQuestionsData = await response.json();
+        
+        if (allQuestionsData[questionSet]) {
+            exercises = allQuestionsData[questionSet];
+        } else {
+            console.error(`Question set "${questionSet}" not found. Available sets:`, Object.keys(allQuestionsData));
+            // Fallback to first available set
+            const availableSets = Object.keys(allQuestionsData);
+            if (availableSets.length > 0) {
+                exercises = allQuestionsData[availableSets[0]];
+                console.log(`Loading first available set: ${availableSets[0]}`);
+            }
+        }
+    } catch (error) {
+        console.error('Error loading questions:', error);
+        // Show error message to user
+        questionsContainer.innerHTML = '<div class="error-message">Error loading questions. Please refresh the page.</div>';
+    }
+}
 
 // ============================================
 // RENDERING FUNCTIONS
@@ -177,9 +168,13 @@ function showImmediateFeedback(radioInput, questionId) {
     const userAnswer = radioInput.value;
     const options = card.querySelectorAll('.radio-option');
     
+    // Disable all radio buttons in this question to prevent changing answer
     options.forEach(option => {
         const input = option.querySelector('input');
         const optionValue = input.value;
+        
+        // Disable the input
+        input.disabled = true;
         
         // Remove previous feedback classes
         option.classList.remove('correct', 'incorrect');
@@ -192,7 +187,6 @@ function showImmediateFeedback(radioInput, questionId) {
         // Mark user's incorrect answer as red
         if (optionValue === userAnswer && userAnswer !== exercise.correct) {
             option.classList.add('incorrect');
-            card.classList.add('incorrect');
         }
     });
 }
@@ -218,7 +212,8 @@ function handleReset() {
 // PROGRESS MANAGEMENT
 // ============================================
 function updateProgress() {
-    const percentage = (answeredCount / 50) * 100;
+    const totalQuestions = exercises.length;
+    const percentage = (answeredCount / totalQuestions) * 100;
     
     progressCounter.textContent = answeredCount;
     progressPercent.textContent = `${Math.round(percentage)}%`;
@@ -324,19 +319,22 @@ function displayResults(score) {
 }
 
 function getResultsData(score) {
-    if (score === 50) {
+    const totalQuestions = exercises.length;
+    const percentage = (score / totalQuestions) * 100;
+    
+    if (score === totalQuestions) {
         return {
             title: "PERFEKT! 🎉",
             message: "Congratulations! You got every question correct! You're a German vocabulary master!",
             icon: "🏆"
         };
-    } else if (score >= 45) {
+    } else if (percentage >= 90) {
         return {
             title: "AUSGEZEICHNET! 💪",
             message: "Excellent work! You have a strong grasp of A1 level German vocabulary. Keep up the great effort!",
             icon: "🌟"
         };
-    } else if (score >= 40) {
+    } else if (percentage >= 80) {
         return {
             title: "SEHR GUT! ✅",
             message: "Very good! You're doing well with these vocabulary words. A bit more practice and you'll be excellent!",
@@ -354,7 +352,7 @@ function getResultsData(score) {
 function animateScore(targetScore) {
     let currentScore = 0;
     const duration = 1000;
-    const steps = 50;
+    const steps = Math.min(targetScore, 50); // Cap at 50 steps for smooth animation
     const increment = targetScore / steps;
     const stepDuration = duration / steps;
     
@@ -373,7 +371,10 @@ function animateScore(targetScore) {
 // ============================================
 function clearAllAnswers() {
     const inputs = questionsContainer.querySelectorAll('input[type="radio"]');
-    inputs.forEach(input => input.checked = false);
+    inputs.forEach(input => {
+        input.checked = false;
+        input.disabled = false;
+    });
     
     selectedAnswers = {};
     answeredCount = 0;

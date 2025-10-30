@@ -337,20 +337,25 @@ body::before {
     transform: scaleX(1);
 }
 
+/* Disable hover effects when answered */
+.question-card.answered:hover {
+    border-color: var(--border-color);
+    box-shadow: none;
+    transform: none;
+}
+
+.question-card.answered:hover::before {
+    transform: scaleX(0);
+}
+
 .question-card.answered {
-    border-color: var(--success-color);
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-color: var(--border-color);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .question-card.answered::before {
-    background: var(--success-color);
-    transform: scaleX(1);
-}
-
-.question-card.incorrect {
-    border-color: var(--error-color);
-    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-    animation: shake 0.5s ease;
+    background: transparent;
+    transform: scaleX(0);
 }
 
 @keyframes shake {
@@ -398,8 +403,9 @@ body::before {
 }
 
 .options-container {
-    display: grid;
+    display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .radio-option {
@@ -413,7 +419,9 @@ body::before {
 }
 
 .radio-option label {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 16px 20px;
     background: var(--card-bg);
     border: 2px solid var(--border-color);
@@ -424,6 +432,8 @@ body::before {
     font-weight: 600;
     color: var(--text-primary);
     position: relative;
+    min-width: 150px;
+    width: auto;
 }
 
 .radio-option label::before {
@@ -446,6 +456,17 @@ body::before {
 
 .radio-option:hover label::before {
     width: 4px;
+}
+
+/* Disable hover effects when question is answered */
+.question-card.answered .radio-option:hover label {
+    border-color: inherit;
+    background: inherit;
+    transform: none;
+}
+
+.question-card.answered .radio-option:hover label::before {
+    width: 0;
 }
 
 .radio-option input[type="radio"]:checked + label {
