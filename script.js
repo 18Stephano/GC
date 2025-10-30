@@ -185,8 +185,8 @@ function updateSidebarHeight() {
     const quizSectionRect = quizSection.getBoundingClientRect();
     const quizSectionHeight = quizSectionRect.height;
     
-    // Position sidebar 5px to the left of the quiz section (29px = 24px width + 5px gap)
-    questionSidebar.style.left = `${quizSectionRect.left - 29}px`;
+    // Position sidebar 20px to the left of the quiz section (80px = 60px width + 20px gap)
+    questionSidebar.style.left = `${quizSectionRect.left - 80}px`;
     questionSidebar.style.top = `${quizSectionRect.top}px`;
     questionSidebar.style.height = `${quizSectionHeight}px`;
     
@@ -198,14 +198,18 @@ function updateSidebarHeight() {
     if (dots.length === 0) return;
     
     // Calculate how many dots fit in the visible area
-    const dotHeight = 8 + 6; // dot height + margin
-    const arrowHeight = 16 + 8; // arrow height + margins
-    const availableHeight = quizSectionHeight - (arrowHeight * 2);
-    const visibleDots = Math.floor(availableHeight / dotHeight);
+    // 8px dot + 8px spacing = 16px per dot (for regular dots)
+    // Current dot is 12px with 2px margins, but we'll use average spacing
+    const dotSpacing = 8; // 8px spacing between dots
+    const dotSize = 8; // regular dot size
+    const dotHeightWithSpacing = dotSize + dotSpacing; // 16px total per dot
+    const arrowHeight = 16 + 16; // arrow height + margins (8px top + 8px bottom)
+    const availableHeight = quizSectionHeight - arrowHeight;
+    const visibleDots = Math.floor(availableHeight / dotHeightWithSpacing);
     const maxVisibleDots = Math.min(15, Math.max(12, visibleDots));
     
     // Set max height to show only visible dots
-    const maxHeight = maxVisibleDots * dotHeight;
+    const maxHeight = maxVisibleDots * dotHeightWithSpacing;
     scrollable.style.maxHeight = `${maxHeight}px`;
     scrollable.style.overflowY = scrollable.scrollHeight > maxHeight ? 'auto' : 'hidden';
 }
@@ -220,7 +224,7 @@ function scrollToCurrentQuestion() {
     if (currentDot) {
         const scrollableHeight = scrollable.clientHeight;
         const dotTop = currentDot.offsetTop;
-        const dotHeight = 8 + 6; // dot height + margin
+        const dotHeight = 8 + 8; // dot height + 8px spacing
         
         // Center the current dot in the visible area
         const targetScroll = dotTop - (scrollableHeight / 2) + (dotHeight / 2);
@@ -305,15 +309,22 @@ function renderQuestions() {
     questionsContainer.appendChild(questionCard);
     
     // Set initial state: show button, hide options, hide Next button
+    const showOptionsWrapper = document.querySelector('.show-options-wrapper');
     const showOptionsBtn = document.getElementById('showOptionsBtn');
     const optionsContainer = document.getElementById('optionsContainer');
     const nextBtn = document.getElementById('nextBtn');
     
+    // Show the wrapper and button
+    if (showOptionsWrapper) {
+        showOptionsWrapper.style.display = 'flex';
+    }
     if (showOptionsBtn) {
         showOptionsBtn.style.display = 'block';
+        showOptionsBtn.style.opacity = '1';
         showOptionsBtn.addEventListener('click', handleShowOptions);
     }
     
+    // Hide options container
     if (optionsContainer) {
         optionsContainer.style.display = 'none';
         optionsContainer.style.opacity = '0';
@@ -373,7 +384,6 @@ function createQuestionCard(exercise, questionNum) {
         </div>
         <div class="question-text">${exercise.question}</div>
         <div class="show-options-wrapper">
-            <div class="helper-text">Try to recall the answer first</div>
             <button type="button" class="show-options-btn" id="showOptionsBtn">Show Options</button>
         </div>
         <div class="options-container" id="optionsContainer" style="display: none; opacity: 0;">
@@ -410,10 +420,17 @@ function handleShowOptions() {
     const showOptionsWrapper = showOptionsBtn ? showOptionsBtn.closest('.show-options-wrapper') : null;
     const optionsContainer = document.getElementById('optionsContainer');
     
-    if (showOptionsWrapper) {
-        showOptionsWrapper.style.display = 'none';
+    // Fade out the button
+    if (showOptionsBtn) {
+        showOptionsBtn.style.opacity = '0';
+        setTimeout(() => {
+            if (showOptionsWrapper) {
+                showOptionsWrapper.style.display = 'none';
+            }
+        }, 300); // Wait for fade transition
     }
     
+    // Fade in the options
     if (optionsContainer) {
         optionsContainer.style.display = 'block';
         // Use setTimeout to trigger fade-in transition
