@@ -154,6 +154,9 @@ function handleAnswerChange(e) {
         
         updateProgress();
         updateCardState(e.target);
+        
+        // Show immediate feedback for the selected answer
+        showImmediateFeedback(e.target, questionId);
     }
 }
 
@@ -162,6 +165,36 @@ function updateCardState(radioInput) {
     if (card) {
         card.classList.add('answered');
     }
+}
+
+function showImmediateFeedback(radioInput, questionId) {
+    const card = radioInput.closest('.question-card');
+    if (!card) return;
+    
+    const exercise = exercises.find(ex => ex.id === questionId);
+    if (!exercise) return;
+    
+    const userAnswer = radioInput.value;
+    const options = card.querySelectorAll('.radio-option');
+    
+    options.forEach(option => {
+        const input = option.querySelector('input');
+        const optionValue = input.value;
+        
+        // Remove previous feedback classes
+        option.classList.remove('correct', 'incorrect');
+        
+        // Mark correct answer as green
+        if (optionValue === exercise.correct) {
+            option.classList.add('correct');
+        }
+        
+        // Mark user's incorrect answer as red
+        if (optionValue === userAnswer && userAnswer !== exercise.correct) {
+            option.classList.add('incorrect');
+            card.classList.add('incorrect');
+        }
+    });
 }
 
 function handleSubmit(e) {
@@ -347,9 +380,14 @@ function clearAllAnswers() {
     
     updateProgress();
     
+    // Remove feedback from all cards and options
     const cards = questionsContainer.querySelectorAll('.question-card');
     cards.forEach(card => {
         card.classList.remove('answered', 'incorrect', 'show-feedback');
+        const options = card.querySelectorAll('.radio-option');
+        options.forEach(option => {
+            option.classList.remove('correct', 'incorrect');
+        });
     });
 }
 
