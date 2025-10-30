@@ -3,99 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interactive German Vocabulary Quiz - Master A1 Level German">
-    <title>🇩🇪 German Vocabulary Quiz - Master A1 German</title>
+    <title>German Vocabulary Quiz</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="app-wrapper">
-        <!-- Header -->
-        <header class="quiz-header">
-            <div class="header-content">
-                <h1>🇩🇪 German Vocabulary Quiz</h1>
-                <p class="tagline">Master A1 Level German Vocabulary</p>
+    <div class="quiz-container">
+        <!-- Simple progress indicator -->
+        <div class="progress-indicator">
+            <span id="progressText">Question 1 of 50</span>
+        </div>
+
+        <!-- Quiz Questions Section -->
+        <section class="quiz-section" id="quizSection">
+            <form id="quizForm">
+                <div class="questions-container" id="questionsContainer">
+                    <!-- Questions will be dynamically inserted here -->
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-secondary" id="prevBtn">Previous</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="action-buttons" id="submitButtonsContainer" style="display: none;">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Results Section (Hidden Initially) -->
+        <section class="results-panel hidden" id="resultsPanel">
+            <h2 id="resultsTitle">Results</h2>
+            <div class="score-box">
+                <span id="finalScore">0</span>
+                <span class="score-slash">/</span>
+                <span id="totalQuestionsDisplay">0</span>
             </div>
-        </header>
-
-        <!-- Main Container -->
-        <main class="main-content">
-            <!-- Progress Section -->
-            <section class="progress-panel">
-                <div class="progress-stats">
-                    <div class="stat-item">
-                        <div class="stat-value" id="currentQuestion">1</div>
-                        <div class="stat-label">Current Question</div>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="totalQuestions">0</div>
-                        <div class="stat-label">Total Questions</div>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="progressCounter">0</div>
-                        <div class="stat-label">Answered</div>
-                    </div>
-                </div>
-                <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" id="progressBar"></div>
-                </div>
-            </section>
-
-            <!-- Results Section (Hidden Initially) -->
-            <section class="results-panel hidden" id="resultsPanel">
-                <div class="results-container">
-                    <div class="trophy-icon" id="trophyIcon">🏆</div>
-                    <h2 class="results-title" id="resultsTitle">Great Job!</h2>
-                    <div class="score-box">
-                        <span class="score-value" id="finalScore">0</span>
-                        <span class="score-slash">/</span>
-                        <span class="score-total" id="totalQuestionsDisplay">0</span>
-                    </div>
-                    <p class="results-message" id="resultsMessage">Keep up the great work!</p>
-                    <div class="results-actions">
-                        <button class="btn btn-reset" id="resetBtn">
-                            <span class="btn-icon">🔄</span>
-                            <span class="btn-text">Retake Quiz</span>
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Quiz Questions Section -->
-            <section class="quiz-section" id="quizSection">
-                <form id="quizForm">
-                    <div class="questions-container" id="questionsContainer">
-                        <!-- Questions will be dynamically inserted here -->
-                    </div>
-                    
-                    <!-- Navigation Buttons -->
-                    <div class="action-buttons">
-                        <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">
-                            <span class="btn-icon">⬅️</span>
-                            <span class="btn-text">Previous</span>
-                        </button>
-                        <button type="button" class="btn btn-secondary" id="nextBtn" style="display: none;">
-                            <span class="btn-icon">➡️</span>
-                            <span class="btn-text">Next</span>
-                        </button>
-                    </div>
-                    
-                    <!-- Submit Button -->
-                    <div class="action-buttons" id="submitButtonsContainer" style="display: none;">
-                        <button type="submit" class="btn btn-primary" id="submitBtn">
-                            <span class="btn-icon">✅</span>
-                            <span class="btn-text">Submit Quiz</span>
-                        </button>
-                    </div>
-                </form>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="quiz-footer">
-            <p>Practice makes perfect! Keep learning and improving your German skills. 🇩🇪</p>
-        </footer>
+            <p id="resultsMessage"></p>
+            <button class="btn btn-primary" id="resetBtn">Retake Quiz</button>
+        </section>
     </div>
 
     <script src="script.js"></script>

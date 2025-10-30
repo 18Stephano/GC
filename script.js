@@ -20,17 +20,13 @@ let currentQuestionIndex = 0;
 // ============================================
 // DOM ELEMENTS
 // ============================================
-const progressCounter = document.getElementById('progressCounter');
-const currentQuestion = document.getElementById('currentQuestion');
-const progressBar = document.getElementById('progressBar');
-const totalQuestions = document.getElementById('totalQuestions');
+const progressText = document.getElementById('progressText');
 const totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
 const questionsContainer = document.getElementById('questionsContainer');
 const submitBtn = document.getElementById('submitBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const submitButtonsContainer = document.getElementById('submitButtonsContainer');
-const clearBtn = document.getElementById('clearBtn');
 const resetBtn = document.getElementById('resetBtn');
 const quizForm = document.getElementById('quizForm');
 const resultsPanel = document.getElementById('resultsPanel');
@@ -38,7 +34,6 @@ const quizSection = document.getElementById('quizSection');
 const finalScore = document.getElementById('finalScore');
 const resultsTitle = document.getElementById('resultsTitle');
 const resultsMessage = document.getElementById('resultsMessage');
-const trophyIcon = document.getElementById('trophyIcon');
 
 // ============================================
 // INITIALIZATION
@@ -52,14 +47,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadQuestions(questionSet);
     
     // Update total questions display
-    if (totalQuestions && totalQuestionsDisplay) {
-        totalQuestions.textContent = exercises.length;
+    if (totalQuestionsDisplay) {
         totalQuestionsDisplay.textContent = exercises.length;
     }
     
     startTime = Date.now();
     renderQuestions();
     updateNavigation();
+    updateProgress();
     attachEventListeners();
 });
 
@@ -243,13 +238,13 @@ function updateNavigation() {
     
     // Show/hide Previous button
     if (prevBtn) {
-        prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-flex' : 'none';
+        prevBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
     }
     
     // Show/hide Next button
     if (nextBtn) {
         const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
-        nextBtn.style.display = isLastQuestion ? 'none' : 'inline-flex';
+        nextBtn.style.display = isLastQuestion ? 'none' : 'block';
     }
     
     // Show Submit button only on last question
@@ -282,27 +277,11 @@ function handleNext() {
 // ============================================
 function updateProgress() {
     const totalQs = exercises.length;
-    const percentage = (answeredCount / totalQs) * 100;
     
-    progressCounter.textContent = answeredCount;
-    progressBar.style.width = `${percentage}%`;
-    
-    // Update current question display
-    if (currentQuestion) {
-        currentQuestion.textContent = currentQuestionIndex + 1;
+    // Update progress text
+    if (progressText) {
+        progressText.textContent = `Question ${currentQuestionIndex + 1} of ${totalQs}`;
     }
-    
-    // Add visual feedback when progress increases
-    if (answeredCount > 0 && answeredCount % 10 === 0) {
-        playProgressAnimation();
-    }
-}
-
-function playProgressAnimation() {
-    progressBar.style.animation = 'none';
-    setTimeout(() => {
-        progressBar.style.animation = 'shimmer 2s infinite';
-    }, 10);
 }
 
 // ============================================
@@ -374,19 +353,14 @@ function disableAllInputs() {
 // RESULTS DISPLAY
 // ============================================
 function displayResults(score) {
+    const { title, message } = getResultsData(score);
+    
     finalScore.textContent = score;
-    
-    const { title, message, icon } = getResultsData(score);
-    
     resultsTitle.textContent = title;
     resultsMessage.textContent = message;
-    trophyIcon.textContent = icon;
     
     quizSection.classList.add('hidden');
     resultsPanel.classList.remove('hidden');
-    
-    // Animate score counting
-    animateScore(score);
 }
 
 function getResultsData(score) {
@@ -395,46 +369,25 @@ function getResultsData(score) {
     
     if (score === totalQuestions) {
         return {
-            title: "PERFEKT! 🎉",
-            message: "Congratulations! You got every question correct! You're a German vocabulary master!",
-            icon: "🏆"
+            title: "Perfect!",
+            message: "Congratulations! You got every question correct!"
         };
     } else if (percentage >= 90) {
         return {
-            title: "AUSGEZEICHNET! 💪",
-            message: "Excellent work! You have a strong grasp of A1 level German vocabulary. Keep up the great effort!",
-            icon: "🌟"
+            title: "Excellent!",
+            message: "Excellent work! You have a strong grasp of German vocabulary."
         };
     } else if (percentage >= 80) {
         return {
-            title: "SEHR GUT! ✅",
-            message: "Very good! You're doing well with these vocabulary words. A bit more practice and you'll be excellent!",
-            icon: "👍"
+            title: "Very Good!",
+            message: "Very good! You're doing well with these vocabulary words."
         };
     } else {
         return {
-            title: "WEITER ÜBEN! 📚",
-            message: "Keep practicing! Review the words you got wrong and try again. You'll improve with each attempt!",
-            icon: "📖"
+            title: "Keep Practicing!",
+            message: "Keep practicing! Review the words you got wrong and try again."
         };
     }
-}
-
-function animateScore(targetScore) {
-    let currentScore = 0;
-    const duration = 1000;
-    const steps = Math.min(targetScore, 50); // Cap at 50 steps for smooth animation
-    const increment = targetScore / steps;
-    const stepDuration = duration / steps;
-    
-    const interval = setInterval(() => {
-        currentScore += increment;
-        if (currentScore >= targetScore) {
-            currentScore = targetScore;
-            clearInterval(interval);
-        }
-        finalScore.textContent = Math.floor(currentScore);
-    }, stepDuration);
 }
 
 // ============================================
