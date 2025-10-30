@@ -23,9 +23,7 @@
     { "id": 21, "question": "BAD", "options": ["SCHLECHT", "GUT"], "correct": "SCHLECHT", "category": "Descriptions" },
     { "id": 22, "question": "DIE BLUME IST _____. (THE FLOWER IS BEAUTIFUL)", "options": ["SCHÖN", "HÄSSLICH"], "correct": "SCHÖN", "category": "Descriptions" },
     { "id": 23, "question": "UGLY", "options": ["HÄSSLICH", "SCHÖN"], "correct": "HÄSSLICH", "category": "Descriptions" },
-    { "id": 24, "question": "DER WEG IST _____. (THE PATH IS LONG)", "options": ["LANG", "KURZ"], "correct": "LANG", "category": "Descriptions" }
-  ],
-  "vocab-week2": [
+    { "id": 24, "question": "DER WEG IST _____. (THE PATH IS LONG)", "options": ["LANG", "KURZ"], "correct": "LANG", "category": "Descriptions" },
     { "id": 25, "question": "GERMAN", "options": ["DEUTSCH", "ENGLISCH"], "correct": "DEUTSCH", "category": "Nationalities" },
     { "id": 26, "question": "ICH BIN _____. (I AM AMERICAN)", "options": ["AMERIKANISCH", "KANADISCH"], "correct": "AMERIKANISCH", "category": "Nationalities" },
     { "id": 27, "question": "ENGLISH", "options": ["ENGLISCH", "FRANZÖSISCH"], "correct": "ENGLISCH", "category": "Nationalities" },
@@ -35,9 +33,7 @@
     { "id": 31, "question": "CHINESE", "options": ["CHINESISCH", "JAPANISCH"], "correct": "CHINESISCH", "category": "Nationalities" },
     { "id": 32, "question": "WIR SIND _____. (WE ARE JAPANESE)", "options": ["JAPANISCH", "CHINESISCH"], "correct": "JAPANISCH", "category": "Nationalities" },
     { "id": 33, "question": "MEXICAN", "options": ["MEXIKANISCH", "SPANISCH"], "correct": "MEXIKANISCH", "category": "Nationalities" },
-    { "id": 34, "question": "IHR SEID _____. (YOU ALL ARE CANADIAN)", "options": ["KANADISCH", "AMERIKANISCH"], "correct": "KANADISCH", "category": "Nationalities" }
-  ],
-  "grammar-week1": [
+    { "id": 34, "question": "IHR SEID _____. (YOU ALL ARE CANADIAN)", "options": ["KANADISCH", "AMERIKANISCH"], "correct": "KANADISCH", "category": "Nationalities" },
     { "id": 35, "question": "STUDENT (MALE)", "options": ["DER STUDENT", "DER LEHRER"], "correct": "DER STUDENT", "category": "Professions" },
     { "id": 36, "question": "ICH BIN _____. (I AM A TEACHER - FEMALE)", "options": ["DIE LEHRERIN", "DIE STUDENTIN"], "correct": "DIE LEHRERIN", "category": "Professions" },
     { "id": 37, "question": "DOCTOR (MALE)", "options": ["DER ARZT", "DER KOCH"], "correct": "DER ARZT", "category": "Professions" },
@@ -56,4 +52,3 @@
     { "id": 50, "question": "WIE IST DEIN _____? (WHAT IS YOUR NAME?)", "options": ["NAME", "FAMILIE"], "correct": "NAME", "category": "Nouns" }
   ]
 }
-
