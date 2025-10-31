@@ -207,12 +207,12 @@ function updateSidebarHeight() {
     // Position sidebar 20px to the left of the quiz section (80px = 60px width + 20px gap)
     questionSidebar.style.left = `${quizSectionRect.left - 80}px`;
     
-    // CENTER the sidebar vertically with the quiz section
+    // CENTER the sidebar vertically with the quiz section, then move up by 25px
     // Calculate the center of the quiz section
     const quizSectionCenter = quizSectionRect.top + (quizSectionHeight / 2);
-    // Position sidebar so its center aligns with quiz section center
+    // Position sidebar so its center aligns with quiz section center, then offset upward by 25px
     const sidebarHeight = quizSectionHeight; // Sidebar matches quiz section height
-    questionSidebar.style.top = `${quizSectionCenter - (sidebarHeight / 2)}px`;
+    questionSidebar.style.top = `${quizSectionCenter - (sidebarHeight / 2) - 25}px`;
     questionSidebar.style.height = `${quizSectionHeight}px`;
     
     // Limit visible dots (12-15 visible at a time)
