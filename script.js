@@ -16,6 +16,7 @@ let submitted = false;
 let selectedAnswers = {};
 let startTime = null;
 let currentQuestionIndex = 0;
+let shuffledOptionsMap = {}; // Store shuffled option order for each question ID
 
 // ============================================
 // DOM ELEMENTS
@@ -61,6 +62,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // ============================================
+// RANDOMIZATION UTILITIES
+// ============================================
+/**
+ * Fisher-Yates shuffle algorithm for array randomization
+ * @param {Array} array - Array to shuffle
+ * @returns {Array} - New shuffled array (original unchanged)
+ */
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// ============================================
 // LOAD QUESTIONS FROM JSON
 // ============================================
 async function loadQuestions(questionSet) {
@@ -69,13 +87,14 @@ async function loadQuestions(questionSet) {
         allQuestionsData = await response.json();
         
         if (allQuestionsData[questionSet]) {
-            exercises = allQuestionsData[questionSet];
+            // RANDOMIZATION 1: Shuffle question order on page load
+            exercises = shuffleArray(allQuestionsData[questionSet]);
         } else {
             console.error(`Question set "${questionSet}" not found. Available sets:`, Object.keys(allQuestionsData));
             // Fallback to first available set
             const availableSets = Object.keys(allQuestionsData);
             if (availableSets.length > 0) {
-                exercises = allQuestionsData[availableSets[0]];
+                exercises = shuffleArray(allQuestionsData[availableSets[0]]);
                 console.log(`Loading first available set: ${availableSets[0]}`);
             }
         }
@@ -387,17 +406,29 @@ function createQuestionCard(exercise, questionNum) {
             <button type="button" class="show-options-btn" id="showOptionsBtn">Show Options</button>
         </div>
         <div class="options-container" id="optionsContainer" style="display: none; opacity: 0;">
-            ${exercise.options.map((option, idx) => `
-                <div class="radio-option">
-                    <input 
-                        type="radio" 
-                        id="q${exercise.id}_opt${idx}" 
-                        name="question_${exercise.id}" 
-                        value="${option}"
-                    />
-                    <label for="q${exercise.id}_opt${idx}">${option}</label>
-                </div>
-            `).join('')}
+            ${(() => {
+                // RANDOMIZATION 2: Shuffle answer options (50% chance to reverse order)
+                // Store shuffled order for this question ID so it stays consistent
+                if (!shuffledOptionsMap[exercise.id]) {
+                    const shuffledOptions = [...exercise.options];
+                    if (Math.random() < 0.5) {
+                        shuffledOptions.reverse();
+                    }
+                    shuffledOptionsMap[exercise.id] = shuffledOptions;
+                }
+                const shuffledOptions = shuffledOptionsMap[exercise.id];
+                return shuffledOptions.map((option, idx) => `
+                    <div class="radio-option">
+                        <input 
+                            type="radio" 
+                            id="q${exercise.id}_opt${idx}" 
+                            name="question_${exercise.id}" 
+                            value="${option}"
+                        />
+                        <label for="q${exercise.id}_opt${idx}">${option}</label>
+                    </div>
+                `).join('');
+            })()}
         </div>
     `;
     
@@ -716,6 +747,7 @@ function resetQuiz() {
     answeredCount = 0;
     currentQuestionIndex = 0;
     startTime = Date.now();
+    shuffledOptionsMap = {}; // Reset shuffled options for new quiz session
     
     // Re-enable inputs
     const inputs = questionsContainer.querySelectorAll('input[type="radio"]');
