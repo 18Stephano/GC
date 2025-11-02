@@ -115,14 +115,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     // Otherwise, load the quiz
+    await loadQuiz(questionSet);
+});
+
+// Separate function to load the quiz
+async function loadQuiz(questionSet) {
     // Hide home page if visible
     const homeContainer = document.querySelector('.home-container');
     if (homeContainer) homeContainer.style.display = 'none';
     
-    // Show quiz container
+    // Show quiz container and sidebar
     const quizContainer = document.querySelector('.quiz-container');
-    if (quizContainer) quizContainer.style.display = 'block';
-    if (questionSidebar) questionSidebar.style.display = 'flex';
+    if (quizContainer) {
+        quizContainer.style.display = 'block';
+    }
+    if (questionSidebar) {
+        questionSidebar.style.display = 'flex';
+    }
     
     // Reset body styles for quiz
     document.body.style.alignItems = 'flex-start';
@@ -168,7 +177,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Save initial state
     saveQuizState(questionSet);
-});
+}
 
 // ============================================
 // HOME PAGE
