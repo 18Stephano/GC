@@ -104,9 +104,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     resultsTitle = document.getElementById('resultsTitle');
     resultsMessage = document.getElementById('resultsMessage');
     
-    // Get the question set from URL parameter (default to tag-1)
+    // Get the question set from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
-    const questionSet = urlParams.get('set') || 'tag-1';
+    const questionSet = urlParams.get('set');
+    
+    // If no parameter, show home page
+    if (!questionSet) {
+        showHomePage();
+        return;
+    }
+    
+    // Otherwise, load the quiz
     currentQuestionSet = questionSet;
     
     // Load questions from JSON
@@ -148,6 +156,97 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Save initial state
     saveQuizState(questionSet);
 });
+
+// ============================================
+// HOME PAGE
+// ============================================
+function formatExerciseName(setName) {
+    const nameMap = {
+        'tag-1': 'Tag 1: Vocabulary',
+        'tag-1-grammar': 'Tag 1: Grammar - Pronouns & Sein',
+        'tag-1-greetings': 'Tag 1: Greetings & Introductions'
+    };
+    return nameMap[setName] || setName; // Fallback to original name if not in map
+}
+
+function createExerciseButton(setName, questionCount) {
+    const button = document.createElement('a');
+    button.href = `?set=${setName}`;
+    button.className = 'exercise-button';
+    
+    const title = document.createElement('div');
+    title.className = 'title';
+    title.textContent = formatExerciseName(setName);
+    
+    const info = document.createElement('div');
+    info.className = 'info';
+    info.textContent = `${questionCount} questions`;
+    
+    button.appendChild(title);
+    button.appendChild(info);
+    
+    // Add to exercise list container
+    const exerciseList = document.querySelector('.exercise-list');
+    if (exerciseList) {
+        exerciseList.appendChild(button);
+    }
+}
+
+function showHomePage() {
+    // Hide quiz elements
+    if (questionSidebar) questionSidebar.style.display = 'none';
+    if (quizSection) quizSection.style.display = 'none';
+    
+    // Create home page container if it doesn't exist
+    let homeContainer = document.querySelector('.home-container');
+    if (!homeContainer) {
+        homeContainer = document.createElement('div');
+        homeContainer.className = 'home-container';
+        
+        const h1 = document.createElement('h1');
+        h1.textContent = 'German Club';
+        
+        const subtitle = document.createElement('p');
+        subtitle.className = 'subtitle';
+        subtitle.textContent = 'Choose an exercise set to begin';
+        
+        const exerciseList = document.createElement('div');
+        exerciseList.className = 'exercise-list';
+        
+        homeContainer.appendChild(h1);
+        homeContainer.appendChild(subtitle);
+        homeContainer.appendChild(exerciseList);
+        
+        // Insert at the beginning of body
+        document.body.insertBefore(homeContainer, document.body.firstChild);
+    }
+    
+    // Fetch questions.json to get all exercise sets
+    fetch('questions.json')
+        .then(response => response.json())
+        .then(data => {
+            const exerciseSets = Object.keys(data);
+            const exerciseList = document.querySelector('.exercise-list');
+            
+            // Clear existing buttons (in case of refresh)
+            if (exerciseList) {
+                exerciseList.innerHTML = '';
+            }
+            
+            // Create a button for each exercise set
+            exerciseSets.forEach(setName => {
+                const questionCount = data[setName].length;
+                createExerciseButton(setName, questionCount);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading exercise sets:', error);
+            const exerciseList = document.querySelector('.exercise-list');
+            if (exerciseList) {
+                exerciseList.innerHTML = '<div class="error-message">Error loading exercise sets. Please refresh the page.</div>';
+            }
+        });
+}
 
 // ============================================
 // RANDOMIZATION UTILITIES
