@@ -19,23 +19,23 @@ let currentQuestionIndex = 0;
 let shuffledOptionsMap = {}; // Store shuffled option order for each question ID
 
 // ============================================
-// DOM ELEMENTS
+// DOM ELEMENTS (initialized in DOMContentLoaded)
 // ============================================
-const progressText = document.getElementById('progressText');
-const totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
-const questionsContainer = document.getElementById('questionsContainer');
-const questionSidebar = document.getElementById('questionSidebar');
-const submitBtn = document.getElementById('submitBtn');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const submitButtonsContainer = document.getElementById('submitButtonsContainer');
-const resetBtn = document.getElementById('resetBtn');
-const quizForm = document.getElementById('quizForm');
-const resultsPanel = document.getElementById('resultsPanel');
-const quizSection = document.getElementById('quizSection');
-const finalScore = document.getElementById('finalScore');
-const resultsTitle = document.getElementById('resultsTitle');
-const resultsMessage = document.getElementById('resultsMessage');
+let progressText;
+let totalQuestionsDisplay;
+let questionsContainer;
+let questionSidebar;
+let submitBtn;
+let prevBtn;
+let nextBtn;
+let submitButtonsContainer;
+let resetBtn;
+let quizForm;
+let resultsPanel;
+let quizSection;
+let finalScore;
+let resultsTitle;
+let resultsMessage;
 
 // ============================================
 // AUTOSAVE FUNCTIONALITY (localStorage)
@@ -87,6 +87,23 @@ function clearQuizState(questionSet) {
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize DOM element references
+    progressText = document.getElementById('progressText');
+    totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
+    questionsContainer = document.getElementById('questionsContainer');
+    questionSidebar = document.getElementById('questionSidebar');
+    submitBtn = document.getElementById('submitBtn');
+    prevBtn = document.getElementById('prevBtn');
+    nextBtn = document.getElementById('nextBtn');
+    submitButtonsContainer = document.getElementById('submitButtonsContainer');
+    resetBtn = document.getElementById('resetBtn');
+    quizForm = document.getElementById('quizForm');
+    resultsPanel = document.getElementById('resultsPanel');
+    quizSection = document.getElementById('quizSection');
+    finalScore = document.getElementById('finalScore');
+    resultsTitle = document.getElementById('resultsTitle');
+    resultsMessage = document.getElementById('resultsMessage');
+    
     // Get the question set from URL parameter (default to tag-1)
     const urlParams = new URLSearchParams(window.location.search);
     const questionSet = urlParams.get('set') || 'tag-1';
