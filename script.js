@@ -160,6 +160,9 @@ async function loadQuiz(questionSet) {
     
     currentQuestionSet = questionSet;
     
+    // Reset shuffled options map for fresh randomization
+    shuffledOptionsMap = {};
+    
     // Load questions from JSON
     console.log('Loading questions...');
     await loadQuestions(questionSet);
@@ -174,19 +177,24 @@ async function loadQuiz(questionSet) {
         return;
     }
     
-    // Try to restore saved state
+    // ALWAYS shuffle questions fresh - don't restore order from localStorage
+    // This ensures questions are in random order on every page load
+    exercises = shuffleArray(exercises);
+    
+    // Try to restore saved state (answers, position, etc.) but NOT question order
     const savedState = loadQuizState(questionSet);
-    if (savedState && savedState.questionIds && savedState.questionIds.length === exercises.length) {
-        // Restore shuffled order based on saved IDs
-        const idMap = new Map(exercises.map(q => [q.id, q]));
-        exercises = savedState.questionIds.map(id => idMap.get(id)).filter(q => q);
-        
-        // Restore other state
+    if (savedState && savedState.selectedAnswers) {
+        // Restore answers and progress, but keep the newly shuffled question order
         selectedAnswers = savedState.selectedAnswers || {};
         currentQuestionIndex = savedState.currentQuestionIndex || 0;
         startTime = savedState.startTime || Date.now();
         answeredCount = savedState.answeredCount || Object.keys(selectedAnswers).length;
         submitted = savedState.submitted || false;
+        
+        // Make sure currentQuestionIndex is within bounds
+        if (currentQuestionIndex >= exercises.length) {
+            currentQuestionIndex = 0;
+        }
     } else {
         // No saved state, start fresh
         startTime = Date.now();
@@ -696,13 +704,11 @@ function createQuestionCard(exercise, questionNum) {
         </div>
         <div class="options-container" id="optionsContainer" style="display: none; opacity: 0;">
             ${(() => {
-                // RANDOMIZATION 2: Shuffle answer options (50% chance to reverse order)
-                // Store shuffled order for this question ID so it stays consistent
+                // RANDOMIZATION 2: Fully shuffle answer options randomly
+                // Store shuffled order for this question ID so it stays consistent during the session
                 if (!shuffledOptionsMap[exercise.id]) {
-                    const shuffledOptions = [...exercise.options];
-                    if (Math.random() < 0.5) {
-                        shuffledOptions.reverse();
-                    }
+                    // Fully shuffle the options array using Fisher-Yates shuffle
+                    const shuffledOptions = shuffleArray([...exercise.options]);
                     shuffledOptionsMap[exercise.id] = shuffledOptions;
                 }
                 const shuffledOptions = shuffledOptionsMap[exercise.id];
