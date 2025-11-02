@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Question Navigation Sidebar -->
+    <div class="question-sidebar" id="questionSidebar">
+        <!-- Dots will be dynamically inserted here -->
+    </div>
+    
+    <div class="quiz-container">
+        <!-- Simple progress indicator -->
+        <div class="progress-indicator">
+            <span id="progressText">Question 1 of 50</span>
+        </div>
+
+        <!-- Quiz Questions Section -->
+        <section class="quiz-section" id="quizSection">
+            <form id="quizForm">
+                <div class="questions-container" id="questionsContainer">
+                    <!-- Questions will be dynamically inserted here -->
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-secondary" id="prevBtn">Previous</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="action-buttons" id="submitButtonsContainer" style="display: none;">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Results Section (Hidden Initially) -->
+        <section class="results-panel hidden" id="resultsPanel">
+            <h2 id="resultsTitle">Results</h2>
+            <div class="score-box">
+                <span id="finalScore">0</span>
+                <span class="score-slash">/</span>
+                <span id="totalQuestionsDisplay">0</span>
+            </div>
+            <p id="resultsMessage"></p>
+            <button class="btn btn-primary" id="resetBtn">Retake Quiz</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
