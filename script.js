@@ -87,6 +87,15 @@ function clearQuizState(questionSet) {
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', async () => {
+    console.log('=== DOM Content Loaded ===');
+
+    // Remove initial loader
+    const loader = document.getElementById('initialLoader');
+    if (loader) {
+        console.log('Removing initial loader');
+        setTimeout(() => loader.remove(), 100);
+    }
+
     // Initialize DOM element references
     progressText = document.getElementById('progressText');
     totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
@@ -103,18 +112,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     finalScore = document.getElementById('finalScore');
     resultsTitle = document.getElementById('resultsTitle');
     resultsMessage = document.getElementById('resultsMessage');
-    
+
+    console.log('DOM elements initialized');
+
     // Get the question set from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const questionSet = urlParams.get('set');
-    
+
+    console.log('URL Parameter "set":', questionSet || '(none - will show home page)');
+
     // If no parameter, show home page
     if (!questionSet) {
+        console.log('No URL parameter detected - showing home page');
         showHomePage();
         return;
     }
-    
+
     // Otherwise, load the quiz
+    console.log('URL parameter detected - loading quiz');
     await loadQuiz(questionSet);
 });
 
@@ -603,97 +618,59 @@ function updateQuestionSidebar() {
 // RENDERING FUNCTIONS
 // ============================================
 function renderQuestions() {
+    console.log('renderQuestions() called');
     questionsContainer.innerHTML = '';
-    
+
     if (exercises.length === 0) {
         questionsContainer.innerHTML = '<div class="error-message">No questions available. Please check your question set.</div>';
         return;
     }
-    
+
     // Only render the current question
     const exercise = exercises[currentQuestionIndex];
+    console.log('Rendering question:', exercise);
     const questionCard = createQuestionCard(exercise, currentQuestionIndex + 1);
     questionsContainer.appendChild(questionCard);
-    
-    // Set initial state: show button, hide options, hide Next button
-    const showOptionsWrapper = document.querySelector('.show-options-wrapper');
-    const showOptionsBtn = document.getElementById('showOptionsBtn');
-    const optionsContainer = document.getElementById('optionsContainer');
-    const nextBtn = document.getElementById('nextBtn');
-    
-    // Show the wrapper and button
-    if (showOptionsWrapper) {
-        showOptionsWrapper.style.display = 'flex';
-    }
-    if (showOptionsBtn) {
-        showOptionsBtn.style.display = 'block';
-        showOptionsBtn.style.opacity = '1';
-        showOptionsBtn.addEventListener('click', handleShowOptions);
-    }
-    
-    // Hide options container
-    if (optionsContainer) {
-        optionsContainer.style.display = 'none';
-        optionsContainer.style.opacity = '0';
-    }
-    
-    // Hide Next button initially (but keep action-buttons container visible for Previous button)
-    if (nextBtn) {
-        nextBtn.style.display = 'none';
-    }
-    
-    // Show Previous button if not on first question
+
+    // Show/hide navigation buttons
     if (prevBtn) {
         prevBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
     }
-    
-    // Ensure action-buttons container is visible
-    const actionButtonsContainer = document.querySelector('.action-buttons');
-    if (actionButtonsContainer && actionButtonsContainer.id !== 'submitButtonsContainer') {
-        actionButtonsContainer.style.display = 'flex';
+
+    if (nextBtn) {
+        nextBtn.style.display = 'none'; // Hidden until answer is selected
     }
-    
-    // Set the selected answer if already answered (skip show options flow)
+
+    // If this question was already answered, pre-select the answer and show feedback
     if (selectedAnswers[exercise.id]) {
         const radioInput = document.querySelector(`input[name="question_${exercise.id}"][value="${selectedAnswers[exercise.id]}"]`);
         if (radioInput) {
-            // If already answered, show options and hide button wrapper
-            const showOptionsWrapper = document.querySelector('.show-options-wrapper');
-            if (showOptionsWrapper) {
-                showOptionsWrapper.style.display = 'none';
-            }
-            if (optionsContainer) {
-                optionsContainer.style.display = 'block';
-                optionsContainer.style.opacity = '1';
-            }
             radioInput.checked = true;
             showImmediateFeedback(radioInput, exercise.id);
-            // Show Next button if answer is selected
+            // Show Next button since answer is already selected
             if (nextBtn) {
                 nextBtn.style.display = 'block';
             }
         }
     }
-    
+
     // Update sidebar height after rendering
     setTimeout(updateSidebarHeight, 0);
+    console.log('Question rendered successfully');
 }
 
 function createQuestionCard(exercise, questionNum) {
     const card = document.createElement('div');
     card.className = 'question-card';
     card.dataset.questionId = exercise.id;
-    
+
     card.innerHTML = `
         <div class="question-header">
             <span class="question-badge badge-number">Question ${questionNum}</span>
             <span class="question-badge badge-category">${exercise.category}</span>
         </div>
         <div class="question-text">${exercise.question}</div>
-        <div class="show-options-wrapper">
-            <button type="button" class="show-options-btn" id="showOptionsBtn">Show Options</button>
-        </div>
-        <div class="options-container" id="optionsContainer" style="display: none; opacity: 0;">
+        <div class="options-container" id="optionsContainer">
             ${(() => {
                 // RANDOMIZATION 2: Shuffle answer options (50% chance to reverse order)
                 // Store shuffled order for this question ID so it stays consistent
@@ -707,10 +684,10 @@ function createQuestionCard(exercise, questionNum) {
                 const shuffledOptions = shuffledOptionsMap[exercise.id];
                 return shuffledOptions.map((option, idx) => `
                     <div class="radio-option">
-                        <input 
-                            type="radio" 
-                            id="q${exercise.id}_opt${idx}" 
-                            name="question_${exercise.id}" 
+                        <input
+                            type="radio"
+                            id="q${exercise.id}_opt${idx}"
+                            name="question_${exercise.id}"
                             value="${option}"
                         />
                         <label for="q${exercise.id}_opt${idx}">${option}</label>
@@ -719,7 +696,7 @@ function createQuestionCard(exercise, questionNum) {
             })()}
         </div>
     `;
-    
+
     return card;
 }
 

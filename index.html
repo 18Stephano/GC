@@ -7,12 +7,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Loading indicator - visible before JavaScript runs -->
+    <div id="initialLoader" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-size: 18px; color: #6B7280;">
+        <div>Loading German Club Quiz...</div>
+        <div style="font-size: 14px; margin-top: 10px; color: #9CA3AF;">If you see this for more than 2 seconds, there may be an issue.</div>
+    </div>
     <!-- Question Navigation Sidebar -->
-    <div class="question-sidebar" id="questionSidebar" style="display: none;">
+    <div class="question-sidebar" id="questionSidebar">
         <!-- Dots will be dynamically inserted here -->
     </div>
-    
-    <div class="quiz-container" style="display: none;">
+
+    <div class="quiz-container">
         <!-- Simple progress indicator -->
         <div class="progress-indicator">
             <span id="progressText">Loading...</span>
