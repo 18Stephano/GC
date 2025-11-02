@@ -1068,8 +1068,6 @@ function resetQuiz() {
     }
     
     // Re-enable inputs
-asadpan<｜tool▁call▁begin｜>
-read_file
     const inputs = questionsContainer.querySelectorAll('input[type="radio"]');
     inputs.forEach(input => input.disabled = false);
     
