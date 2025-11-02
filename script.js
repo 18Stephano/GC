@@ -115,6 +115,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     // Otherwise, load the quiz
+    // Hide home page if visible
+    const homeContainer = document.querySelector('.home-container');
+    if (homeContainer) homeContainer.style.display = 'none';
+    
+    // Show quiz container
+    const quizContainer = document.querySelector('.quiz-container');
+    if (quizContainer) quizContainer.style.display = 'block';
+    if (questionSidebar) questionSidebar.style.display = 'flex';
+    
+    // Reset body styles for quiz
+    document.body.style.alignItems = 'flex-start';
+    document.body.style.justifyContent = 'flex-start';
+    
     currentQuestionSet = questionSet;
     
     // Load questions from JSON
@@ -193,9 +206,14 @@ function createExerciseButton(setName, questionCount) {
 }
 
 function showHomePage() {
-    // Hide quiz elements
+    // Hide all quiz elements
+    const quizContainer = document.querySelector('.quiz-container');
+    if (quizContainer) quizContainer.style.display = 'none';
     if (questionSidebar) questionSidebar.style.display = 'none';
-    if (quizSection) quizSection.style.display = 'none';
+    
+    // Update body styles for home page
+    document.body.style.alignItems = 'center';
+    document.body.style.justifyContent = 'center';
     
     // Create home page container if it doesn't exist
     let homeContainer = document.querySelector('.home-container');
@@ -219,6 +237,9 @@ function showHomePage() {
         
         // Insert at the beginning of body
         document.body.insertBefore(homeContainer, document.body.firstChild);
+    } else {
+        // Make sure it's visible
+        homeContainer.style.display = 'flex';
     }
     
     // Fetch questions.json to get all exercise sets
