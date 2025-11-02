@@ -124,7 +124,7 @@ async function loadQuiz(questionSet) {
     const homeContainer = document.querySelector('.home-container');
     if (homeContainer) homeContainer.style.display = 'none';
     
-    // Show quiz container and sidebar
+    // Show quiz container and sidebar FIRST so user sees something
     const quizContainer = document.querySelector('.quiz-container');
     if (quizContainer) {
         quizContainer.style.display = 'block';
@@ -137,10 +137,24 @@ async function loadQuiz(questionSet) {
     document.body.style.alignItems = 'flex-start';
     document.body.style.justifyContent = 'flex-start';
     
+    // Ensure questionsContainer exists and is ready
+    if (!questionsContainer) {
+        console.error('questionsContainer not found!');
+        return;
+    }
+    
     currentQuestionSet = questionSet;
     
     // Load questions from JSON
     await loadQuestions(questionSet);
+    
+    // Check if questions loaded successfully
+    if (exercises.length === 0) {
+        if (questionsContainer) {
+            questionsContainer.innerHTML = '<div class="error-message">No questions available for this set. Please check the URL parameter.</div>';
+        }
+        return;
+    }
     
     // Try to restore saved state
     const savedState = loadQuizState(questionSet);
@@ -169,6 +183,7 @@ async function loadQuiz(questionSet) {
         totalQuestionsDisplay.textContent = exercises.length;
     }
     
+    // Now render everything
     createQuestionSidebar();
     renderQuestions();
     updateNavigation();
@@ -215,7 +230,7 @@ function createExerciseButton(setName, questionCount) {
 }
 
 function showHomePage() {
-    // Hide all quiz elements
+    // Hide all quiz elements FIRST
     const quizContainer = document.querySelector('.quiz-container');
     if (quizContainer) quizContainer.style.display = 'none';
     if (questionSidebar) questionSidebar.style.display = 'none';
@@ -240,6 +255,9 @@ function showHomePage() {
         const exerciseList = document.createElement('div');
         exerciseList.className = 'exercise-list';
         
+        // Add loading message initially
+        exerciseList.innerHTML = '<div style="text-align: center; color: #6B7280;">Loading exercise sets...</div>';
+        
         homeContainer.appendChild(h1);
         homeContainer.appendChild(subtitle);
         homeContainer.appendChild(exerciseList);
@@ -253,14 +271,27 @@ function showHomePage() {
     
     // Fetch questions.json to get all exercise sets
     fetch('questions.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load questions.json');
+            }
+            return response.json();
+        })
         .then(data => {
             const exerciseSets = Object.keys(data);
             const exerciseList = document.querySelector('.exercise-list');
             
-            // Clear existing buttons (in case of refresh)
-            if (exerciseList) {
-                exerciseList.innerHTML = '';
+            if (!exerciseList) {
+                console.error('Exercise list container not found');
+                return;
+            }
+            
+            // Clear loading message
+            exerciseList.innerHTML = '';
+            
+            if (exerciseSets.length === 0) {
+                exerciseList.innerHTML = '<div class="error-message">No exercise sets available.</div>';
+                return;
             }
             
             // Create a button for each exercise set
