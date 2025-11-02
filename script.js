@@ -87,6 +87,9 @@ function clearQuizState(questionSet) {
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', async () => {
+    // Add console log to verify script is running
+    console.log('Script loaded, checking URL parameters...');
+    
     // Initialize DOM element references
     progressText = document.getElementById('progressText');
     totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
@@ -108,26 +111,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const questionSet = urlParams.get('set');
     
+    console.log('URL parameter "set":', questionSet);
+    
     // If no parameter, show home page
     if (!questionSet) {
+        console.log('No parameter found, showing home page');
         showHomePage();
         return;
     }
     
     // Otherwise, load the quiz
+    console.log('Parameter found, loading quiz:', questionSet);
     await loadQuiz(questionSet);
 });
 
 // Separate function to load the quiz
 async function loadQuiz(questionSet) {
+    console.log('loadQuiz() called with:', questionSet);
+    
     // Hide home page if visible
     const homeContainer = document.querySelector('.home-container');
-    if (homeContainer) homeContainer.style.display = 'none';
+    if (homeContainer) {
+        homeContainer.style.display = 'none';
+        console.log('Home container hidden');
+    }
     
     // Show quiz container and sidebar FIRST so user sees something
     const quizContainer = document.querySelector('.quiz-container');
     if (quizContainer) {
         quizContainer.style.display = 'block';
+        console.log('Quiz container shown');
+    } else {
+        console.error('Quiz container not found!');
     }
     if (questionSidebar) {
         questionSidebar.style.display = 'flex';
@@ -146,10 +161,13 @@ async function loadQuiz(questionSet) {
     currentQuestionSet = questionSet;
     
     // Load questions from JSON
+    console.log('Loading questions...');
     await loadQuestions(questionSet);
+    console.log('Questions loaded, count:', exercises.length);
     
     // Check if questions loaded successfully
     if (exercises.length === 0) {
+        console.error('No questions loaded!');
         if (questionsContainer) {
             questionsContainer.innerHTML = '<div class="error-message">No questions available for this set. Please check the URL parameter.</div>';
         }
@@ -230,10 +248,17 @@ function createExerciseButton(setName, questionCount) {
 }
 
 function showHomePage() {
+    console.log('showHomePage() called');
+    
     // Hide all quiz elements FIRST
     const quizContainer = document.querySelector('.quiz-container');
-    if (quizContainer) quizContainer.style.display = 'none';
-    if (questionSidebar) questionSidebar.style.display = 'none';
+    if (quizContainer) {
+        quizContainer.style.display = 'none';
+        console.log('Quiz container hidden');
+    }
+    if (questionSidebar) {
+        questionSidebar.style.display = 'none';
+    }
     
     // Update body styles for home page
     document.body.style.alignItems = 'center';
@@ -242,8 +267,11 @@ function showHomePage() {
     // Create home page container if it doesn't exist
     let homeContainer = document.querySelector('.home-container');
     if (!homeContainer) {
+        console.log('Creating home container');
         homeContainer = document.createElement('div');
         homeContainer.className = 'home-container';
+        // EXPLICITLY set display to flex - this is critical!
+        homeContainer.style.display = 'flex';
         
         const h1 = document.createElement('h1');
         h1.textContent = 'German Club';
@@ -264,9 +292,11 @@ function showHomePage() {
         
         // Insert at the beginning of body
         document.body.insertBefore(homeContainer, document.body.firstChild);
+        console.log('Home container created and inserted');
     } else {
         // Make sure it's visible
         homeContainer.style.display = 'flex';
+        console.log('Home container already exists, made visible');
     }
     
     // Fetch questions.json to get all exercise sets
