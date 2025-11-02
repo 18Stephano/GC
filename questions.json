@@ -92,5 +92,182 @@
     { "id": 38, "question": "_____ DU PAUL? (ARE YOU PAUL)", "options": ["BIST", "BIN"], "correct": "BIST", "category": "Grammar - Sein" },
     { "id": 39, "question": "WIR _____ IN DEUTSCHLAND. (WE ARE IN GERMANY)", "options": ["SIND", "SEID"], "correct": "SIND", "category": "Grammar - Sein" },
     { "id": 40, "question": "DIE KINDER _____ GLÜCKLICH. (THE CHILDREN ARE HAPPY)", "options": ["SIND", "IST"], "correct": "SIND", "category": "Grammar - Sein" }
+  ],
+  "tag-1-greetings": [
+    {
+      "id": 1,
+      "question": "GOOD MORNING",
+      "correctAnswer": "GUTEN MORGEN",
+      "wrongAnswer": "GUTEN TAG",
+      "category": "Greetings"
+    },
+    {
+      "id": 2,
+      "question": "HELLO (CASUAL)",
+      "correctAnswer": "HALLO",
+      "wrongAnswer": "AUF WIEDERSEHEN",
+      "category": "Greetings"
+    },
+    {
+      "id": 3,
+      "question": "GOOD EVENING",
+      "correctAnswer": "GUTEN ABEND",
+      "wrongAnswer": "GUTEN MORGEN",
+      "category": "Greetings"
+    },
+    {
+      "id": 4,
+      "question": "GOODBYE (CASUAL)",
+      "correctAnswer": "TSCHÜSS",
+      "wrongAnswer": "GUTEN TAG",
+      "category": "Greetings"
+    },
+    {
+      "id": 5,
+      "question": "GOOD NIGHT",
+      "correctAnswer": "GUTE NACHT",
+      "wrongAnswer": "GUTEN ABEND",
+      "category": "Greetings"
+    },
+    {
+      "id": 6,
+      "question": "GOODBYE (FORMAL)",
+      "correctAnswer": "AUF WIEDERSEHEN",
+      "wrongAnswer": "HALLO",
+      "category": "Greetings"
+    },
+    {
+      "id": 7,
+      "question": "GOOD DAY",
+      "correctAnswer": "GUTEN TAG",
+      "wrongAnswer": "GUTE NACHT",
+      "category": "Greetings"
+    },
+    {
+      "id": 8,
+      "question": "HI (CASUAL)",
+      "correctAnswer": "HI",
+      "wrongAnswer": "AUF WIEDERSEHEN",
+      "category": "Greetings"
+    },
+    {
+      "id": 9,
+      "question": "SEE YOU LATER",
+      "correctAnswer": "BIS SPÄTER",
+      "wrongAnswer": "GUTEN MORGEN",
+      "category": "Greetings"
+    },
+    {
+      "id": 10,
+      "question": "SEE YOU SOON",
+      "correctAnswer": "BIS BALD",
+      "wrongAnswer": "GUTE NACHT",
+      "category": "Greetings"
+    },
+    {
+      "id": 11,
+      "question": "WHAT'S YOUR NAME? (INFORMAL)",
+      "correctAnswer": "WIE HEIẞT DU?",
+      "wrongAnswer": "WIE HEIẞEN SIE?",
+      "category": "Introductions"
+    },
+    {
+      "id": 12,
+      "question": "WHAT'S YOUR NAME? (FORMAL)",
+      "correctAnswer": "WIE HEIẞEN SIE?",
+      "wrongAnswer": "WIE HEIẞT DU?",
+      "category": "Introductions"
+    },
+    {
+      "id": 13,
+      "question": "MY NAME IS MARIA",
+      "correctAnswer": "ICH HEIẞE MARIA",
+      "wrongAnswer": "DU HEIẞT MARIA",
+      "category": "Introductions"
+    },
+    {
+      "id": 14,
+      "question": "I AM PETER",
+      "correctAnswer": "ICH BIN PETER",
+      "wrongAnswer": "DU BIST PETER",
+      "category": "Introductions"
+    },
+    {
+      "id": 15,
+      "question": "HOW ARE YOU? (INFORMAL)",
+      "correctAnswer": "WIE GEHT'S?",
+      "wrongAnswer": "WIE HEIẞT DU?",
+      "category": "Introductions"
+    },
+    {
+      "id": 16,
+      "question": "HOW ARE YOU? (FORMAL)",
+      "correctAnswer": "WIE GEHT ES IHNEN?",
+      "wrongAnswer": "WIE GEHT ES DIR?",
+      "category": "Introductions"
+    },
+    {
+      "id": 17,
+      "question": "GOOD, THANKS!",
+      "correctAnswer": "GUT, DANKE!",
+      "wrongAnswer": "GUTE NACHT!",
+      "category": "Introductions"
+    },
+    {
+      "id": 18,
+      "question": "VERY GOOD!",
+      "correctAnswer": "SEHR GUT!",
+      "wrongAnswer": "SEHR SCHLECHT!",
+      "category": "Introductions"
+    },
+    {
+      "id": 19,
+      "question": "IT'S OKAY / SO-SO",
+      "correctAnswer": "ES GEHT",
+      "wrongAnswer": "SEHR GUT",
+      "category": "Introductions"
+    },
+    {
+      "id": 20,
+      "question": "NOT SO GOOD",
+      "correctAnswer": "NICHT SO GUT",
+      "wrongAnswer": "SEHR GUT",
+      "category": "Introductions"
+    },
+    {
+      "id": 21,
+      "question": "AND YOU? (INFORMAL)",
+      "correctAnswer": "UND DIR?",
+      "wrongAnswer": "UND ICH?",
+      "category": "Conversation"
+    },
+    {
+      "id": 22,
+      "question": "AND YOU? (FORMAL)",
+      "correctAnswer": "UND IHNEN?",
+      "wrongAnswer": "UND DIR?",
+      "category": "Conversation"
+    },
+    {
+      "id": 23,
+      "question": "MY NAME IS (FORMAL)",
+      "correctAnswer": "MEIN NAME IST",
+      "wrongAnswer": "DEIN NAME IST",
+      "category": "Conversation"
+    },
+    {
+      "id": 24,
+      "question": "_____! ICH HEIẞE ANNA. (HELLO! MY NAME IS ANNA)",
+      "correctAnswer": "HALLO",
+      "wrongAnswer": "TSCHÜSS",
+      "category": "Conversation"
+    },
+    {
+      "id": 25,
+      "question": "WIE GEHT'S? - _____ (HOW ARE YOU? - GOOD, THANKS!)",
+      "correctAnswer": "GUT, DANKE!",
+      "wrongAnswer": "AUF WIEDERSEHEN!",
+      "category": "Conversation"
+    }
   ]
 }

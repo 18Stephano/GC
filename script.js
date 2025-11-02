@@ -38,27 +38,98 @@ const resultsTitle = document.getElementById('resultsTitle');
 const resultsMessage = document.getElementById('resultsMessage');
 
 // ============================================
+// AUTOSAVE FUNCTIONALITY (localStorage)
+// ============================================
+let currentQuestionSet = null;
+
+function getStorageKey(questionSet) {
+    return `german-quiz-${questionSet}`;
+}
+
+function saveQuizState(questionSet) {
+    try {
+        const state = {
+            questionSet: questionSet,
+            questionIds: exercises.map(q => q.id), // Save shuffled order
+            selectedAnswers: selectedAnswers,
+            currentQuestionIndex: currentQuestionIndex,
+            startTime: startTime,
+            answeredCount: answeredCount,
+            submitted: submitted
+        };
+        localStorage.setItem(getStorageKey(questionSet), JSON.stringify(state));
+    } catch (error) {
+        console.error('Error saving quiz state:', error);
+    }
+}
+
+function loadQuizState(questionSet) {
+    try {
+        const saved = localStorage.getItem(getStorageKey(questionSet));
+        if (saved) {
+            return JSON.parse(saved);
+        }
+    } catch (error) {
+        console.error('Error loading quiz state:', error);
+    }
+    return null;
+}
+
+function clearQuizState(questionSet) {
+    try {
+        localStorage.removeItem(getStorageKey(questionSet));
+    } catch (error) {
+        console.error('Error clearing quiz state:', error);
+    }
+}
+
+// ============================================
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', async () => {
     // Get the question set from URL parameter (default to tag-1)
     const urlParams = new URLSearchParams(window.location.search);
     const questionSet = urlParams.get('set') || 'tag-1';
+    currentQuestionSet = questionSet;
     
     // Load questions from JSON
     await loadQuestions(questionSet);
+    
+    // Try to restore saved state
+    const savedState = loadQuizState(questionSet);
+    if (savedState && savedState.questionIds && savedState.questionIds.length === exercises.length) {
+        // Restore shuffled order based on saved IDs
+        const idMap = new Map(exercises.map(q => [q.id, q]));
+        exercises = savedState.questionIds.map(id => idMap.get(id)).filter(q => q);
+        
+        // Restore other state
+        selectedAnswers = savedState.selectedAnswers || {};
+        currentQuestionIndex = savedState.currentQuestionIndex || 0;
+        startTime = savedState.startTime || Date.now();
+        answeredCount = savedState.answeredCount || Object.keys(selectedAnswers).length;
+        submitted = savedState.submitted || false;
+    } else {
+        // No saved state, start fresh
+        startTime = Date.now();
+        selectedAnswers = {};
+        currentQuestionIndex = 0;
+        answeredCount = 0;
+        submitted = false;
+    }
     
     // Update total questions display
     if (totalQuestionsDisplay) {
         totalQuestionsDisplay.textContent = exercises.length;
     }
     
-    startTime = Date.now();
     createQuestionSidebar();
     renderQuestions();
     updateNavigation();
     updateProgress();
     attachEventListeners();
+    
+    // Save initial state
+    saveQuizState(questionSet);
 });
 
 // ============================================
@@ -141,6 +212,11 @@ function createQuestionSidebar() {
             updateNavigation();
             updateProgress();
             scrollToCurrentQuestion();
+            
+            // Save state after sidebar navigation
+            if (currentQuestionSet) {
+                saveQuizState(currentQuestionSet);
+            }
         });
         
         scrollable.appendChild(dot);
@@ -497,6 +573,11 @@ function handleAnswerChange(e) {
             nextBtn.style.display = 'block';
         }
         
+        // Save state after answer change
+        if (currentQuestionSet) {
+            saveQuizState(currentQuestionSet);
+        }
+        
         // Remove auto-advance - wait for Next button click
     }
 }
@@ -591,6 +672,11 @@ function handlePrevious() {
         renderQuestions();
         updateNavigation();
         updateProgress();
+        
+        // Save state after navigation
+        if (currentQuestionSet) {
+            saveQuizState(currentQuestionSet);
+        }
     }
 }
 
@@ -600,6 +686,11 @@ function handleNext() {
         renderQuestions();
         updateNavigation();
         updateProgress();
+        
+        // Save state after navigation
+        if (currentQuestionSet) {
+            saveQuizState(currentQuestionSet);
+        }
     }
 }
 
@@ -639,6 +730,15 @@ function checkAnswers() {
     
     // Calculate and display results
     displayResults(correctCount);
+    
+    // Save final state and then clear it (quiz completed)
+    if (currentQuestionSet) {
+        saveQuizState(currentQuestionSet);
+        // Clear saved state after a delay to allow viewing results
+        setTimeout(() => {
+            clearQuizState(currentQuestionSet);
+        }, 1000);
+    }
     
     // Scroll to results
     scrollToResults();
@@ -755,7 +855,14 @@ function resetQuiz() {
     startTime = Date.now();
     shuffledOptionsMap = {}; // Reset shuffled options for new quiz session
     
+    // Clear saved state when resetting
+    if (currentQuestionSet) {
+        clearQuizState(currentQuestionSet);
+    }
+    
     // Re-enable inputs
+asadpan<｜tool▁call▁begin｜>
+read_file
     const inputs = questionsContainer.querySelectorAll('input[type="radio"]');
     inputs.forEach(input => input.disabled = false);
     
