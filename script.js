@@ -120,49 +120,46 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Separate function to load the quiz
 async function loadQuiz(questionSet) {
+    console.log('Loading quiz for set:', questionSet);
+
     // Hide home page if visible
     const homeContainer = document.querySelector('.home-container');
-    if (homeContainer) homeContainer.style.display = 'none';
-    
-    // Show quiz container and sidebar FIRST so user sees something
-    const quizContainer = document.querySelector('.quiz-container');
-    if (quizContainer) {
-        quizContainer.style.display = 'block';
+    if (homeContainer) {
+        homeContainer.style.display = 'none';
     }
-    if (questionSidebar) {
-        questionSidebar.style.display = 'flex';
-    }
-    
+
     // Reset body styles for quiz
     document.body.style.alignItems = 'flex-start';
     document.body.style.justifyContent = 'flex-start';
-    
-    // Ensure questionsContainer exists and is ready
-    if (!questionsContainer) {
-        console.error('questionsContainer not found!');
-        return;
-    }
-    
+
     currentQuestionSet = questionSet;
-    
-    // Load questions from JSON
+
+    // Load questions from JSON FIRST
     await loadQuestions(questionSet);
-    
+
     // Check if questions loaded successfully
     if (exercises.length === 0) {
+        console.error('No exercises loaded for set:', questionSet);
+        // Show quiz container with error message
+        const quizContainer = document.querySelector('.quiz-container');
+        if (quizContainer) {
+            quizContainer.style.display = 'block';
+        }
         if (questionsContainer) {
-            questionsContainer.innerHTML = '<div class="error-message">No questions available for this set. Please check the URL parameter.</div>';
+            questionsContainer.innerHTML = '<div class="error-message" style="padding: 40px; text-align: center; color: #ea4335;">No questions available for this set. <br><a href="/" style="color: #1a73e8; text-decoration: none;">Return to home</a></div>';
         }
         return;
     }
-    
+
+    console.log('Loaded', exercises.length, 'exercises');
+
     // Try to restore saved state
     const savedState = loadQuizState(questionSet);
     if (savedState && savedState.questionIds && savedState.questionIds.length === exercises.length) {
         // Restore shuffled order based on saved IDs
         const idMap = new Map(exercises.map(q => [q.id, q]));
         exercises = savedState.questionIds.map(id => idMap.get(id)).filter(q => q);
-        
+
         // Restore other state
         selectedAnswers = savedState.selectedAnswers || {};
         currentQuestionIndex = savedState.currentQuestionIndex || 0;
@@ -177,21 +174,39 @@ async function loadQuiz(questionSet) {
         answeredCount = 0;
         submitted = false;
     }
-    
+
     // Update total questions display
     if (totalQuestionsDisplay) {
         totalQuestionsDisplay.textContent = exercises.length;
     }
-    
+
+    // Now show quiz container and sidebar
+    const quizContainer = document.querySelector('.quiz-container');
+    if (quizContainer) {
+        quizContainer.style.display = 'block';
+        console.log('Quiz container displayed');
+    } else {
+        console.error('Quiz container not found!');
+    }
+
+    if (questionSidebar) {
+        questionSidebar.style.display = 'flex';
+        console.log('Sidebar displayed');
+    } else {
+        console.error('Question sidebar not found!');
+    }
+
     // Now render everything
+    console.log('Rendering questions...');
     createQuestionSidebar();
     renderQuestions();
     updateNavigation();
     updateProgress();
     attachEventListeners();
-    
+
     // Save initial state
     saveQuizState(questionSet);
+    console.log('Quiz loaded successfully');
 }
 
 // ============================================
@@ -230,45 +245,56 @@ function createExerciseButton(setName, questionCount) {
 }
 
 function showHomePage() {
+    console.log('Showing home page');
+
     // Hide all quiz elements FIRST
     const quizContainer = document.querySelector('.quiz-container');
-    if (quizContainer) quizContainer.style.display = 'none';
-    if (questionSidebar) questionSidebar.style.display = 'none';
-    
+    if (quizContainer) {
+        quizContainer.style.display = 'none';
+        console.log('Quiz container hidden');
+    }
+    if (questionSidebar) {
+        questionSidebar.style.display = 'none';
+        console.log('Sidebar hidden');
+    }
+
     // Update body styles for home page
     document.body.style.alignItems = 'center';
     document.body.style.justifyContent = 'center';
-    
+
     // Create home page container if it doesn't exist
     let homeContainer = document.querySelector('.home-container');
     if (!homeContainer) {
+        console.log('Creating home container');
         homeContainer = document.createElement('div');
         homeContainer.className = 'home-container';
-        
+
         const h1 = document.createElement('h1');
         h1.textContent = 'German Club';
-        
+
         const subtitle = document.createElement('p');
         subtitle.className = 'subtitle';
         subtitle.textContent = 'Choose an exercise set to begin';
-        
+
         const exerciseList = document.createElement('div');
         exerciseList.className = 'exercise-list';
-        
+
         // Add loading message initially
         exerciseList.innerHTML = '<div style="text-align: center; color: #6B7280;">Loading exercise sets...</div>';
-        
+
         homeContainer.appendChild(h1);
         homeContainer.appendChild(subtitle);
         homeContainer.appendChild(exerciseList);
-        
+
         // Insert at the beginning of body
         document.body.insertBefore(homeContainer, document.body.firstChild);
+        console.log('Home container created and inserted');
     } else {
         // Make sure it's visible
         homeContainer.style.display = 'flex';
+        console.log('Home container made visible');
     }
-    
+
     // Fetch questions.json to get all exercise sets
     fetch('questions.json')
         .then(response => {
@@ -278,27 +304,30 @@ function showHomePage() {
             return response.json();
         })
         .then(data => {
+            console.log('Exercise sets loaded:', Object.keys(data));
             const exerciseSets = Object.keys(data);
             const exerciseList = document.querySelector('.exercise-list');
-            
+
             if (!exerciseList) {
                 console.error('Exercise list container not found');
                 return;
             }
-            
+
             // Clear loading message
             exerciseList.innerHTML = '';
-            
+
             if (exerciseSets.length === 0) {
                 exerciseList.innerHTML = '<div class="error-message">No exercise sets available.</div>';
                 return;
             }
-            
+
             // Create a button for each exercise set
             exerciseSets.forEach(setName => {
                 const questionCount = data[setName].length;
                 createExerciseButton(setName, questionCount);
             });
+
+            console.log('Exercise buttons created');
         })
         .catch(error => {
             console.error('Error loading exercise sets:', error);
