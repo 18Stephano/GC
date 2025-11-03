@@ -148,9 +148,9 @@ async function loadQuiz(questionSet) {
         questionSidebar.style.display = 'flex';
     }
     
-    // Reset body styles for quiz
-    document.body.style.alignItems = 'flex-start';
-    document.body.style.justifyContent = 'flex-start';
+    // Keep body styles centered for quiz (don't override CSS centering)
+    // document.body.style.alignItems = 'flex-start';
+    // document.body.style.justifyContent = 'flex-start';
     
     // Ensure questionsContainer exists and is ready
     if (!questionsContainer) {
