@@ -678,61 +678,53 @@ body {
 }
 
 .study-page-header {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 .study-page-title {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: #1F2937;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .study-page-subtitle {
-    font-size: 18px;
+    font-size: 16px;
     color: #6B7280;
 }
 
 .tables-container {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 450px));
+    gap: 20px;
     margin-bottom: 100px;
+    justify-content: center;
+    padding: 0 20px;
 }
 
 @media (min-width: 1000px) {
     .tables-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    /* Vocabulary tables always take full width */
-    .table-wrapper:has(.vocabulary-table) {
-        grid-column: 1 / -1;
-    }
-}
-
-/* Fallback for browsers that don't support :has() */
-@supports not selector(:has(*)) {
-    @media (min-width: 1000px) {
-        .tables-container {
-            grid-template-columns: 1fr;
-        }
+        grid-template-columns: repeat(auto-fit, minmax(400px, 500px));
+        gap: 25px;
     }
 }
 
 .table-wrapper {
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 /* Simple Table Styling */
 .simple-table {
     width: 100%;
-    max-width: 600px;
+    max-width: 450px;
     margin: 0 auto;
     border-collapse: collapse;
     background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    border: 2px solid #1F2937;
 }
 
 .simple-table .table-title-row {
@@ -742,8 +734,8 @@ body {
 .simple-table .table-title {
     background: #1F2937;
     color: white;
-    padding: 12px;
-    font-size: 20px;
+    padding: 8px;
+    font-size: 16px;
     font-weight: 700;
     text-align: center;
     border: 2px solid #1F2937;
@@ -755,18 +747,21 @@ body {
 }
 
 .simple-table th {
-    padding: 16px;
-    font-size: 18px;
+    padding: 8px;
+    font-size: 14px;
     font-weight: 600;
     text-align: center;
     border: 2px solid #1F2937;
+    background: #1F2937;
+    color: white;
 }
 
 .simple-table td {
-    padding: 12px;
+    padding: 6px 8px;
     text-align: center;
     border: 2px solid #1F2937;
-    font-size: 16px;
+    font-size: 14px;
+    vertical-align: middle;
 }
 
 .simple-table tbody tr:nth-child(even) {
@@ -776,11 +771,12 @@ body {
 /* Vocabulary Table Styling */
 .vocabulary-table {
     width: 100%;
-    max-width: 700px;
+    max-width: 500px;
     margin: 0 auto;
     border-collapse: collapse;
     background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    border: 2px solid #1F2937;
 }
 
 .vocabulary-table .table-title-row {
@@ -790,16 +786,16 @@ body {
 .vocabulary-table .table-title {
     background: #1F2937;
     color: white;
-    padding: 12px;
-    font-size: 20px;
+    padding: 8px;
+    font-size: 16px;
     font-weight: 700;
     text-align: center;
     border: 2px solid #1F2937;
 }
 
 .vocabulary-table th {
-    padding: 16px;
-    font-size: 18px;
+    padding: 8px;
+    font-size: 14px;
     font-weight: 600;
     text-align: center;
     border: 2px solid #1F2937;
@@ -808,15 +804,16 @@ body {
 }
 
 .vocabulary-table .category-cell {
-    width: 40px;
-    padding: 10px 5px;
+    width: 35px;
+    padding: 6px 3px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 11px;
     text-align: center;
     border: 2px solid #1F2937;
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    vertical-align: middle;
 }
 
 .vertical-green .category-cell {
@@ -828,11 +825,12 @@ body {
 }
 
 .vocabulary-table .word-cell {
-    padding: 10px 16px;
+    padding: 6px 10px;
     text-align: left;
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 14px;
     border: 2px solid #1F2937;
+    vertical-align: middle;
 }
 
 .vertical-green .word-cell {
@@ -844,12 +842,13 @@ body {
 }
 
 .vocabulary-table .meaning-cell {
-    padding: 10px 16px;
+    padding: 6px 10px;
     text-align: left;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     background: #FFF9C4;
     border: 2px solid #1F2937;
+    vertical-align: middle;
 }
 
 /* Section Dividers */
@@ -962,5 +961,29 @@ body {
 
     .section-header {
         margin: 30px 0 24px;
+    }
+
+    .vocabulary-table,
+    .simple-table {
+        font-size: 13px;
+    }
+    
+    .vocabulary-table .category-cell {
+        font-size: 10px;
+        width: 30px;
+    }
+}
+
+/* Responsive grid for different screen sizes */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .tables-container {
+        grid-template-columns: repeat(auto-fit, minmax(380px, 450px));
+    }
+}
+
+@media (min-width: 1201px) {
+    .tables-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 480px));
+        gap: 30px;
     }
 }

@@ -908,59 +908,86 @@ function createTable(tableData) {
         table.classList.add(tableData.categoryStyle);
     }
     
-    // Title row
-    const titleRow = document.createElement('tr');
-    titleRow.className = 'table-title-row';
-    const titleCell = document.createElement('td');
-    titleCell.className = 'table-title';
-    titleCell.colSpan = tableData.columns.length;
-    titleCell.textContent = tableData.title;
-    titleRow.appendChild(titleCell);
+    // Title row (if title exists)
+    if (tableData.title) {
+        const titleRow = document.createElement('tr');
+        titleRow.className = 'table-title-row';
+        const titleCell = document.createElement('td');
+        titleCell.className = 'table-title';
+        titleCell.colSpan = tableData.columns.length;
+        titleCell.textContent = tableData.title;
+        titleRow.appendChild(titleCell);
+        
+        const titleTbody = document.createElement('tbody');
+        titleTbody.appendChild(titleRow);
+        table.appendChild(titleTbody);
+    }
     
-    const titleTbody = document.createElement('tbody');
-    titleTbody.appendChild(titleRow);
-    table.appendChild(titleTbody);
-    
-    // Header row
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
-    
-    tableData.columns.forEach(column => {
-        const th = document.createElement('th');
-        th.textContent = column;
-        headerRow.appendChild(th);
-    });
-    
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
+    // Header row (if columns exist)
+    if (tableData.columns && tableData.columns.length > 0) {
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        
+        tableData.columns.forEach(column => {
+            const th = document.createElement('th');
+            th.textContent = column;
+            headerRow.appendChild(th);
+        });
+        
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+    }
     
     // Data rows
     const tbody = document.createElement('tbody');
     
-    tableData.rows.forEach(row => {
-        const tr = document.createElement('tr');
-        
-        row.forEach((cell, index) => {
-            const td = document.createElement('td');
+    if (tableData.type === 'vocabulary') {
+        // Vocabulary table with merged category column
+        tableData.rows.forEach((row, rowIndex) => {
+            const tr = document.createElement('tr');
             
-            if (tableData.type === 'vocabulary' && index === 0) {
-                td.className = 'category-cell';
-                td.textContent = cell;
-            } else if (tableData.type === 'vocabulary' && index === 1) {
-                td.className = 'word-cell';
-                td.textContent = cell;
-            } else if (tableData.type === 'vocabulary' && index === 2) {
-                td.className = 'meaning-cell';
-                td.textContent = cell;
-            } else {
-                td.textContent = cell;
-            }
+            row.forEach((cell, cellIndex) => {
+                if (cellIndex === 0) {
+                    // Category column - only create on first row with rowspan
+                    if (rowIndex === 0) {
+                        const td = document.createElement('td');
+                        td.className = 'category-cell';
+                        td.textContent = cell;
+                        td.rowSpan = tableData.rows.length;
+                        tr.appendChild(td);
+                    }
+                    // Skip for other rows (already merged from first row)
+                } else if (cellIndex === 1) {
+                    // Word column
+                    const td = document.createElement('td');
+                    td.className = 'word-cell';
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                } else if (cellIndex === 2) {
+                    // Meaning column
+                    const td = document.createElement('td');
+                    td.className = 'meaning-cell';
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                }
+            });
             
-            tr.appendChild(td);
+            tbody.appendChild(tr);
         });
-        
-        tbody.appendChild(tr);
-    });
+    } else {
+        // Simple table - render normally
+        tableData.rows.forEach(row => {
+            const tr = document.createElement('tr');
+            
+            row.forEach(cell => {
+                const td = document.createElement('td');
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            
+            tbody.appendChild(tr);
+        });
+    }
     
     table.appendChild(tbody);
     tableWrapper.appendChild(table);
