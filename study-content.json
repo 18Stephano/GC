@@ -1,0 +1,32 @@
+{
+  "pronouns": {
+    "title": "Die Personalpronomen (Personal Pronouns)",
+    "type": "simple-table",
+    "columns": ["Deutsch", "Englisch"],
+    "rows": [
+      ["ich", "I"],
+      ["du", "you"],
+      ["er", "he"],
+      ["sie", "she"],
+      ["es", "it"],
+      ["wir", "we"],
+      ["ihr", "you (informal, plural)"],
+      ["sie", "you"],
+      ["Sie", "they"]
+    ]
+  },
+  "sein": {
+    "title": "Das Verb \"sein\" (The verb \"to be\")",
+    "type": "simple-table",
+    "columns": ["Pronoun", "Conjugation", "Englisch"],
+    "rows": [
+      ["ich", "bin", "I am"],
+      ["du", "bist", "you are"],
+      ["er/sie/es", "ist", "he/she/it is"],
+      ["wir", "sind", "we are"],
+      ["ihr", "seid", "you(plural) are"],
+      ["sie/Sie", "sind", "they/you(formal) are"]
+    ]
+  }
+}
+
