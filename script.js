@@ -114,12 +114,12 @@ async function routeToCorrectView() {
             // New structure: get quizSet from content.json
             const level = urlParams.get('level');
             const week = urlParams.get('week');
-            const day = urlParams.get('day');
-            if (level && week && day) {
+            const tag = urlParams.get('tag');
+            if (level && week && tag) {
                 try {
                     const response = await fetch('content.json');
                     allContentData = await response.json();
-                    const quizSet = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.days?.[`d${day}`]?.quizSet;
+                    const quizSet = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.tags?.[`t${tag}`]?.quizSet;
                     if (quizSet) {
                         questionSet = quizSet;
                     }
@@ -136,9 +136,9 @@ async function routeToCorrectView() {
     if (urlParams.has('level')) {
         const level = urlParams.get('level');
         const week = urlParams.get('week');
-        const day = urlParams.get('day');
-        console.log('Study materials view:', level, week, day);
-        await showStudyMaterials(level, week, day);
+        const tag = urlParams.get('tag');
+        console.log('Study materials view:', level, week, tag);
+        await showStudyMaterials(level, week, tag);
         return;
     }
     
@@ -417,37 +417,41 @@ function createWeekSection(levelKey, weekKey, weekData) {
     weekName.textContent = `└─ ${weekData.name}`;
     weekDiv.appendChild(weekName);
     
-    const daysContainer = document.createElement('div');
-    daysContainer.className = 'days-container';
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'days-container'; // Keep same class for styling
     
-    const days = weekData.days || {};
-    Object.keys(days).forEach((dayKey, index, array) => {
-        const day = days[dayKey];
+    const tags = weekData.tags || {};  // Use tags instead of days
+    Object.keys(tags).forEach((tagKey, index, array) => {
+        const tag = tags[tagKey];
         const isLast = index === array.length - 1;
-        const dayCard = createDayCard(levelKey, weekKey.replace('w', ''), dayKey.replace('d', ''), day, isLast);
-        daysContainer.appendChild(dayCard);
+        const tagCard = createTagCard(levelKey, weekKey.replace('w', ''), tagKey.replace('t', ''), tag, isLast);
+        tagsContainer.appendChild(tagCard);
     });
     
-    weekDiv.appendChild(daysContainer);
+    weekDiv.appendChild(tagsContainer);
     return weekDiv;
 }
 
-function createDayCard(levelKey, weekNum, dayNum, dayData, isLast) {
+function createTagCard(levelKey, weekNum, tagNum, tagData, isLast) {
     const card = document.createElement('a');
-    card.href = `?level=${levelKey}&week=${weekNum}&day=${dayNum}`;
-    card.className = 'day-card';
+    card.href = `?level=${levelKey}&week=${weekNum}&tag=${tagNum}`;
+    card.className = 'day-card'; // Keep same class for styling
     
     const prefix = isLast ? '└─' : '├─';
     const title = document.createElement('div');
     title.className = 'day-title';
-    title.textContent = `${prefix} ${dayData.title}`;
+    title.textContent = `${prefix} ${tagData.title}`;
     
-    const subtitle = document.createElement('div');
-    subtitle.className = 'day-subtitle';
-    subtitle.textContent = dayData.subtitle;
+    // Show list of sections
+    const sectionsDiv = document.createElement('div');
+    sectionsDiv.className = 'day-subtitle';
+    if (tagData.sections && tagData.sections.length > 0) {
+        const sectionTitles = tagData.sections.map(s => s.sectionTitle).join(', ');
+        sectionsDiv.textContent = sectionTitles;
+    }
     
     card.appendChild(title);
-    card.appendChild(subtitle);
+    card.appendChild(sectionsDiv);
     
     return card;
 }
@@ -455,8 +459,8 @@ function createDayCard(levelKey, weekNum, dayNum, dayData, isLast) {
 // ============================================
 // STUDY MATERIALS DISPLAY (NEW)
 // ============================================
-async function showStudyMaterials(level, week, day) {
-    console.log('showStudyMaterials called:', level, week, day);
+async function showStudyMaterials(level, week, tag) {
+    console.log('showStudyMaterials called:', level, week, tag);
     
     // Hide other views
     const homePageContainer = document.getElementById('homePageContainer');
@@ -483,14 +487,14 @@ async function showStudyMaterials(level, week, day) {
             allContentData = await response.json();
         }
         
-        const dayData = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.days?.[`d${day}`];
+        const tagData = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.tags?.[`t${tag}`];
         
-        if (!dayData) {
-            showStudyError('Day not found. Please check the URL parameters.');
+        if (!tagData) {
+            showStudyError('Tag not found. Please check the URL parameters.');
             return;
         }
         
-        renderStudyMaterials(level, week, day, dayData, allContentData);
+        renderStudyMaterials(level, week, tag, tagData, allContentData);
         
     } catch (error) {
         console.error('Error loading study materials:', error);
@@ -498,49 +502,80 @@ async function showStudyMaterials(level, week, day) {
     }
 }
 
-function renderStudyMaterials(level, week, day, dayData, contentData) {
+function renderStudyMaterials(level, week, tag, tagData, contentData) {
     // Render breadcrumb
     const breadcrumb = document.getElementById('breadcrumb');
     if (breadcrumb) {
-        breadcrumb.innerHTML = createBreadcrumb(level, week, day, contentData);
+        breadcrumb.innerHTML = createBreadcrumb(level, week, tag, contentData);
     }
     
-    // Render title and subtitle
+    // Render title (just "Tag 1")
     const pageTitle = document.getElementById('studyPageTitle');
-    if (pageTitle) pageTitle.textContent = dayData.title;
+    if (pageTitle) pageTitle.textContent = tagData.title;
     
+    // Clear subtitle (we'll show section subtitles instead)
     const pageSubtitle = document.getElementById('studyPageSubtitle');
-    if (pageSubtitle) pageSubtitle.textContent = dayData.subtitle;
+    if (pageSubtitle) pageSubtitle.textContent = '';
     
-    // Render tables
+    // Render all sections
     const tablesContainer = document.getElementById('tablesContainer');
     if (tablesContainer) {
         tablesContainer.innerHTML = '';
         
-        if (dayData.tables && dayData.tables.length > 0) {
-            dayData.tables.forEach((tableData, index) => {
-                const tableElement = createTable(tableData);
-                tablesContainer.appendChild(tableElement);
+        if (tagData.sections && tagData.sections.length > 0) {
+            tagData.sections.forEach((section, sectionIndex) => {
+                // Create section divider
+                if (sectionIndex > 0) {
+                    const divider = document.createElement('div');
+                    divider.className = 'section-divider';
+                    tablesContainer.appendChild(divider);
+                }
+                
+                // Create section header
+                const sectionHeader = document.createElement('div');
+                sectionHeader.className = 'section-header';
+                
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.className = 'section-title';
+                sectionTitle.textContent = section.sectionTitle;
+                sectionHeader.appendChild(sectionTitle);
+                
+                if (section.sectionSubtitle) {
+                    const sectionSubtitle = document.createElement('p');
+                    sectionSubtitle.className = 'section-subtitle';
+                    sectionSubtitle.textContent = section.sectionSubtitle;
+                    sectionHeader.appendChild(sectionSubtitle);
+                }
+                
+                tablesContainer.appendChild(sectionHeader);
+                
+                // Render all tables in this section
+                if (section.tables && section.tables.length > 0) {
+                    section.tables.forEach(tableData => {
+                        const tableElement = createTable(tableData);
+                        tablesContainer.appendChild(tableElement);
+                    });
+                }
             });
         }
     }
     
     // Show practice button if quizSet exists
     const practiceButton = document.getElementById('practiceButton');
-    if (practiceButton && dayData.quizSet) {
+    if (practiceButton && tagData.quizSet) {
         practiceButton.style.display = 'block';
         practiceButton.onclick = () => {
-            window.location.href = `?level=${level}&week=${week}&day=${day}&view=quiz`;
+            window.location.href = `?level=${level}&week=${week}&tag=${tag}&view=quiz`;
         };
     } else if (practiceButton) {
         practiceButton.style.display = 'none';
     }
 }
 
-function createBreadcrumb(level, week, day, contentData) {
+function createBreadcrumb(level, week, tag, contentData) {
     const levelName = contentData?.levels?.[level]?.name || level.toUpperCase();
     const weekName = contentData?.levels?.[level]?.weeks?.[`w${week}`]?.name || `Week ${week}`;
-    const dayName = contentData?.levels?.[level]?.weeks?.[`w${week}`]?.days?.[`d${day}`]?.title || `Day ${day}`;
+    const tagName = contentData?.levels?.[level]?.weeks?.[`w${week}`]?.tags?.[`t${tag}`]?.title || `Tag ${tag}`;
     
     return `
         <a href="index.html">Home</a>
@@ -549,7 +584,7 @@ function createBreadcrumb(level, week, day, contentData) {
         <span> > </span>
         <a href="index.html?level=${level}&week=${week}">${weekName}</a>
         <span> > </span>
-        <span>${dayName}</span>
+        <span>${tagName}</span>
     `;
 }
 

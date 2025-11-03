@@ -2,152 +2,156 @@
   "levels": {
     "a1": {
       "name": "A1 - Beginner",
+      "icon": "📚",
       "weeks": {
         "w1": {
           "name": "Woche 1",
-          "days": {
-            "d1": {
-              "title": "Tag 1: Grammar Basics",
-              "subtitle": "Personal Pronouns & Verb 'sein'",
-              "quizSet": "tag-1-grammar",
-              "tables": [
+          "tags": {
+            "t1": {
+              "title": "Tag 1",
+              "quizSet": "tag-1-combined",
+              "sections": [
                 {
-                  "title": "Die Personalpronomen (Personal Pronouns)",
-                  "type": "simple",
-                  "columns": ["Deutsch", "Englisch"],
-                  "rows": [
-                    ["ich", "I"],
-                    ["du", "you"],
-                    ["er", "he"],
-                    ["sie", "she"],
-                    ["es", "it"],
-                    ["wir", "we"],
-                    ["ihr", "you (informal, plural)"],
-                    ["sie", "you"],
-                    ["Sie", "they"]
+                  "sectionTitle": "Grammar Basics",
+                  "sectionSubtitle": "Personal Pronouns & Verb 'sein'",
+                  "tables": [
+                    {
+                      "title": "Die Personalpronomen (Personal Pronouns)",
+                      "type": "simple",
+                      "columns": ["Deutsch", "Englisch"],
+                      "rows": [
+                        ["ich", "I"],
+                        ["du", "you"],
+                        ["er", "he"],
+                        ["sie", "she"],
+                        ["es", "it"],
+                        ["wir", "we"],
+                        ["ihr", "you (informal, plural)"],
+                        ["sie", "you"],
+                        ["Sie", "they"]
+                      ]
+                    },
+                    {
+                      "title": "Das Verb \"sein\" (The verb \"to be\")",
+                      "type": "simple",
+                      "columns": ["Pronoun", "Conjugation", "Englisch"],
+                      "rows": [
+                        ["ich", "bin", "I am"],
+                        ["du", "bist", "you are"],
+                        ["er/sie/es", "ist", "he/she/it is"],
+                        ["wir", "sind", "we are"],
+                        ["ihr", "seid", "you(plural) are"],
+                        ["sie/Sie", "sind", "they/you(formal) are"]
+                      ]
+                    }
                   ]
                 },
                 {
-                  "title": "Das Verb \"sein\" (The verb \"to be\")",
-                  "type": "simple",
-                  "columns": ["Pronoun", "Conjugation", "Englisch"],
-                  "rows": [
-                    ["ich", "bin", "I am"],
-                    ["du", "bist", "you are"],
-                    ["er/sie/es", "ist", "he/she/it is"],
-                    ["wir", "sind", "we are"],
-                    ["ihr", "seid", "you(plural) are"],
-                    ["sie/Sie", "sind", "they/you(formal) are"]
+                  "sectionTitle": "Vocabulary",
+                  "sectionSubtitle": "Adjectives, Professions, Nationalities",
+                  "tables": [
+                    {
+                      "title": "Adjectives",
+                      "type": "vocabulary",
+                      "categoryLabel": "ADJECTIVE VS",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "Word", "Meaning"],
+                      "rows": [
+                        ["A F & D E S J E T E L A C I T N E I G S V S E S", "MÜDE", "TIRED"],
+                        ["", "GLÜCKLICH", "HAPPY"],
+                        ["", "TRAURIG", "SAD"],
+                        ["", "KRANK", "SICK"],
+                        ["", "GESUND", "HEALTHY"],
+                        ["", "HUNGRIG", "HUNGRY"],
+                        ["", "DURSTIG", "THIRSTY"],
+                        ["", "ZUFRIEDEN", "SATISFIED/CONTENT"],
+                        ["", "NERVÖS", "NERVOUS"],
+                        ["", "RUHIG", "CALM/QUIET"],
+                        ["", "AUFGEREGT", "EXCITED"],
+                        ["", "FERTIG", "READY/FINISHED"],
+                        ["", "BESCHÄFTIGT", "BUSY"],
+                        ["", "FREI", "FREE"],
+                        ["", "VERHEIRATET", "MARRIED"]
+                      ]
+                    },
+                    {
+                      "title": "Professions",
+                      "type": "vocabulary",
+                      "categoryLabel": "PROFESSIONS",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "Word", "Meaning"],
+                      "rows": [
+                        ["P R O F E S S I O N S", "DER STUDENT / DIE STUDENTIN", "STUDENT"],
+                        ["", "DER LEHRER / DIE LEHRERIN", "TEACHER"],
+                        ["", "DER ARZT / DIE ÄRZTIN", "DOCTOR"],
+                        ["", "DER KOCH / DIE KÖCHIN", "COOK/CHEF"],
+                        ["", "DER INGÉNIEUR / DIE INGENIEURIN", "ENGINEER"],
+                        ["", "DER VERKÄUFER / DIE VERKÄUFERIN", "SALESPERSON"],
+                        ["", "DER KELLNER / DIE KELLNERIN", "WAITER/WAITRESS"],
+                        ["", "DER PROGRAMMIERER / DIE PROGRAMMIERERIN", "PROGRAMMER"],
+                        ["", "DER MANAGER / DIE MANAGERIN", "MANAGER"],
+                        ["", "DER KÜNSTLER / DIE KÜNSTLERIN", "ARTIST"]
+                      ]
+                    },
+                    {
+                      "title": "Nationalities",
+                      "type": "vocabulary",
+                      "categoryLabel": "NATIONALITIES",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "Word", "Meaning"],
+                      "rows": [
+                        ["N A T I O N A L I T I E S", "DEUTSCH", "GERMAN"],
+                        ["", "AMERIKANISCH", "AMERICAN"],
+                        ["", "ENGLISCH", "ENGLISH"],
+                        ["", "SPANISCH", "SPANISH"],
+                        ["", "ITALIENISCH", "ITALIAN"],
+                        ["", "FRANZÖSISCH", "FRENCH"],
+                        ["", "CHINESISCH", "CHINESE"],
+                        ["", "JAPANISCH", "JAPANESE"],
+                        ["", "MEXIKANISCH", "MEXICAN"],
+                        ["", "KANADISCH", "CANADIAN"]
+                      ]
+                    },
+                    {
+                      "title": "Descriptions",
+                      "type": "vocabulary",
+                      "categoryLabel": "DESCRIPTIONS",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "Word", "Meaning"],
+                      "rows": [
+                        ["D E S C R I P T I O N S", "GROSS", "BIG/TALL"],
+                        ["", "KLEIN", "SMALL/SHORT"],
+                        ["", "JUNG", "YOUNG"],
+                        ["", "ALT", "OLD"],
+                        ["", "NEU", "NEW"],
+                        ["", "GUT", "GOOD"],
+                        ["", "SCHLECHT", "BAD"],
+                        ["", "HÄSSLICH", "UGLY"],
+                        ["", "LANG", "LONG"]
+                      ]
+                    },
+                    {
+                      "title": "Nouns",
+                      "type": "vocabulary",
+                      "categoryLabel": "NOUNS",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "Word", "Meaning"],
+                      "rows": [
+                        ["B N O U N S", "DER FREUND / DIE FREUNDIN", "FRIEND"],
+                        ["", "DER MENSCH", "PERSON/HUMAN"],
+                        ["", "DAS KIND", "CHILD"],
+                        ["", "DIE FAMILIE", "FAMILY"],
+                        ["", "DER NAME", "NAME"]
+                      ]
+                    }
                   ]
+                },
+                {
+                  "sectionTitle": "Greetings & Introductions",
+                  "sectionSubtitle": "Common phrases for conversation",
+                  "tables": []
                 }
               ]
-            },
-            "d2": {
-              "title": "Tag 2: Vocabulary",
-              "subtitle": "Adjectives, Professions, Nationalities",
-              "quizSet": "tag-1",
-              "tables": [
-                {
-                  "title": "Adjectives",
-                  "type": "vocabulary",
-                  "categoryLabel": "ADJECTIVE VS",
-                  "categoryStyle": "vertical-green",
-                  "columns": ["Category", "Word", "Meaning"],
-                  "rows": [
-                    ["A F & D E S J E T E L A C I T N E I G S V S E S", "MÜDE", "TIRED"],
-                    ["", "GLÜCKLICH", "HAPPY"],
-                    ["", "TRAURIG", "SAD"],
-                    ["", "KRANK", "SICK"],
-                    ["", "GESUND", "HEALTHY"],
-                    ["", "HUNGRIG", "HUNGRY"],
-                    ["", "DURSTIG", "THIRSTY"],
-                    ["", "ZUFRIEDEN", "SATISFIED/CONTENT"],
-                    ["", "NERVÖS", "NERVOUS"],
-                    ["", "RUHIG", "CALM/QUIET"],
-                    ["", "AUFGEREGT", "EXCITED"],
-                    ["", "FERTIG", "READY/FINISHED"],
-                    ["", "BESCHÄFTIGT", "BUSY"],
-                    ["", "FREI", "FREE"],
-                    ["", "VERHEIRATET", "MARRIED"]
-                  ]
-                },
-                {
-                  "title": "Professions",
-                  "type": "vocabulary",
-                  "categoryLabel": "PROFESSIONS",
-                  "categoryStyle": "vertical-purple",
-                  "columns": ["Category", "Word", "Meaning"],
-                  "rows": [
-                    ["P R O F E S S I O N S", "DER STUDENT / DIE STUDENTIN", "STUDENT"],
-                    ["", "DER LEHRER / DIE LEHRERIN", "TEACHER"],
-                    ["", "DER ARZT / DIE ÄRZTIN", "DOCTOR"],
-                    ["", "DER KOCH / DIE KÖCHIN", "COOK/CHEF"],
-                    ["", "DER INGÉNIEUR / DIE INGENIEURIN", "ENGINEER"],
-                    ["", "DER VERKÄUFER / DIE VERKÄUFERIN", "SALESPERSON"],
-                    ["", "DER KELLNER / DIE KELLNERIN", "WAITER/WAITRESS"],
-                    ["", "DER PROGRAMMIERER / DIE PROGRAMMIERERIN", "PROGRAMMER"],
-                    ["", "DER MANAGER / DIE MANAGERIN", "MANAGER"],
-                    ["", "DER KÜNSTLER / DIE KÜNSTLERIN", "ARTIST"]
-                  ]
-                },
-                {
-                  "title": "Nationalities",
-                  "type": "vocabulary",
-                  "categoryLabel": "NATIONALITIES",
-                  "categoryStyle": "vertical-green",
-                  "columns": ["Category", "Word", "Meaning"],
-                  "rows": [
-                    ["N A T I O N A L I T I E S", "DEUTSCH", "GERMAN"],
-                    ["", "AMERIKANISCH", "AMERICAN"],
-                    ["", "ENGLISCH", "ENGLISH"],
-                    ["", "SPANISCH", "SPANISH"],
-                    ["", "ITALIENISCH", "ITALIAN"],
-                    ["", "FRANZÖSISCH", "FRENCH"],
-                    ["", "CHINESISCH", "CHINESE"],
-                    ["", "JAPANISCH", "JAPANESE"],
-                    ["", "MEXIKANISCH", "MEXICAN"],
-                    ["", "KANADISCH", "CANADIAN"]
-                  ]
-                },
-                {
-                  "title": "Descriptions",
-                  "type": "vocabulary",
-                  "categoryLabel": "DESCRIPTIONS",
-                  "categoryStyle": "vertical-purple",
-                  "columns": ["Category", "Word", "Meaning"],
-                  "rows": [
-                    ["D E S C R I P T I O N S", "GROSS", "BIG/TALL"],
-                    ["", "KLEIN", "SMALL/SHORT"],
-                    ["", "JUNG", "YOUNG"],
-                    ["", "ALT", "OLD"],
-                    ["", "NEU", "NEW"],
-                    ["", "GUT", "GOOD"],
-                    ["", "SCHLECHT", "BAD"],
-                    ["", "HÄSSLICH", "UGLY"],
-                    ["", "LANG", "LONG"]
-                  ]
-                },
-                {
-                  "title": "Nouns",
-                  "type": "vocabulary",
-                  "categoryLabel": "NOUNS",
-                  "categoryStyle": "vertical-purple",
-                  "columns": ["Category", "Word", "Meaning"],
-                  "rows": [
-                    ["B N O U N S", "DER FREUND / DIE FREUNDIN", "FRIEND"],
-                    ["", "DER MENSCH", "PERSON/HUMAN"],
-                    ["", "DAS KIND", "CHILD"],
-                    ["", "DIE FAMILIE", "FAMILY"],
-                    ["", "DER NAME", "NAME"]
-                  ]
-                }
-              ]
-            },
-            "d3": {
-              "title": "Tag 3: Greetings & Introductions",
-              "subtitle": "Common phrases for conversation",
-              "quizSet": "tag-1-greetings",
-              "tables": []
             }
           }
         }
@@ -155,4 +159,3 @@
     }
   }
 }
-
