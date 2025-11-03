@@ -851,6 +851,56 @@ body {
     vertical-align: middle;
 }
 
+/* Greetings-Time Table Styling - No horizontal gridlines */
+.greetings-time {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    border: 2px solid #1F2937;
+}
+
+.greetings-time .table-title {
+    background: #1F2937;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    border: 2px solid #1F2937;
+}
+
+.greetings-time th {
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    border: 2px solid #1F2937;
+    background: #1F2937;
+    color: white;
+}
+
+.greetings-time td {
+    padding: 6px 8px;
+    text-align: left;
+    border-left: 2px solid #1F2937;
+    border-right: 2px solid #1F2937;
+    border-top: none;
+    border-bottom: none;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.greetings-time tbody tr:first-child td {
+    border-top: 2px solid #1F2937;
+}
+
+.greetings-time tbody tr:last-child td {
+    border-bottom: 2px solid #1F2937;
+}
+
 /* Section Dividers */
 .section-divider {
     margin: 60px 0 0;
