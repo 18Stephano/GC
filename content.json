@@ -205,6 +205,84 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "sectionTitle": "Numbers 1-20 (Zahlen)",
+                  "sectionSubtitle": "Learn to count and use numbers in daily situations",
+                  "tables": [
+                    {
+                      "title": "Numbers 1-10",
+                      "type": "simple",
+                      "columns": ["Number", "German", "Pronunciation Guide"],
+                      "rows": [
+                        ["1", "eins", "eyens"],
+                        ["2", "zwei", "tsvai"],
+                        ["3", "drei", "dry"],
+                        ["4", "vier", "feer"],
+                        ["5", "fünf", "foonf"],
+                        ["6", "sechs", "zex"],
+                        ["7", "sieben", "zee-ben"],
+                        ["8", "acht", "ahkt"],
+                        ["9", "neun", "noyn"],
+                        ["10", "zehn", "tsayn"]
+                      ]
+                    },
+                    {
+                      "title": "Numbers 11-20",
+                      "type": "simple",
+                      "columns": ["Number", "German", "Pattern"],
+                      "rows": [
+                        ["11", "elf", "exception"],
+                        ["12", "zwölf", "exception"],
+                        ["13", "dreizehn", "drei + zehn"],
+                        ["14", "vierzehn", "vier + zehn"],
+                        ["15", "fünfzehn", "fünf + zehn"],
+                        ["16", "sechzehn", "sechs + zehn (drops 's')"],
+                        ["17", "siebzehn", "sieben + zehn (drops 'en')"],
+                        ["18", "achtzehn", "acht + zehn"],
+                        ["19", "neunzehn", "neun + zehn"],
+                        ["20", "zwanzig", "base number"]
+                      ]
+                    },
+                    {
+                      "title": "Pattern Rules",
+                      "type": "simple",
+                      "columns": ["Rule", "Explanation", "Example"],
+                      "rows": [
+                        ["13-19 Pattern", "Number + zehn", "drei + zehn = dreizehn"],
+                        ["Exception: 16", "Drops the 's' from sechs", "sechzehn (NOT sechszehn)"],
+                        ["Exception: 17", "Drops the 'en' from sieben", "siebzehn (NOT siebenzehn)"],
+                        ["11 & 12", "Unique words (memorize)", "elf, zwölf"],
+                        ["21+", "Ones BEFORE tens", "21 = einundzwanzig (one-and-twenty)"]
+                      ]
+                    },
+                    {
+                      "title": "Useful Phrases with Numbers",
+                      "type": "vocabulary",
+                      "categoryLabel": "PHRASES",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["P H R A S E S", "Wie alt bist du?", "How old are you? (informal)"],
+                        ["", "Wie alt sind Sie?", "How old are you? (formal)"],
+                        ["", "Ich bin 25 Jahre alt.", "I am 25 years old."],
+                        ["", "Die Nummer ist...", "The number is..."],
+                        ["", "Das kostet ... Euro.", "That costs ... euros."],
+                        ["", "Meine Telefonnummer ist...", "My phone number is..."]
+                      ]
+                    },
+                    {
+                      "title": "Bonus Numbers",
+                      "type": "simple",
+                      "columns": ["Number", "German", "Note"],
+                      "rows": [
+                        ["0", "null", "zero"],
+                        ["21", "einundzwanzig", "one-and-twenty (ones before tens!)"],
+                        ["30", "dreißig", "thirty"],
+                        ["100", "hundert", "one hundred"]
+                      ]
+                    }
+                  ]
                 }
               ]
             }
