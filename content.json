@@ -149,7 +149,62 @@
                 {
                   "sectionTitle": "Greetings & Introductions",
                   "sectionSubtitle": "Common phrases for conversation",
-                  "tables": []
+                  "tables": [
+                    {
+                      "title": "German Greetings by Time of Day",
+                      "type": "greetings-time",
+                      "columns": ["Greeting", "English", "Time Range", "When / Context"],
+                      "rows": [
+                        ["Guten Morgen!", "Good morning", "☀️ 5:00-10:00 AM", "From waking up until late morning"],
+                        ["Guten Tag!", "Good day / Hello", "☀️ 10:00 AM-6:00 PM", "General daytime greeting, polite and neutral"],
+                        ["Guten Abend!", "Good evening", "🌙 6:00-10:00 PM", "After work or when it starts to get dark"],
+                        ["Gute Nacht!", "Good night", "🌙 10:00 PM-sleep time", "Only when someone is going to bed or leaving late"]
+                      ],
+                      "rowColors": ["yellow", "blue", "orange", "dark-blue"]
+                    },
+                    {
+                      "title": "Casual Greetings (Informelle Grüße)",
+                      "type": "simple",
+                      "columns": ["German", "English", "When / Context", "Formality"],
+                      "rows": [
+                        ["Hallo!", "Hello!", "Universal – can be used any time of day", "👋 Neutral / casual"],
+                        ["Hi!", "Hi!", "Common among friends or young people", "😊 Very casual"],
+                        ["Tschüss!", "Bye!", "When leaving, with friends or in casual settings", "👋 Informal"],
+                        ["Auf Wiedersehen!", "Goodbye!", "When leaving – polite, used in stores or formal situations", "👔 Formal"]
+                      ]
+                    },
+                    {
+                      "title": "Wie geht's? (How Are You?)",
+                      "type": "greeting-response",
+                      "columns": ["German", "English", "Context / Meaning", "Formality"],
+                      "rows": [
+                        ["Wie geht's?", "How are you?", "Short, casual greeting", "😊 Informal"],
+                        ["Wie geht es dir?", "How are you?", "Slightly more polite but still casual", "😊 Informal"],
+                        ["Wie geht es Ihnen?", "How are you?", "Polite and respectful (business, strangers)", "👔 Formal"]
+                      ],
+                      "responseSection": [
+                        ["Responding:", "", "", ""],
+                        ["Gut, danke!", "Good, thanks!", "Standard friendly answer", "🌿 Neutral"],
+                        ["Sehr gut!", "Very good!", "Happy, energetic tone", "😊 Positive"],
+                        ["Es geht.", "It's okay / so-so", "Neutral or tired mood", "😐 Neutral"],
+                        ["Nicht so gut.", "Not so good", "Honest, a bit negative", "😕 Neutral"],
+                        ["Und dir?", "And you?", "Follows informal versions", "😊 Informal"],
+                        ["Und Ihnen?", "And you?", "Follows formal version", "👔 Formal"]
+                      ]
+                    },
+                    {
+                      "title": "Sich vorstellen (Introducing Yourself)",
+                      "type": "simple",
+                      "columns": ["German", "English", "Context / Use", "Formality"],
+                      "rows": [
+                        ["Wie heißt du?", "What's your name?", "Used with friends, children, or peers", "😊 Informal"],
+                        ["Wie heißen Sie?", "What's your name?", "Used with strangers, elders, or in business", "👔 Formal"],
+                        ["Ich heiße Lukas.", "My name is Lukas.", "Common, neutral introduction", "👋 General"],
+                        ["Ich bin Lukas.", "I'm Lukas.", "Simple and casual, used among friends", "😊 Informal"],
+                        ["Mein Name ist Lukas.", "My name is Lukas.", "Polite and formal (common in offices, hotels)", "👔 Formal"]
+                      ]
+                    }
+                  ]
                 }
               ]
             }
