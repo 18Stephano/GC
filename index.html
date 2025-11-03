@@ -7,7 +7,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Question Navigation Sidebar -->
+    <!-- Home Page Container -->
+    <div class="home-page-container" id="homePageContainer" style="display: none;">
+        <!-- Will be populated by JavaScript -->
+    </div>
+
+    <!-- Study Materials Container -->
+    <div class="study-materials-container" id="studyMaterialsContainer" style="display: none;">
+        <!-- Breadcrumb navigation -->
+        <div class="breadcrumb" id="breadcrumb"></div>
+        
+        <!-- Page title and subtitle -->
+        <div class="study-page-header">
+            <h1 class="study-page-title" id="studyPageTitle"></h1>
+            <p class="study-page-subtitle" id="studyPageSubtitle"></p>
+        </div>
+        
+        <!-- Tables container -->
+        <div class="tables-container" id="tablesContainer"></div>
+        
+        <!-- Practice Quiz Button -->
+        <button class="practice-button" id="practiceButton" style="display: none;">Practice Quiz →</button>
+    </div>
+
+    <!-- Question Navigation Sidebar (Quiz only) -->
     <div class="question-sidebar" id="questionSidebar" style="display: none;">
         <!-- Dots will be dynamically inserted here -->
     </div>

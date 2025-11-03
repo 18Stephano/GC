@@ -84,13 +84,75 @@ function clearQuizState(questionSet) {
 }
 
 // ============================================
-// INITIALIZATION
+// ROUTING LAYER (NEW - ADDED AT TOP)
 // ============================================
+let allContentData = {}; // For study materials content
+
 document.addEventListener('DOMContentLoaded', async () => {
-    // Add console log to verify script is running
-    console.log('Script loaded, checking URL parameters...');
+    console.log('Script loaded, routing...');
     
-    // Initialize DOM element references
+    // Route to correct view
+    await routeToCorrectView();
+});
+
+async function routeToCorrectView() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // If no parameters = home page
+    if (!urlParams.toString()) {
+        console.log('No parameters, showing home page');
+        await showHomePageNavigation();
+        return;
+    }
+    
+    // If view=quiz or has 'set' parameter = quiz view
+    if (urlParams.get('view') === 'quiz' || urlParams.has('set')) {
+        console.log('Quiz view detected');
+        // Map old URLs to new structure if needed
+        let questionSet = urlParams.get('set');
+        if (!questionSet) {
+            // New structure: get quizSet from content.json
+            const level = urlParams.get('level');
+            const week = urlParams.get('week');
+            const day = urlParams.get('day');
+            if (level && week && day) {
+                try {
+                    const response = await fetch('content.json');
+                    allContentData = await response.json();
+                    const quizSet = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.days?.[`d${day}`]?.quizSet;
+                    if (quizSet) {
+                        questionSet = quizSet;
+                    }
+                } catch (error) {
+                    console.error('Error loading content.json:', error);
+                }
+            }
+        }
+        await initializeExistingQuiz(questionSet);
+        return;
+    }
+    
+    // If has level parameter = study materials view
+    if (urlParams.has('level')) {
+        const level = urlParams.get('level');
+        const week = urlParams.get('week');
+        const day = urlParams.get('day');
+        console.log('Study materials view:', level, week, day);
+        await showStudyMaterials(level, week, day);
+        return;
+    }
+    
+    // Fallback: show home page
+    await showHomePageNavigation();
+}
+
+// ============================================
+// INITIALIZATION - EXISTING QUIZ CODE (WRAPPED)
+// ============================================
+async function initializeExistingQuiz(questionSet) {
+    console.log('initializeExistingQuiz called with:', questionSet);
+    
+    // Initialize DOM element references (EXISTING CODE)
     progressText = document.getElementById('progressText');
     totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
     questionsContainer = document.getElementById('questionsContainer');
@@ -107,33 +169,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     resultsTitle = document.getElementById('resultsTitle');
     resultsMessage = document.getElementById('resultsMessage');
     
-    // Get the question set from URL parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const questionSet = urlParams.get('set');
+    // Hide other views
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (homePageContainer) homePageContainer.style.display = 'none';
+    const studyMaterialsContainer = document.getElementById('studyMaterialsContainer');
+    if (studyMaterialsContainer) studyMaterialsContainer.style.display = 'none';
     
-    console.log('URL parameter "set":', questionSet);
-    
-    // If no parameter, show home page
+    // Handle legacy URL mapping
     if (!questionSet) {
-        console.log('No parameter found, showing home page');
-        showHomePage();
+        const urlParams = new URLSearchParams(window.location.search);
+        questionSet = urlParams.get('set');
+    }
+    
+    if (!questionSet) {
+        console.error('No question set specified');
         return;
     }
     
-    // Otherwise, load the quiz
-    console.log('Parameter found, loading quiz:', questionSet);
+    // Load quiz (EXISTING FUNCTION - DO NOT MODIFY)
     await loadQuiz(questionSet);
-});
+}
 
 // Separate function to load the quiz
 async function loadQuiz(questionSet) {
     console.log('loadQuiz() called with:', questionSet);
     
-    // Hide home page if visible
-    const homeContainer = document.querySelector('.home-container');
-    if (homeContainer) {
-        homeContainer.style.display = 'none';
-        console.log('Home container hidden');
+    // Hide all other views
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (homePageContainer) {
+        homePageContainer.style.display = 'none';
+        console.log('Home page container hidden');
+    }
+    const studyMaterialsContainer = document.getElementById('studyMaterialsContainer');
+    if (studyMaterialsContainer) {
+        studyMaterialsContainer.style.display = 'none';
+        console.log('Study materials container hidden');
+    }
+    const oldHomeContainer = document.querySelector('.home-container');
+    if (oldHomeContainer) {
+        oldHomeContainer.style.display = 'none';
     }
     
     // Show quiz container and sidebar FIRST so user sees something
@@ -223,128 +297,338 @@ async function loadQuiz(questionSet) {
 // ============================================
 // HOME PAGE
 // ============================================
-function formatExerciseName(setName) {
-    const nameMap = {
-        'tag-1': 'Tag 1: Vocabulary',
-        'tag-1-grammar': 'Tag 1: Grammar - Pronouns & Sein',
-        'tag-1-greetings': 'Tag 1: Greetings & Introductions'
-    };
-    return nameMap[setName] || setName; // Fallback to original name if not in map
-}
-
-function createExerciseButton(setName, questionCount) {
-    const button = document.createElement('a');
-    button.href = `?set=${setName}`;
-    button.className = 'exercise-button';
+// ============================================
+// HOME PAGE NAVIGATION (NEW - REPLACES OLD showHomePage)
+// ============================================
+async function showHomePageNavigation() {
+    console.log('showHomePageNavigation() called');
     
-    const title = document.createElement('div');
-    title.className = 'title';
-    title.textContent = formatExerciseName(setName);
-    
-    const info = document.createElement('div');
-    info.className = 'info';
-    info.textContent = `${questionCount} questions`;
-    
-    button.appendChild(title);
-    button.appendChild(info);
-    
-    // Add to exercise list container
-    const exerciseList = document.querySelector('.exercise-list');
-    if (exerciseList) {
-        exerciseList.appendChild(button);
-    }
-}
-
-function showHomePage() {
-    console.log('showHomePage() called');
-    
-    // Hide all quiz elements FIRST
+    // Hide all other views
     const quizContainer = document.querySelector('.quiz-container');
-    if (quizContainer) {
-        quizContainer.style.display = 'none';
-        console.log('Quiz container hidden');
-    }
-    if (questionSidebar) {
-        questionSidebar.style.display = 'none';
+    if (quizContainer) quizContainer.style.display = 'none';
+    if (questionSidebar) questionSidebar.style.display = 'none';
+    const studyMaterialsContainer = document.getElementById('studyMaterialsContainer');
+    if (studyMaterialsContainer) studyMaterialsContainer.style.display = 'none';
+    
+    // Show home page container
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (homePageContainer) {
+        homePageContainer.style.display = 'block';
     }
     
     // Update body styles for home page
     document.body.style.alignItems = 'center';
     document.body.style.justifyContent = 'center';
     
-    // Create home page container if it doesn't exist
-    let homeContainer = document.querySelector('.home-container');
-    if (!homeContainer) {
-        console.log('Creating home container');
-        homeContainer = document.createElement('div');
-        homeContainer.className = 'home-container';
-        // EXPLICITLY set display to flex - this is critical!
-        homeContainer.style.display = 'flex';
-        
-        const h1 = document.createElement('h1');
-        h1.textContent = 'German Club';
-        
-        const subtitle = document.createElement('p');
-        subtitle.className = 'subtitle';
-        subtitle.textContent = 'Choose an exercise set to begin';
-        
-        const exerciseList = document.createElement('div');
-        exerciseList.className = 'exercise-list';
-        
-        // Add loading message initially
-        exerciseList.innerHTML = '<div style="text-align: center; color: #6B7280;">Loading exercise sets...</div>';
-        
-        homeContainer.appendChild(h1);
-        homeContainer.appendChild(subtitle);
-        homeContainer.appendChild(exerciseList);
-        
-        // Insert at the beginning of body
-        document.body.insertBefore(homeContainer, document.body.firstChild);
-        console.log('Home container created and inserted');
-    } else {
-        // Make sure it's visible
-        homeContainer.style.display = 'flex';
-        console.log('Home container already exists, made visible');
+    // Clear and populate home page
+    if (homePageContainer) {
+        homePageContainer.innerHTML = '<div style="text-align: center; color: #6B7280;">Loading...</div>';
     }
     
-    // Fetch questions.json to get all exercise sets
-    fetch('questions.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to load questions.json');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const exerciseSets = Object.keys(data);
-            const exerciseList = document.querySelector('.exercise-list');
-            
-            if (!exerciseList) {
-                console.error('Exercise list container not found');
-                return;
-            }
-            
-            // Clear loading message
-            exerciseList.innerHTML = '';
-            
-            if (exerciseSets.length === 0) {
-                exerciseList.innerHTML = '<div class="error-message">No exercise sets available.</div>';
-                return;
-            }
-            
-            // Create a button for each exercise set
-            exerciseSets.forEach(setName => {
-                const questionCount = data[setName].length;
-                createExerciseButton(setName, questionCount);
+    try {
+        const response = await fetch('content.json');
+        if (!response.ok) throw new Error('Failed to load content.json');
+        allContentData = await response.json();
+        
+        renderHomePage(allContentData);
+    } catch (error) {
+        console.error('Error loading content:', error);
+        if (homePageContainer) {
+            homePageContainer.innerHTML = '<div class="error-message">Error loading content. Please refresh the page.</div>';
+        }
+    }
+}
+
+function renderHomePage(contentData) {
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (!homePageContainer) return;
+    
+    homePageContainer.innerHTML = '';
+    
+    // Create header
+    const header = document.createElement('div');
+    header.className = 'home-header';
+    
+    const h1 = document.createElement('h1');
+    h1.textContent = 'German Club';
+    header.appendChild(h1);
+    
+    const hr = document.createElement('hr');
+    header.appendChild(hr);
+    
+    homePageContainer.appendChild(header);
+    
+    // Create levels container
+    const levelsContainer = document.createElement('div');
+    levelsContainer.className = 'levels-container';
+    
+    // Render each level
+    const levels = contentData.levels || {};
+    Object.keys(levels).forEach(levelKey => {
+        const level = levels[levelKey];
+        const levelCard = createLevelCard(levelKey, level);
+        levelsContainer.appendChild(levelCard);
+    });
+    
+    homePageContainer.appendChild(levelsContainer);
+}
+
+function createLevelCard(levelKey, levelData) {
+    const levelDiv = document.createElement('div');
+    levelDiv.className = 'level-card';
+    
+    const levelHeader = document.createElement('div');
+    levelHeader.className = 'level-header';
+    
+    const emoji = document.createElement('span');
+    emoji.className = 'level-emoji';
+    emoji.textContent = '📚';
+    
+    const levelName = document.createElement('span');
+    levelName.className = 'level-name';
+    levelName.textContent = levelData.name;
+    
+    levelHeader.appendChild(emoji);
+    levelHeader.appendChild(levelName);
+    levelDiv.appendChild(levelHeader);
+    
+    // Create weeks container
+    const weeksContainer = document.createElement('div');
+    weeksContainer.className = 'weeks-container';
+    
+    const weeks = levelData.weeks || {};
+    Object.keys(weeks).forEach(weekKey => {
+        const week = weeks[weekKey];
+        const weekSection = createWeekSection(levelKey, weekKey, week);
+        weeksContainer.appendChild(weekSection);
+    });
+    
+    levelDiv.appendChild(weeksContainer);
+    
+    return levelDiv;
+}
+
+function createWeekSection(levelKey, weekKey, weekData) {
+    const weekDiv = document.createElement('div');
+    weekDiv.className = 'week-section';
+    
+    const weekName = document.createElement('div');
+    weekName.className = 'week-name';
+    weekName.textContent = `└─ ${weekData.name}`;
+    weekDiv.appendChild(weekName);
+    
+    const daysContainer = document.createElement('div');
+    daysContainer.className = 'days-container';
+    
+    const days = weekData.days || {};
+    Object.keys(days).forEach((dayKey, index, array) => {
+        const day = days[dayKey];
+        const isLast = index === array.length - 1;
+        const dayCard = createDayCard(levelKey, weekKey.replace('w', ''), dayKey.replace('d', ''), day, isLast);
+        daysContainer.appendChild(dayCard);
+    });
+    
+    weekDiv.appendChild(daysContainer);
+    return weekDiv;
+}
+
+function createDayCard(levelKey, weekNum, dayNum, dayData, isLast) {
+    const card = document.createElement('a');
+    card.href = `?level=${levelKey}&week=${weekNum}&day=${dayNum}`;
+    card.className = 'day-card';
+    
+    const prefix = isLast ? '└─' : '├─';
+    const title = document.createElement('div');
+    title.className = 'day-title';
+    title.textContent = `${prefix} ${dayData.title}`;
+    
+    const subtitle = document.createElement('div');
+    subtitle.className = 'day-subtitle';
+    subtitle.textContent = dayData.subtitle;
+    
+    card.appendChild(title);
+    card.appendChild(subtitle);
+    
+    return card;
+}
+
+// ============================================
+// STUDY MATERIALS DISPLAY (NEW)
+// ============================================
+async function showStudyMaterials(level, week, day) {
+    console.log('showStudyMaterials called:', level, week, day);
+    
+    // Hide other views
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (homePageContainer) homePageContainer.style.display = 'none';
+    const quizContainer = document.querySelector('.quiz-container');
+    if (quizContainer) quizContainer.style.display = 'none';
+    if (questionSidebar) questionSidebar.style.display = 'none';
+    
+    // Show study materials container
+    const studyMaterialsContainer = document.getElementById('studyMaterialsContainer');
+    if (studyMaterialsContainer) {
+        studyMaterialsContainer.style.display = 'block';
+    }
+    
+    // Update body styles
+    document.body.style.alignItems = 'flex-start';
+    document.body.style.justifyContent = 'flex-start';
+    
+    try {
+        // Load content if not already loaded
+        if (!allContentData.levels) {
+            const response = await fetch('content.json');
+            if (!response.ok) throw new Error('Failed to load content.json');
+            allContentData = await response.json();
+        }
+        
+        const dayData = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.days?.[`d${day}`];
+        
+        if (!dayData) {
+            showStudyError('Day not found. Please check the URL parameters.');
+            return;
+        }
+        
+        renderStudyMaterials(level, week, day, dayData, allContentData);
+        
+    } catch (error) {
+        console.error('Error loading study materials:', error);
+        showStudyError('Error loading study materials. Please refresh the page.');
+    }
+}
+
+function renderStudyMaterials(level, week, day, dayData, contentData) {
+    // Render breadcrumb
+    const breadcrumb = document.getElementById('breadcrumb');
+    if (breadcrumb) {
+        breadcrumb.innerHTML = createBreadcrumb(level, week, day, contentData);
+    }
+    
+    // Render title and subtitle
+    const pageTitle = document.getElementById('studyPageTitle');
+    if (pageTitle) pageTitle.textContent = dayData.title;
+    
+    const pageSubtitle = document.getElementById('studyPageSubtitle');
+    if (pageSubtitle) pageSubtitle.textContent = dayData.subtitle;
+    
+    // Render tables
+    const tablesContainer = document.getElementById('tablesContainer');
+    if (tablesContainer) {
+        tablesContainer.innerHTML = '';
+        
+        if (dayData.tables && dayData.tables.length > 0) {
+            dayData.tables.forEach((tableData, index) => {
+                const tableElement = createTable(tableData);
+                tablesContainer.appendChild(tableElement);
             });
-        })
-        .catch(error => {
-            console.error('Error loading exercise sets:', error);
-            const exerciseList = document.querySelector('.exercise-list');
-            if (exerciseList) {
-                exerciseList.innerHTML = '<div class="error-message">Error loading exercise sets. Please refresh the page.</div>';
+        }
+    }
+    
+    // Show practice button if quizSet exists
+    const practiceButton = document.getElementById('practiceButton');
+    if (practiceButton && dayData.quizSet) {
+        practiceButton.style.display = 'block';
+        practiceButton.onclick = () => {
+            window.location.href = `?level=${level}&week=${week}&day=${day}&view=quiz`;
+        };
+    } else if (practiceButton) {
+        practiceButton.style.display = 'none';
+    }
+}
+
+function createBreadcrumb(level, week, day, contentData) {
+    const levelName = contentData?.levels?.[level]?.name || level.toUpperCase();
+    const weekName = contentData?.levels?.[level]?.weeks?.[`w${week}`]?.name || `Week ${week}`;
+    const dayName = contentData?.levels?.[level]?.weeks?.[`w${week}`]?.days?.[`d${day}`]?.title || `Day ${day}`;
+    
+    return `
+        <a href="index.html">Home</a>
+        <span> > </span>
+        <a href="index.html?level=${level}">${levelName}</a>
+        <span> > </span>
+        <a href="index.html?level=${level}&week=${week}">${weekName}</a>
+        <span> > </span>
+        <span>${dayName}</span>
+    `;
+}
+
+function createTable(tableData) {
+    const tableWrapper = document.createElement('div');
+    tableWrapper.className = 'table-wrapper';
+    
+    const table = document.createElement('table');
+    table.className = tableData.type === 'simple' ? 'simple-table' : 'vocabulary-table';
+    
+    if (tableData.categoryStyle) {
+        table.classList.add(tableData.categoryStyle);
+    }
+    
+    // Title row
+    const titleRow = document.createElement('tr');
+    titleRow.className = 'table-title-row';
+    const titleCell = document.createElement('td');
+    titleCell.className = 'table-title';
+    titleCell.colSpan = tableData.columns.length;
+    titleCell.textContent = tableData.title;
+    titleRow.appendChild(titleCell);
+    
+    const titleTbody = document.createElement('tbody');
+    titleTbody.appendChild(titleRow);
+    table.appendChild(titleTbody);
+    
+    // Header row
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    
+    tableData.columns.forEach(column => {
+        const th = document.createElement('th');
+        th.textContent = column;
+        headerRow.appendChild(th);
+    });
+    
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+    
+    // Data rows
+    const tbody = document.createElement('tbody');
+    
+    tableData.rows.forEach(row => {
+        const tr = document.createElement('tr');
+        
+        row.forEach((cell, index) => {
+            const td = document.createElement('td');
+            
+            if (tableData.type === 'vocabulary' && index === 0) {
+                td.className = 'category-cell';
+                td.textContent = cell;
+            } else if (tableData.type === 'vocabulary' && index === 1) {
+                td.className = 'word-cell';
+                td.textContent = cell;
+            } else if (tableData.type === 'vocabulary' && index === 2) {
+                td.className = 'meaning-cell';
+                td.textContent = cell;
+            } else {
+                td.textContent = cell;
             }
+            
+            tr.appendChild(td);
         });
+        
+        tbody.appendChild(tr);
+    });
+    
+    table.appendChild(tbody);
+    tableWrapper.appendChild(table);
+    
+    return tableWrapper;
+}
+
+function showStudyError(message) {
+    const tablesContainer = document.getElementById('tablesContainer');
+    if (tablesContainer) {
+        tablesContainer.innerHTML = `<div class="error-message">${message}</div>`;
+    }
 }
 
 // ============================================
