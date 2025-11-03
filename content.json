@@ -14,6 +14,7 @@
                 {
                   "sectionTitle": "Grammar Basics",
                   "sectionSubtitle": "Personal Pronouns & Verb 'sein'",
+                  "quizSet": "tag-1-grammar",
                   "tables": [
                     {
                       "title": "Die Personalpronomen (Personal Pronouns)",
@@ -49,6 +50,7 @@
                 {
                   "sectionTitle": "Vocabulary",
                   "sectionSubtitle": "Adjectives, Professions, Nationalities",
+                  "quizSet": "tag-1-vocabulary",
                   "tables": [
                     {
                       "title": "Adjectives",
@@ -149,6 +151,7 @@
                 {
                   "sectionTitle": "Greetings & Introductions",
                   "sectionSubtitle": "Common phrases for conversation",
+                  "quizSet": "tag-1-greetings",
                   "tables": [
                     {
                       "title": "German Greetings by Time of Day",
@@ -209,6 +212,7 @@
                 {
                   "sectionTitle": "Numbers 1-20 (Zahlen)",
                   "sectionSubtitle": "Learn to count and use numbers in daily situations",
+                  "quizSet": "tag-1-numbers",
                   "tables": [
                     {
                       "title": "Numbers 1-10",

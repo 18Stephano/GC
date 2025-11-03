@@ -1,5 +1,5 @@
 {
-  "tag-1": [
+  "tag-1-vocabulary": [
     { "id": 1, "question": "TIRED", "options": ["MÜDE", "GLÜCKLICH"], "correct": "MÜDE", "category": "Feelings" },
     { "id": 2, "question": "ICH BIN _____. (I AM HAPPY)", "options": ["GLÜCKLICH", "TRAURIG"], "correct": "GLÜCKLICH", "category": "Feelings" },
     { "id": 3, "question": "SICK", "options": ["KRANK", "GESUND"], "correct": "KRANK", "category": "Feelings" },
@@ -49,32 +49,7 @@
     { "id": 47, "question": "PERSON/HUMAN", "options": ["DER MENSCH", "DAS KIND"], "correct": "DER MENSCH", "category": "Nouns" },
     { "id": 48, "question": "DAS IST EIN _____. (THAT IS A CHILD)", "options": ["KIND", "MENSCH"], "correct": "KIND", "category": "Nouns" },
     { "id": 49, "question": "FAMILY", "options": ["DIE FAMILIE", "DER FREUND"], "correct": "DIE FAMILIE", "category": "Nouns" },
-    { "id": 50, "question": "WIE IST DEIN _____? (WHAT IS YOUR NAME?)", "options": ["NAME", "FAMILIE"], "correct": "NAME", "category": "Nouns" },
-    { "id": 51, "question": "1 (ONE)", "options": ["EINS", "ZWEI"], "correct": "EINS", "category": "Numbers 1-10" },
-    { "id": 52, "question": "5 (FIVE)", "options": ["FÜNF", "VIER"], "correct": "FÜNF", "category": "Numbers 1-10" },
-    { "id": 53, "question": "3 (THREE)", "options": ["DREI", "DREIZEHN"], "correct": "DREI", "category": "Numbers 1-10" },
-    { "id": 54, "question": "7 (SEVEN)", "options": ["SIEBEN", "SECHS"], "correct": "SIEBEN", "category": "Numbers 1-10" },
-    { "id": 55, "question": "10 (TEN)", "options": ["ZEHN", "ELF"], "correct": "ZEHN", "category": "Numbers 1-10" },
-    { "id": 56, "question": "2 (TWO)", "options": ["ZWEI", "DREI"], "correct": "ZWEI", "category": "Numbers 1-10" },
-    { "id": 57, "question": "8 (EIGHT)", "options": ["ACHT", "NEUN"], "correct": "ACHT", "category": "Numbers 1-10" },
-    { "id": 58, "question": "4 (FOUR)", "options": ["VIER", "FÜNF"], "correct": "VIER", "category": "Numbers 1-10" },
-    { "id": 59, "question": "6 (SIX)", "options": ["SECHS", "SIEBEN"], "correct": "SECHS", "category": "Numbers 1-10" },
-    { "id": 60, "question": "9 (NINE)", "options": ["NEUN", "ZEHN"], "correct": "NEUN", "category": "Numbers 1-10" },
-    { "id": 61, "question": "11 (ELEVEN)", "options": ["ELF", "ZWÖLF"], "correct": "ELF", "category": "Numbers 11-20" },
-    { "id": 62, "question": "15 (FIFTEEN)", "options": ["FÜNFZEHN", "FÜNFZIG"], "correct": "FÜNFZEHN", "category": "Numbers 11-20" },
-    { "id": 63, "question": "12 (TWELVE)", "options": ["ZWÖLF", "ZWEI"], "correct": "ZWÖLF", "category": "Numbers 11-20" },
-    { "id": 64, "question": "20 (TWENTY)", "options": ["ZWANZIG", "ZWEI"], "correct": "ZWANZIG", "category": "Numbers 11-20" },
-    { "id": 65, "question": "13 (THIRTEEN)", "options": ["DREIZEHN", "DREI"], "correct": "DREIZEHN", "category": "Numbers 11-20" },
-    { "id": 66, "question": "17 (SEVENTEEN)", "options": ["SIEBZEHN", "SIEBEN"], "correct": "SIEBZEHN", "category": "Numbers 11-20" },
-    { "id": 67, "question": "16 (SIXTEEN)", "options": ["SECHZEHN", "SECHS"], "correct": "SECHZEHN", "category": "Numbers 11-20" },
-    { "id": 68, "question": "19 (NINETEEN)", "options": ["NEUNZEHN", "NEUN"], "correct": "NEUNZEHN", "category": "Numbers 11-20" },
-    { "id": 69, "question": "14 (FOURTEEN)", "options": ["VIERZEHN", "VIER"], "correct": "VIERZEHN", "category": "Numbers 11-20" },
-    { "id": 70, "question": "18 (EIGHTEEN)", "options": ["ACHTZEHN", "ACHT"], "correct": "ACHTZEHN", "category": "Numbers 11-20" },
-    { "id": 71, "question": "ICH BIN _____ JAHRE ALT. (I AM 15 YEARS OLD)", "options": ["FÜNFZEHN", "FÜNFZIG"], "correct": "FÜNFZEHN", "category": "Numbers - Practical" },
-    { "id": 72, "question": "WIE ALT BIST DU? - ICH BIN _____ . (HOW OLD ARE YOU? - I AM 20)", "options": ["ZWANZIG", "ZWEI"], "correct": "ZWANZIG", "category": "Numbers - Practical" },
-    { "id": 73, "question": "DIE NUMMER IST _____ . (THE NUMBER IS 7)", "options": ["SIEBEN", "SIEBZEHN"], "correct": "SIEBEN", "category": "Numbers - Practical" },
-    { "id": 74, "question": "EINS, ZWEI, DREI, VIER, _____ (1, 2, 3, 4, _____)", "options": ["FÜNF", "FÜNFZEHN"], "correct": "FÜNF", "category": "Numbers - Practical" },
-    { "id": 75, "question": "DAS KOSTET _____ EURO. (THAT COSTS 12 EUROS)", "options": ["ZWÖLF", "ZWEI"], "correct": "ZWÖLF", "category": "Numbers - Practical" }
+    { "id": 50, "question": "WIE IST DEIN _____? (WHAT IS YOUR NAME?)", "options": ["NAME", "FAMILIE"], "correct": "NAME", "category": "Nouns" }
   ],
   "tag-1-grammar": [
     { "id": 1, "question": "ICH _____ STEPHANO. (I AM STEPHANO)", "options": ["BIN", "BIST"], "correct": "BIN", "category": "Grammar - Sein" },
@@ -144,5 +119,32 @@
     { "id": 23, "question": "MY NAME IS (FORMAL)", "options": ["MEIN NAME IST", "DEIN NAME IST"], "correct": "MEIN NAME IST", "category": "Conversation" },
     { "id": 24, "question": "_____! ICH HEIẞE ANNA. (HELLO! MY NAME IS ANNA)", "options": ["HALLO", "TSCHÜSS"], "correct": "HALLO", "category": "Conversation" },
     { "id": 25, "question": "WIE GEHT'S? - _____ (HOW ARE YOU? - GOOD, THANKS!)", "options": ["GUT, DANKE!", "AUF WIEDERSEHEN!"], "correct": "GUT, DANKE!", "category": "Conversation" }
+  ],
+  "tag-1-numbers": [
+    { "id": 1, "question": "1 (ONE)", "options": ["EINS", "ZWEI"], "correct": "EINS", "category": "Numbers 1-10" },
+    { "id": 2, "question": "5 (FIVE)", "options": ["FÜNF", "VIER"], "correct": "FÜNF", "category": "Numbers 1-10" },
+    { "id": 3, "question": "3 (THREE)", "options": ["DREI", "DREIZEHN"], "correct": "DREI", "category": "Numbers 1-10" },
+    { "id": 4, "question": "7 (SEVEN)", "options": ["SIEBEN", "SECHS"], "correct": "SIEBEN", "category": "Numbers 1-10" },
+    { "id": 5, "question": "10 (TEN)", "options": ["ZEHN", "ELF"], "correct": "ZEHN", "category": "Numbers 1-10" },
+    { "id": 6, "question": "2 (TWO)", "options": ["ZWEI", "DREI"], "correct": "ZWEI", "category": "Numbers 1-10" },
+    { "id": 7, "question": "8 (EIGHT)", "options": ["ACHT", "NEUN"], "correct": "ACHT", "category": "Numbers 1-10" },
+    { "id": 8, "question": "4 (FOUR)", "options": ["VIER", "FÜNF"], "correct": "VIER", "category": "Numbers 1-10" },
+    { "id": 9, "question": "6 (SIX)", "options": ["SECHS", "SIEBEN"], "correct": "SECHS", "category": "Numbers 1-10" },
+    { "id": 10, "question": "9 (NINE)", "options": ["NEUN", "ZEHN"], "correct": "NEUN", "category": "Numbers 1-10" },
+    { "id": 11, "question": "11 (ELEVEN)", "options": ["ELF", "ZWÖLF"], "correct": "ELF", "category": "Numbers 11-20" },
+    { "id": 12, "question": "15 (FIFTEEN)", "options": ["FÜNFZEHN", "FÜNFZIG"], "correct": "FÜNFZEHN", "category": "Numbers 11-20" },
+    { "id": 13, "question": "12 (TWELVE)", "options": ["ZWÖLF", "ZWEI"], "correct": "ZWÖLF", "category": "Numbers 11-20" },
+    { "id": 14, "question": "20 (TWENTY)", "options": ["ZWANZIG", "ZWEI"], "correct": "ZWANZIG", "category": "Numbers 11-20" },
+    { "id": 15, "question": "13 (THIRTEEN)", "options": ["DREIZEHN", "DREI"], "correct": "DREIZEHN", "category": "Numbers 11-20" },
+    { "id": 16, "question": "17 (SEVENTEEN)", "options": ["SIEBZEHN", "SIEBEN"], "correct": "SIEBZEHN", "category": "Numbers 11-20" },
+    { "id": 17, "question": "16 (SIXTEEN)", "options": ["SECHZEHN", "SECHS"], "correct": "SECHZEHN", "category": "Numbers 11-20" },
+    { "id": 18, "question": "19 (NINETEEN)", "options": ["NEUNZEHN", "NEUN"], "correct": "NEUNZEHN", "category": "Numbers 11-20" },
+    { "id": 19, "question": "14 (FOURTEEN)", "options": ["VIERZEHN", "VIER"], "correct": "VIERZEHN", "category": "Numbers 11-20" },
+    { "id": 20, "question": "18 (EIGHTEEN)", "options": ["ACHTZEHN", "ACHT"], "correct": "ACHTZEHN", "category": "Numbers 11-20" },
+    { "id": 21, "question": "ICH BIN _____ JAHRE ALT. (I AM 15 YEARS OLD)", "options": ["FÜNFZEHN", "FÜNFZIG"], "correct": "FÜNFZEHN", "category": "Numbers - Practical" },
+    { "id": 22, "question": "WIE ALT BIST DU? - ICH BIN _____ . (HOW OLD ARE YOU? - I AM 20)", "options": ["ZWANZIG", "ZWEI"], "correct": "ZWANZIG", "category": "Numbers - Practical" },
+    { "id": 23, "question": "DIE NUMMER IST _____ . (THE NUMBER IS 7)", "options": ["SIEBEN", "SIEBZEHN"], "correct": "SIEBEN", "category": "Numbers - Practical" },
+    { "id": 24, "question": "EINS, ZWEI, DREI, VIER, _____ (1, 2, 3, 4, _____)", "options": ["FÜNF", "FÜNFZEHN"], "correct": "FÜNF", "category": "Numbers - Practical" },
+    { "id": 25, "question": "DAS KOSTET _____ EURO. (THAT COSTS 12 EUROS)", "options": ["ZWÖLF", "ZWEI"], "correct": "ZWÖLF", "category": "Numbers - Practical" }
   ]
 }

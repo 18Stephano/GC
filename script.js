@@ -108,27 +108,8 @@ async function routeToCorrectView() {
     // If view=quiz or has 'set' parameter = quiz view
     if (urlParams.get('view') === 'quiz' || urlParams.has('set')) {
         console.log('Quiz view detected');
-        // Map old URLs to new structure if needed
-        let questionSet = urlParams.get('set');
-        if (!questionSet) {
-            // New structure: get quizSet from content.json (section parameter is ignored for quiz)
-            const level = urlParams.get('level');
-            const week = urlParams.get('week');
-            const tag = urlParams.get('tag');
-            if (level && week && tag) {
-                try {
-                    const response = await fetch('content.json');
-                    allContentData = await response.json();
-                    const quizSet = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.tags?.[`t${tag}`]?.quizSet;
-                    if (quizSet) {
-                        questionSet = quizSet;
-                    }
-                } catch (error) {
-                    console.error('Error loading content.json:', error);
-                }
-            }
-        }
-        await initializeExistingQuiz(questionSet);
+        // initializeExistingQuiz will handle getting quizSet from section or legacy 'set' param
+        await initializeExistingQuiz(null);
         return;
     }
     
@@ -199,10 +180,31 @@ async function initializeExistingQuiz(questionSet) {
     const studyMaterialsContainer = document.getElementById('studyMaterialsContainer');
     if (studyMaterialsContainer) studyMaterialsContainer.style.display = 'none';
     
-    // Handle legacy URL mapping
+    // Handle new URL structure with section parameter
     if (!questionSet) {
         const urlParams = new URLSearchParams(window.location.search);
         questionSet = urlParams.get('set');
+        
+        // If no 'set' param, try to get from section
+        if (!questionSet) {
+            const level = urlParams.get('level');
+            const week = urlParams.get('week');
+            const tag = urlParams.get('tag');
+            const section = urlParams.get('section');
+            
+            if (level && week && tag && section) {
+                try {
+                    const response = await fetch('content.json');
+                    allContentData = await response.json();
+                    const sectionData = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.tags?.[`t${tag}`]?.sections?.[parseInt(section) - 1];
+                    if (sectionData && sectionData.quizSet) {
+                        questionSet = sectionData.quizSet;
+                    }
+                } catch (error) {
+                    console.error('Error loading content.json:', error);
+                }
+            }
+        }
     }
     
     if (!questionSet) {
@@ -884,9 +886,9 @@ function renderSectionPage(level, week, tag, section, levelData, weekData, tagDa
         }
     }
     
-    // Show practice button if quizSet exists
+    // Show practice button if section has quizSet
     const practiceButton = document.getElementById('practiceButton');
-    if (practiceButton && tagData.quizSet) {
+    if (practiceButton && sectionData.quizSet) {
         practiceButton.style.display = 'block';
         practiceButton.onclick = () => {
             window.location.href = `?level=${level}&week=${week}&tag=${tag}&section=${section}&view=quiz`;
