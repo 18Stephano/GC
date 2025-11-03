@@ -111,7 +111,7 @@ async function routeToCorrectView() {
         // Map old URLs to new structure if needed
         let questionSet = urlParams.get('set');
         if (!questionSet) {
-            // New structure: get quizSet from content.json
+            // New structure: get quizSet from content.json (section parameter is ignored for quiz)
             const level = urlParams.get('level');
             const week = urlParams.get('week');
             const tag = urlParams.get('tag');
@@ -132,13 +132,37 @@ async function routeToCorrectView() {
         return;
     }
     
-    // If has level parameter = study materials view
-    if (urlParams.has('level')) {
-        const level = urlParams.get('level');
-        const week = urlParams.get('week');
-        const tag = urlParams.get('tag');
-        console.log('Study materials view:', level, week, tag);
-        await showStudyMaterials(level, week, tag);
+    // Check navigation level
+    const level = urlParams.get('level');
+    const week = urlParams.get('week');
+    const tag = urlParams.get('tag');
+    const section = urlParams.get('section');
+    
+    if (level && week && tag && section) {
+        // Full path: show individual section content
+        console.log('Section content view:', level, week, tag, section);
+        await showSectionPage(level, week, tag, section);
+        return;
+    }
+    
+    if (level && week && tag) {
+        // Show sections list
+        console.log('Sections list page:', level, week, tag);
+        await showSectionsPage(level, week, tag);
+        return;
+    }
+    
+    if (level && week) {
+        // Show tags list
+        console.log('Tags page:', level, week);
+        await showTagsPage(level, week);
+        return;
+    }
+    
+    if (level) {
+        // Show weeks list
+        console.log('Weeks page:', level);
+        await showWeeksPage(level);
         return;
     }
     
@@ -362,105 +386,422 @@ function renderHomePage(contentData) {
     const levelsContainer = document.createElement('div');
     levelsContainer.className = 'levels-container';
     
-    // Render each level
+    // Render each level as a simple card
     const levels = contentData.levels || {};
     Object.keys(levels).forEach(levelKey => {
         const level = levels[levelKey];
-        const levelCard = createLevelCard(levelKey, level);
+        const levelCard = createSimpleLevelCard(levelKey, level);
         levelsContainer.appendChild(levelCard);
     });
     
     homePageContainer.appendChild(levelsContainer);
 }
 
-function createLevelCard(levelKey, levelData) {
-    const levelDiv = document.createElement('div');
-    levelDiv.className = 'level-card';
+function createSimpleLevelCard(levelKey, levelData) {
+    const card = document.createElement('a');
+    card.href = `?level=${levelKey}`;
+    card.className = 'level-card';
+    card.style.cursor = 'pointer';
     
-    const levelHeader = document.createElement('div');
-    levelHeader.className = 'level-header';
+    const header = document.createElement('div');
+    header.className = 'level-header';
     
     const emoji = document.createElement('span');
     emoji.className = 'level-emoji';
     emoji.textContent = '📚';
     
-    const levelName = document.createElement('span');
-    levelName.className = 'level-name';
-    levelName.textContent = levelData.name;
+    const name = document.createElement('span');
+    name.className = 'level-name';
+    name.textContent = levelData.name;
     
-    levelHeader.appendChild(emoji);
-    levelHeader.appendChild(levelName);
-    levelDiv.appendChild(levelHeader);
-    
-    // Create weeks container
-    const weeksContainer = document.createElement('div');
-    weeksContainer.className = 'weeks-container';
-    
-    const weeks = levelData.weeks || {};
-    Object.keys(weeks).forEach(weekKey => {
-        const week = weeks[weekKey];
-        const weekSection = createWeekSection(levelKey, weekKey, week);
-        weeksContainer.appendChild(weekSection);
-    });
-    
-    levelDiv.appendChild(weeksContainer);
-    
-    return levelDiv;
-}
-
-function createWeekSection(levelKey, weekKey, weekData) {
-    const weekDiv = document.createElement('div');
-    weekDiv.className = 'week-section';
-    
-    const weekName = document.createElement('div');
-    weekName.className = 'week-name';
-    weekName.textContent = `└─ ${weekData.name}`;
-    weekDiv.appendChild(weekName);
-    
-    const tagsContainer = document.createElement('div');
-    tagsContainer.className = 'days-container'; // Keep same class for styling
-    
-    const tags = weekData.tags || {};  // Use tags instead of days
-    Object.keys(tags).forEach((tagKey, index, array) => {
-        const tag = tags[tagKey];
-        const isLast = index === array.length - 1;
-        const tagCard = createTagCard(levelKey, weekKey.replace('w', ''), tagKey.replace('t', ''), tag, isLast);
-        tagsContainer.appendChild(tagCard);
-    });
-    
-    weekDiv.appendChild(tagsContainer);
-    return weekDiv;
-}
-
-function createTagCard(levelKey, weekNum, tagNum, tagData, isLast) {
-    const card = document.createElement('a');
-    card.href = `?level=${levelKey}&week=${weekNum}&tag=${tagNum}`;
-    card.className = 'day-card'; // Keep same class for styling
-    
-    const prefix = isLast ? '└─' : '├─';
-    const title = document.createElement('div');
-    title.className = 'day-title';
-    title.textContent = `${prefix} ${tagData.title}`;
-    
-    // Show list of sections
-    const sectionsDiv = document.createElement('div');
-    sectionsDiv.className = 'day-subtitle';
-    if (tagData.sections && tagData.sections.length > 0) {
-        const sectionTitles = tagData.sections.map(s => s.sectionTitle).join(', ');
-        sectionsDiv.textContent = sectionTitles;
-    }
-    
-    card.appendChild(title);
-    card.appendChild(sectionsDiv);
+    header.appendChild(emoji);
+    header.appendChild(name);
+    card.appendChild(header);
     
     return card;
 }
 
 // ============================================
-// STUDY MATERIALS DISPLAY (NEW)
+// WEEKS PAGE (NEW)
 // ============================================
-async function showStudyMaterials(level, week, tag) {
-    console.log('showStudyMaterials called:', level, week, tag);
+async function showWeeksPage(level) {
+    console.log('showWeeksPage() called for level:', level);
+    
+    // Hide other views
+    const quizContainer = document.querySelector('.quiz-container');
+    if (quizContainer) quizContainer.style.display = 'none';
+    if (questionSidebar) questionSidebar.style.display = 'none';
+    const studyMaterialsContainer = document.getElementById('studyMaterialsContainer');
+    if (studyMaterialsContainer) studyMaterialsContainer.style.display = 'none';
+    
+    // Show home page container
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (homePageContainer) {
+        homePageContainer.style.display = 'block';
+    }
+    
+    // Update body styles
+    document.body.style.alignItems = 'center';
+    document.body.style.justifyContent = 'center';
+    
+    try {
+        // Load content if not already loaded
+        if (!allContentData.levels) {
+            const response = await fetch('content.json');
+            if (!response.ok) throw new Error('Failed to load content.json');
+            allContentData = await response.json();
+        }
+        
+        const levelData = allContentData?.levels?.[level];
+        
+        if (!levelData) {
+            if (homePageContainer) {
+                homePageContainer.innerHTML = '<div class="error-message">Level not found.</div>';
+            }
+            return;
+        }
+        
+        renderWeeksPage(level, levelData);
+        
+    } catch (error) {
+        console.error('Error loading weeks page:', error);
+        const homePageContainer = document.getElementById('homePageContainer');
+        if (homePageContainer) {
+            homePageContainer.innerHTML = '<div class="error-message">Error loading content. Please refresh the page.</div>';
+        }
+    }
+}
+
+function renderWeeksPage(level, levelData) {
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (!homePageContainer) return;
+    
+    homePageContainer.innerHTML = '';
+    
+    // Breadcrumb
+    const breadcrumb = document.createElement('div');
+    breadcrumb.className = 'breadcrumb';
+    breadcrumb.innerHTML = `<a href="index.html">Home</a> <span> > </span> <span>${levelData.name}</span>`;
+    breadcrumb.style.textAlign = 'center';
+    breadcrumb.style.marginBottom = '32px';
+    homePageContainer.appendChild(breadcrumb);
+    
+    // Header
+    const header = document.createElement('div');
+    header.className = 'home-header';
+    
+    const h1 = document.createElement('h1');
+    h1.textContent = levelData.name;
+    header.appendChild(h1);
+    
+    const hr = document.createElement('hr');
+    header.appendChild(hr);
+    
+    homePageContainer.appendChild(header);
+    
+    // Weeks container
+    const weeksContainer = document.createElement('div');
+    weeksContainer.className = 'levels-container';
+    
+    const weeks = levelData.weeks || {};
+    Object.keys(weeks).forEach(weekKey => {
+        const week = weeks[weekKey];
+        const weekCard = createWeekCard(level, weekKey, week);
+        weeksContainer.appendChild(weekCard);
+    });
+    
+    homePageContainer.appendChild(weeksContainer);
+}
+
+function createWeekCard(level, weekKey, weekData) {
+    const card = document.createElement('a');
+    card.href = `?level=${level}&week=${weekKey.replace('w', '')}`;
+    card.className = 'level-card';
+    card.style.cursor = 'pointer';
+    
+    const header = document.createElement('div');
+    header.className = 'level-header';
+    
+    const emoji = document.createElement('span');
+    emoji.className = 'level-emoji';
+    emoji.textContent = '📅';
+    
+    const name = document.createElement('span');
+    name.className = 'level-name';
+    name.textContent = weekData.name;
+    
+    header.appendChild(emoji);
+    header.appendChild(name);
+    card.appendChild(header);
+    
+    return card;
+}
+
+// ============================================
+// TAGS PAGE (NEW)
+// ============================================
+async function showTagsPage(level, week) {
+    console.log('showTagsPage() called for:', level, week);
+    
+    // Hide other views
+    const quizContainer = document.querySelector('.quiz-container');
+    if (quizContainer) quizContainer.style.display = 'none';
+    if (questionSidebar) questionSidebar.style.display = 'none';
+    const studyMaterialsContainer = document.getElementById('studyMaterialsContainer');
+    if (studyMaterialsContainer) studyMaterialsContainer.style.display = 'none';
+    
+    // Show home page container
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (homePageContainer) {
+        homePageContainer.style.display = 'block';
+    }
+    
+    // Update body styles
+    document.body.style.alignItems = 'center';
+    document.body.style.justifyContent = 'center';
+    
+    try {
+        // Load content if not already loaded
+        if (!allContentData.levels) {
+            const response = await fetch('content.json');
+            if (!response.ok) throw new Error('Failed to load content.json');
+            allContentData = await response.json();
+        }
+        
+        const levelData = allContentData?.levels?.[level];
+        const weekData = levelData?.weeks?.[`w${week}`];
+        
+        if (!weekData) {
+            const homePageContainer = document.getElementById('homePageContainer');
+            if (homePageContainer) {
+                homePageContainer.innerHTML = '<div class="error-message">Week not found.</div>';
+            }
+            return;
+        }
+        
+        renderTagsPage(level, week, levelData, weekData);
+        
+    } catch (error) {
+        console.error('Error loading tags page:', error);
+        const homePageContainer = document.getElementById('homePageContainer');
+        if (homePageContainer) {
+            homePageContainer.innerHTML = '<div class="error-message">Error loading content. Please refresh the page.</div>';
+        }
+    }
+}
+
+function renderTagsPage(level, week, levelData, weekData) {
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (!homePageContainer) return;
+    
+    homePageContainer.innerHTML = '';
+    
+    // Breadcrumb
+    const breadcrumb = document.createElement('div');
+    breadcrumb.className = 'breadcrumb';
+    breadcrumb.innerHTML = `
+        <a href="index.html">Home</a>
+        <span> > </span>
+        <a href="?level=${level}">${levelData.name}</a>
+        <span> > </span>
+        <span>${weekData.name}</span>
+    `;
+    breadcrumb.style.textAlign = 'center';
+    breadcrumb.style.marginBottom = '32px';
+    homePageContainer.appendChild(breadcrumb);
+    
+    // Header
+    const header = document.createElement('div');
+    header.className = 'home-header';
+    
+    const h1 = document.createElement('h1');
+    h1.textContent = weekData.name;
+    header.appendChild(h1);
+    
+    const hr = document.createElement('hr');
+    header.appendChild(hr);
+    
+    homePageContainer.appendChild(header);
+    
+    // Tags container
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'levels-container';
+    
+    const tags = weekData.tags || {};
+    Object.keys(tags).forEach(tagKey => {
+        const tag = tags[tagKey];
+        const tagCard = createTagCardSimple(level, week, tagKey, tag);
+        tagsContainer.appendChild(tagCard);
+    });
+    
+    homePageContainer.appendChild(tagsContainer);
+}
+
+function createTagCardSimple(level, week, tagKey, tagData) {
+    const card = document.createElement('a');
+    card.href = `?level=${level}&week=${week}&tag=${tagKey.replace('t', '')}`;
+    card.className = 'level-card';
+    card.style.cursor = 'pointer';
+    
+    const header = document.createElement('div');
+    header.className = 'level-header';
+    
+    const emoji = document.createElement('span');
+    emoji.className = 'level-emoji';
+    emoji.textContent = '📝';
+    
+    const name = document.createElement('span');
+    name.className = 'level-name';
+    name.textContent = tagData.title;
+    
+    header.appendChild(emoji);
+    header.appendChild(name);
+    card.appendChild(header);
+    
+    return card;
+}
+
+// ============================================
+// SECTIONS PAGE (NEW)
+// ============================================
+async function showSectionsPage(level, week, tag) {
+    console.log('showSectionsPage() called for:', level, week, tag);
+    
+    // Hide other views
+    const quizContainer = document.querySelector('.quiz-container');
+    if (quizContainer) quizContainer.style.display = 'none';
+    if (questionSidebar) questionSidebar.style.display = 'none';
+    const studyMaterialsContainer = document.getElementById('studyMaterialsContainer');
+    if (studyMaterialsContainer) studyMaterialsContainer.style.display = 'none';
+    
+    // Show home page container
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (homePageContainer) {
+        homePageContainer.style.display = 'block';
+    }
+    
+    // Update body styles
+    document.body.style.alignItems = 'center';
+    document.body.style.justifyContent = 'center';
+    
+    try {
+        // Load content if not already loaded
+        if (!allContentData.levels) {
+            const response = await fetch('content.json');
+            if (!response.ok) throw new Error('Failed to load content.json');
+            allContentData = await response.json();
+        }
+        
+        const levelData = allContentData?.levels?.[level];
+        const weekData = levelData?.weeks?.[`w${week}`];
+        const tagData = weekData?.tags?.[`t${tag}`];
+        
+        if (!tagData) {
+            const homePageContainer = document.getElementById('homePageContainer');
+            if (homePageContainer) {
+                homePageContainer.innerHTML = '<div class="error-message">Tag not found.</div>';
+            }
+            return;
+        }
+        
+        renderSectionsPage(level, week, tag, levelData, weekData, tagData);
+        
+    } catch (error) {
+        console.error('Error loading sections page:', error);
+        const homePageContainer = document.getElementById('homePageContainer');
+        if (homePageContainer) {
+            homePageContainer.innerHTML = '<div class="error-message">Error loading content. Please refresh the page.</div>';
+        }
+    }
+}
+
+function renderSectionsPage(level, week, tag, levelData, weekData, tagData) {
+    const homePageContainer = document.getElementById('homePageContainer');
+    if (!homePageContainer) return;
+    
+    homePageContainer.innerHTML = '';
+    
+    // Breadcrumb
+    const breadcrumb = document.createElement('div');
+    breadcrumb.className = 'breadcrumb';
+    breadcrumb.innerHTML = `
+        <a href="index.html">Home</a>
+        <span> > </span>
+        <a href="?level=${level}">${levelData.name}</a>
+        <span> > </span>
+        <a href="?level=${level}&week=${week}">${weekData.name}</a>
+        <span> > </span>
+        <span>${tagData.title}</span>
+    `;
+    breadcrumb.style.textAlign = 'center';
+    breadcrumb.style.marginBottom = '32px';
+    homePageContainer.appendChild(breadcrumb);
+    
+    // Header
+    const header = document.createElement('div');
+    header.className = 'home-header';
+    
+    const h1 = document.createElement('h1');
+    h1.textContent = tagData.title;
+    header.appendChild(h1);
+    
+    const hr = document.createElement('hr');
+    header.appendChild(hr);
+    
+    homePageContainer.appendChild(header);
+    
+    // Sections container
+    const sectionsContainer = document.createElement('div');
+    sectionsContainer.className = 'levels-container';
+    
+    const sections = tagData.sections || [];
+    sections.forEach((section, index) => {
+        const sectionCard = createSectionCard(level, week, tag, index + 1, section);
+        sectionsContainer.appendChild(sectionCard);
+    });
+    
+    homePageContainer.appendChild(sectionsContainer);
+}
+
+function createSectionCard(level, week, tag, sectionNum, sectionData) {
+    const card = document.createElement('a');
+    card.href = `?level=${level}&week=${week}&tag=${tag}&section=${sectionNum}`;
+    card.className = 'level-card';
+    card.style.cursor = 'pointer';
+    
+    const header = document.createElement('div');
+    header.className = 'level-header';
+    
+    const emoji = document.createElement('span');
+    emoji.className = 'level-emoji';
+    emoji.textContent = '📖';
+    
+    const name = document.createElement('span');
+    name.className = 'level-name';
+    name.textContent = sectionData.sectionTitle;
+    
+    header.appendChild(emoji);
+    header.appendChild(name);
+    card.appendChild(header);
+    
+    // Show subtitle if exists
+    if (sectionData.sectionSubtitle) {
+        const subtitle = document.createElement('div');
+        subtitle.style.marginTop = '12px';
+        subtitle.style.color = '#6B7280';
+        subtitle.style.fontSize = '14px';
+        subtitle.textContent = sectionData.sectionSubtitle;
+        card.appendChild(subtitle);
+    }
+    
+    return card;
+}
+
+// ============================================
+// INDIVIDUAL SECTION PAGE (RENAMED from showStudyMaterials)
+// ============================================
+async function showSectionPage(level, week, tag, section) {
+    console.log('showSectionPage called:', level, week, tag, section);
     
     // Hide other views
     const homePageContainer = document.getElementById('homePageContainer');
@@ -487,75 +828,58 @@ async function showStudyMaterials(level, week, tag) {
             allContentData = await response.json();
         }
         
-        const tagData = allContentData?.levels?.[level]?.weeks?.[`w${week}`]?.tags?.[`t${tag}`];
+        const levelData = allContentData?.levels?.[level];
+        const weekData = levelData?.weeks?.[`w${week}`];
+        const tagData = weekData?.tags?.[`t${tag}`];
+        const sectionData = tagData?.sections?.[parseInt(section) - 1];
         
-        if (!tagData) {
-            showStudyError('Tag not found. Please check the URL parameters.');
+        if (!sectionData) {
+            showStudyError('Section not found. Please check the URL parameters.');
             return;
         }
         
-        renderStudyMaterials(level, week, tag, tagData, allContentData);
+        renderSectionPage(level, week, tag, section, levelData, weekData, tagData, sectionData);
         
     } catch (error) {
-        console.error('Error loading study materials:', error);
+        console.error('Error loading section page:', error);
         showStudyError('Error loading study materials. Please refresh the page.');
     }
 }
 
-function renderStudyMaterials(level, week, tag, tagData, contentData) {
+function renderSectionPage(level, week, tag, section, levelData, weekData, tagData, sectionData) {
     // Render breadcrumb
     const breadcrumb = document.getElementById('breadcrumb');
     if (breadcrumb) {
-        breadcrumb.innerHTML = createBreadcrumb(level, week, tag, contentData);
+        breadcrumb.innerHTML = `
+            <a href="index.html">Home</a>
+            <span> > </span>
+            <a href="?level=${level}">${levelData.name}</a>
+            <span> > </span>
+            <a href="?level=${level}&week=${week}">${weekData.name}</a>
+            <span> > </span>
+            <a href="?level=${level}&week=${week}&tag=${tag}">${tagData.title}</a>
+            <span> > </span>
+            <span>${sectionData.sectionTitle}</span>
+        `;
     }
     
-    // Render title (just "Tag 1")
+    // Render section title
     const pageTitle = document.getElementById('studyPageTitle');
-    if (pageTitle) pageTitle.textContent = tagData.title;
+    if (pageTitle) pageTitle.textContent = sectionData.sectionTitle;
     
-    // Clear subtitle (we'll show section subtitles instead)
+    // Render section subtitle
     const pageSubtitle = document.getElementById('studyPageSubtitle');
-    if (pageSubtitle) pageSubtitle.textContent = '';
+    if (pageSubtitle) pageSubtitle.textContent = sectionData.sectionSubtitle || '';
     
-    // Render all sections
+    // Render tables for this section only
     const tablesContainer = document.getElementById('tablesContainer');
     if (tablesContainer) {
         tablesContainer.innerHTML = '';
         
-        if (tagData.sections && tagData.sections.length > 0) {
-            tagData.sections.forEach((section, sectionIndex) => {
-                // Create section divider
-                if (sectionIndex > 0) {
-                    const divider = document.createElement('div');
-                    divider.className = 'section-divider';
-                    tablesContainer.appendChild(divider);
-                }
-                
-                // Create section header
-                const sectionHeader = document.createElement('div');
-                sectionHeader.className = 'section-header';
-                
-                const sectionTitle = document.createElement('h2');
-                sectionTitle.className = 'section-title';
-                sectionTitle.textContent = section.sectionTitle;
-                sectionHeader.appendChild(sectionTitle);
-                
-                if (section.sectionSubtitle) {
-                    const sectionSubtitle = document.createElement('p');
-                    sectionSubtitle.className = 'section-subtitle';
-                    sectionSubtitle.textContent = section.sectionSubtitle;
-                    sectionHeader.appendChild(sectionSubtitle);
-                }
-                
-                tablesContainer.appendChild(sectionHeader);
-                
-                // Render all tables in this section
-                if (section.tables && section.tables.length > 0) {
-                    section.tables.forEach(tableData => {
-                        const tableElement = createTable(tableData);
-                        tablesContainer.appendChild(tableElement);
-                    });
-                }
+        if (sectionData.tables && sectionData.tables.length > 0) {
+            sectionData.tables.forEach(tableData => {
+                const tableElement = createTable(tableData);
+                tablesContainer.appendChild(tableElement);
             });
         }
     }
@@ -565,28 +889,13 @@ function renderStudyMaterials(level, week, tag, tagData, contentData) {
     if (practiceButton && tagData.quizSet) {
         practiceButton.style.display = 'block';
         practiceButton.onclick = () => {
-            window.location.href = `?level=${level}&week=${week}&tag=${tag}&view=quiz`;
+            window.location.href = `?level=${level}&week=${week}&tag=${tag}&section=${section}&view=quiz`;
         };
     } else if (practiceButton) {
         practiceButton.style.display = 'none';
     }
 }
 
-function createBreadcrumb(level, week, tag, contentData) {
-    const levelName = contentData?.levels?.[level]?.name || level.toUpperCase();
-    const weekName = contentData?.levels?.[level]?.weeks?.[`w${week}`]?.name || `Week ${week}`;
-    const tagName = contentData?.levels?.[level]?.weeks?.[`w${week}`]?.tags?.[`t${tag}`]?.title || `Tag ${tag}`;
-    
-    return `
-        <a href="index.html">Home</a>
-        <span> > </span>
-        <a href="index.html?level=${level}">${levelName}</a>
-        <span> > </span>
-        <a href="index.html?level=${level}&week=${week}">${weekName}</a>
-        <span> > </span>
-        <span>${tagName}</span>
-    `;
-}
 
 function createTable(tableData) {
     const tableWrapper = document.createElement('div');
