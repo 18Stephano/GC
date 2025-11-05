@@ -385,6 +385,108 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "sectionTitle": "Essential Vocabulary - 50 Words",
+                  "sectionSubtitle": "Daily activities, places, objects, food & time expressions",
+                  "quizSet": "tag-2-vocabulary",
+                  "tables": [
+                    {
+                      "title": "Daily Activities (Verbs)",
+                      "type": "vocabulary",
+                      "categoryLabel": "DAILY ACTIVITIES",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["D A I L Y   A C T I V I T I E S", "SCHLAFEN", "TO SLEEP"],
+                        ["", "ESSEN", "TO EAT"],
+                        ["", "TRINKEN", "TO DRINK"],
+                        ["", "GEHEN", "TO GO"],
+                        ["", "KOMMEN", "TO COME"],
+                        ["", "SEHEN", "TO SEE"],
+                        ["", "LESEN", "TO READ"],
+                        ["", "SCHREIBEN", "TO WRITE"],
+                        ["", "SPRECHEN", "TO SPEAK"],
+                        ["", "KOCHEN", "TO COOK"]
+                      ]
+                    },
+                    {
+                      "title": "Places (Orte)",
+                      "type": "vocabulary",
+                      "categoryLabel": "PLACES",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["P L A C E S   (O R T E)", "DAS HAUS", "HOUSE"],
+                        ["", "DIE WOHNUNG", "APARTMENT"],
+                        ["", "DIE SCHULE", "SCHOOL"],
+                        ["", "DER PARK", "PARK"],
+                        ["", "DAS RESTAURANT", "RESTAURANT"],
+                        ["", "DAS CAFÉ", "CAFÉ"],
+                        ["", "DER SUPERMARKT", "SUPERMARKET"],
+                        ["", "DIE STADT", "CITY"],
+                        ["", "DAS LAND", "COUNTRY/COUNTRYSIDE"],
+                        ["", "DIE STRASSE", "STREET"]
+                      ]
+                    },
+                    {
+                      "title": "Objects (Gegenstände)",
+                      "type": "vocabulary",
+                      "categoryLabel": "OBJECTS",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["O B J E C T S", "DER TISCH", "TABLE"],
+                        ["", "DER STUHL", "CHAIR"],
+                        ["", "DAS BUCH", "BOOK"],
+                        ["", "DER STIFT", "PEN"],
+                        ["", "DAS TELEFON", "TELEPHONE/PHONE"],
+                        ["", "DER COMPUTER", "COMPUTER"],
+                        ["", "DAS AUTO", "CAR"],
+                        ["", "DIE TÜR", "DOOR"],
+                        ["", "DAS FENSTER", "WINDOW"],
+                        ["", "DIE TASCHE", "BAG"]
+                      ]
+                    },
+                    {
+                      "title": "Food & Drink (Essen & Trinken)",
+                      "type": "vocabulary",
+                      "categoryLabel": "FOOD & DRINK",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["F O O D   &   D R I N K", "DAS BROT", "BREAD"],
+                        ["", "DAS WASSER", "WATER"],
+                        ["", "DER KAFFEE", "COFFEE"],
+                        ["", "DER TEE", "TEA"],
+                        ["", "DAS OBST", "FRUIT"],
+                        ["", "DAS GEMÜSE", "VEGETABLES"],
+                        ["", "DER KÄSE", "CHEESE"],
+                        ["", "DIE MILCH", "MILK"],
+                        ["", "DER SAFT", "JUICE"],
+                        ["", "DER APFEL", "APPLE"]
+                      ]
+                    },
+                    {
+                      "title": "Time & Useful Words",
+                      "type": "vocabulary",
+                      "categoryLabel": "TIME WORDS",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["T I M E   W O R D S", "HEUTE", "TODAY"],
+                        ["", "MORGEN", "TOMORROW"],
+                        ["", "GESTERN", "YESTERDAY"],
+                        ["", "JETZT", "NOW"],
+                        ["", "SPÄTER", "LATER"],
+                        ["", "IMMER", "ALWAYS"],
+                        ["", "NIE", "NEVER"],
+                        ["", "AUCH", "ALSO/TOO"],
+                        ["", "SEHR", "VERY"],
+                        ["", "HIER", "HERE"]
+                      ]
+                    }
+                  ]
                 }
               ]
             }
