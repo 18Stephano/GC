@@ -281,28 +281,17 @@ async function loadQuiz(questionSet) {
     // This ensures questions are in random order on every page load
     exercises = shuffleArray(exercises);
     
-    // Try to restore saved state (answers, position, etc.) but NOT question order
-    const savedState = loadQuizState(questionSet);
-    if (savedState && savedState.selectedAnswers) {
-        // Restore answers and progress, but keep the newly shuffled question order
-        selectedAnswers = savedState.selectedAnswers || {};
-        currentQuestionIndex = savedState.currentQuestionIndex || 0;
-        startTime = savedState.startTime || Date.now();
-        answeredCount = savedState.answeredCount || Object.keys(selectedAnswers).length;
-        submitted = savedState.submitted || false;
-        
-        // Make sure currentQuestionIndex is within bounds
-        if (currentQuestionIndex >= exercises.length) {
-            currentQuestionIndex = 0;
-        }
-    } else {
-        // No saved state, start fresh
-        startTime = Date.now();
-        selectedAnswers = {};
-        currentQuestionIndex = 0;
-        answeredCount = 0;
-        submitted = false;
-    }
+    // ALWAYS start fresh - don't restore saved state
+    // Clear any saved state for this quiz
+    clearQuizState(questionSet);
+    
+    // Initialize fresh state
+    startTime = Date.now();
+    selectedAnswers = {};
+    currentQuestionIndex = 0;
+    answeredCount = 0;
+    submitted = false;
+    shuffledOptionsMap = {}; // Clear shuffled options too
     
     // Update total questions display
     if (totalQuestionsDisplay) {
@@ -315,9 +304,6 @@ async function loadQuiz(questionSet) {
     updateNavigation();
     updateProgress();
     attachEventListeners();
-    
-    // Save initial state
-    saveQuizState(questionSet);
 }
 
 // ============================================
@@ -1084,11 +1070,6 @@ function createQuestionSidebar() {
             updateNavigation();
             updateProgress();
             scrollToCurrentQuestion();
-            
-            // Save state after sidebar navigation
-            if (currentQuestionSet) {
-                saveQuizState(currentQuestionSet);
-            }
         });
         
         scrollable.appendChild(dot);
@@ -1443,10 +1424,6 @@ function handleAnswerChange(e) {
             nextBtn.style.display = 'block';
         }
         
-        // Save state after answer change
-        if (currentQuestionSet) {
-            saveQuizState(currentQuestionSet);
-        }
         
         // Remove auto-advance - wait for Next button click
     }
@@ -1524,10 +1501,9 @@ function updateNavigation() {
     // Only show if answer is already selected (handled in renderQuestions)
     // Don't auto-show Next button here - it's hidden initially and shown when answer is selected
     
-    // Show Submit button only on last question
+    // Hide Submit button - not needed with immediate feedback
     if (submitButtonsContainer) {
-        const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
-        submitButtonsContainer.style.display = isLastQuestion ? 'flex' : 'none';
+        submitButtonsContainer.style.display = 'none';
     }
     
     // Update sidebar
@@ -1543,10 +1519,6 @@ function handlePrevious() {
         updateNavigation();
         updateProgress();
         
-        // Save state after navigation
-        if (currentQuestionSet) {
-            saveQuizState(currentQuestionSet);
-        }
     }
 }
 
@@ -1556,11 +1528,6 @@ function handleNext() {
         renderQuestions();
         updateNavigation();
         updateProgress();
-        
-        // Save state after navigation
-        if (currentQuestionSet) {
-            saveQuizState(currentQuestionSet);
-        }
     }
 }
 
@@ -1601,13 +1568,9 @@ function checkAnswers() {
     // Calculate and display results
     displayResults(correctCount);
     
-    // Save final state and then clear it (quiz completed)
+    // Clear saved state (quiz completed)
     if (currentQuestionSet) {
-        saveQuizState(currentQuestionSet);
-        // Clear saved state after a delay to allow viewing results
-        setTimeout(() => {
-            clearQuizState(currentQuestionSet);
-        }, 1000);
+        clearQuizState(currentQuestionSet);
     }
     
     // Scroll to results

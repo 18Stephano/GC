@@ -289,6 +289,104 @@
                   ]
                 }
               ]
+            },
+            "t2": {
+              "title": "Tag 2 - Regular Verb Conjugations",
+              "sections": [
+                {
+                  "sectionTitle": "Regular Verb Conjugations",
+                  "sectionSubtitle": "Learn the pattern that ALL regular verbs follow",
+                  "quizSet": "tag-2-verbs",
+                  "tables": [
+                    {
+                      "title": "THE PATTERN (Das Muster)",
+                      "type": "simple",
+                      "columns": ["Step", "Action", "Example"],
+                      "rows": [
+                        ["Step 1", "Take the verb", "lernen (to learn)"],
+                        ["Step 2", "Remove -en to get the STEM", "lern"],
+                        ["Step 3", "Add endings based on pronoun", "See table below"]
+                      ]
+                    },
+                    {
+                      "title": "Verb Endings for ALL Regular Verbs",
+                      "type": "simple",
+                      "columns": ["Pronoun", "Ending", "Example (lernen)"],
+                      "rows": [
+                        ["ich", "-e", "ich lerne"],
+                        ["du", "-st", "du lernst"],
+                        ["er/sie/es", "-t", "er lernt"],
+                        ["wir", "-en", "wir lernen"],
+                        ["ihr", "-t", "ihr lernt"],
+                        ["sie/Sie", "-en", "sie lernen"]
+                      ]
+                    },
+                    {
+                      "title": "MEMORIZE THE PATTERN",
+                      "type": "simple",
+                      "columns": ["Endings to Remember"],
+                      "rows": [
+                        ["-e, -st, -t, -en, -t, -en 🎯"]
+                      ]
+                    },
+                    {
+                      "title": "8 Essential Regular Verbs",
+                      "type": "vocabulary",
+                      "categoryLabel": "VERBS",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German Verb", "English"],
+                      "rows": [
+                        ["V E R B S", "lernen", "to learn"],
+                        ["", "machen", "to make / to do"],
+                        ["", "wohnen", "to live (reside)"],
+                        ["", "arbeiten", "to work"],
+                        ["", "spielen", "to play"],
+                        ["", "kaufen", "to buy"],
+                        ["", "sagen", "to say"],
+                        ["", "hören", "to hear / to listen"]
+                      ]
+                    },
+                    {
+                      "title": "SPECIAL RULE: Verbs ending in -t or -d",
+                      "type": "simple",
+                      "columns": ["Rule", "Example"],
+                      "rows": [
+                        ["When stem ends in -t or -d", "arbeiten → arbeit (stem ends in -t)"],
+                        ["Add -e before -st and -t", "This makes pronunciation easier"],
+                        ["du arbeitest", "(NOT arbeitst)"],
+                        ["er/sie/es arbeitet", "(NOT arbeitet)"],
+                        ["Same rule applies to:", "warten (to wait), reden (to talk), finden (to find)"]
+                      ]
+                    },
+                    {
+                      "title": "Practice Examples - Conjugate 'machen' (to make/do)",
+                      "type": "simple",
+                      "columns": ["Pronoun", "Conjugation", "English"],
+                      "rows": [
+                        ["ich", "mache", "I make/do"],
+                        ["du", "machst", "you make/do"],
+                        ["er/sie/es", "macht", "he/she/it makes/does"],
+                        ["wir", "machen", "we make/do"],
+                        ["ihr", "macht", "you (plural) make/do"],
+                        ["sie/Sie", "machen", "they/you (formal) make/do"]
+                      ]
+                    },
+                    {
+                      "title": "Practice Examples - Conjugate 'arbeiten' (to work)",
+                      "type": "simple",
+                      "columns": ["Pronoun", "Conjugation", "English"],
+                      "rows": [
+                        ["ich", "arbeite", "I work"],
+                        ["du", "arbeitest ⚠️", "you work (note the -e-)"],
+                        ["er/sie/es", "arbeitet ⚠️", "he/she/it works (note the -e-)"],
+                        ["wir", "arbeiten", "we work"],
+                        ["ihr", "arbeitet", "you (plural) work"],
+                        ["sie/Sie", "arbeiten", "they/you (formal) work"]
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           }
         }
