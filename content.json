@@ -487,6 +487,45 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "sectionTitle": "Practical Sentences",
+                  "sectionSubtitle": "Combine everything you learned - make real German sentences!",
+                  "quizSet": "tag-2-sentences",
+                  "tables": [
+                    {
+                      "title": "Practice Rules",
+                      "type": "simple",
+                      "columns": ["Rule", "Explanation"],
+                      "rows": [
+                        ["✅ ONLY use words you learned!", "No mystery words - just Tag 1 + Tag 2 vocabulary"],
+                        ["✅ Combine verbs + vocabulary", "Use sein, regular verbs, and daily life words"],
+                        ["✅ Make complete sentences", "Subject + Verb + Object/Description"],
+                        ["✅ Practice real conversations", "These are sentences you'll actually use!"]
+                      ]
+                    },
+                    {
+                      "title": "What You Can Say After Tag 2",
+                      "type": "simple",
+                      "columns": ["Before Tag 2", "After Tag 2"],
+                      "rows": [
+                        ["'Ich bin Student. Ich bin müde.' (just describing)", "'Ich bin Student. Ich lerne Deutsch. Ich wohne in Berlin. Ich arbeite im Café. Ich esse heute Brot und trinke Kaffee.' (describing + actions + daily life!)"],
+                        ["Limited to 'sein' verb only", "Can conjugate 8+ action verbs"],
+                        ["~30 words total", "~80 words total"],
+                        ["Can only describe yourself", "Can talk about daily activities and life!"]
+                      ]
+                    },
+                    {
+                      "title": "Exercise Categories",
+                      "type": "simple",
+                      "columns": ["Type", "Count", "Focus"],
+                      "rows": [
+                        ["Translate to German", "10 exercises", "Build sentences from English to German"],
+                        ["Fill in the blanks", "10 exercises", "Practice verb conjugations in context"],
+                        ["Match sentences", "10 exercises", "Combine descriptions + actions"]
+                      ]
+                    }
+                  ]
                 }
               ]
             }
