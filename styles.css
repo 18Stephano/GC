@@ -804,18 +804,17 @@ body {
 }
 
 .vocabulary-table .category-cell {
-    width: 38px;
-    padding: 8px 4px;
+    width: 35px;
+    padding: 6px 3px;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     border: 2px solid #1F2937;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     letter-spacing: 0.5px;
     vertical-align: middle;
-    display: table-cell;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .vertical-green .category-cell {
@@ -827,8 +826,8 @@ body {
 }
 
 .vocabulary-table .word-cell {
-    padding: 6px 10px;
-    text-align: left;
+    padding: 8px 10px;
+    text-align: center;
     font-weight: 600;
     font-size: 14px;
     border: 2px solid #1F2937;
@@ -844,8 +843,8 @@ body {
 }
 
 .vocabulary-table .meaning-cell {
-    padding: 6px 10px;
-    text-align: left;
+    padding: 8px 10px;
+    text-align: center;
     font-weight: 600;
     font-size: 14px;
     background: #FFF9C4;
