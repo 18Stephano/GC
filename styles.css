@@ -786,16 +786,16 @@ body {
 .vocabulary-table .table-title {
     background: #1F2937;
     color: white;
-    padding: 8px;
-    font-size: 16px;
+    padding: 12px;
+    font-size: 20px;
     font-weight: 700;
     text-align: center;
     border: 2px solid #1F2937;
 }
 
 .vocabulary-table th {
-    padding: 8px;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 16px;
     font-weight: 600;
     text-align: center;
     border: 2px solid #1F2937;
@@ -804,15 +804,15 @@ body {
 }
 
 .vocabulary-table .category-cell {
-    width: 40px;
-    padding: 8px 4px;
+    width: 50px;
+    padding: 12px 6px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 18px;
     text-align: center;
     border: 2px solid #1F2937;
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     vertical-align: middle;
     line-height: 1.3;
 }
@@ -826,10 +826,10 @@ body {
 }
 
 .vocabulary-table .word-cell {
-    padding: 8px 10px;
+    padding: 12px 14px;
     text-align: center;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
     border: 2px solid #1F2937;
     vertical-align: middle;
 }
@@ -843,10 +843,10 @@ body {
 }
 
 .vocabulary-table .meaning-cell {
-    padding: 8px 10px;
+    padding: 12px 14px;
     text-align: center;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
     background: #FFF9C4;
     border: 2px solid #1F2937;
     vertical-align: middle;
