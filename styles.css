@@ -804,16 +804,18 @@ body {
 }
 
 .vocabulary-table .category-cell {
-    width: 35px;
-    padding: 6px 3px;
+    width: 40px;
+    padding: 12px 6px;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 13px;
     text-align: center;
     border: 2px solid #1F2937;
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     vertical-align: middle;
+    display: table-cell;
+    line-height: 1.4;
 }
 
 .vertical-green .category-cell {
