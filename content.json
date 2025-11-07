@@ -53,17 +53,6 @@
                   "quizSet": "tag-1-vocabulary",
                   "tables": [
                     {
-                      "title": "Why This Rebuild?",
-                      "type": "simple",
-                      "columns": ["Problem", "Solution"],
-                      "rows": [
-                        ["Old way: 'sein = to be' (1 word)", "New way: 'sein' = 6 conjugated forms"],
-                        ["Student knows meaning but can't use it", "Student can make sentences immediately!"],
-                        ["Exercise: 'I AM happy' → Student stuck ❌", "Student knows 'ich bin' → Can practice ✅"],
-                        ["Cannot pass Goethe A1 with just meanings", "Learn conjugations = Pass Goethe A1!"]
-                      ]
-                    },
-                    {
                       "title": "Verb 1: SEIN (to be) - 6 Forms",
                       "type": "vocabulary",
                       "categoryLabel": "SEIN",
