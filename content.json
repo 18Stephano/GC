@@ -53,7 +53,7 @@
                   "quizSet": "tag-1-vocabulary",
                   "tables": [
                     {
-                      "title": "Verb 1: SEIN (to be) - 6 Forms",
+                      "title": "Verb 1: SEIN (to be)",
                       "type": "vocabulary",
                       "categoryLabel": "SEIN",
                       "categoryStyle": "vertical-green",
@@ -68,7 +68,7 @@
                       ]
                     },
                     {
-                      "title": "Verb 2: HEISSEN (to be called/named) - 6 Forms",
+                      "title": "Verb 2: HEISSEN (to be called/named)",
                       "type": "vocabulary",
                       "categoryLabel": "HEISSEN",
                       "categoryStyle": "vertical-purple",
@@ -83,7 +83,7 @@
                       ]
                     },
                     {
-                      "title": "Function Words (5 words)",
+                      "title": "Function Words",
                       "type": "vocabulary",
                       "categoryLabel": "FUNCTION",
                       "categoryStyle": "vertical-green",
@@ -97,7 +97,7 @@
                       ]
                     },
                     {
-                      "title": "Feelings (10 words)",
+                      "title": "Feelings",
                       "type": "vocabulary",
                       "categoryLabel": "FEELINGS",
                       "categoryStyle": "vertical-purple",
@@ -116,7 +116,7 @@
                       ]
                     },
                     {
-                      "title": "Descriptions (8 words)",
+                      "title": "Descriptions",
                       "type": "vocabulary",
                       "categoryLabel": "DESCRIPTIONS",
                       "categoryStyle": "vertical-green",
@@ -133,7 +133,7 @@
                       ]
                     },
                     {
-                      "title": "Nationalities (7 words)",
+                      "title": "Nationalities",
                       "type": "vocabulary",
                       "categoryLabel": "NATIONALITIES",
                       "categoryStyle": "vertical-purple",
@@ -149,7 +149,7 @@
                       ]
                     },
                     {
-                      "title": "Professions & Basic Nouns (8 words)",
+                      "title": "Professions & Basic Nouns",
                       "type": "vocabulary",
                       "categoryLabel": "PROFESSIONS",
                       "categoryStyle": "vertical-green",
