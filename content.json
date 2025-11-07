@@ -48,102 +48,146 @@
                   ]
                 },
                 {
-                  "sectionTitle": "Vocabulary",
-                  "sectionSubtitle": "Adjectives, Professions, Nationalities",
+                  "sectionTitle": "Essential Vocabulary - 50 Words",
+                  "sectionSubtitle": "Verbs you can USE, not just know!",
                   "quizSet": "tag-1-vocabulary",
                   "tables": [
                     {
-                      "title": "Adjectives",
-                      "type": "vocabulary",
-                      "categoryLabel": "ADJECTIVE VS",
-                      "categoryStyle": "vertical-green",
-                      "columns": ["Category", "Word", "Meaning"],
+                      "title": "Why This Rebuild?",
+                      "type": "simple",
+                      "columns": ["Problem", "Solution"],
                       "rows": [
-                        ["A F & D E S J E T E L A C I T N E I G S V S E S", "MÜDE", "TIRED"],
+                        ["Old way: 'sein = to be' (1 word)", "New way: 'sein' = 6 conjugated forms"],
+                        ["Student knows meaning but can't use it", "Student can make sentences immediately!"],
+                        ["Exercise: 'I AM happy' → Student stuck ❌", "Student knows 'ich bin' → Can practice ✅"],
+                        ["Cannot pass Goethe A1 with just meanings", "Learn conjugations = Pass Goethe A1!"]
+                      ]
+                    },
+                    {
+                      "title": "Verb 1: SEIN (to be) - 6 Forms",
+                      "type": "vocabulary",
+                      "categoryLabel": "SEIN",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["S E I N", "ICH BIN", "I AM"],
+                        ["", "DU BIST", "YOU ARE (INFORMAL)"],
+                        ["", "ER/SIE/ES IST", "HE/SHE/IT IS"],
+                        ["", "WIR SIND", "WE ARE"],
+                        ["", "IHR SEID", "YOU ALL ARE"],
+                        ["", "SIE/SIE SIND", "THEY/YOU (FORMAL) ARE"]
+                      ]
+                    },
+                    {
+                      "title": "Verb 2: HEISSEN (to be called/named) - 6 Forms",
+                      "type": "vocabulary",
+                      "categoryLabel": "HEISSEN",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["H E I S S E N", "ICH HEISSE", "I AM CALLED / MY NAME IS"],
+                        ["", "DU HEISST", "YOU ARE CALLED / YOUR NAME IS"],
+                        ["", "ER/SIE/ES HEISST", "HE/SHE/IT IS CALLED"],
+                        ["", "WIR HEISSEN", "WE ARE CALLED"],
+                        ["", "IHR HEISST", "YOU ALL ARE CALLED"],
+                        ["", "SIE/SIE HEISSEN", "THEY/YOU (FORMAL) ARE CALLED"]
+                      ]
+                    },
+                    {
+                      "title": "Function Words (5 words)",
+                      "type": "vocabulary",
+                      "categoryLabel": "FUNCTION",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["F U N C T I O N", "SEHR", "VERY"],
+                        ["", "AUCH", "ALSO / TOO"],
+                        ["", "HIER", "HERE"],
+                        ["", "NICHT", "NOT"],
+                        ["", "JA", "YES"]
+                      ]
+                    },
+                    {
+                      "title": "Feelings (10 words)",
+                      "type": "vocabulary",
+                      "categoryLabel": "FEELINGS",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["F E E L I N G S", "MÜDE", "TIRED"],
                         ["", "GLÜCKLICH", "HAPPY"],
                         ["", "TRAURIG", "SAD"],
                         ["", "KRANK", "SICK"],
                         ["", "GESUND", "HEALTHY"],
                         ["", "HUNGRIG", "HUNGRY"],
                         ["", "DURSTIG", "THIRSTY"],
-                        ["", "ZUFRIEDEN", "SATISFIED/CONTENT"],
                         ["", "NERVÖS", "NERVOUS"],
-                        ["", "RUHIG", "CALM/QUIET"],
-                        ["", "AUFGEREGT", "EXCITED"],
-                        ["", "FERTIG", "READY/FINISHED"],
-                        ["", "BESCHÄFTIGT", "BUSY"],
-                        ["", "FREI", "FREE"],
-                        ["", "VERHEIRATET", "MARRIED"]
+                        ["", "RUHIG", "CALM"],
+                        ["", "FERTIG", "READY"]
                       ]
                     },
                     {
-                      "title": "Professions",
-                      "type": "vocabulary",
-                      "categoryLabel": "PROFESSIONS",
-                      "categoryStyle": "vertical-purple",
-                      "columns": ["Category", "Word", "Meaning"],
-                      "rows": [
-                        ["P R O F E S S I O N S", "DER STUDENT / DIE STUDENTIN", "STUDENT"],
-                        ["", "DER LEHRER / DIE LEHRERIN", "TEACHER"],
-                        ["", "DER ARZT / DIE ÄRZTIN", "DOCTOR"],
-                        ["", "DER KOCH / DIE KÖCHIN", "COOK/CHEF"],
-                        ["", "DER INGÉNIEUR / DIE INGENIEURIN", "ENGINEER"],
-                        ["", "DER VERKÄUFER / DIE VERKÄUFERIN", "SALESPERSON"],
-                        ["", "DER KELLNER / DIE KELLNERIN", "WAITER/WAITRESS"],
-                        ["", "DER PROGRAMMIERER / DIE PROGRAMMIERERIN", "PROGRAMMER"],
-                        ["", "DER MANAGER / DIE MANAGERIN", "MANAGER"],
-                        ["", "DER KÜNSTLER / DIE KÜNSTLERIN", "ARTIST"]
-                      ]
-                    },
-                    {
-                      "title": "Nationalities",
-                      "type": "vocabulary",
-                      "categoryLabel": "NATIONALITIES",
-                      "categoryStyle": "vertical-green",
-                      "columns": ["Category", "Word", "Meaning"],
-                      "rows": [
-                        ["N A T I O N A L I T I E S", "DEUTSCH", "GERMAN"],
-                        ["", "AMERIKANISCH", "AMERICAN"],
-                        ["", "ENGLISCH", "ENGLISH"],
-                        ["", "SPANISCH", "SPANISH"],
-                        ["", "ITALIENISCH", "ITALIAN"],
-                        ["", "FRANZÖSISCH", "FRENCH"],
-                        ["", "CHINESISCH", "CHINESE"],
-                        ["", "JAPANISCH", "JAPANESE"],
-                        ["", "MEXIKANISCH", "MEXICAN"],
-                        ["", "KANADISCH", "CANADIAN"]
-                      ]
-                    },
-                    {
-                      "title": "Descriptions",
+                      "title": "Descriptions (8 words)",
                       "type": "vocabulary",
                       "categoryLabel": "DESCRIPTIONS",
-                      "categoryStyle": "vertical-purple",
-                      "columns": ["Category", "Word", "Meaning"],
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
                       "rows": [
-                        ["D E S C R I P T I O N S", "GROSS", "BIG/TALL"],
-                        ["", "KLEIN", "SMALL/SHORT"],
+                        ["D E S C R I P T I O N S", "GROSS", "BIG / TALL"],
+                        ["", "KLEIN", "SMALL / SHORT"],
                         ["", "JUNG", "YOUNG"],
                         ["", "ALT", "OLD"],
                         ["", "NEU", "NEW"],
                         ["", "GUT", "GOOD"],
                         ["", "SCHLECHT", "BAD"],
-                        ["", "HÄSSLICH", "UGLY"],
-                        ["", "LANG", "LONG"]
+                        ["", "SCHÖN", "BEAUTIFUL / NICE"]
                       ]
                     },
                     {
-                      "title": "Nouns",
+                      "title": "Nationalities (7 words)",
                       "type": "vocabulary",
-                      "categoryLabel": "NOUNS",
+                      "categoryLabel": "NATIONALITIES",
                       "categoryStyle": "vertical-purple",
-                      "columns": ["Category", "Word", "Meaning"],
+                      "columns": ["Category", "German", "English"],
                       "rows": [
-                        ["B N O U N S", "DER FREUND / DIE FREUNDIN", "FRIEND"],
-                        ["", "DER MENSCH", "PERSON/HUMAN"],
+                        ["N A T I O N A L I T I E S", "DEUTSCH", "GERMAN"],
+                        ["", "AMERIKANISCH", "AMERICAN"],
+                        ["", "ENGLISCH", "ENGLISH"],
+                        ["", "SPANISCH", "SPANISH"],
+                        ["", "FRANZÖSISCH", "FRENCH"],
+                        ["", "ITALIENISCH", "ITALIAN"],
+                        ["", "CHINESISCH", "CHINESE"]
+                      ]
+                    },
+                    {
+                      "title": "Professions & Basic Nouns (8 words)",
+                      "type": "vocabulary",
+                      "categoryLabel": "PROFESSIONS",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["P R O F E S S I O N S", "DER STUDENT / DIE STUDENTIN", "STUDENT (M/F)"],
+                        ["", "DER LEHRER / DIE LEHRERIN", "TEACHER (M/F)"],
+                        ["", "DER ARZT / DIE ÄRZTIN", "DOCTOR (M/F)"],
+                        ["", "DER KOCH / DIE KÖCHIN", "COOK/CHEF (M/F)"],
+                        ["", "DER FREUND / DIE FREUNDIN", "FRIEND (M/F)"],
                         ["", "DAS KIND", "CHILD"],
                         ["", "DIE FAMILIE", "FAMILY"],
                         ["", "DER NAME", "NAME"]
+                      ]
+                    },
+                    {
+                      "title": "Word Count Breakdown",
+                      "type": "simple",
+                      "columns": ["Category", "Count"],
+                      "rows": [
+                        ["Verbs (conjugated forms)", "12 words (2 verbs × 6 forms)"],
+                        ["Function words", "5 words"],
+                        ["Feelings", "10 words"],
+                        ["Descriptions", "8 words"],
+                        ["Nationalities", "7 words"],
+                        ["Professions & nouns", "8 words"],
+                        ["TOTAL", "50 words ✅"]
                       ]
                     }
                   ]
