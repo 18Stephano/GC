@@ -407,49 +407,75 @@
                 },
                 {
                   "sectionTitle": "Essential Vocabulary - 50 Words",
-                  "sectionSubtitle": "Daily activities, places, objects, food & time expressions",
+                  "sectionSubtitle": "2 new verbs + practical vocabulary for daily life",
                   "quizSet": "tag-2-vocabulary",
                   "tables": [
                     {
-                      "title": "Daily Activities (Verbs)",
+                      "title": "Verb 1: ESSEN (to eat)",
                       "type": "vocabulary",
-                      "categoryLabel": "DAILY ACTIVITIES",
+                      "categoryLabel": "ESSEN",
                       "categoryStyle": "vertical-green",
                       "columns": ["Category", "German", "English"],
                       "rows": [
-                        ["D A I L Y   A C T I V I T I E S", "SCHLAFEN", "TO SLEEP"],
-                        ["", "ESSEN", "TO EAT"],
-                        ["", "TRINKEN", "TO DRINK"],
-                        ["", "GEHEN", "TO GO"],
-                        ["", "KOMMEN", "TO COME"],
-                        ["", "SEHEN", "TO SEE"],
-                        ["", "LESEN", "TO READ"],
-                        ["", "SCHREIBEN", "TO WRITE"],
-                        ["", "SPRECHEN", "TO SPEAK"],
-                        ["", "KOCHEN", "TO COOK"]
+                        ["E S S E N", "ICH ESSE", "I EAT"],
+                        ["", "DU ISST", "YOU EAT"],
+                        ["", "ER/SIE/ES ISST", "HE/SHE/IT EATS"],
+                        ["", "WIR ESSEN", "WE EAT"],
+                        ["", "IHR ESST", "YOU ALL EAT"],
+                        ["", "SIE/SIE ESSEN", "THEY/YOU (FORMAL) EAT"]
                       ]
                     },
                     {
-                      "title": "Places (Orte)",
+                      "title": "Verb 2: GEHEN (to go)",
+                      "type": "vocabulary",
+                      "categoryLabel": "GEHEN",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["G E H E N", "ICH GEHE", "I GO"],
+                        ["", "DU GEHST", "YOU GO"],
+                        ["", "ER/SIE/ES GEHT", "HE/SHE/IT GOES"],
+                        ["", "WIR GEHEN", "WE GO"],
+                        ["", "IHR GEHT", "YOU ALL GO"],
+                        ["", "SIE/SIE GEHEN", "THEY/YOU (FORMAL) GO"]
+                      ]
+                    },
+                    {
+                      "title": "Function Words",
+                      "type": "vocabulary",
+                      "categoryLabel": "FUNCTION",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["F U N C T I O N", "UND", "AND"],
+                        ["", "IN", "IN"],
+                        ["", "EIN", "A/AN (MASC./NEUT.)"],
+                        ["", "EINE", "A/AN (FEM.)"],
+                        ["", "EINEN", "A/AN (MASC. ACC.)"],
+                        ["", "FÜR", "FOR"],
+                        ["", "MEIN", "MY (MASC./NEUT.)"],
+                        ["", "MEINE", "MY (FEM./PLURAL)"]
+                      ]
+                    },
+                    {
+                      "title": "Places",
                       "type": "vocabulary",
                       "categoryLabel": "PLACES",
                       "categoryStyle": "vertical-purple",
                       "columns": ["Category", "German", "English"],
                       "rows": [
-                        ["P L A C E S   (O R T E)", "DAS HAUS", "HOUSE"],
+                        ["P L A C E S", "DAS HAUS", "HOUSE"],
                         ["", "DIE WOHNUNG", "APARTMENT"],
                         ["", "DIE SCHULE", "SCHOOL"],
                         ["", "DER PARK", "PARK"],
                         ["", "DAS RESTAURANT", "RESTAURANT"],
                         ["", "DAS CAFÉ", "CAFÉ"],
                         ["", "DER SUPERMARKT", "SUPERMARKET"],
-                        ["", "DIE STADT", "CITY"],
-                        ["", "DAS LAND", "COUNTRY/COUNTRYSIDE"],
-                        ["", "DIE STRASSE", "STREET"]
+                        ["", "DIE STADT", "CITY"]
                       ]
                     },
                     {
-                      "title": "Objects (Gegenstände)",
+                      "title": "Objects",
                       "type": "vocabulary",
                       "categoryLabel": "OBJECTS",
                       "categoryStyle": "vertical-green",
@@ -462,13 +488,11 @@
                         ["", "DAS TELEFON", "TELEPHONE/PHONE"],
                         ["", "DER COMPUTER", "COMPUTER"],
                         ["", "DAS AUTO", "CAR"],
-                        ["", "DIE TÜR", "DOOR"],
-                        ["", "DAS FENSTER", "WINDOW"],
                         ["", "DIE TASCHE", "BAG"]
                       ]
                     },
                     {
-                      "title": "Food & Drink (Essen & Trinken)",
+                      "title": "Food & Drink",
                       "type": "vocabulary",
                       "categoryLabel": "FOOD & DRINK",
                       "categoryStyle": "vertical-purple",
@@ -478,8 +502,6 @@
                         ["", "DAS WASSER", "WATER"],
                         ["", "DER KAFFEE", "COFFEE"],
                         ["", "DER TEE", "TEA"],
-                        ["", "DAS OBST", "FRUIT"],
-                        ["", "DAS GEMÜSE", "VEGETABLES"],
                         ["", "DER KÄSE", "CHEESE"],
                         ["", "DIE MILCH", "MILK"],
                         ["", "DER SAFT", "JUICE"],
@@ -487,51 +509,37 @@
                       ]
                     },
                     {
-                      "title": "Time & Useful Words",
+                      "title": "Time Words",
                       "type": "vocabulary",
-                      "categoryLabel": "TIME WORDS",
+                      "categoryLabel": "TIME",
                       "categoryStyle": "vertical-green",
                       "columns": ["Category", "German", "English"],
                       "rows": [
-                        ["T I M E   W O R D S", "HEUTE", "TODAY"],
+                        ["T I M E", "HEUTE", "TODAY"],
                         ["", "MORGEN", "TOMORROW"],
                         ["", "GESTERN", "YESTERDAY"],
                         ["", "JETZT", "NOW"],
                         ["", "SPÄTER", "LATER"],
-                        ["", "IMMER", "ALWAYS"],
-                        ["", "NIE", "NEVER"],
-                        ["", "AUCH", "ALSO/TOO"],
-                        ["", "SEHR", "VERY"],
-                        ["", "HIER", "HERE"]
+                        ["", "IMMER", "ALWAYS"]
                       ]
                     }
                   ]
                 },
                 {
                   "sectionTitle": "Practical Sentences",
-                  "sectionSubtitle": "Combine everything you learned - make real German sentences!",
+                  "sectionSubtitle": "Make real German sentences with everything you learned!",
                   "quizSet": "tag-2-sentences",
                   "tables": [
                     {
-                      "title": "Practice Rules",
+                      "title": "What's New in This Section?",
                       "type": "simple",
-                      "columns": ["Rule", "Explanation"],
+                      "columns": ["New Elements", "Examples"],
                       "rows": [
-                        ["✅ ONLY use words you learned!", "No mystery words - just Tag 1 + Tag 2 vocabulary"],
-                        ["✅ Combine verbs + vocabulary", "Use sein, regular verbs, and daily life words"],
-                        ["✅ Make complete sentences", "Subject + Verb + Object/Description"],
-                        ["✅ Practice real conversations", "These are sentences you'll actually use!"]
-                      ]
-                    },
-                    {
-                      "title": "What You Can Say After Tag 2",
-                      "type": "simple",
-                      "columns": ["Before Tag 2", "After Tag 2"],
-                      "rows": [
-                        ["'Ich bin Student. Ich bin müde.' (just describing)", "'Ich bin Student. Ich lerne Deutsch. Ich wohne in Berlin. Ich arbeite im Café. Ich esse heute Brot und trinke Kaffee.' (describing + actions + daily life!)"],
-                        ["Limited to 'sein' verb only", "Can conjugate 8+ action verbs"],
-                        ["~30 words total", "~80 words total"],
-                        ["Can only describe yourself", "Can talk about daily activities and life!"]
+                        ["UND (and) - Connect ideas", "Ich bin müde und hungrig. (I am tired and hungry.)"],
+                        ["IN - Talk about locations", "Ich wohne in einem Haus. (I live in a house.)"],
+                        ["MEIN/MEINE - Show possession", "Mein Freund geht ins Café. (My friend goes to the café.)"],
+                        ["EIN/EINE/EINEN - Use articles", "Ich habe ein Buch und einen Stift. (I have a book and a pen.)"],
+                        ["ESSEN & GEHEN - New verbs!", "Er isst Brot und trinkt Wasser. (He eats bread and drinks water.)"]
                       ]
                     },
                     {
@@ -539,9 +547,9 @@
                       "type": "simple",
                       "columns": ["Type", "Count", "Focus"],
                       "rows": [
-                        ["Translate to German", "10 exercises", "Build sentences from English to German"],
-                        ["Fill in the blanks", "10 exercises", "Practice verb conjugations in context"],
-                        ["Match sentences", "10 exercises", "Combine descriptions + actions"]
+                        ["Simple sentences with UND", "10 exercises", "Connect two ideas with 'and'"],
+                        ["Sentences with IN", "10 exercises", "Talk about locations and places"],
+                        ["Complex sentences", "10 exercises", "Use mein/meine, ein/eine/einen, and combine concepts"]
                       ]
                     }
                   ]
