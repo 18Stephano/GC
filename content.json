@@ -175,20 +175,6 @@
                         ["", "DIE FAMILIE", "FAMILY"],
                         ["", "DER NAME", "NAME"]
                       ]
-                    },
-                    {
-                      "title": "Word Count Breakdown",
-                      "type": "simple",
-                      "columns": ["Category", "Count"],
-                      "rows": [
-                        ["Verbs (conjugated forms)", "12 words (2 verbs × 6 forms)"],
-                        ["Function words", "5 words"],
-                        ["Feelings", "10 words"],
-                        ["Descriptions", "8 words"],
-                        ["Nationalities", "7 words"],
-                        ["Professions & nouns", "8 words"],
-                        ["TOTAL", "50 words ✅"]
-                      ]
                     }
                   ]
                 },
