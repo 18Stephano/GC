@@ -724,6 +724,24 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "sectionTitle": "Practical Sentences",
+                  "sectionSubtitle": "Combine everything you've learned!",
+                  "quizSet": "tag-3-sentences",
+                  "tables": [
+                    {
+                      "title": "What You'll Practice",
+                      "type": "simple",
+                      "columns": ["Exercise Type", "Focus"],
+                      "rows": [
+                        ["HABEN with Feelings (10 exercises)", "Express emotions using 'haben'"],
+                        ["HABEN with Work/Time (10 exercises)", "Talk about work and free time"],
+                        ["Combining Verbs and Time Words (10 exercises)", "Use intransitive verbs with time expressions"],
+                        ["Complex Sentences (10 exercises)", "Combine Tag 1 + 2 + 3 vocabulary"]
+                      ]
+                    }
+                  ]
                 }
               ]
             }
