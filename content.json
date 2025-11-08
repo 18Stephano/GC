@@ -555,6 +555,57 @@
                   ]
                 }
               ]
+            },
+            "t3": {
+              "title": "Tag 3",
+              "sections": [
+                {
+                  "sectionTitle": "Verb: HABEN (to have)",
+                  "sectionSubtitle": "Master the 2nd most important German verb",
+                  "quizSet": "tag-3-haben",
+                  "tables": [
+                    {
+                      "title": "Conjugation of HABEN",
+                      "type": "vocabulary",
+                      "categoryLabel": "HABEN",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["H A B E N", "ich habe", "I have"],
+                        ["", "du hast", "you have"],
+                        ["", "er/sie/es hat", "he/she/it has"],
+                        ["", "wir haben", "we have"],
+                        ["", "ihr habt", "you all have"],
+                        ["", "sie/Sie haben", "they/you (formal) have"]
+                      ]
+                    },
+                    {
+                      "title": "Common Uses",
+                      "type": "simple",
+                      "columns": ["Pattern", "Example"],
+                      "rows": [
+                        ["Without articles (most common)", "Ich habe Hunger = I'm hungry"],
+                        ["", "Ich habe Durst = I'm thirsty"],
+                        ["", "Ich habe Zeit = I have time"],
+                        ["", "Ich habe Angst = I'm afraid"],
+                        ["With numbers", "Ich habe zwei Kinder = I have two children"],
+                        ["", "Du hast drei Freunde = You have three friends"]
+                      ]
+                    },
+                    {
+                      "title": "Key Patterns",
+                      "type": "simple",
+                      "columns": ["Forms", "Pattern"],
+                      "rows": [
+                        ["ich/wir/sie/Sie", "all use 'haben'"],
+                        ["du", "uses 'hast'"],
+                        ["er/sie/es", "uses 'hat'"],
+                        ["ihr", "uses 'habt'"]
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           }
         }
