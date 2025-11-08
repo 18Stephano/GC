@@ -604,6 +604,126 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "sectionTitle": "Essential Vocabulary - 50 Words",
+                  "sectionSubtitle": "Expand your vocabulary with practical words",
+                  "quizSet": "tag-3-vocabulary",
+                  "tables": [
+                    {
+                      "title": "Verb: HABEN (to have)",
+                      "type": "vocabulary",
+                      "categoryLabel": "HABEN",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["H A B E N", "ich habe", "I have"],
+                        ["", "du hast", "you have"],
+                        ["", "er/sie/es hat", "he/she/it has"],
+                        ["", "wir haben", "we have"],
+                        ["", "ihr habt", "you all have"],
+                        ["", "sie/Sie haben", "they/you (formal) have"]
+                      ]
+                    },
+                    {
+                      "title": "Verb: WARTEN (to wait)",
+                      "type": "vocabulary",
+                      "categoryLabel": "WARTEN",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["W A R T E N", "ich warte", "I wait"],
+                        ["", "du wartest", "you wait"],
+                        ["", "er/sie/es wartet", "he/she/it waits"],
+                        ["", "wir warten", "we wait"],
+                        ["", "ihr wartet", "you all wait"],
+                        ["", "sie/Sie warten", "they/you (formal) wait"]
+                      ]
+                    },
+                    {
+                      "title": "Function Words",
+                      "type": "vocabulary",
+                      "categoryLabel": "FUNCTION",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["F U N C T I O N", "aber", "but"],
+                        ["", "oder", "or"],
+                        ["", "dann", "then"],
+                        ["", "für", "for"],
+                        ["", "ohne", "without"],
+                        ["", "manchmal", "sometimes"],
+                        ["", "oft", "often"],
+                        ["", "viel", "much / a lot"]
+                      ]
+                    },
+                    {
+                      "title": "Feelings/States with HABEN",
+                      "type": "vocabulary",
+                      "categoryLabel": "FEELINGS",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["F E E L I N G S", "Hunger", "hunger (ich habe Hunger = I'm hungry)"],
+                        ["", "Durst", "thirst (ich habe Durst = I'm thirsty)"],
+                        ["", "Zeit", "time (ich habe Zeit = I have time)"],
+                        ["", "Angst", "fear (ich habe Angst = I'm afraid)"],
+                        ["", "Recht", "right (ich habe Recht = I'm right)"],
+                        ["", "Glück", "luck/happiness (ich habe Glück = I'm lucky)"],
+                        ["", "Spaß", "fun (ich habe Spaß = I have fun)"],
+                        ["", "Lust", "desire/feel like (ich habe Lust = I feel like it)"],
+                        ["", "Interesse", "interest (ich habe Interesse = I'm interested)"],
+                        ["", "Freude", "joy (ich habe Freude = I have joy)"]
+                      ]
+                    },
+                    {
+                      "title": "Intransitive Verbs",
+                      "type": "vocabulary",
+                      "categoryLabel": "VERBS",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["V E R B S", "schlafen", "to sleep"],
+                        ["", "tanzen", "to dance"],
+                        ["", "lachen", "to laugh"],
+                        ["", "weinen", "to cry"],
+                        ["", "schwimmen", "to swim"],
+                        ["", "laufen", "to run"],
+                        ["", "singen", "to sing"],
+                        ["", "reisen", "to travel"]
+                      ]
+                    },
+                    {
+                      "title": "Time/Frequency Words",
+                      "type": "vocabulary",
+                      "categoryLabel": "TIME",
+                      "categoryStyle": "vertical-purple",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["T I M E", "heute", "today"],
+                        ["", "morgen", "tomorrow"],
+                        ["", "gestern", "yesterday"],
+                        ["", "jetzt", "now"],
+                        ["", "später", "later"],
+                        ["", "immer", "always"],
+                        ["", "nie", "never"]
+                      ]
+                    },
+                    {
+                      "title": "Abstract Nouns with HABEN",
+                      "type": "vocabulary",
+                      "categoryLabel": "NOUNS",
+                      "categoryStyle": "vertical-green",
+                      "columns": ["Category", "German", "English"],
+                      "rows": [
+                        ["N O U N S", "Arbeit", "work (ich habe Arbeit = I have work)"],
+                        ["", "Freizeit", "free time (ich habe Freizeit = I have free time)"],
+                        ["", "Probleme", "problems (ich habe Probleme = I have problems)"],
+                        ["", "Ideen", "ideas (ich habe Ideen = I have ideas)"],
+                        ["", "Fragen", "questions (ich habe Fragen = I have questions)"]
+                      ]
+                    }
+                  ]
                 }
               ]
             }
