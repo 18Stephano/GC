@@ -580,16 +580,19 @@
                       ]
                     },
                     {
-                      "title": "Common Uses",
+                      "title": "Common Examples",
                       "type": "simple",
-                      "columns": ["Pattern", "Example"],
+                      "columns": ["Example", "English"],
                       "rows": [
-                        ["Without articles (most common)", "Ich habe Hunger = I'm hungry"],
-                        ["", "Ich habe Durst = I'm thirsty"],
-                        ["", "Ich habe Zeit = I have time"],
-                        ["", "Ich habe Angst = I'm afraid"],
-                        ["With numbers", "Ich habe zwei Kinder = I have two children"],
-                        ["", "Du hast drei Freunde = You have three friends"]
+                        ["Ich habe Hunger", "I'm hungry"],
+                        ["Ich habe Durst", "I'm thirsty"],
+                        ["Ich habe Zeit", "I have time"],
+                        ["Ich habe Angst", "I'm afraid"],
+                        ["Ich habe Glück", "I'm lucky"],
+                        ["Ich habe Spaß", "I'm having fun"],
+                        ["Ich habe zwei Freunde", "I have two friends"],
+                        ["Ich habe Arbeit", "I have work"],
+                        ["Ich habe Freizeit", "I have free time"]
                       ]
                     },
                     {
