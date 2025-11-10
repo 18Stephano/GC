@@ -286,11 +286,11 @@ async function loadQuiz(questionSet) {
     clearQuizState(questionSet);
     
     // Initialize fresh state
-    startTime = Date.now();
-    selectedAnswers = {};
-    currentQuestionIndex = 0;
-    answeredCount = 0;
-    submitted = false;
+        startTime = Date.now();
+        selectedAnswers = {};
+        currentQuestionIndex = 0;
+        answeredCount = 0;
+        submitted = false;
     shuffledOptionsMap = {}; // Clear shuffled options too
     
     // Update total questions display
@@ -1418,9 +1418,10 @@ function handleAnswerChange(e) {
         // Show immediate feedback for the selected answer
         showImmediateFeedback(e.target, questionId);
         
-        // Show Next button when an option is selected
+        // Show Next button when an option is selected (but not on last question)
         const nextBtn = document.getElementById('nextBtn');
-        if (nextBtn) {
+        const isLastQuestion = currentQuestionIndex === exercises.length - 1;
+        if (nextBtn && !isLastQuestion) {
             nextBtn.style.display = 'block';
         }
         
@@ -1491,15 +1492,22 @@ function handleReset() {
 // ============================================
 function updateNavigation() {
     const totalQuestions = exercises.length;
+    const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
     
     // Show/hide Previous button
     if (prevBtn) {
         prevBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
     }
     
-    // Next button visibility is now controlled by answer selection in renderQuestions
-    // Only show if answer is already selected (handled in renderQuestions)
-    // Don't auto-show Next button here - it's hidden initially and shown when answer is selected
+    // Show/hide Next button
+    // Hide if on last question OR if no answer selected yet
+    if (nextBtn) {
+        if (isLastQuestion) {
+            // Always hide Next button on last question
+            nextBtn.style.display = 'none';
+        }
+        // Otherwise, visibility is controlled by answer selection in renderQuestions
+    }
     
     // Hide Submit button - not needed with immediate feedback
     if (submitButtonsContainer) {
@@ -1570,7 +1578,7 @@ function checkAnswers() {
     
     // Clear saved state (quiz completed)
     if (currentQuestionSet) {
-        clearQuizState(currentQuestionSet);
+            clearQuizState(currentQuestionSet);
     }
     
     // Scroll to results
