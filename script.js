@@ -45,6 +45,22 @@ let resultsTitle;
 let resultsMessage;
 
 // ============================================
+// AUDIO PRONUNCIATION CONFIG
+// ============================================
+const ELEVENLABS_VOICE_ID = 'IWm8DnJ4NGjFI7QAM5lM';
+const ELEVENLABS_MODEL_ID = 'eleven_turbo_v2_5';
+const AUDIO_CACHE_PREFIX = 'v1_';
+let activeAudioInstance = null;
+let audioStatusTimers = {};
+
+const APP_CONFIG = window.APP_CONFIG || {};
+let elevenLabsApiKey = APP_CONFIG.elevenLabsApiKey || '';
+
+if (!elevenLabsApiKey) {
+    console.warn('ElevenLabs API key not configured. Audio generation will be disabled until config.js is set.');
+}
+
+// ============================================
 // AUTOSAVE FUNCTIONALITY (localStorage)
 // ============================================
 let currentQuestionSet = null;
@@ -87,6 +103,264 @@ function clearQuizState(questionSet) {
         localStorage.removeItem(getStorageKey(questionSet));
     } catch (error) {
         console.error('Error clearing quiz state:', error);
+    }
+}
+
+// ============================================
+// AUDIO PRONUNCIATION HELPERS
+// ============================================
+function generateAudioHash(text) {
+    if (!text) return null;
+    const normalized = typeof text.normalize === 'function' ? text.normalize('NFKD') : text;
+    let sanitized = normalized
+        .toLowerCase()
+        .replace(/\s+/g, '_')
+        .replace(/[^a-z0-9_äöüß]/g, '');
+    if (!sanitized) {
+        sanitized = `sentence_${text.length}`;
+    }
+    return `${AUDIO_CACHE_PREFIX}${sanitized.slice(0, 120)}`;
+}
+
+function getCachedAudio(cacheKey) {
+    if (!cacheKey) return null;
+    try {
+        return localStorage.getItem(cacheKey);
+    } catch (error) {
+        console.warn('Audio cache read failed:', error);
+        return null;
+    }
+}
+
+function cacheAudio(cacheKey, base64Audio) {
+    if (!cacheKey || !base64Audio) return;
+    try {
+        localStorage.setItem(cacheKey, base64Audio);
+    } catch (error) {
+        if (isQuotaExceeded(error)) {
+            evictAudioCacheEntry();
+            try {
+                localStorage.setItem(cacheKey, base64Audio);
+            } catch (innerError) {
+                console.warn('Audio cache write failed after eviction:', innerError);
+            }
+        } else {
+            console.warn('Audio cache write failed:', error);
+        }
+    }
+}
+
+function isQuotaExceeded(error) {
+    if (!error) return false;
+    return error.code === 22 || error.code === 1014 || error.name === 'QuotaExceededError';
+}
+
+function evictAudioCacheEntry() {
+    try {
+        const keysToRemove = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && key.startsWith(AUDIO_CACHE_PREFIX)) {
+                keysToRemove.push(key);
+            }
+        }
+        if (keysToRemove.length > 0) {
+            localStorage.removeItem(keysToRemove[0]);
+        }
+    } catch (error) {
+        console.warn('Unable to evict audio cache entry:', error);
+    }
+}
+
+async function generateAudioFromAPI(text) {
+    if (!text) throw new Error('No text provided for audio generation');
+    if (!elevenLabsApiKey) {
+        throw new Error('Missing ElevenLabs API key');
+    }
+    
+    const payload = {
+        text,
+        model_id: ELEVENLABS_MODEL_ID,
+        voice_settings: {
+            stability: 0.5,
+            similarity_boost: 0.75,
+            style: 0.0,
+            use_speaker_boost: true
+        }
+    };
+    
+    const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${ELEVENLABS_VOICE_ID}`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'audio/mpeg',
+            'xi-api-key': elevenLabsApiKey,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`ElevenLabs API error: ${errorText}`);
+    }
+    
+    const arrayBuffer = await response.arrayBuffer();
+    return arrayBufferToBase64(arrayBuffer);
+}
+
+function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const chunkSize = 0x4000;
+    
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+        const chunk = bytes.subarray(i, i + chunkSize);
+        binary += String.fromCharCode.apply(null, chunk);
+    }
+    
+    return btoa(binary);
+}
+
+async function playBase64Audio(base64Data) {
+    if (!base64Data) return;
+    
+    if (activeAudioInstance) {
+        activeAudioInstance.pause();
+        activeAudioInstance = null;
+    }
+    
+    const audio = new Audio(`data:audio/mpeg;base64,${base64Data}`);
+    activeAudioInstance = audio;
+    
+    audio.addEventListener('ended', () => {
+        activeAudioInstance = null;
+    });
+    audio.addEventListener('error', () => {
+        activeAudioInstance = null;
+    });
+    
+    try {
+        await audio.play();
+    } catch (error) {
+        activeAudioInstance = null;
+        throw error;
+    }
+}
+
+function getCompleteSentence(exercise) {
+    if (!exercise || !exercise.question || !exercise.correct) return null;
+    
+    const translationIndex = exercise.question.indexOf('(');
+    const germanText = translationIndex >= 0
+        ? exercise.question.slice(0, translationIndex).trim()
+        : exercise.question.trim();
+    
+    if (!germanText || !/_{3,}/.test(germanText)) {
+        return null;
+    }
+    
+    const blanks = germanText.match(/_{3,}/g);
+    if (!blanks) {
+        return null;
+    }
+    
+    const answerParts = exercise.correct
+        .split('/')
+        .map(part => part.trim())
+        .filter(Boolean);
+    
+    let filledSentence = germanText;
+    
+    blanks.forEach((_, index) => {
+        const replacement = answerParts[index] || answerParts[answerParts.length - 1] || exercise.correct.trim();
+        filledSentence = filledSentence.replace(/_{3,}/, replacement);
+    });
+    
+    return filledSentence.replace(/\s+/g, ' ').trim();
+}
+
+async function speakSentence(questionId) {
+    const button = document.getElementById(`audioBtn_${questionId}`);
+    if (!button || button.classList.contains('loading')) return;
+    
+    const exercise = exercises.find(ex => ex.id === questionId);
+    if (!exercise) return;
+    
+    const sentence = getCompleteSentence(exercise);
+    if (!sentence) return;
+    
+    setAudioButtonState(button, 'loading');
+    
+    try {
+        const cacheKey = generateAudioHash(sentence);
+        let base64Audio = getCachedAudio(cacheKey);
+        
+        if (!base64Audio && !elevenLabsApiKey) {
+            showAudioStatus(questionId, 'Audio not available right now. Please try again later.');
+            setAudioButtonState(button, 'ready');
+            return;
+        }
+        
+        if (!base64Audio) {
+            base64Audio = await generateAudioFromAPI(sentence);
+            cacheAudio(cacheKey, base64Audio);
+        }
+        
+        await playBase64Audio(base64Audio);
+        setAudioButtonState(button, 'ready');
+        hideAudioStatus(questionId);
+    } catch (error) {
+        console.error('Audio playback failed:', error);
+        setAudioButtonState(button, 'error');
+        showAudioStatus(questionId, 'Audio unavailable. Please try again later.');
+    }
+}
+
+function setAudioButtonState(button, state) {
+    if (!button) return;
+    
+    button.classList.remove('loading');
+    button.disabled = false;
+    button.innerHTML = '<span class="audio-icon">🔊</span>';
+    
+    if (state === 'loading') {
+        button.classList.add('loading');
+        button.disabled = true;
+        button.innerHTML = '<span class="audio-icon">⏳</span>';
+    } else if (state === 'error') {
+        button.innerHTML = '<span class="audio-icon">🔇</span>';
+    }
+}
+
+function getAudioStatusElement(questionId) {
+    return document.getElementById(`audioStatus_${questionId}`);
+}
+
+function showAudioStatus(questionId, message, type = 'error') {
+    const statusEl = getAudioStatusElement(questionId);
+    if (!statusEl) return;
+    
+    statusEl.textContent = message;
+    statusEl.classList.remove('info', 'success', 'error', 'visible');
+    statusEl.classList.add(type, 'visible');
+    
+    if (audioStatusTimers[questionId]) {
+        clearTimeout(audioStatusTimers[questionId]);
+    }
+    
+    audioStatusTimers[questionId] = setTimeout(() => {
+        hideAudioStatus(questionId);
+    }, 4000);
+}
+
+function hideAudioStatus(questionId) {
+    const statusEl = getAudioStatusElement(questionId);
+    if (statusEl) {
+        statusEl.classList.remove('visible');
+    }
+    if (audioStatusTimers[questionId]) {
+        clearTimeout(audioStatusTimers[questionId]);
+        delete audioStatusTimers[questionId];
     }
 }
 
@@ -1268,6 +1542,7 @@ function renderQuestions() {
     const exercise = exercises[currentQuestionIndex];
     const questionCard = createQuestionCard(exercise, currentQuestionIndex + 1);
     questionsContainer.appendChild(questionCard);
+    initializeAudioButton(exercise);
     
     // Set initial state: show button, hide options, hide Next button
     const showOptionsWrapper = document.querySelector('.show-options-wrapper');
@@ -1333,161 +1608,44 @@ function renderQuestions() {
     setTimeout(updateSidebarHeight, 0);
 }
 
-// ============================================
-// AUDIO PLAYBACK & SENTENCE EXTRACTION
-// ============================================
-
-/**
- * Extract full German sentence from question and correct answer
- * @param {Object} exercise - The question object
- * @returns {string} - The complete German sentence
- */
-function getGermanSentence(exercise) {
-    const question = exercise.question;
-    const correctAnswer = exercise.correct;
-
-    // Check if question has a blank (_____)
-    if (question.includes('_____')) {
-        // Extract the German part (before the period and English translation)
-        const germanPart = question.split('. (')[0];
-        // Replace blank with correct answer
-        return germanPart.replace('_____', correctAnswer);
-    }
-
-    // For questions without blanks, try to extract German from parentheses
-    // Example: "I am" has answer "Ich bin"
-    return correctAnswer;
-}
-
-/**
- * Extract German sentence with blank (for clue display)
- * @param {Object} exercise - The question object
- * @returns {string} - The German sentence with blank _____ (not filled in)
- */
-function getGermanSentenceWithBlank(exercise) {
-    const question = exercise.question;
-
-    // Check if question has a blank (_____) - fill-in-the-blank format
-    if (question.includes('_____')) {
-        // Extract the German part (before the period and English translation)
-        const match = question.match(/^(.+?)\.\s*\(/);
-        if (match) {
-            return match[1] + '.'; // Return "Ich _____." with blank
-        }
-        // Fallback: return up to the parentheses
-        return question.split('(')[0].trim();
-    }
-
-    // For non fill-in-the-blank questions (like "I am")
-    // Show the question text (English) since there's no sentence structure
-    return question;
-}
-
-/**
- * Extract English translation from question
- * @param {Object} exercise - The question object
- * @returns {string} - The English translation or empty string
- */
-function getEnglishTranslation(exercise) {
-    const question = exercise.question;
-
-    // Extract text within parentheses: "(...)"
-    const match = question.match(/\(([^)]+)\)/);
-    return match ? match[1] : '';
-}
-
-/**
- * Play audio using Eleven Labs API
- * @param {string} text - The German text to convert to speech
- * @param {HTMLElement} button - The audio button element (for visual feedback)
- */
-async function playAudio(text, button) {
-    try {
-        // Stop any currently playing audio
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio = null;
-        }
-
-        // Add loading state to button
-        const originalHTML = button.innerHTML;
-        button.innerHTML = '🔄';
-        button.disabled = true;
-
-        // Call Eleven Labs API
-        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${ELEVEN_LABS_VOICE_ID}`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'audio/mpeg',
-                'Content-Type': 'application/json',
-                'xi-api-key': ELEVEN_LABS_API_KEY
-            },
-            body: JSON.stringify({
-                text: text,
-                model_id: 'eleven_multilingual_v2',
-                voice_settings: {
-                    stability: 0.5,
-                    similarity_boost: 0.75,
-                    speed: 0.75
-                }
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`API error: ${response.status}`);
-        }
-
-        // Convert response to audio blob
-        const audioBlob = await response.blob();
-        const audioUrl = URL.createObjectURL(audioBlob);
-
-        // Play audio
-        currentAudio = new Audio(audioUrl);
-        currentAudio.play();
-
-        // Reset button when audio ends
-        currentAudio.onended = () => {
-            button.innerHTML = originalHTML;
-            button.disabled = false;
-            URL.revokeObjectURL(audioUrl);
-        };
-
-        // Reset button immediately
-        button.innerHTML = originalHTML;
-        button.disabled = false;
-
-    } catch (error) {
-        console.error('Audio playback error:', error);
-        button.innerHTML = originalHTML;
-        button.disabled = false;
-        alert('Failed to play audio. Please check your internet connection.');
-    }
+function initializeAudioButton(exercise) {
+    if (!exercise) return;
+    
+    const audioButton = document.getElementById(`audioBtn_${exercise.id}`);
+    if (!audioButton) return;
+    
+    setAudioButtonState(audioButton, 'ready');
+    
+    audioButton.addEventListener('click', () => {
+        speakSentence(exercise.id);
+    });
 }
 
 function createQuestionCard(exercise, questionNum) {
     const card = document.createElement('div');
     card.className = 'question-card';
     card.dataset.questionId = exercise.id;
-
-    // Extract German sentence for audio (complete with answer)
-    const germanSentence = getGermanSentence(exercise);
-    // Extract German sentence for clue display (with blank _____)
-    const germanSentenceWithBlank = getGermanSentenceWithBlank(exercise);
-
+    const hasAudioSupport = Boolean(getCompleteSentence(exercise));
+    
     card.innerHTML = `
         <div class="question-header">
             <span class="question-badge badge-number">Question ${questionNum}</span>
             <span class="question-badge badge-category">${exercise.category}</span>
         </div>
-        <div class="question-row">
-            <button type="button" class="audio-btn" id="audioBtn_${exercise.id}" title="Listen to German sentence">
-                🔊
+        <div class="question-text-container">
+            ${hasAudioSupport ? `
+            <button 
+                type="button" 
+                class="audio-btn" 
+                id="audioBtn_${exercise.id}" 
+                aria-label="Play audio pronunciation"
+            >
+                <span class="audio-icon">🔊</span>
             </button>
-            <button type="button" class="show-clue-btn" id="showClueBtn_${exercise.id}">Show Clue</button>
-            <div class="clue-sentence" id="clueSentence_${exercise.id}" style="display: none;">
-                ${germanSentenceWithBlank}
-            </div>
+            ` : ''}
+        <div class="question-text">${exercise.question}</div>
         </div>
+        <div class="audio-status" id="audioStatus_${exercise.id}" aria-live="polite" role="status"></div>
         <div class="show-options-wrapper">
             <button type="button" class="show-options-btn" id="showOptionsBtn">Show Options</button>
         </div>
@@ -1516,24 +1674,6 @@ function createQuestionCard(exercise, questionNum) {
         </div>
     `;
 
-    // Attach event listeners for audio button and show clue button
-    setTimeout(() => {
-        const audioBtn = document.getElementById(`audioBtn_${exercise.id}`);
-        if (audioBtn) {
-            audioBtn.addEventListener('click', () => playAudio(germanSentence, audioBtn));
-        }
-
-        const showClueBtn = document.getElementById(`showClueBtn_${exercise.id}`);
-        const clueSentence = document.getElementById(`clueSentence_${exercise.id}`);
-        if (showClueBtn && clueSentence) {
-            showClueBtn.addEventListener('click', () => {
-                // Toggle: hide button, show sentence
-                showClueBtn.style.display = 'none';
-                clueSentence.style.display = 'block';
-            });
-        }
-    }, 0);
-
     return card;
 }
 
@@ -1553,23 +1693,27 @@ function handleShowOptions() {
     const showOptionsWrapper = showOptionsBtn ? showOptionsBtn.closest('.show-options-wrapper') : null;
     const optionsContainer = document.getElementById('optionsContainer');
     
-    // Fade out the button
     if (showOptionsBtn) {
-        showOptionsBtn.style.opacity = '0';
+        showOptionsBtn.classList.add('hiding');
         setTimeout(() => {
             if (showOptionsWrapper) {
                 showOptionsWrapper.style.display = 'none';
             }
-        }, 300); // Wait for fade transition
+            showOptionsBtn.classList.remove('hiding');
+        }, 300);
     }
     
-    // Fade in the options
     if (optionsContainer) {
         optionsContainer.style.display = 'block';
-        // Use setTimeout to trigger fade-in transition
-        setTimeout(() => {
             optionsContainer.style.opacity = '1';
-        }, 10);
+        optionsContainer.classList.add('revealing');
+        
+        const handleAnimationEnd = () => {
+            optionsContainer.classList.remove('revealing');
+            optionsContainer.removeEventListener('animationend', handleAnimationEnd);
+        };
+        
+        optionsContainer.addEventListener('animationend', handleAnimationEnd);
     }
 }
 

@@ -215,79 +215,123 @@ body {
     color: var(--error-color);
 }
 
-.question-text {
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--text-primary);
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
-/* Question Row: Audio button + Show Clue button/Sentence */
-.question-row {
+.question-text-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
     margin-bottom: 20px;
 }
 
+.question-text-container .question-text {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.question-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
 .audio-btn {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    background: white;
-    border: 2px solid #3B82F6;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 50%;
+    border: 2px solid #00a67e;
+    background: #ecfffa;
+    color: #00a67e;
+    font-size: 18px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 166, 126, 0.15);
 }
 
-.audio-btn:hover {
-    background: #EFF6FF;
-    transform: scale(1.05);
+.audio-btn .audio-icon {
+    pointer-events: none;
+    line-height: 1;
 }
 
-.audio-btn:active {
-    transform: scale(0.95);
+.audio-btn:hover:not(:disabled) {
+    transform: scale(1.15);
+}
+
+.audio-btn.loading {
+    animation: audioPulse 1.2s ease-in-out infinite;
+    cursor: wait;
 }
 
 .audio-btn:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
-.show-clue-btn {
-    flex: 1;
-    height: 40px;
-    background: white;
-    border: 2px solid #10B981;
-    border-radius: 8px;
-    color: #10B981;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
+.audio-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 166, 126, 0.25);
 }
 
-.show-clue-btn:hover {
-    background: #D1FAE5;
-}
-
-.clue-sentence {
-    flex: 1;
-    font-size: 16px;
-    font-weight: 500;
-    color: #1F2937;
-    line-height: 1.5;
+.audio-status {
+    display: none;
+    margin-bottom: 20px;
     padding: 8px 12px;
-    background: #F9FAFB;
-    border: 2px solid #10B981;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.4;
+    border-left: 4px solid transparent;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+.audio-status.visible {
+    display: block;
+}
+
+.audio-status.error {
+    background: #fff5f5;
+    border-left-color: #ef4444;
+    color: #b91c1c;
+}
+
+.audio-status.info {
+    background: #eff6ff;
+    border-left-color: #3b82f6;
+    color: #1d4ed8;
+}
+
+.audio-status.success {
+    background: #ecfdf5;
+    border-left-color: #10b981;
+    color: #047857;
+}
+
+@keyframes audioPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideDownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .show-options-wrapper {
@@ -314,12 +358,22 @@ body {
     background: #EFF6FF;
 }
 
+.show-options-btn.hiding {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
+
 .options-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 30px;
     transition: opacity 0.3s ease-in-out;
+}
+
+.options-container.revealing {
+    animation: slideDownFade 0.4s ease-out;
 }
 
 .radio-option {
