@@ -1403,7 +1403,8 @@ async function playAudio(text, button) {
                 model_id: 'eleven_multilingual_v2',
                 voice_settings: {
                     stability: 0.5,
-                    similarity_boost: 0.75
+                    similarity_boost: 0.75,
+                    speed: 0.75
                 }
             })
         });
@@ -1453,17 +1454,13 @@ function createQuestionCard(exercise, questionNum) {
             <span class="question-badge badge-number">Question ${questionNum}</span>
             <span class="question-badge badge-category">${exercise.category}</span>
         </div>
-        <div class="question-with-audio">
+        <div class="question-row">
             <button type="button" class="audio-btn" id="audioBtn_${exercise.id}" title="Listen to German sentence">
                 🔊
             </button>
-            <div class="question-text">${exercise.question}</div>
-        </div>
-        <div class="clue-section">
             <button type="button" class="show-clue-btn" id="showClueBtn_${exercise.id}">Show Clue</button>
-            <div class="clue-content" id="clueContent_${exercise.id}" style="display: none;">
-                <div class="clue-german"><strong>German:</strong> ${germanSentence}</div>
-                ${englishTranslation ? `<div class="clue-english"><strong>English:</strong> ${englishTranslation}</div>` : ''}
+            <div class="clue-sentence" id="clueSentence_${exercise.id}" style="display: none;">
+                ${germanSentence}
             </div>
         </div>
         <div class="show-options-wrapper">
@@ -1502,16 +1499,12 @@ function createQuestionCard(exercise, questionNum) {
         }
 
         const showClueBtn = document.getElementById(`showClueBtn_${exercise.id}`);
-        const clueContent = document.getElementById(`clueContent_${exercise.id}`);
-        if (showClueBtn && clueContent) {
+        const clueSentence = document.getElementById(`clueSentence_${exercise.id}`);
+        if (showClueBtn && clueSentence) {
             showClueBtn.addEventListener('click', () => {
-                if (clueContent.style.display === 'none') {
-                    clueContent.style.display = 'block';
-                    showClueBtn.textContent = 'Hide Clue';
-                } else {
-                    clueContent.style.display = 'none';
-                    showClueBtn.textContent = 'Show Clue';
-                }
+                // Toggle: hide button, show sentence
+                showClueBtn.style.display = 'none';
+                clueSentence.style.display = 'block';
             });
         }
     }, 0);
