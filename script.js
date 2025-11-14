@@ -1360,6 +1360,30 @@ function getGermanSentence(exercise) {
 }
 
 /**
+ * Extract German sentence with blank (for clue display)
+ * @param {Object} exercise - The question object
+ * @returns {string} - The German sentence with blank _____ (not filled in)
+ */
+function getGermanSentenceWithBlank(exercise) {
+    const question = exercise.question;
+
+    // Check if question has a blank (_____) - fill-in-the-blank format
+    if (question.includes('_____')) {
+        // Extract the German part (before the period and English translation)
+        const match = question.match(/^(.+?)\.\s*\(/);
+        if (match) {
+            return match[1] + '.'; // Return "Ich _____." with blank
+        }
+        // Fallback: return up to the parentheses
+        return question.split('(')[0].trim();
+    }
+
+    // For non fill-in-the-blank questions (like "I am")
+    // Show the question text (English) since there's no sentence structure
+    return question;
+}
+
+/**
  * Extract English translation from question
  * @param {Object} exercise - The question object
  * @returns {string} - The English translation or empty string
@@ -1445,9 +1469,10 @@ function createQuestionCard(exercise, questionNum) {
     card.className = 'question-card';
     card.dataset.questionId = exercise.id;
 
-    // Extract German sentence and English translation for audio and clue
+    // Extract German sentence for audio (complete with answer)
     const germanSentence = getGermanSentence(exercise);
-    const englishTranslation = getEnglishTranslation(exercise);
+    // Extract German sentence for clue display (with blank _____)
+    const germanSentenceWithBlank = getGermanSentenceWithBlank(exercise);
 
     card.innerHTML = `
         <div class="question-header">
@@ -1460,7 +1485,7 @@ function createQuestionCard(exercise, questionNum) {
             </button>
             <button type="button" class="show-clue-btn" id="showClueBtn_${exercise.id}">Show Clue</button>
             <div class="clue-sentence" id="clueSentence_${exercise.id}" style="display: none;">
-                ${germanSentence}
+                ${germanSentenceWithBlank}
             </div>
         </div>
         <div class="show-options-wrapper">
