@@ -9,6 +9,13 @@ let exercises = [];
 let allQuestionsData = {};
 
 // ============================================
+// ELEVEN LABS API CONFIGURATION
+// ============================================
+const ELEVEN_LABS_API_KEY = 'sk_9b0722f8318df9e86d7cf402192d3870bcf9c2ba9ca2d4c4';
+const ELEVEN_LABS_VOICE_ID = '21m00Tcm4TlvDq8ikWAM'; // Rachel voice (default)
+let currentAudio = null; // Track currently playing audio
+
+// ============================================
 // STATE MANAGEMENT
 // ============================================
 let answeredCount = 0;
@@ -1326,17 +1333,139 @@ function renderQuestions() {
     setTimeout(updateSidebarHeight, 0);
 }
 
+// ============================================
+// AUDIO PLAYBACK & SENTENCE EXTRACTION
+// ============================================
+
+/**
+ * Extract full German sentence from question and correct answer
+ * @param {Object} exercise - The question object
+ * @returns {string} - The complete German sentence
+ */
+function getGermanSentence(exercise) {
+    const question = exercise.question;
+    const correctAnswer = exercise.correct;
+
+    // Check if question has a blank (_____)
+    if (question.includes('_____')) {
+        // Extract the German part (before the period and English translation)
+        const germanPart = question.split('. (')[0];
+        // Replace blank with correct answer
+        return germanPart.replace('_____', correctAnswer);
+    }
+
+    // For questions without blanks, try to extract German from parentheses
+    // Example: "I am" has answer "Ich bin"
+    return correctAnswer;
+}
+
+/**
+ * Extract English translation from question
+ * @param {Object} exercise - The question object
+ * @returns {string} - The English translation or empty string
+ */
+function getEnglishTranslation(exercise) {
+    const question = exercise.question;
+
+    // Extract text within parentheses: "(...)"
+    const match = question.match(/\(([^)]+)\)/);
+    return match ? match[1] : '';
+}
+
+/**
+ * Play audio using Eleven Labs API
+ * @param {string} text - The German text to convert to speech
+ * @param {HTMLElement} button - The audio button element (for visual feedback)
+ */
+async function playAudio(text, button) {
+    try {
+        // Stop any currently playing audio
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio = null;
+        }
+
+        // Add loading state to button
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '🔄';
+        button.disabled = true;
+
+        // Call Eleven Labs API
+        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${ELEVEN_LABS_VOICE_ID}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'audio/mpeg',
+                'Content-Type': 'application/json',
+                'xi-api-key': ELEVEN_LABS_API_KEY
+            },
+            body: JSON.stringify({
+                text: text,
+                model_id: 'eleven_multilingual_v2',
+                voice_settings: {
+                    stability: 0.5,
+                    similarity_boost: 0.75
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API error: ${response.status}`);
+        }
+
+        // Convert response to audio blob
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+
+        // Play audio
+        currentAudio = new Audio(audioUrl);
+        currentAudio.play();
+
+        // Reset button when audio ends
+        currentAudio.onended = () => {
+            button.innerHTML = originalHTML;
+            button.disabled = false;
+            URL.revokeObjectURL(audioUrl);
+        };
+
+        // Reset button immediately
+        button.innerHTML = originalHTML;
+        button.disabled = false;
+
+    } catch (error) {
+        console.error('Audio playback error:', error);
+        button.innerHTML = originalHTML;
+        button.disabled = false;
+        alert('Failed to play audio. Please check your internet connection.');
+    }
+}
+
 function createQuestionCard(exercise, questionNum) {
     const card = document.createElement('div');
     card.className = 'question-card';
     card.dataset.questionId = exercise.id;
-    
+
+    // Extract German sentence and English translation for audio and clue
+    const germanSentence = getGermanSentence(exercise);
+    const englishTranslation = getEnglishTranslation(exercise);
+
     card.innerHTML = `
         <div class="question-header">
             <span class="question-badge badge-number">Question ${questionNum}</span>
             <span class="question-badge badge-category">${exercise.category}</span>
         </div>
-        <div class="question-text">${exercise.question}</div>
+        <div class="question-with-audio">
+            <button type="button" class="audio-btn" id="audioBtn_${exercise.id}" title="Listen to German sentence">
+                🔊
+            </button>
+            <div class="question-text">${exercise.question}</div>
+        </div>
+        <div class="clue-section">
+            <button type="button" class="show-clue-btn" id="showClueBtn_${exercise.id}">Show Clue</button>
+            <div class="clue-content" id="clueContent_${exercise.id}" style="display: none;">
+                <div class="clue-german"><strong>German:</strong> ${germanSentence}</div>
+                ${englishTranslation ? `<div class="clue-english"><strong>English:</strong> ${englishTranslation}</div>` : ''}
+            </div>
+        </div>
         <div class="show-options-wrapper">
             <button type="button" class="show-options-btn" id="showOptionsBtn">Show Options</button>
         </div>
@@ -1352,10 +1481,10 @@ function createQuestionCard(exercise, questionNum) {
                 const shuffledOptions = shuffledOptionsMap[exercise.id];
                 return shuffledOptions.map((option, idx) => `
                     <div class="radio-option">
-                        <input 
-                            type="radio" 
-                            id="q${exercise.id}_opt${idx}" 
-                            name="question_${exercise.id}" 
+                        <input
+                            type="radio"
+                            id="q${exercise.id}_opt${idx}"
+                            name="question_${exercise.id}"
                             value="${option}"
                         />
                         <label for="q${exercise.id}_opt${idx}">${option}</label>
@@ -1364,7 +1493,29 @@ function createQuestionCard(exercise, questionNum) {
             })()}
         </div>
     `;
-    
+
+    // Attach event listeners for audio button and show clue button
+    setTimeout(() => {
+        const audioBtn = document.getElementById(`audioBtn_${exercise.id}`);
+        if (audioBtn) {
+            audioBtn.addEventListener('click', () => playAudio(germanSentence, audioBtn));
+        }
+
+        const showClueBtn = document.getElementById(`showClueBtn_${exercise.id}`);
+        const clueContent = document.getElementById(`clueContent_${exercise.id}`);
+        if (showClueBtn && clueContent) {
+            showClueBtn.addEventListener('click', () => {
+                if (clueContent.style.display === 'none') {
+                    clueContent.style.display = 'block';
+                    showClueBtn.textContent = 'Hide Clue';
+                } else {
+                    clueContent.style.display = 'none';
+                    showClueBtn.textContent = 'Show Clue';
+                }
+            });
+        }
+    }, 0);
+
     return card;
 }
 

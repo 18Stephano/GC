@@ -223,6 +223,94 @@ body {
     line-height: 1.5;
 }
 
+/* Audio Button & Question Layout */
+.question-with-audio {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.audio-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 2px solid #3B82F6;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.audio-btn:hover {
+    background: #EFF6FF;
+    transform: scale(1.05);
+}
+
+.audio-btn:active {
+    transform: scale(0.95);
+}
+
+.audio-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Clue Section */
+.clue-section {
+    margin-bottom: 20px;
+}
+
+.show-clue-btn {
+    width: 200px;
+    height: 40px;
+    background: white;
+    border: 2px solid #10B981;
+    border-radius: 8px;
+    color: #10B981;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 10px;
+}
+
+.show-clue-btn:hover {
+    background: #D1FAE5;
+}
+
+.clue-content {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 10px;
+}
+
+.clue-german,
+.clue-english {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.clue-german {
+    color: #1F2937;
+}
+
+.clue-english {
+    color: #6B7280;
+}
+
+.clue-german:last-child,
+.clue-english:last-child {
+    margin-bottom: 0;
+}
+
 .show-options-wrapper {
     display: flex;
     flex-direction: column;
