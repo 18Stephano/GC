@@ -580,6 +580,22 @@
                       ]
                     },
                     {
+                      "title": "⭐ IMPORTANT: German vs English - Why We Use HABEN",
+                      "type": "simple",
+                      "columns": ["Concept", "Explanation"],
+                      "rows": [
+                        ["🍕 The Big Difference", "In English: 'I AM hungry' | In German: 'Ich HABE Hunger' (I HAVE hunger)"],
+                        ["🤔 Why Different?", "Every language has its own way! English describes yourself (I AM). German says you have something inside you (I HAVE)."],
+                        ["😋 Empty tummy", "English: I AM hungry → German: Ich HABE Hunger"],
+                        ["💧 Need water", "English: I AM thirsty → German: Ich HABE Durst"],
+                        ["😨 Scared", "English: I AM afraid → German: Ich HABE Angst"],
+                        ["😊 Lucky", "English: I AM lucky → German: Ich HABE Glück"],
+                        ["🎉 Having fun", "English: I AM having fun → German: Ich HABE Spaß"],
+                        ["✅ The Rule", "For feelings (hungry, thirsty, afraid, lucky, fun): Don't use 'bin/bist/ist' → Use 'haben'!"],
+                        ["💡 Remember", "German people HAVE feelings, they don't ARE feelings! 🇩🇪"]
+                      ]
+                    },
+                    {
                       "title": "Common Examples",
                       "type": "simple",
                       "columns": ["Example", "English"],
