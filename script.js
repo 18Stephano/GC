@@ -1348,10 +1348,11 @@ function getGermanSentence(exercise) {
 
     // Check if question has a blank (_____)
     if (question.includes('_____')) {
-        // Extract the German part (before the period and English translation)
-        const germanPart = question.split('. (')[0];
-        // Replace blank with correct answer
-        return germanPart.replace('_____', correctAnswer);
+        // Extract the German part (before the English translation in parentheses)
+        // Split on '(' to handle all punctuation (., !, ?)
+        const germanPart = question.split('(')[0].trim();
+        // Replace ALL underscores with correct answer (use regex to replace all)
+        return germanPart.replace(/_+/g, correctAnswer);
     }
 
     // For questions without blanks, try to extract German from parentheses
@@ -1369,12 +1370,8 @@ function getGermanSentenceWithBlank(exercise) {
 
     // Check if question has a blank (_____) - fill-in-the-blank format
     if (question.includes('_____')) {
-        // Extract the German part (before the period and English translation)
-        const match = question.match(/^(.+?)\.\s*\(/);
-        if (match) {
-            return match[1] + '.'; // Return "Ich _____." with blank
-        }
-        // Fallback: return up to the parentheses
+        // Extract the German part (before the English translation in parentheses)
+        // This handles all punctuation (., !, ?)
         return question.split('(')[0].trim();
     }
 
