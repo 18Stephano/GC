@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Clue Fix Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .question-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        .audio-btn {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 2px solid #3B82F6;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .show-clue-btn {
+            flex: 1;
+            height: 40px;
+            background: white;
+            border: 2px solid #10B981;
+            border-radius: 8px;
+            color: #10B981;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .clue-sentence {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 500;
+            color: #1F2937;
+            padding: 8px 12px;
+            background: #F9FAFB;
+            border: 2px solid #10B981;
+            border-radius: 8px;
+        }
+        .log {
+            background: #f5f5f5;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #10B981;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 12px;
+        }
+        .success {
+            border-left-color: #10B981;
+            background: #D1FAE5;
+        }
+        .error {
+            border-left-color: #EF4444;
+            background: #FEE2E2;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Show Clue Fix Test</h1>
+    <p>This page tests that the clue sentence is properly hidden with <code>!important</code> flag.</p>
+
+    <div class="test-section">
+        <h2>Test 1: Initial State (Should be HIDDEN)</h2>
+        <div class="question-row">
+            <button class="audio-btn">🔊</button>
+            <button class="show-clue-btn" id="showClueBtn1">Show Clue</button>
+            <div class="clue-sentence" id="clueSentence1" style="display: none !important;">
+                ich ______ (I am)
+            </div>
+        </div>
+        <div id="log1"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: After setProperty Reset (Should STAY HIDDEN)</h2>
+        <div class="question-row">
+            <button class="audio-btn">🔊</button>
+            <button class="show-clue-btn" id="showClueBtn2">Show Clue</button>
+            <div class="clue-sentence" id="clueSentence2" style="display: none !important;">
+                du ______ (you are)
+            </div>
+        </div>
+        <div id="log2"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Click "Show Clue" (Should REVEAL)</h2>
+        <div class="question-row">
+            <button class="audio-btn">🔊</button>
+            <button class="show-clue-btn" id="showClueBtn3">Show Clue</button>
+            <div class="clue-sentence" id="clueSentence3" style="display: none !important;">
+                er ______ (he is)
+            </div>
+        </div>
+        <div id="log3"></div>
+    </div>
+
+    <script>
+        function log(id, message, type = 'log') {
+            const logDiv = document.getElementById(id);
+            const logEntry = document.createElement('div');
+            logEntry.className = `log ${type}`;
+            logEntry.textContent = message;
+            logDiv.appendChild(logEntry);
+            console.log(message);
+        }
+
+        // Test 1: Check initial state
+        const clue1 = document.getElementById('clueSentence1');
+        const computedStyle1 = window.getComputedStyle(clue1);
+        log('log1', `Initial display: ${clue1.style.display}`,
+            clue1.style.display === 'none' ? 'success' : 'error');
+        log('log1', `Computed display: ${computedStyle1.display}`,
+            computedStyle1.display === 'none' ? 'success' : 'error');
+
+        // Test 2: Apply defensive reset with setProperty (NEW METHOD)
+        const clue2 = document.getElementById('clueSentence2');
+        const btn2 = document.getElementById('showClueBtn2');
+
+        // Simulate what script.js does now (with setProperty + 'important')
+        setTimeout(() => {
+            btn2.style.setProperty('display', 'block', 'important');
+            clue2.style.setProperty('display', 'none', 'important');
+
+            log('log2', 'Applied defensive reset with setProperty(..., "important")', 'success');
+            log('log2', `After reset - display: ${clue2.style.display}`,
+                clue2.style.display === 'none' ? 'success' : 'error');
+
+            const computedStyle2 = window.getComputedStyle(clue2);
+            log('log2', `After reset - computed: ${computedStyle2.display}`,
+                computedStyle2.display === 'none' ? 'success' : 'error');
+            log('log2', `Priority: ${clue2.style.getPropertyPriority('display')}`,
+                clue2.style.getPropertyPriority('display') === 'important' ? 'success' : 'error');
+        }, 100);
+
+        // Test 3: Click handler
+        const clue3 = document.getElementById('clueSentence3');
+        const btn3 = document.getElementById('showClueBtn3');
+
+        btn3.addEventListener('click', () => {
+            log('log3', 'Button clicked!', 'success');
+            btn3.style.display = 'none';
+            clue3.style.display = 'block';
+            log('log3', `Clue now visible: ${window.getComputedStyle(clue3).display}`, 'success');
+        });
+
+        log('log3', 'Click "Show Clue" button to test', 'log');
+    </script>
+</body>
+</html>

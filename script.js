@@ -1297,8 +1297,9 @@ function renderQuestions() {
     const clueSentence = document.getElementById(`clueSentence_${exercise.id}`);
     if (showClueBtn && clueSentence) {
         // Always start with button visible and clue hidden
-        showClueBtn.style.display = 'block';
-        clueSentence.style.display = 'none';
+        // IMPORTANT: Use setProperty with 'important' flag to ensure CSS can't override
+        showClueBtn.style.setProperty('display', 'block', 'important');
+        clueSentence.style.setProperty('display', 'none', 'important');
         console.log(`Reset Show Clue state for Q${currentQuestionIndex + 1}:`, {
             buttonVisible: showClueBtn.style.display,
             clueHidden: clueSentence.style.display
