@@ -1457,7 +1457,18 @@ async function playAudio(text, button) {
         console.error('Audio playback error:', error);
         button.innerHTML = originalHTML;
         button.disabled = false;
-        alert('Failed to play audio. Please check your internet connection.');
+
+        // More detailed error message
+        let errorMsg = 'Failed to play audio. ';
+        if (error.message.includes('API error')) {
+            errorMsg += 'API key issue or rate limit reached.';
+        } else if (!navigator.onLine) {
+            errorMsg += 'No internet connection.';
+        } else {
+            errorMsg += 'Please check console for details.';
+        }
+
+        alert(errorMsg + `\n\nError: ${error.message}`);
     }
 }
 
