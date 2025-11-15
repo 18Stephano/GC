@@ -1290,7 +1290,23 @@ function renderQuestions() {
         optionsContainer.style.display = 'none';
         optionsContainer.style.opacity = '0';
     }
-    
+
+    // CRITICAL: Ensure Show Clue button and clue sentence are in correct initial state
+    // This is NON-NEGOTIABLE for ALL questions (fill-in-blank AND translation)
+    const showClueBtn = document.getElementById(`showClueBtn_${exercise.id}`);
+    const clueSentence = document.getElementById(`clueSentence_${exercise.id}`);
+    if (showClueBtn && clueSentence) {
+        // Always start with button visible and clue hidden
+        showClueBtn.style.display = 'block';
+        clueSentence.style.display = 'none';
+        console.log(`Reset Show Clue state for Q${currentQuestionIndex + 1}:`, {
+            buttonVisible: showClueBtn.style.display,
+            clueHidden: clueSentence.style.display
+        });
+    } else {
+        console.error(`WARNING: Show Clue elements not found for exercise ${exercise.id}!`);
+    }
+
     // Hide Next button initially (but keep action-buttons container visible for Previous button)
     if (nextBtn) {
         nextBtn.style.display = 'none';
@@ -1482,6 +1498,13 @@ function createQuestionCard(exercise, questionNum) {
     // Extract German sentence for clue display (with blank _____)
     const germanSentenceWithBlank = getGermanSentenceWithBlank(exercise);
 
+    // Debug logging
+    console.log(`Creating card for Q${questionNum} (ID: ${exercise.id}):`, {
+        question: exercise.question,
+        hasBlank: exercise.question.includes('_____'),
+        clueText: germanSentenceWithBlank
+    });
+
     card.innerHTML = `
         <div class="question-header">
             <span class="question-badge badge-number">Question ${questionNum}</span>
@@ -1492,7 +1515,10 @@ function createQuestionCard(exercise, questionNum) {
                 🔊
             </button>
             <button type="button" class="show-clue-btn" id="showClueBtn_${exercise.id}">Show Clue</button>
-            <div class="clue-sentence" id="clueSentence_${exercise.id}" style="display: none;">
+            <!-- CRITICAL: clue-sentence MUST start hidden (display: none) -->
+            <!-- This applies to ALL questions (fill-in-blank AND translation) -->
+            <!-- User clicks "Show Clue" button to reveal this -->
+            <div class="clue-sentence" id="clueSentence_${exercise.id}" style="display: none !important;">
                 ${germanSentenceWithBlank}
             </div>
         </div>
@@ -1535,10 +1561,17 @@ function createQuestionCard(exercise, questionNum) {
         const clueSentence = document.getElementById(`clueSentence_${exercise.id}`);
         if (showClueBtn && clueSentence) {
             showClueBtn.addEventListener('click', () => {
+                console.log(`Show Clue clicked for exercise ${exercise.id}`);
                 // Toggle: hide button, show sentence
                 showClueBtn.style.display = 'none';
                 clueSentence.style.display = 'block';
+                console.log(`Toggle complete:`, {
+                    buttonHidden: showClueBtn.style.display,
+                    clueVisible: clueSentence.style.display
+                });
             });
+        } else {
+            console.error(`WARNING: Could not attach Show Clue listener for exercise ${exercise.id}`);
         }
     }, 0);
 
