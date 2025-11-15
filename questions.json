@@ -1,435 +1,4152 @@
 {
   "tag-1-vocabulary": [
-    { "id": 1, "question": "I am", "options": ["Ich bin", "Du bist"], "correct": "Ich bin", "category": "Verb Conjugations" },
-    { "id": 2, "question": "You are (informal)", "options": ["Du bist", "Er ist"], "correct": "Du bist", "category": "Verb Conjugations" },
-    { "id": 3, "question": "He is", "options": ["Er ist", "Wir sind"], "correct": "Er ist", "category": "Verb Conjugations" },
-    { "id": 4, "question": "We are", "options": ["Wir sind", "Ihr seid"], "correct": "Wir sind", "category": "Verb Conjugations" },
-    { "id": 5, "question": "You all are", "options": ["Ihr seid", "Sie sind"], "correct": "Ihr seid", "category": "Verb Conjugations" },
-    { "id": 6, "question": "They are", "options": ["Sie sind", "Ich bin"], "correct": "Sie sind", "category": "Verb Conjugations" },
-    { "id": 7, "question": "I am called / My name is", "options": ["Ich heiße", "Du heißt"], "correct": "Ich heiße", "category": "Verb Conjugations" },
-    { "id": 8, "question": "Your name is (informal)", "options": ["Du heißt", "Er heißt"], "correct": "Du heißt", "category": "Verb Conjugations" },
-    { "id": 9, "question": "She is called", "options": ["Sie heißt", "Wir heißen"], "correct": "Sie heißt", "category": "Verb Conjugations" },
-    { "id": 10, "question": "We are called", "options": ["Wir heißen", "Ihr heißt"], "correct": "Wir heißen", "category": "Verb Conjugations" },
-    { "id": 11, "question": "You all are called", "options": ["Ihr heißt", "Sie heißen"], "correct": "Ihr heißt", "category": "Verb Conjugations" },
-    { "id": 12, "question": "You are called (formal)", "options": ["Sie heißen", "Du heißt"], "correct": "Sie heißen", "category": "Verb Conjugations" },
-    { "id": 13, "question": "Very", "options": ["sehr", "auch"], "correct": "sehr", "category": "Function Words" },
-    { "id": 14, "question": "Also / too", "options": ["auch", "hier"], "correct": "auch", "category": "Function Words" },
-    { "id": 15, "question": "Here", "options": ["hier", "nicht"], "correct": "hier", "category": "Function Words" },
-    { "id": 16, "question": "Not", "options": ["nicht", "ja"], "correct": "nicht", "category": "Function Words" },
-    { "id": 17, "question": "Yes", "options": ["ja", "nicht"], "correct": "ja", "category": "Function Words" },
-    { "id": 18, "question": "Tired", "options": ["müde", "glücklich"], "correct": "müde", "category": "Feelings" },
-    { "id": 19, "question": "Ich bin _____. (I am happy)", "options": ["glücklich", "traurig"], "correct": "glücklich", "category": "Feelings" },
-    { "id": 20, "question": "Sad", "options": ["traurig", "krank"], "correct": "traurig", "category": "Feelings" },
-    { "id": 21, "question": "Sie ist _____. (She is sick)", "options": ["krank", "gesund"], "correct": "krank", "category": "Feelings" },
-    { "id": 22, "question": "Healthy", "options": ["gesund", "hungrig"], "correct": "gesund", "category": "Feelings" },
-    { "id": 23, "question": "Er ist _____. (He is hungry)", "options": ["hungrig", "durstig"], "correct": "hungrig", "category": "Feelings" },
-    { "id": 24, "question": "Thirsty", "options": ["durstig", "nervös"], "correct": "durstig", "category": "Feelings" },
-    { "id": 25, "question": "Wir sind _____. (We are nervous)", "options": ["nervös", "ruhig"], "correct": "nervös", "category": "Feelings" },
-    { "id": 26, "question": "Calm", "options": ["ruhig", "fertig"], "correct": "ruhig", "category": "Feelings" },
-    { "id": 27, "question": "Du bist _____. (You are ready)", "options": ["fertig", "müde"], "correct": "fertig", "category": "Feelings" },
-    { "id": 28, "question": "Big / tall", "options": ["groß", "klein"], "correct": "groß", "category": "Descriptions" },
-    { "id": 29, "question": "Das Kind ist _____. (The child is small)", "options": ["klein", "groß"], "correct": "klein", "category": "Descriptions" },
-    { "id": 30, "question": "Young", "options": ["jung", "alt"], "correct": "jung", "category": "Descriptions" },
-    { "id": 31, "question": "Er ist _____. (He is old)", "options": ["alt", "jung"], "correct": "alt", "category": "Descriptions" },
-    { "id": 32, "question": "New", "options": ["neu", "alt"], "correct": "neu", "category": "Descriptions" },
-    { "id": 33, "question": "Das Auto ist _____. (The car is good)", "options": ["gut", "schlecht"], "correct": "gut", "category": "Descriptions" },
-    { "id": 34, "question": "Bad", "options": ["schlecht", "schön"], "correct": "schlecht", "category": "Descriptions" },
-    { "id": 35, "question": "Die Blume ist _____. (The flower is beautiful)", "options": ["schön", "schlecht"], "correct": "schön", "category": "Descriptions" },
-    { "id": 36, "question": "German", "options": ["deutsch", "amerikanisch"], "correct": "deutsch", "category": "Nationalities" },
-    { "id": 37, "question": "Ich bin _____. (I am American)", "options": ["amerikanisch", "englisch"], "correct": "amerikanisch", "category": "Nationalities" },
-    { "id": 38, "question": "English", "options": ["englisch", "spanisch"], "correct": "englisch", "category": "Nationalities" },
-    { "id": 39, "question": "Er ist _____. (He is Spanish)", "options": ["spanisch", "französisch"], "correct": "spanisch", "category": "Nationalities" },
-    { "id": 40, "question": "French", "options": ["französisch", "italienisch"], "correct": "französisch", "category": "Nationalities" },
-    { "id": 41, "question": "Sie ist _____. (She is Italian)", "options": ["italienisch", "chinesisch"], "correct": "italienisch", "category": "Nationalities" },
-    { "id": 42, "question": "Chinese", "options": ["chinesisch", "deutsch"], "correct": "chinesisch", "category": "Nationalities" },
-    { "id": 43, "question": "Student (male)", "options": ["der Student", "der Lehrer"], "correct": "der Student", "category": "Professions" },
-    { "id": 44, "question": "Ich bin _____. (I am a teacher - female)", "options": ["die Lehrerin", "die Studentin"], "correct": "die Lehrerin", "category": "Professions" },
-    { "id": 45, "question": "Doctor (male)", "options": ["der Arzt", "der Koch"], "correct": "der Arzt", "category": "Professions" },
-    { "id": 46, "question": "Er ist _____. (He is a cook/chef)", "options": ["der Koch", "der Arzt"], "correct": "der Koch", "category": "Professions" },
-    { "id": 47, "question": "Friend (female)", "options": ["die Freundin", "die Lehrerin"], "correct": "die Freundin", "category": "Professions" },
-    { "id": 48, "question": "Child", "options": ["das Kind", "der Freund"], "correct": "das Kind", "category": "Professions" },
-    { "id": 49, "question": "Family", "options": ["die Familie", "der Name"], "correct": "die Familie", "category": "Professions" },
-    { "id": 50, "question": "Wie ist dein _____? (What is your name?)", "options": ["Name", "Familie"], "correct": "Name", "category": "Professions" }
+    {
+      "id": 1,
+      "question": "ich ______ (I am)",
+      "options": [
+        "bin",
+        "bist"
+      ],
+      "correct": "bin",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 2,
+      "question": "du ______ (you are)",
+      "options": [
+        "bist",
+        "ist"
+      ],
+      "correct": "bist",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 3,
+      "question": "er ______ (he is)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 4,
+      "question": "wir ______ (we are)",
+      "options": [
+        "sind",
+        "seid"
+      ],
+      "correct": "sind",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 5,
+      "question": "ihr ______ (you all are)",
+      "options": [
+        "seid",
+        "sind"
+      ],
+      "correct": "seid",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 6,
+      "question": "sie ______ (they are)",
+      "options": [
+        "sind",
+        "bin"
+      ],
+      "correct": "sind",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 7,
+      "question": "ich ______ (I am called)",
+      "options": [
+        "heiße",
+        "heißt"
+      ],
+      "correct": "heiße",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 8,
+      "question": "du ______ (you are called)",
+      "options": [
+        "heißt",
+        "heißt"
+      ],
+      "correct": "heißt",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 9,
+      "question": "sie ______ (she is called)",
+      "options": [
+        "heißt",
+        "heißen"
+      ],
+      "correct": "heißt",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 10,
+      "question": "wir ______ (we are called)",
+      "options": [
+        "heißen",
+        "heißt"
+      ],
+      "correct": "heißen",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 11,
+      "question": "ihr ______ (you all are called)",
+      "options": [
+        "heißt",
+        "heißen"
+      ],
+      "correct": "heißt",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 12,
+      "question": "Sie ______ (you are called)",
+      "options": [
+        "heißen",
+        "heißt"
+      ],
+      "correct": "heißen",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 13,
+      "question": "Very",
+      "options": [
+        "sehr",
+        "auch"
+      ],
+      "correct": "sehr",
+      "category": "Function Words"
+    },
+    {
+      "id": 14,
+      "question": "Also / too",
+      "options": [
+        "auch",
+        "hier"
+      ],
+      "correct": "auch",
+      "category": "Function Words"
+    },
+    {
+      "id": 15,
+      "question": "Here",
+      "options": [
+        "hier",
+        "nicht"
+      ],
+      "correct": "hier",
+      "category": "Function Words"
+    },
+    {
+      "id": 16,
+      "question": "Not",
+      "options": [
+        "nicht",
+        "ja"
+      ],
+      "correct": "nicht",
+      "category": "Function Words"
+    },
+    {
+      "id": 17,
+      "question": "Yes",
+      "options": [
+        "ja",
+        "nicht"
+      ],
+      "correct": "ja",
+      "category": "Function Words"
+    },
+    {
+      "id": 18,
+      "question": "Tired",
+      "options": [
+        "müde",
+        "glücklich"
+      ],
+      "correct": "müde",
+      "category": "Feelings"
+    },
+    {
+      "id": 19,
+      "question": "Ich bin _____. (I am happy)",
+      "options": [
+        "glücklich",
+        "traurig"
+      ],
+      "correct": "glücklich",
+      "category": "Feelings"
+    },
+    {
+      "id": 20,
+      "question": "Sad",
+      "options": [
+        "traurig",
+        "krank"
+      ],
+      "correct": "traurig",
+      "category": "Feelings"
+    },
+    {
+      "id": 21,
+      "question": "Sie ist _____. (She is sick)",
+      "options": [
+        "krank",
+        "gesund"
+      ],
+      "correct": "krank",
+      "category": "Feelings"
+    },
+    {
+      "id": 22,
+      "question": "Healthy",
+      "options": [
+        "gesund",
+        "hungrig"
+      ],
+      "correct": "gesund",
+      "category": "Feelings"
+    },
+    {
+      "id": 23,
+      "question": "Er ist _____. (He is hungry)",
+      "options": [
+        "hungrig",
+        "durstig"
+      ],
+      "correct": "hungrig",
+      "category": "Feelings"
+    },
+    {
+      "id": 24,
+      "question": "Thirsty",
+      "options": [
+        "durstig",
+        "nervös"
+      ],
+      "correct": "durstig",
+      "category": "Feelings"
+    },
+    {
+      "id": 25,
+      "question": "Wir sind _____. (We are nervous)",
+      "options": [
+        "nervös",
+        "ruhig"
+      ],
+      "correct": "nervös",
+      "category": "Feelings"
+    },
+    {
+      "id": 26,
+      "question": "Calm",
+      "options": [
+        "ruhig",
+        "fertig"
+      ],
+      "correct": "ruhig",
+      "category": "Feelings"
+    },
+    {
+      "id": 27,
+      "question": "Du bist _____. (You are ready)",
+      "options": [
+        "fertig",
+        "müde"
+      ],
+      "correct": "fertig",
+      "category": "Feelings"
+    },
+    {
+      "id": 28,
+      "question": "Big / tall",
+      "options": [
+        "groß",
+        "klein"
+      ],
+      "correct": "groß",
+      "category": "Descriptions"
+    },
+    {
+      "id": 29,
+      "question": "Das Kind ist _____. (The child is small)",
+      "options": [
+        "klein",
+        "groß"
+      ],
+      "correct": "klein",
+      "category": "Descriptions"
+    },
+    {
+      "id": 30,
+      "question": "Young",
+      "options": [
+        "jung",
+        "alt"
+      ],
+      "correct": "jung",
+      "category": "Descriptions"
+    },
+    {
+      "id": 31,
+      "question": "Er ist _____. (He is old)",
+      "options": [
+        "alt",
+        "jung"
+      ],
+      "correct": "alt",
+      "category": "Descriptions"
+    },
+    {
+      "id": 32,
+      "question": "New",
+      "options": [
+        "neu",
+        "alt"
+      ],
+      "correct": "neu",
+      "category": "Descriptions"
+    },
+    {
+      "id": 33,
+      "question": "Das Auto ist _____. (The car is good)",
+      "options": [
+        "gut",
+        "schlecht"
+      ],
+      "correct": "gut",
+      "category": "Descriptions"
+    },
+    {
+      "id": 34,
+      "question": "Bad",
+      "options": [
+        "schlecht",
+        "schön"
+      ],
+      "correct": "schlecht",
+      "category": "Descriptions"
+    },
+    {
+      "id": 35,
+      "question": "Die Blume ist _____. (The flower is beautiful)",
+      "options": [
+        "schön",
+        "schlecht"
+      ],
+      "correct": "schön",
+      "category": "Descriptions"
+    },
+    {
+      "id": 36,
+      "question": "German",
+      "options": [
+        "deutsch",
+        "amerikanisch"
+      ],
+      "correct": "deutsch",
+      "category": "Nationalities"
+    },
+    {
+      "id": 37,
+      "question": "Ich bin _____. (I am American)",
+      "options": [
+        "amerikanisch",
+        "englisch"
+      ],
+      "correct": "amerikanisch",
+      "category": "Nationalities"
+    },
+    {
+      "id": 38,
+      "question": "English",
+      "options": [
+        "englisch",
+        "spanisch"
+      ],
+      "correct": "englisch",
+      "category": "Nationalities"
+    },
+    {
+      "id": 39,
+      "question": "Er ist _____. (He is Spanish)",
+      "options": [
+        "spanisch",
+        "französisch"
+      ],
+      "correct": "spanisch",
+      "category": "Nationalities"
+    },
+    {
+      "id": 40,
+      "question": "French",
+      "options": [
+        "französisch",
+        "italienisch"
+      ],
+      "correct": "französisch",
+      "category": "Nationalities"
+    },
+    {
+      "id": 41,
+      "question": "Sie ist _____. (She is Italian)",
+      "options": [
+        "italienisch",
+        "chinesisch"
+      ],
+      "correct": "italienisch",
+      "category": "Nationalities"
+    },
+    {
+      "id": 42,
+      "question": "Chinese",
+      "options": [
+        "chinesisch",
+        "deutsch"
+      ],
+      "correct": "chinesisch",
+      "category": "Nationalities"
+    },
+    {
+      "id": 43,
+      "question": "Student (male)",
+      "options": [
+        "der Student",
+        "der Lehrer"
+      ],
+      "correct": "der Student",
+      "category": "Professions"
+    },
+    {
+      "id": 44,
+      "question": "Ich bin _____. (I am a teacher - female)",
+      "options": [
+        "die Lehrerin",
+        "die Studentin"
+      ],
+      "correct": "die Lehrerin",
+      "category": "Professions"
+    },
+    {
+      "id": 45,
+      "question": "Doctor (male)",
+      "options": [
+        "der Arzt",
+        "der Koch"
+      ],
+      "correct": "der Arzt",
+      "category": "Professions"
+    },
+    {
+      "id": 46,
+      "question": "Er ist _____. (He is a cook/chef)",
+      "options": [
+        "der Koch",
+        "der Arzt"
+      ],
+      "correct": "der Koch",
+      "category": "Professions"
+    },
+    {
+      "id": 47,
+      "question": "Friend (female)",
+      "options": [
+        "die Freundin",
+        "die Lehrerin"
+      ],
+      "correct": "die Freundin",
+      "category": "Professions"
+    },
+    {
+      "id": 48,
+      "question": "Child",
+      "options": [
+        "das Kind",
+        "der Freund"
+      ],
+      "correct": "das Kind",
+      "category": "Professions"
+    },
+    {
+      "id": 49,
+      "question": "Family",
+      "options": [
+        "die Familie",
+        "der Name"
+      ],
+      "correct": "die Familie",
+      "category": "Professions"
+    },
+    {
+      "id": 50,
+      "question": "Wie ist dein _____? (What is your name?)",
+      "options": [
+        "Name",
+        "Familie"
+      ],
+      "correct": "Name",
+      "category": "Professions"
+    }
   ],
   "tag-1-grammar": [
-    { "id": 1, "question": "Ich _____ Stephano. (I am Stephano)", "options": ["bin", "bist"], "correct": "bin", "category": "Grammar - Sein" },
-    { "id": 2, "question": "Du _____ Student. (You are student)", "options": ["bist", "bin"], "correct": "bist", "category": "Grammar - Sein" },
-    { "id": 3, "question": "Er _____ müde. (He is tired)", "options": ["ist", "sind"], "correct": "ist", "category": "Grammar - Sein" },
-    { "id": 4, "question": "Wir _____ hier. (We are here)", "options": ["sind", "seid"], "correct": "sind", "category": "Grammar - Sein" },
-    { "id": 5, "question": "Sie _____ Lehrerin. (She is teacher)", "options": ["ist", "sind"], "correct": "ist", "category": "Grammar - Sein" },
-    { "id": 6, "question": "Ihr _____ Freunde. (You all are friends)", "options": ["seid", "sind"], "correct": "seid", "category": "Grammar - Sein" },
-    { "id": 7, "question": "Sie _____ in Berlin. (They are in Berlin)", "options": ["sind", "ist"], "correct": "sind", "category": "Grammar - Sein" },
-    { "id": 8, "question": "Es _____ kalt. (It is cold)", "options": ["ist", "sind"], "correct": "ist", "category": "Grammar - Sein" },
-    { "id": 9, "question": "Ich _____ glücklich. (I am happy)", "options": ["bin", "ist"], "correct": "bin", "category": "Grammar - Sein" },
-    { "id": 10, "question": "Sie _____ der Chef. (You are the boss - formal)", "options": ["sind", "ist"], "correct": "sind", "category": "Grammar - Sein" },
-    { "id": 11, "question": "Du _____ schön. (You are beautiful)", "options": ["bist", "ist"], "correct": "bist", "category": "Grammar - Sein" },
-    { "id": 12, "question": "Wir _____ zusammen. (We are together)", "options": ["sind", "seid"], "correct": "sind", "category": "Grammar - Sein" },
-    { "id": 13, "question": "Sie _____ nett. (She is nice)", "options": ["ist", "sind"], "correct": "ist", "category": "Grammar - Sein" },
-    { "id": 14, "question": "Ihr _____ jung. (You all are young)", "options": ["seid", "sind"], "correct": "seid", "category": "Grammar - Sein" },
-    { "id": 15, "question": "Es _____ warm. (It is warm)", "options": ["ist", "sind"], "correct": "ist", "category": "Grammar - Sein" },
-    { "id": 16, "question": "_____ bin Maria. (I am Maria)", "options": ["Ich", "Du"], "correct": "Ich", "category": "Grammar - Pronouns" },
-    { "id": 17, "question": "_____ ist mein Bruder. (He is my brother)", "options": ["Er", "Sie"], "correct": "Er", "category": "Grammar - Pronouns" },
-    { "id": 18, "question": "_____ sind Studenten. (We are students)", "options": ["Wir", "Ihr"], "correct": "Wir", "category": "Grammar - Pronouns" },
-    { "id": 19, "question": "_____ bist toll! (You are great - informal)", "options": ["Du", "Sie"], "correct": "Du", "category": "Grammar - Pronouns" },
-    { "id": 20, "question": "_____ seid jung. (You all are young)", "options": ["Ihr", "Sie"], "correct": "Ihr", "category": "Grammar - Pronouns" },
-    { "id": 21, "question": "_____ ist das Buch. (It is the book)", "options": ["Es", "Er"], "correct": "Es", "category": "Grammar - Pronouns" },
-    { "id": 22, "question": "_____ sind müde. (They are tired)", "options": ["Sie", "Ihr"], "correct": "Sie", "category": "Grammar - Pronouns" },
-    { "id": 23, "question": "_____ bin zu Hause. (I am at home)", "options": ["Ich", "Wir"], "correct": "Ich", "category": "Grammar - Pronouns" },
-    { "id": 24, "question": "_____ ist die Lehrerin. (She is the teacher)", "options": ["Sie", "Du"], "correct": "Sie", "category": "Grammar - Pronouns" },
-    { "id": 25, "question": "_____ sind Sie? (Who are you - formal)", "options": ["Wer", "Was"], "correct": "Wer", "category": "Grammar - Pronouns" },
-    { "id": 26, "question": "_____ sind Lehrer. (They are teachers)", "options": ["Sie", "Wir"], "correct": "Sie", "category": "Grammar - Pronouns" },
-    { "id": 27, "question": "_____ bist mein Freund. (You are my friend)", "options": ["Du", "Ich"], "correct": "Du", "category": "Grammar - Pronouns" },
-    { "id": 28, "question": "_____ ist meine Mutter. (She is my mother)", "options": ["Sie", "Er"], "correct": "Sie", "category": "Grammar - Pronouns" },
-    { "id": 29, "question": "_____ seid Geschwister. (You all are siblings)", "options": ["Ihr", "Sie"], "correct": "Ihr", "category": "Grammar - Pronouns" },
-    { "id": 30, "question": "_____ bin dein Bruder. (I am your brother)", "options": ["Ich", "Du"], "correct": "Ich", "category": "Grammar - Pronouns" },
-    { "id": 31, "question": "Maria und Peter _____ Freunde. (Maria and Peter are friends)", "options": ["sind", "ist"], "correct": "sind", "category": "Grammar - Sein" },
-    { "id": 32, "question": "Das Kind _____ klein. (The child is small)", "options": ["ist", "sind"], "correct": "ist", "category": "Grammar - Sein" },
-    { "id": 33, "question": "Mein Vater und ich _____ zu Hause. (My father and I are at home)", "options": ["sind", "bin"], "correct": "sind", "category": "Grammar - Sein" },
-    { "id": 34, "question": "Wo _____ ihr? (Where are you all)", "options": ["seid", "sind"], "correct": "seid", "category": "Grammar - Sein" },
-    { "id": 35, "question": "Die Katze _____ schwarz. (The cat is black)", "options": ["ist", "sind"], "correct": "ist", "category": "Grammar - Sein" },
-    { "id": 36, "question": "Du und Maria _____ Studenten. (You and Maria are students)", "options": ["seid", "sind"], "correct": "seid", "category": "Grammar - Sein" },
-    { "id": 37, "question": "Der Hund _____ groß. (The dog is big)", "options": ["ist", "sind"], "correct": "ist", "category": "Grammar - Sein" },
-    { "id": 38, "question": "_____ du Paul? (Are you Paul)", "options": ["Bist", "Bin"], "correct": "Bist", "category": "Grammar - Sein" },
-    { "id": 39, "question": "Wir _____ in Deutschland. (We are in Germany)", "options": ["sind", "seid"], "correct": "sind", "category": "Grammar - Sein" },
-    { "id": 40, "question": "Die Kinder _____ glücklich. (The children are happy)", "options": ["sind", "ist"], "correct": "sind", "category": "Grammar - Sein" }
+    {
+      "id": 1,
+      "question": "Ich _____ Stephano. (I am Stephano)",
+      "options": [
+        "bin",
+        "bist"
+      ],
+      "correct": "bin",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 2,
+      "question": "Du _____ Student. (You are student)",
+      "options": [
+        "bist",
+        "bin"
+      ],
+      "correct": "bist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 3,
+      "question": "Er _____ müde. (He is tired)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 4,
+      "question": "Wir _____ hier. (We are here)",
+      "options": [
+        "sind",
+        "seid"
+      ],
+      "correct": "sind",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 5,
+      "question": "Sie _____ Lehrerin. (She is teacher)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 6,
+      "question": "Ihr _____ Freunde. (You all are friends)",
+      "options": [
+        "seid",
+        "sind"
+      ],
+      "correct": "seid",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 7,
+      "question": "Sie _____ in Berlin. (They are in Berlin)",
+      "options": [
+        "sind",
+        "ist"
+      ],
+      "correct": "sind",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 8,
+      "question": "Es _____ kalt. (It is cold)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 9,
+      "question": "Ich _____ glücklich. (I am happy)",
+      "options": [
+        "bin",
+        "ist"
+      ],
+      "correct": "bin",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 10,
+      "question": "Sie _____ der Chef. (You are the boss - formal)",
+      "options": [
+        "sind",
+        "ist"
+      ],
+      "correct": "sind",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 11,
+      "question": "Du _____ schön. (You are beautiful)",
+      "options": [
+        "bist",
+        "ist"
+      ],
+      "correct": "bist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 12,
+      "question": "Wir _____ zusammen. (We are together)",
+      "options": [
+        "sind",
+        "seid"
+      ],
+      "correct": "sind",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 13,
+      "question": "Sie _____ nett. (She is nice)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 14,
+      "question": "Ihr _____ jung. (You all are young)",
+      "options": [
+        "seid",
+        "sind"
+      ],
+      "correct": "seid",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 15,
+      "question": "Es _____ warm. (It is warm)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 16,
+      "question": "_____ bin Maria. (I am Maria)",
+      "options": [
+        "Ich",
+        "Du"
+      ],
+      "correct": "Ich",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 17,
+      "question": "_____ ist mein Bruder. (He is my brother)",
+      "options": [
+        "Er",
+        "Sie"
+      ],
+      "correct": "Er",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 18,
+      "question": "_____ sind Studenten. (We are students)",
+      "options": [
+        "Wir",
+        "Ihr"
+      ],
+      "correct": "Wir",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 19,
+      "question": "_____ bist toll! (You are great - informal)",
+      "options": [
+        "Du",
+        "Sie"
+      ],
+      "correct": "Du",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 20,
+      "question": "_____ seid jung. (You all are young)",
+      "options": [
+        "Ihr",
+        "Sie"
+      ],
+      "correct": "Ihr",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 21,
+      "question": "_____ ist das Buch. (It is the book)",
+      "options": [
+        "Es",
+        "Er"
+      ],
+      "correct": "Es",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 22,
+      "question": "_____ sind müde. (They are tired)",
+      "options": [
+        "Sie",
+        "Ihr"
+      ],
+      "correct": "Sie",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 23,
+      "question": "_____ bin zu Hause. (I am at home)",
+      "options": [
+        "Ich",
+        "Wir"
+      ],
+      "correct": "Ich",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 24,
+      "question": "_____ ist die Lehrerin. (She is the teacher)",
+      "options": [
+        "Sie",
+        "Du"
+      ],
+      "correct": "Sie",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 25,
+      "question": "_____ sind Sie? (Who are you - formal)",
+      "options": [
+        "Wer",
+        "Was"
+      ],
+      "correct": "Wer",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 26,
+      "question": "_____ sind Lehrer. (They are teachers)",
+      "options": [
+        "Sie",
+        "Wir"
+      ],
+      "correct": "Sie",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 27,
+      "question": "_____ bist mein Freund. (You are my friend)",
+      "options": [
+        "Du",
+        "Ich"
+      ],
+      "correct": "Du",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 28,
+      "question": "_____ ist meine Mutter. (She is my mother)",
+      "options": [
+        "Sie",
+        "Er"
+      ],
+      "correct": "Sie",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 29,
+      "question": "_____ seid Geschwister. (You all are siblings)",
+      "options": [
+        "Ihr",
+        "Sie"
+      ],
+      "correct": "Ihr",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 30,
+      "question": "_____ bin dein Bruder. (I am your brother)",
+      "options": [
+        "Ich",
+        "Du"
+      ],
+      "correct": "Ich",
+      "category": "Grammar - Pronouns"
+    },
+    {
+      "id": 31,
+      "question": "Maria und Peter _____ Freunde. (Maria and Peter are friends)",
+      "options": [
+        "sind",
+        "ist"
+      ],
+      "correct": "sind",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 32,
+      "question": "Das Kind _____ klein. (The child is small)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 33,
+      "question": "Mein Vater und ich _____ zu Hause. (My father and I are at home)",
+      "options": [
+        "sind",
+        "bin"
+      ],
+      "correct": "sind",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 34,
+      "question": "Wo _____ ihr? (Where are you all)",
+      "options": [
+        "seid",
+        "sind"
+      ],
+      "correct": "seid",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 35,
+      "question": "Die Katze _____ schwarz. (The cat is black)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 36,
+      "question": "Du und Maria _____ Studenten. (You and Maria are students)",
+      "options": [
+        "seid",
+        "sind"
+      ],
+      "correct": "seid",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 37,
+      "question": "Der Hund _____ groß. (The dog is big)",
+      "options": [
+        "ist",
+        "sind"
+      ],
+      "correct": "ist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 38,
+      "question": "_____ du Paul? (Are you Paul)",
+      "options": [
+        "Bist",
+        "Bin"
+      ],
+      "correct": "Bist",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 39,
+      "question": "Wir _____ in Deutschland. (We are in Germany)",
+      "options": [
+        "sind",
+        "seid"
+      ],
+      "correct": "sind",
+      "category": "Grammar - Sein"
+    },
+    {
+      "id": 40,
+      "question": "Die Kinder _____ glücklich. (The children are happy)",
+      "options": [
+        "sind",
+        "ist"
+      ],
+      "correct": "sind",
+      "category": "Grammar - Sein"
+    }
   ],
   "tag-1-greetings": [
-    { "id": 1, "question": "Good morning", "options": ["Guten Morgen", "Guten Tag"], "correct": "Guten Morgen", "category": "Greetings" },
-    { "id": 2, "question": "Hello (casual)", "options": ["Hallo", "Auf Wiedersehen"], "correct": "Hallo", "category": "Greetings" },
-    { "id": 3, "question": "Good evening", "options": ["Guten Abend", "Guten Morgen"], "correct": "Guten Abend", "category": "Greetings" },
-    { "id": 4, "question": "Goodbye (casual)", "options": ["Tschüss", "Guten Tag"], "correct": "Tschüss", "category": "Greetings" },
-    { "id": 5, "question": "Good night", "options": ["Gute Nacht", "Guten Abend"], "correct": "Gute Nacht", "category": "Greetings" },
-    { "id": 6, "question": "Goodbye (formal)", "options": ["Auf Wiedersehen", "Hallo"], "correct": "Auf Wiedersehen", "category": "Greetings" },
-    { "id": 7, "question": "Good day", "options": ["Guten Tag", "Gute Nacht"], "correct": "Guten Tag", "category": "Greetings" },
-    { "id": 8, "question": "Hi (casual)", "options": ["Hi", "Auf Wiedersehen"], "correct": "Hi", "category": "Greetings" },
-    { "id": 9, "question": "See you later", "options": ["Bis später", "Guten Morgen"], "correct": "Bis später", "category": "Greetings" },
-    { "id": 10, "question": "See you soon", "options": ["Bis bald", "Gute Nacht"], "correct": "Bis bald", "category": "Greetings" },
-    { "id": 11, "question": "What's your name? (informal)", "options": ["Wie heißt du?", "Wie heißen Sie?"], "correct": "Wie heißt du?", "category": "Introductions" },
-    { "id": 12, "question": "What's your name? (formal)", "options": ["Wie heißen Sie?", "Wie heißt du?"], "correct": "Wie heißen Sie?", "category": "Introductions" },
-    { "id": 13, "question": "My name is Maria", "options": ["Ich heiße Maria", "Du heißt Maria"], "correct": "Ich heiße Maria", "category": "Introductions" },
-    { "id": 14, "question": "I am Peter", "options": ["Ich bin Peter", "Du bist Peter"], "correct": "Ich bin Peter", "category": "Introductions" },
-    { "id": 15, "question": "How are you? (informal)", "options": ["Wie geht's?", "Wie heißt du?"], "correct": "Wie geht's?", "category": "Introductions" },
-    { "id": 16, "question": "How are you? (formal)", "options": ["Wie geht es Ihnen?", "Wie geht es dir?"], "correct": "Wie geht es Ihnen?", "category": "Introductions" },
-    { "id": 17, "question": "Good, thanks!", "options": ["Gut, danke!", "Gute Nacht!"], "correct": "Gut, danke!", "category": "Introductions" },
-    { "id": 18, "question": "Very good!", "options": ["Sehr gut!", "Sehr schlecht!"], "correct": "Sehr gut!", "category": "Introductions" },
-    { "id": 19, "question": "It's okay / so-so", "options": ["Es geht", "Sehr gut"], "correct": "Es geht", "category": "Introductions" },
-    { "id": 20, "question": "Not so good", "options": ["Nicht so gut", "Sehr gut"], "correct": "Nicht so gut", "category": "Introductions" },
-    { "id": 21, "question": "And you? (informal)", "options": ["Und dir?", "Und ich?"], "correct": "Und dir?", "category": "Conversation" },
-    { "id": 22, "question": "And you? (formal)", "options": ["Und Ihnen?", "Und dir?"], "correct": "Und Ihnen?", "category": "Conversation" },
-    { "id": 23, "question": "My name is (formal)", "options": ["Mein Name ist", "Dein Name ist"], "correct": "Mein Name ist", "category": "Conversation" },
-    { "id": 24, "question": "_____! Ich heiße Anna. (Hello! My name is Anna)", "options": ["Hallo", "Tschüss"], "correct": "Hallo", "category": "Conversation" },
-    { "id": 25, "question": "Wie geht's? - _____ (How are you? - Good, thanks!)", "options": ["Gut, danke!", "Auf Wiedersehen!"], "correct": "Gut, danke!", "category": "Conversation" }
+    {
+      "id": 1,
+      "question": "Good morning",
+      "options": [
+        "Guten Morgen",
+        "Guten Tag"
+      ],
+      "correct": "Guten Morgen",
+      "category": "Greetings"
+    },
+    {
+      "id": 2,
+      "question": "Hello (casual)",
+      "options": [
+        "Hallo",
+        "Auf Wiedersehen"
+      ],
+      "correct": "Hallo",
+      "category": "Greetings"
+    },
+    {
+      "id": 3,
+      "question": "Good evening",
+      "options": [
+        "Guten Abend",
+        "Guten Morgen"
+      ],
+      "correct": "Guten Abend",
+      "category": "Greetings"
+    },
+    {
+      "id": 4,
+      "question": "Goodbye (casual)",
+      "options": [
+        "Tschüss",
+        "Guten Tag"
+      ],
+      "correct": "Tschüss",
+      "category": "Greetings"
+    },
+    {
+      "id": 5,
+      "question": "Good night",
+      "options": [
+        "Gute Nacht",
+        "Guten Abend"
+      ],
+      "correct": "Gute Nacht",
+      "category": "Greetings"
+    },
+    {
+      "id": 6,
+      "question": "Goodbye (formal)",
+      "options": [
+        "Auf Wiedersehen",
+        "Hallo"
+      ],
+      "correct": "Auf Wiedersehen",
+      "category": "Greetings"
+    },
+    {
+      "id": 7,
+      "question": "Good day",
+      "options": [
+        "Guten Tag",
+        "Gute Nacht"
+      ],
+      "correct": "Guten Tag",
+      "category": "Greetings"
+    },
+    {
+      "id": 8,
+      "question": "Hi (casual)",
+      "options": [
+        "Hi",
+        "Auf Wiedersehen"
+      ],
+      "correct": "Hi",
+      "category": "Greetings"
+    },
+    {
+      "id": 9,
+      "question": "See you later",
+      "options": [
+        "Bis später",
+        "Guten Morgen"
+      ],
+      "correct": "Bis später",
+      "category": "Greetings"
+    },
+    {
+      "id": 10,
+      "question": "See you soon",
+      "options": [
+        "Bis bald",
+        "Gute Nacht"
+      ],
+      "correct": "Bis bald",
+      "category": "Greetings"
+    },
+    {
+      "id": 11,
+      "question": "What's your name? (informal)",
+      "options": [
+        "Wie heißt du?",
+        "Wie heißen Sie?"
+      ],
+      "correct": "Wie heißt du?",
+      "category": "Introductions"
+    },
+    {
+      "id": 12,
+      "question": "What's your name? (formal)",
+      "options": [
+        "Wie heißen Sie?",
+        "Wie heißt du?"
+      ],
+      "correct": "Wie heißen Sie?",
+      "category": "Introductions"
+    },
+    {
+      "id": 13,
+      "question": "My name is Maria",
+      "options": [
+        "Ich heiße Maria",
+        "Du heißt Maria"
+      ],
+      "correct": "Ich heiße Maria",
+      "category": "Introductions"
+    },
+    {
+      "id": 14,
+      "question": "I am Peter",
+      "options": [
+        "Ich bin Peter",
+        "Du bist Peter"
+      ],
+      "correct": "Ich bin Peter",
+      "category": "Introductions"
+    },
+    {
+      "id": 15,
+      "question": "How are you? (informal)",
+      "options": [
+        "Wie geht's?",
+        "Wie heißt du?"
+      ],
+      "correct": "Wie geht's?",
+      "category": "Introductions"
+    },
+    {
+      "id": 16,
+      "question": "How are you? (formal)",
+      "options": [
+        "Wie geht es Ihnen?",
+        "Wie geht es dir?"
+      ],
+      "correct": "Wie geht es Ihnen?",
+      "category": "Introductions"
+    },
+    {
+      "id": 17,
+      "question": "Good, thanks!",
+      "options": [
+        "Gut, danke!",
+        "Gute Nacht!"
+      ],
+      "correct": "Gut, danke!",
+      "category": "Introductions"
+    },
+    {
+      "id": 18,
+      "question": "Very good!",
+      "options": [
+        "Sehr gut!",
+        "Sehr schlecht!"
+      ],
+      "correct": "Sehr gut!",
+      "category": "Introductions"
+    },
+    {
+      "id": 19,
+      "question": "It's okay / so-so",
+      "options": [
+        "Es geht",
+        "Sehr gut"
+      ],
+      "correct": "Es geht",
+      "category": "Introductions"
+    },
+    {
+      "id": 20,
+      "question": "Not so good",
+      "options": [
+        "Nicht so gut",
+        "Sehr gut"
+      ],
+      "correct": "Nicht so gut",
+      "category": "Introductions"
+    },
+    {
+      "id": 21,
+      "question": "And you? (informal)",
+      "options": [
+        "Und dir?",
+        "Und ich?"
+      ],
+      "correct": "Und dir?",
+      "category": "Conversation"
+    },
+    {
+      "id": 22,
+      "question": "And you? (formal)",
+      "options": [
+        "Und Ihnen?",
+        "Und dir?"
+      ],
+      "correct": "Und Ihnen?",
+      "category": "Conversation"
+    },
+    {
+      "id": 23,
+      "question": "My name is (formal)",
+      "options": [
+        "Mein Name ist",
+        "Dein Name ist"
+      ],
+      "correct": "Mein Name ist",
+      "category": "Conversation"
+    },
+    {
+      "id": 24,
+      "question": "_____! Ich heiße Anna. (Hello! My name is Anna)",
+      "options": [
+        "Hallo",
+        "Tschüss"
+      ],
+      "correct": "Hallo",
+      "category": "Conversation"
+    },
+    {
+      "id": 25,
+      "question": "Wie geht's? - _____ (How are you? - Good, thanks!)",
+      "options": [
+        "Gut, danke!",
+        "Auf Wiedersehen!"
+      ],
+      "correct": "Gut, danke!",
+      "category": "Conversation"
+    }
   ],
   "tag-1-numbers": [
-    { "id": 1, "question": "1 (One)", "options": ["eins", "zwei"], "correct": "eins", "category": "Numbers 1-10" },
-    { "id": 2, "question": "5 (Five)", "options": ["fünf", "vier"], "correct": "fünf", "category": "Numbers 1-10" },
-    { "id": 3, "question": "3 (Three)", "options": ["drei", "dreizehn"], "correct": "drei", "category": "Numbers 1-10" },
-    { "id": 4, "question": "7 (Seven)", "options": ["sieben", "sechs"], "correct": "sieben", "category": "Numbers 1-10" },
-    { "id": 5, "question": "10 (Ten)", "options": ["zehn", "elf"], "correct": "zehn", "category": "Numbers 1-10" },
-    { "id": 6, "question": "2 (Two)", "options": ["zwei", "drei"], "correct": "zwei", "category": "Numbers 1-10" },
-    { "id": 7, "question": "8 (Eight)", "options": ["acht", "neun"], "correct": "acht", "category": "Numbers 1-10" },
-    { "id": 8, "question": "4 (Four)", "options": ["vier", "fünf"], "correct": "vier", "category": "Numbers 1-10" },
-    { "id": 9, "question": "6 (Six)", "options": ["sechs", "sieben"], "correct": "sechs", "category": "Numbers 1-10" },
-    { "id": 10, "question": "9 (Nine)", "options": ["neun", "zehn"], "correct": "neun", "category": "Numbers 1-10" },
-    { "id": 11, "question": "11 (Eleven)", "options": ["elf", "zwölf"], "correct": "elf", "category": "Numbers 11-20" },
-    { "id": 12, "question": "15 (Fifteen)", "options": ["fünfzehn", "fünfzig"], "correct": "fünfzehn", "category": "Numbers 11-20" },
-    { "id": 13, "question": "12 (Twelve)", "options": ["zwölf", "zwei"], "correct": "zwölf", "category": "Numbers 11-20" },
-    { "id": 14, "question": "20 (Twenty)", "options": ["zwanzig", "zwei"], "correct": "zwanzig", "category": "Numbers 11-20" },
-    { "id": 15, "question": "13 (Thirteen)", "options": ["dreizehn", "drei"], "correct": "dreizehn", "category": "Numbers 11-20" },
-    { "id": 16, "question": "17 (Seventeen)", "options": ["siebzehn", "sieben"], "correct": "siebzehn", "category": "Numbers 11-20" },
-    { "id": 17, "question": "16 (Sixteen)", "options": ["sechzehn", "sechs"], "correct": "sechzehn", "category": "Numbers 11-20" },
-    { "id": 18, "question": "19 (Nineteen)", "options": ["neunzehn", "neun"], "correct": "neunzehn", "category": "Numbers 11-20" },
-    { "id": 19, "question": "14 (Fourteen)", "options": ["vierzehn", "vier"], "correct": "vierzehn", "category": "Numbers 11-20" },
-    { "id": 20, "question": "18 (Eighteen)", "options": ["achtzehn", "acht"], "correct": "achtzehn", "category": "Numbers 11-20" },
-    { "id": 21, "question": "Ich bin _____ Jahre alt. (I am 15 years old)", "options": ["fünfzehn", "fünfzig"], "correct": "fünfzehn", "category": "Numbers - Practical" },
-    { "id": 22, "question": "Wie alt bist du? - Ich bin _____ . (How old are you? - I am 20)", "options": ["zwanzig", "zwei"], "correct": "zwanzig", "category": "Numbers - Practical" },
-    { "id": 23, "question": "Die Nummer ist _____ . (The number is 7)", "options": ["sieben", "siebzehn"], "correct": "sieben", "category": "Numbers - Practical" },
-    { "id": 24, "question": "Eins, zwei, drei, vier, _____ (1, 2, 3, 4, _____)", "options": ["fünf", "fünfzehn"], "correct": "fünf", "category": "Numbers - Practical" },
-    { "id": 25, "question": "Das kostet _____ Euro. (That costs 12 euros)", "options": ["zwölf", "zwei"], "correct": "zwölf", "category": "Numbers - Practical" }
+    {
+      "id": 1,
+      "question": "1 (One)",
+      "options": [
+        "eins",
+        "zwei"
+      ],
+      "correct": "eins",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 2,
+      "question": "5 (Five)",
+      "options": [
+        "fünf",
+        "vier"
+      ],
+      "correct": "fünf",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 3,
+      "question": "3 (Three)",
+      "options": [
+        "drei",
+        "dreizehn"
+      ],
+      "correct": "drei",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 4,
+      "question": "7 (Seven)",
+      "options": [
+        "sieben",
+        "sechs"
+      ],
+      "correct": "sieben",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 5,
+      "question": "10 (Ten)",
+      "options": [
+        "zehn",
+        "elf"
+      ],
+      "correct": "zehn",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 6,
+      "question": "2 (Two)",
+      "options": [
+        "zwei",
+        "drei"
+      ],
+      "correct": "zwei",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 7,
+      "question": "8 (Eight)",
+      "options": [
+        "acht",
+        "neun"
+      ],
+      "correct": "acht",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 8,
+      "question": "4 (Four)",
+      "options": [
+        "vier",
+        "fünf"
+      ],
+      "correct": "vier",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 9,
+      "question": "6 (Six)",
+      "options": [
+        "sechs",
+        "sieben"
+      ],
+      "correct": "sechs",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 10,
+      "question": "9 (Nine)",
+      "options": [
+        "neun",
+        "zehn"
+      ],
+      "correct": "neun",
+      "category": "Numbers 1-10"
+    },
+    {
+      "id": 11,
+      "question": "11 (Eleven)",
+      "options": [
+        "elf",
+        "zwölf"
+      ],
+      "correct": "elf",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 12,
+      "question": "15 (Fifteen)",
+      "options": [
+        "fünfzehn",
+        "fünfzig"
+      ],
+      "correct": "fünfzehn",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 13,
+      "question": "12 (Twelve)",
+      "options": [
+        "zwölf",
+        "zwei"
+      ],
+      "correct": "zwölf",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 14,
+      "question": "20 (Twenty)",
+      "options": [
+        "zwanzig",
+        "zwei"
+      ],
+      "correct": "zwanzig",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 15,
+      "question": "13 (Thirteen)",
+      "options": [
+        "dreizehn",
+        "drei"
+      ],
+      "correct": "dreizehn",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 16,
+      "question": "17 (Seventeen)",
+      "options": [
+        "siebzehn",
+        "sieben"
+      ],
+      "correct": "siebzehn",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 17,
+      "question": "16 (Sixteen)",
+      "options": [
+        "sechzehn",
+        "sechs"
+      ],
+      "correct": "sechzehn",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 18,
+      "question": "19 (Nineteen)",
+      "options": [
+        "neunzehn",
+        "neun"
+      ],
+      "correct": "neunzehn",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 19,
+      "question": "14 (Fourteen)",
+      "options": [
+        "vierzehn",
+        "vier"
+      ],
+      "correct": "vierzehn",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 20,
+      "question": "18 (Eighteen)",
+      "options": [
+        "achtzehn",
+        "acht"
+      ],
+      "correct": "achtzehn",
+      "category": "Numbers 11-20"
+    },
+    {
+      "id": 21,
+      "question": "Ich bin _____ Jahre alt. (I am 15 years old)",
+      "options": [
+        "fünfzehn",
+        "fünfzig"
+      ],
+      "correct": "fünfzehn",
+      "category": "Numbers - Practical"
+    },
+    {
+      "id": 22,
+      "question": "Wie alt bist du? - Ich bin _____ . (How old are you? - I am 20)",
+      "options": [
+        "zwanzig",
+        "zwei"
+      ],
+      "correct": "zwanzig",
+      "category": "Numbers - Practical"
+    },
+    {
+      "id": 23,
+      "question": "Die Nummer ist _____ . (The number is 7)",
+      "options": [
+        "sieben",
+        "siebzehn"
+      ],
+      "correct": "sieben",
+      "category": "Numbers - Practical"
+    },
+    {
+      "id": 24,
+      "question": "Eins, zwei, drei, vier, _____ (1, 2, 3, 4, _____)",
+      "options": [
+        "fünf",
+        "fünfzehn"
+      ],
+      "correct": "fünf",
+      "category": "Numbers - Practical"
+    },
+    {
+      "id": 25,
+      "question": "Das kostet _____ Euro. (That costs 12 euros)",
+      "options": [
+        "zwölf",
+        "zwei"
+      ],
+      "correct": "zwölf",
+      "category": "Numbers - Practical"
+    }
   ],
   "tag-2-verbs": [
-    { "id": 1, "question": "Ich _____ (I learn)", "options": ["lerne", "lernst"], "correct": "lerne", "category": "lernen" },
-    { "id": 2, "question": "Du _____ (You learn)", "options": ["lernst", "lernt"], "correct": "lernst", "category": "lernen" },
-    { "id": 3, "question": "Er _____ (He learns)", "options": ["lernt", "lernen"], "correct": "lernt", "category": "lernen" },
-    { "id": 4, "question": "Wir _____ (We learn)", "options": ["lernen", "lernt"], "correct": "lernen", "category": "lernen" },
-    { "id": 5, "question": "Ihr _____ (You all learn)", "options": ["lernt", "lernen"], "correct": "lernt", "category": "lernen" },
-    { "id": 6, "question": "Sie _____ (They learn)", "options": ["lernen", "lernt"], "correct": "lernen", "category": "lernen" },
-    { "id": 7, "question": "Ich _____ Deutsch (I learn German)", "options": ["lerne", "lernst"], "correct": "lerne", "category": "lernen" },
-    { "id": 8, "question": "Sie _____ viel (You formal learn a lot)", "options": ["lernen", "lernt"], "correct": "lernen", "category": "lernen" },
-    { "id": 9, "question": "Ich _____ (I make/do)", "options": ["mache", "machst"], "correct": "mache", "category": "machen" },
-    { "id": 10, "question": "Du _____ (You make/do)", "options": ["machst", "macht"], "correct": "machst", "category": "machen" },
-    { "id": 11, "question": "Sie _____ (She makes/does)", "options": ["macht", "machen"], "correct": "macht", "category": "machen" },
-    { "id": 12, "question": "Wir _____ (We make/do)", "options": ["machen", "macht"], "correct": "machen", "category": "machen" },
-    { "id": 13, "question": "Ihr _____ das (You all do that)", "options": ["macht", "machen"], "correct": "macht", "category": "machen" },
-    { "id": 14, "question": "Er _____ das (He does that)", "options": ["macht", "machen"], "correct": "macht", "category": "machen" },
-    { "id": 15, "question": "Ich _____ in Berlin (I live in Berlin)", "options": ["wohne", "wohnst"], "correct": "wohne", "category": "wohnen" },
-    { "id": 16, "question": "Du _____ hier (You live here)", "options": ["wohnst", "wohnt"], "correct": "wohnst", "category": "wohnen" },
-    { "id": 17, "question": "Er _____ dort (He lives there)", "options": ["wohnt", "wohnen"], "correct": "wohnt", "category": "wohnen" },
-    { "id": 18, "question": "Wir _____ in Deutschland (We live in Germany)", "options": ["wohnen", "wohnt"], "correct": "wohnen", "category": "wohnen" },
-    { "id": 19, "question": "Sie _____ (They live)", "options": ["wohnen", "wohnt"], "correct": "wohnen", "category": "wohnen" },
-    { "id": 20, "question": "Sie _____ in Berlin (You formal live in Berlin)", "options": ["wohnen", "wohnt"], "correct": "wohnen", "category": "wohnen" },
-    { "id": 21, "question": "Ich _____ (I work)", "options": ["arbeite", "arbeitest"], "correct": "arbeite", "category": "arbeiten" },
-    { "id": 22, "question": "Du _____ (You work)", "options": ["arbeitest", "arbeitet"], "correct": "arbeitest", "category": "arbeiten - special rule" },
-    { "id": 23, "question": "Er _____ viel (He works a lot)", "options": ["arbeitet", "arbeiten"], "correct": "arbeitet", "category": "arbeiten - special rule" },
-    { "id": 24, "question": "Wir _____ heute (We work today)", "options": ["arbeiten", "arbeitet"], "correct": "arbeiten", "category": "arbeiten" },
-    { "id": 25, "question": "Ihr _____ nicht (You all don't work)", "options": ["arbeitet", "arbeiten"], "correct": "arbeitet", "category": "arbeiten" },
-    { "id": 26, "question": "Sie _____ hier (They work here)", "options": ["arbeiten", "arbeitet"], "correct": "arbeiten", "category": "arbeiten" },
-    { "id": 27, "question": "Ich _____ Fußball (I play soccer)", "options": ["spiele", "spielst"], "correct": "spiele", "category": "spielen" },
-    { "id": 28, "question": "Du _____ (You play)", "options": ["spielst", "spielt"], "correct": "spielst", "category": "spielen" },
-    { "id": 29, "question": "Sie _____ (She plays)", "options": ["spielt", "spielen"], "correct": "spielt", "category": "spielen" },
-    { "id": 30, "question": "Wir _____ (We play)", "options": ["spielen", "spielt"], "correct": "spielen", "category": "spielen" },
-    { "id": 31, "question": "Sie _____ gut (You formal play well)", "options": ["spielen", "spielt"], "correct": "spielen", "category": "spielen" },
-    { "id": 32, "question": "Ihr _____ heute (You all play today)", "options": ["spielt", "spielen"], "correct": "spielt", "category": "spielen" },
-    { "id": 33, "question": "Ich _____ Brot (I buy bread)", "options": ["kaufe", "kaufst"], "correct": "kaufe", "category": "kaufen" },
-    { "id": 34, "question": "Du _____ (You buy)", "options": ["kaufst", "kauft"], "correct": "kaufst", "category": "kaufen" },
-    { "id": 35, "question": "Er _____ (He buys)", "options": ["kauft", "kaufen"], "correct": "kauft", "category": "kaufen" },
-    { "id": 36, "question": "Wir _____ (We buy)", "options": ["kaufen", "kauft"], "correct": "kaufen", "category": "kaufen" },
-    { "id": 37, "question": "Ihr _____ viel (You all buy a lot)", "options": ["kauft", "kaufen"], "correct": "kauft", "category": "kaufen" },
-    { "id": 38, "question": "Sie _____ hier (They buy here)", "options": ["kaufen", "kauft"], "correct": "kaufen", "category": "kaufen" },
-    { "id": 39, "question": "Ich _____ Hallo (I say hello)", "options": ["sage", "sagst"], "correct": "sage", "category": "sagen" },
-    { "id": 40, "question": "Du _____ (You say)", "options": ["sagst", "sagt"], "correct": "sagst", "category": "sagen" },
-    { "id": 41, "question": "Er _____ (He says)", "options": ["sagt", "sagen"], "correct": "sagt", "category": "sagen" },
-    { "id": 42, "question": "Wir _____ (We say)", "options": ["sagen", "sagt"], "correct": "sagen", "category": "sagen" },
-    { "id": 43, "question": "Ihr _____ das (You all say that)", "options": ["sagt", "sagen"], "correct": "sagt", "category": "sagen" },
-    { "id": 44, "question": "Sie _____ Danke (You formal say thank you)", "options": ["sagen", "sagt"], "correct": "sagen", "category": "sagen" },
-    { "id": 45, "question": "Ich _____ Musik (I listen to music)", "options": ["höre", "hörst"], "correct": "höre", "category": "hören" },
-    { "id": 46, "question": "Du _____ (You hear)", "options": ["hörst", "hört"], "correct": "hörst", "category": "hören" },
-    { "id": 47, "question": "Sie _____ gut (She hears well)", "options": ["hört", "hören"], "correct": "hört", "category": "hören" },
-    { "id": 48, "question": "Wir _____ (We listen)", "options": ["hören", "hört"], "correct": "hören", "category": "hören" },
-    { "id": 49, "question": "Ihr _____ (You all listen)", "options": ["hört", "hören"], "correct": "hört", "category": "hören" },
-    { "id": 50, "question": "Sie _____ das (They hear that)", "options": ["hören", "hört"], "correct": "hören", "category": "hören" }
+    {
+      "id": 1,
+      "question": "Ich _____ (I learn)",
+      "options": [
+        "lerne",
+        "lernst"
+      ],
+      "correct": "lerne",
+      "category": "lernen"
+    },
+    {
+      "id": 2,
+      "question": "Du _____ (You learn)",
+      "options": [
+        "lernst",
+        "lernt"
+      ],
+      "correct": "lernst",
+      "category": "lernen"
+    },
+    {
+      "id": 3,
+      "question": "Er _____ (He learns)",
+      "options": [
+        "lernt",
+        "lernen"
+      ],
+      "correct": "lernt",
+      "category": "lernen"
+    },
+    {
+      "id": 4,
+      "question": "Wir _____ (We learn)",
+      "options": [
+        "lernen",
+        "lernt"
+      ],
+      "correct": "lernen",
+      "category": "lernen"
+    },
+    {
+      "id": 5,
+      "question": "Ihr _____ (You all learn)",
+      "options": [
+        "lernt",
+        "lernen"
+      ],
+      "correct": "lernt",
+      "category": "lernen"
+    },
+    {
+      "id": 6,
+      "question": "Sie _____ (They learn)",
+      "options": [
+        "lernen",
+        "lernt"
+      ],
+      "correct": "lernen",
+      "category": "lernen"
+    },
+    {
+      "id": 7,
+      "question": "Ich _____ Deutsch (I learn German)",
+      "options": [
+        "lerne",
+        "lernst"
+      ],
+      "correct": "lerne",
+      "category": "lernen"
+    },
+    {
+      "id": 8,
+      "question": "Sie _____ viel (You formal learn a lot)",
+      "options": [
+        "lernen",
+        "lernt"
+      ],
+      "correct": "lernen",
+      "category": "lernen"
+    },
+    {
+      "id": 9,
+      "question": "Ich _____ (I make/do)",
+      "options": [
+        "mache",
+        "machst"
+      ],
+      "correct": "mache",
+      "category": "machen"
+    },
+    {
+      "id": 10,
+      "question": "Du _____ (You make/do)",
+      "options": [
+        "machst",
+        "macht"
+      ],
+      "correct": "machst",
+      "category": "machen"
+    },
+    {
+      "id": 11,
+      "question": "Sie _____ (She makes/does)",
+      "options": [
+        "macht",
+        "machen"
+      ],
+      "correct": "macht",
+      "category": "machen"
+    },
+    {
+      "id": 12,
+      "question": "Wir _____ (We make/do)",
+      "options": [
+        "machen",
+        "macht"
+      ],
+      "correct": "machen",
+      "category": "machen"
+    },
+    {
+      "id": 13,
+      "question": "Ihr _____ das (You all do that)",
+      "options": [
+        "macht",
+        "machen"
+      ],
+      "correct": "macht",
+      "category": "machen"
+    },
+    {
+      "id": 14,
+      "question": "Er _____ das (He does that)",
+      "options": [
+        "macht",
+        "machen"
+      ],
+      "correct": "macht",
+      "category": "machen"
+    },
+    {
+      "id": 15,
+      "question": "Ich _____ in Berlin (I live in Berlin)",
+      "options": [
+        "wohne",
+        "wohnst"
+      ],
+      "correct": "wohne",
+      "category": "wohnen"
+    },
+    {
+      "id": 16,
+      "question": "Du _____ hier (You live here)",
+      "options": [
+        "wohnst",
+        "wohnt"
+      ],
+      "correct": "wohnst",
+      "category": "wohnen"
+    },
+    {
+      "id": 17,
+      "question": "Er _____ dort (He lives there)",
+      "options": [
+        "wohnt",
+        "wohnen"
+      ],
+      "correct": "wohnt",
+      "category": "wohnen"
+    },
+    {
+      "id": 18,
+      "question": "Wir _____ in Deutschland (We live in Germany)",
+      "options": [
+        "wohnen",
+        "wohnt"
+      ],
+      "correct": "wohnen",
+      "category": "wohnen"
+    },
+    {
+      "id": 19,
+      "question": "Sie _____ (They live)",
+      "options": [
+        "wohnen",
+        "wohnt"
+      ],
+      "correct": "wohnen",
+      "category": "wohnen"
+    },
+    {
+      "id": 20,
+      "question": "Sie _____ in Berlin (You formal live in Berlin)",
+      "options": [
+        "wohnen",
+        "wohnt"
+      ],
+      "correct": "wohnen",
+      "category": "wohnen"
+    },
+    {
+      "id": 21,
+      "question": "Ich _____ (I work)",
+      "options": [
+        "arbeite",
+        "arbeitest"
+      ],
+      "correct": "arbeite",
+      "category": "arbeiten"
+    },
+    {
+      "id": 22,
+      "question": "Du _____ (You work)",
+      "options": [
+        "arbeitest",
+        "arbeitet"
+      ],
+      "correct": "arbeitest",
+      "category": "arbeiten - special rule"
+    },
+    {
+      "id": 23,
+      "question": "Er _____ viel (He works a lot)",
+      "options": [
+        "arbeitet",
+        "arbeiten"
+      ],
+      "correct": "arbeitet",
+      "category": "arbeiten - special rule"
+    },
+    {
+      "id": 24,
+      "question": "Wir _____ heute (We work today)",
+      "options": [
+        "arbeiten",
+        "arbeitet"
+      ],
+      "correct": "arbeiten",
+      "category": "arbeiten"
+    },
+    {
+      "id": 25,
+      "question": "Ihr _____ nicht (You all don't work)",
+      "options": [
+        "arbeitet",
+        "arbeiten"
+      ],
+      "correct": "arbeitet",
+      "category": "arbeiten"
+    },
+    {
+      "id": 26,
+      "question": "Sie _____ hier (They work here)",
+      "options": [
+        "arbeiten",
+        "arbeitet"
+      ],
+      "correct": "arbeiten",
+      "category": "arbeiten"
+    },
+    {
+      "id": 27,
+      "question": "Ich _____ Fußball (I play soccer)",
+      "options": [
+        "spiele",
+        "spielst"
+      ],
+      "correct": "spiele",
+      "category": "spielen"
+    },
+    {
+      "id": 28,
+      "question": "Du _____ (You play)",
+      "options": [
+        "spielst",
+        "spielt"
+      ],
+      "correct": "spielst",
+      "category": "spielen"
+    },
+    {
+      "id": 29,
+      "question": "Sie _____ (She plays)",
+      "options": [
+        "spielt",
+        "spielen"
+      ],
+      "correct": "spielt",
+      "category": "spielen"
+    },
+    {
+      "id": 30,
+      "question": "Wir _____ (We play)",
+      "options": [
+        "spielen",
+        "spielt"
+      ],
+      "correct": "spielen",
+      "category": "spielen"
+    },
+    {
+      "id": 31,
+      "question": "Sie _____ gut (You formal play well)",
+      "options": [
+        "spielen",
+        "spielt"
+      ],
+      "correct": "spielen",
+      "category": "spielen"
+    },
+    {
+      "id": 32,
+      "question": "Ihr _____ heute (You all play today)",
+      "options": [
+        "spielt",
+        "spielen"
+      ],
+      "correct": "spielt",
+      "category": "spielen"
+    },
+    {
+      "id": 33,
+      "question": "Ich _____ Brot (I buy bread)",
+      "options": [
+        "kaufe",
+        "kaufst"
+      ],
+      "correct": "kaufe",
+      "category": "kaufen"
+    },
+    {
+      "id": 34,
+      "question": "Du _____ (You buy)",
+      "options": [
+        "kaufst",
+        "kauft"
+      ],
+      "correct": "kaufst",
+      "category": "kaufen"
+    },
+    {
+      "id": 35,
+      "question": "Er _____ (He buys)",
+      "options": [
+        "kauft",
+        "kaufen"
+      ],
+      "correct": "kauft",
+      "category": "kaufen"
+    },
+    {
+      "id": 36,
+      "question": "Wir _____ (We buy)",
+      "options": [
+        "kaufen",
+        "kauft"
+      ],
+      "correct": "kaufen",
+      "category": "kaufen"
+    },
+    {
+      "id": 37,
+      "question": "Ihr _____ viel (You all buy a lot)",
+      "options": [
+        "kauft",
+        "kaufen"
+      ],
+      "correct": "kauft",
+      "category": "kaufen"
+    },
+    {
+      "id": 38,
+      "question": "Sie _____ hier (They buy here)",
+      "options": [
+        "kaufen",
+        "kauft"
+      ],
+      "correct": "kaufen",
+      "category": "kaufen"
+    },
+    {
+      "id": 39,
+      "question": "Ich _____ Hallo (I say hello)",
+      "options": [
+        "sage",
+        "sagst"
+      ],
+      "correct": "sage",
+      "category": "sagen"
+    },
+    {
+      "id": 40,
+      "question": "Du _____ (You say)",
+      "options": [
+        "sagst",
+        "sagt"
+      ],
+      "correct": "sagst",
+      "category": "sagen"
+    },
+    {
+      "id": 41,
+      "question": "Er _____ (He says)",
+      "options": [
+        "sagt",
+        "sagen"
+      ],
+      "correct": "sagt",
+      "category": "sagen"
+    },
+    {
+      "id": 42,
+      "question": "Wir _____ (We say)",
+      "options": [
+        "sagen",
+        "sagt"
+      ],
+      "correct": "sagen",
+      "category": "sagen"
+    },
+    {
+      "id": 43,
+      "question": "Ihr _____ das (You all say that)",
+      "options": [
+        "sagt",
+        "sagen"
+      ],
+      "correct": "sagt",
+      "category": "sagen"
+    },
+    {
+      "id": 44,
+      "question": "Sie _____ Danke (You formal say thank you)",
+      "options": [
+        "sagen",
+        "sagt"
+      ],
+      "correct": "sagen",
+      "category": "sagen"
+    },
+    {
+      "id": 45,
+      "question": "Ich _____ Musik (I listen to music)",
+      "options": [
+        "höre",
+        "hörst"
+      ],
+      "correct": "höre",
+      "category": "hören"
+    },
+    {
+      "id": 46,
+      "question": "Du _____ (You hear)",
+      "options": [
+        "hörst",
+        "hört"
+      ],
+      "correct": "hörst",
+      "category": "hören"
+    },
+    {
+      "id": 47,
+      "question": "Sie _____ gut (She hears well)",
+      "options": [
+        "hört",
+        "hören"
+      ],
+      "correct": "hört",
+      "category": "hören"
+    },
+    {
+      "id": 48,
+      "question": "Wir _____ (We listen)",
+      "options": [
+        "hören",
+        "hört"
+      ],
+      "correct": "hören",
+      "category": "hören"
+    },
+    {
+      "id": 49,
+      "question": "Ihr _____ (You all listen)",
+      "options": [
+        "hört",
+        "hören"
+      ],
+      "correct": "hört",
+      "category": "hören"
+    },
+    {
+      "id": 50,
+      "question": "Sie _____ das (They hear that)",
+      "options": [
+        "hören",
+        "hört"
+      ],
+      "correct": "hören",
+      "category": "hören"
+    }
   ],
   "tag-2-vocabulary": [
-    { "id": 1, "question": "I eat", "options": ["Ich esse", "Du isst"], "correct": "Ich esse", "category": "Verb Conjugations" },
-    { "id": 2, "question": "You eat", "options": ["Du isst", "Er isst"], "correct": "Du isst", "category": "Verb Conjugations" },
-    { "id": 3, "question": "He eats", "options": ["Er isst", "Wir essen"], "correct": "Er isst", "category": "Verb Conjugations" },
-    { "id": 4, "question": "We eat", "options": ["Wir essen", "Ihr esst"], "correct": "Wir essen", "category": "Verb Conjugations" },
-    { "id": 5, "question": "You all eat", "options": ["Ihr esst", "Sie essen"], "correct": "Ihr esst", "category": "Verb Conjugations" },
-    { "id": 6, "question": "They eat", "options": ["Sie essen", "Ich esse"], "correct": "Sie essen", "category": "Verb Conjugations" },
-    { "id": 7, "question": "I go", "options": ["Ich gehe", "Du gehst"], "correct": "Ich gehe", "category": "Verb Conjugations" },
-    { "id": 8, "question": "You go", "options": ["Du gehst", "Er geht"], "correct": "Du gehst", "category": "Verb Conjugations" },
-    { "id": 9, "question": "She goes", "options": ["Sie geht", "Wir gehen"], "correct": "Sie geht", "category": "Verb Conjugations" },
-    { "id": 10, "question": "We go", "options": ["Wir gehen", "Ihr geht"], "correct": "Wir gehen", "category": "Verb Conjugations" },
-    { "id": 11, "question": "You all go", "options": ["Ihr geht", "Sie gehen"], "correct": "Ihr geht", "category": "Verb Conjugations" },
-    { "id": 12, "question": "They go", "options": ["Sie gehen", "Ich gehe"], "correct": "Sie gehen", "category": "Verb Conjugations" },
-    { "id": 13, "question": "And", "options": ["und", "in"], "correct": "und", "category": "Function Words" },
-    { "id": 14, "question": "In", "options": ["in", "für"], "correct": "in", "category": "Function Words" },
-    { "id": 15, "question": "A/an (masculine nominative)", "options": ["ein", "eine"], "correct": "ein", "category": "Function Words" },
-    { "id": 16, "question": "A/an (feminine)", "options": ["eine", "einen"], "correct": "eine", "category": "Function Words" },
-    { "id": 17, "question": "A/an (masculine accusative)", "options": ["einen", "ein"], "correct": "einen", "category": "Function Words" },
-    { "id": 18, "question": "For", "options": ["für", "in"], "correct": "für", "category": "Function Words" },
-    { "id": 19, "question": "My (masculine/neuter)", "options": ["mein", "meine"], "correct": "mein", "category": "Function Words" },
-    { "id": 20, "question": "My (feminine/plural)", "options": ["meine", "mein"], "correct": "meine", "category": "Function Words" },
-    { "id": 21, "question": "House", "options": ["das Haus", "die Wohnung"], "correct": "das Haus", "category": "Places" },
-    { "id": 22, "question": "Ich wohne in _____ Wohnung. (I live in an apartment)", "options": ["einer", "einem"], "correct": "einer", "category": "Places" },
-    { "id": 23, "question": "School", "options": ["die Schule", "der Park"], "correct": "die Schule", "category": "Places" },
-    { "id": 24, "question": "Er geht in _____ Park. (He goes in the park)", "options": ["den", "der"], "correct": "den", "category": "Places" },
-    { "id": 25, "question": "Restaurant", "options": ["das Restaurant", "das Café"], "correct": "das Restaurant", "category": "Places" },
-    { "id": 26, "question": "Wir essen in _____ Café. (We eat in a café)", "options": ["einem", "einer"], "correct": "einem", "category": "Places" },
-    { "id": 27, "question": "Supermarket", "options": ["der Supermarkt", "die Stadt"], "correct": "der Supermarkt", "category": "Places" },
-    { "id": 28, "question": "Die _____ ist groß. (The city is big)", "options": ["Stadt", "Schule"], "correct": "Stadt", "category": "Places" },
-    { "id": 29, "question": "Table", "options": ["der Tisch", "der Stuhl"], "correct": "der Tisch", "category": "Objects" },
-    { "id": 30, "question": "Der _____ ist neu. (The chair is new)", "options": ["Stuhl", "Tisch"], "correct": "Stuhl", "category": "Objects" },
-    { "id": 31, "question": "Book", "options": ["das Buch", "der Stift"], "correct": "das Buch", "category": "Objects" },
-    { "id": 32, "question": "Ich habe _____ Buch. (I have a book)", "options": ["ein", "eine"], "correct": "ein", "category": "Objects" },
-    { "id": 33, "question": "Telephone/phone", "options": ["das Telefon", "der Computer"], "correct": "das Telefon", "category": "Objects" },
-    { "id": 34, "question": "Er hat _____ Computer. (He has a computer)", "options": ["einen", "ein"], "correct": "einen", "category": "Objects" },
-    { "id": 35, "question": "Car", "options": ["das Auto", "die Tasche"], "correct": "das Auto", "category": "Objects" },
-    { "id": 36, "question": "Ich habe _____ Tasche. (I have a bag)", "options": ["eine", "ein"], "correct": "eine", "category": "Objects" },
-    { "id": 37, "question": "Bread", "options": ["das Brot", "der Käse"], "correct": "das Brot", "category": "Food & Drink" },
-    { "id": 38, "question": "Ich esse _____. (I eat bread)", "options": ["Brot", "Käse"], "correct": "Brot", "category": "Food & Drink" },
-    { "id": 39, "question": "Water", "options": ["das Wasser", "der Kaffee"], "correct": "das Wasser", "category": "Food & Drink" },
-    { "id": 40, "question": "Du trinkst _____. (You drink coffee)", "options": ["Kaffee", "Tee"], "correct": "Kaffee", "category": "Food & Drink" },
-    { "id": 41, "question": "Tea", "options": ["der Tee", "der Saft"], "correct": "der Tee", "category": "Food & Drink" },
-    { "id": 42, "question": "Er trinkt _____. (He drinks juice)", "options": ["Saft", "Milch"], "correct": "Saft", "category": "Food & Drink" },
-    { "id": 43, "question": "Milk", "options": ["die Milch", "der Käse"], "correct": "die Milch", "category": "Food & Drink" },
-    { "id": 44, "question": "Ich esse _____ Apfel. (I eat an apple)", "options": ["einen", "ein"], "correct": "einen", "category": "Food & Drink" },
-    { "id": 45, "question": "Today", "options": ["heute", "morgen"], "correct": "heute", "category": "Time Words" },
-    { "id": 46, "question": "Ich gehe _____ in die Schule. (I go to school tomorrow)", "options": ["morgen", "gestern"], "correct": "morgen", "category": "Time Words" },
-    { "id": 47, "question": "Yesterday", "options": ["gestern", "heute"], "correct": "gestern", "category": "Time Words" },
-    { "id": 48, "question": "Er isst _____. (He eats now)", "options": ["jetzt", "später"], "correct": "jetzt", "category": "Time Words" },
-    { "id": 49, "question": "Later", "options": ["später", "immer"], "correct": "später", "category": "Time Words" },
-    { "id": 50, "question": "Ich esse _____ Brot. (I always eat bread)", "options": ["immer", "jetzt"], "correct": "immer", "category": "Time Words" }
+    {
+      "id": 1,
+      "question": "ich ______ (I eat)",
+      "options": [
+        "esse",
+        "isst"
+      ],
+      "correct": "esse",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 2,
+      "question": "du ______ (you eat)",
+      "options": [
+        "isst",
+        "isst"
+      ],
+      "correct": "isst",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 3,
+      "question": "er ______ (he eats)",
+      "options": [
+        "isst",
+        "essen"
+      ],
+      "correct": "isst",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 4,
+      "question": "wir ______ (we eat)",
+      "options": [
+        "essen",
+        "esst"
+      ],
+      "correct": "essen",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 5,
+      "question": "ihr ______ (you all eat)",
+      "options": [
+        "esst",
+        "essen"
+      ],
+      "correct": "esst",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 6,
+      "question": "sie ______ (they eat)",
+      "options": [
+        "essen",
+        "esse"
+      ],
+      "correct": "essen",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 7,
+      "question": "ich ______ (I go)",
+      "options": [
+        "gehe",
+        "gehst"
+      ],
+      "correct": "gehe",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 8,
+      "question": "du ______ (you go)",
+      "options": [
+        "gehst",
+        "geht"
+      ],
+      "correct": "gehst",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 9,
+      "question": "sie ______ (she goes)",
+      "options": [
+        "geht",
+        "gehen"
+      ],
+      "correct": "geht",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 10,
+      "question": "wir ______ (we go)",
+      "options": [
+        "gehen",
+        "geht"
+      ],
+      "correct": "gehen",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 11,
+      "question": "ihr ______ (you all go)",
+      "options": [
+        "geht",
+        "gehen"
+      ],
+      "correct": "geht",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 12,
+      "question": "sie ______ (they go)",
+      "options": [
+        "gehen",
+        "gehe"
+      ],
+      "correct": "gehen",
+      "category": "Verb Conjugations"
+    },
+    {
+      "id": 13,
+      "question": "And",
+      "options": [
+        "und",
+        "in"
+      ],
+      "correct": "und",
+      "category": "Function Words"
+    },
+    {
+      "id": 14,
+      "question": "In",
+      "options": [
+        "in",
+        "für"
+      ],
+      "correct": "in",
+      "category": "Function Words"
+    },
+    {
+      "id": 15,
+      "question": "A/an (masculine nominative)",
+      "options": [
+        "ein",
+        "eine"
+      ],
+      "correct": "ein",
+      "category": "Function Words"
+    },
+    {
+      "id": 16,
+      "question": "A/an (feminine)",
+      "options": [
+        "eine",
+        "einen"
+      ],
+      "correct": "eine",
+      "category": "Function Words"
+    },
+    {
+      "id": 17,
+      "question": "A/an (masculine accusative)",
+      "options": [
+        "einen",
+        "ein"
+      ],
+      "correct": "einen",
+      "category": "Function Words"
+    },
+    {
+      "id": 18,
+      "question": "For",
+      "options": [
+        "für",
+        "in"
+      ],
+      "correct": "für",
+      "category": "Function Words"
+    },
+    {
+      "id": 19,
+      "question": "My (masculine/neuter)",
+      "options": [
+        "mein",
+        "meine"
+      ],
+      "correct": "mein",
+      "category": "Function Words"
+    },
+    {
+      "id": 20,
+      "question": "My (feminine/plural)",
+      "options": [
+        "meine",
+        "mein"
+      ],
+      "correct": "meine",
+      "category": "Function Words"
+    },
+    {
+      "id": 21,
+      "question": "House",
+      "options": [
+        "das Haus",
+        "die Wohnung"
+      ],
+      "correct": "das Haus",
+      "category": "Places"
+    },
+    {
+      "id": 22,
+      "question": "Ich wohne in _____ Wohnung. (I live in an apartment)",
+      "options": [
+        "einer",
+        "einem"
+      ],
+      "correct": "einer",
+      "category": "Places"
+    },
+    {
+      "id": 23,
+      "question": "School",
+      "options": [
+        "die Schule",
+        "der Park"
+      ],
+      "correct": "die Schule",
+      "category": "Places"
+    },
+    {
+      "id": 24,
+      "question": "Er geht in _____ Park. (He goes in the park)",
+      "options": [
+        "den",
+        "der"
+      ],
+      "correct": "den",
+      "category": "Places"
+    },
+    {
+      "id": 25,
+      "question": "Restaurant",
+      "options": [
+        "das Restaurant",
+        "das Café"
+      ],
+      "correct": "das Restaurant",
+      "category": "Places"
+    },
+    {
+      "id": 26,
+      "question": "Wir essen in _____ Café. (We eat in a café)",
+      "options": [
+        "einem",
+        "einer"
+      ],
+      "correct": "einem",
+      "category": "Places"
+    },
+    {
+      "id": 27,
+      "question": "Supermarket",
+      "options": [
+        "der Supermarkt",
+        "die Stadt"
+      ],
+      "correct": "der Supermarkt",
+      "category": "Places"
+    },
+    {
+      "id": 28,
+      "question": "Die _____ ist groß. (The city is big)",
+      "options": [
+        "Stadt",
+        "Schule"
+      ],
+      "correct": "Stadt",
+      "category": "Places"
+    },
+    {
+      "id": 29,
+      "question": "Table",
+      "options": [
+        "der Tisch",
+        "der Stuhl"
+      ],
+      "correct": "der Tisch",
+      "category": "Objects"
+    },
+    {
+      "id": 30,
+      "question": "Der _____ ist neu. (The chair is new)",
+      "options": [
+        "Stuhl",
+        "Tisch"
+      ],
+      "correct": "Stuhl",
+      "category": "Objects"
+    },
+    {
+      "id": 31,
+      "question": "Book",
+      "options": [
+        "das Buch",
+        "der Stift"
+      ],
+      "correct": "das Buch",
+      "category": "Objects"
+    },
+    {
+      "id": 32,
+      "question": "Ich habe _____ Buch. (I have a book)",
+      "options": [
+        "ein",
+        "eine"
+      ],
+      "correct": "ein",
+      "category": "Objects"
+    },
+    {
+      "id": 33,
+      "question": "Telephone/phone",
+      "options": [
+        "das Telefon",
+        "der Computer"
+      ],
+      "correct": "das Telefon",
+      "category": "Objects"
+    },
+    {
+      "id": 34,
+      "question": "Er hat _____ Computer. (He has a computer)",
+      "options": [
+        "einen",
+        "ein"
+      ],
+      "correct": "einen",
+      "category": "Objects"
+    },
+    {
+      "id": 35,
+      "question": "Car",
+      "options": [
+        "das Auto",
+        "die Tasche"
+      ],
+      "correct": "das Auto",
+      "category": "Objects"
+    },
+    {
+      "id": 36,
+      "question": "Ich habe _____ Tasche. (I have a bag)",
+      "options": [
+        "eine",
+        "ein"
+      ],
+      "correct": "eine",
+      "category": "Objects"
+    },
+    {
+      "id": 37,
+      "question": "Bread",
+      "options": [
+        "das Brot",
+        "der Käse"
+      ],
+      "correct": "das Brot",
+      "category": "Food & Drink"
+    },
+    {
+      "id": 38,
+      "question": "Ich esse _____. (I eat bread)",
+      "options": [
+        "Brot",
+        "Käse"
+      ],
+      "correct": "Brot",
+      "category": "Food & Drink"
+    },
+    {
+      "id": 39,
+      "question": "Water",
+      "options": [
+        "das Wasser",
+        "der Kaffee"
+      ],
+      "correct": "das Wasser",
+      "category": "Food & Drink"
+    },
+    {
+      "id": 40,
+      "question": "Du trinkst _____. (You drink coffee)",
+      "options": [
+        "Kaffee",
+        "Tee"
+      ],
+      "correct": "Kaffee",
+      "category": "Food & Drink"
+    },
+    {
+      "id": 41,
+      "question": "Tea",
+      "options": [
+        "der Tee",
+        "der Saft"
+      ],
+      "correct": "der Tee",
+      "category": "Food & Drink"
+    },
+    {
+      "id": 42,
+      "question": "Er trinkt _____. (He drinks juice)",
+      "options": [
+        "Saft",
+        "Milch"
+      ],
+      "correct": "Saft",
+      "category": "Food & Drink"
+    },
+    {
+      "id": 43,
+      "question": "Milk",
+      "options": [
+        "die Milch",
+        "der Käse"
+      ],
+      "correct": "die Milch",
+      "category": "Food & Drink"
+    },
+    {
+      "id": 44,
+      "question": "Ich esse _____ Apfel. (I eat an apple)",
+      "options": [
+        "einen",
+        "ein"
+      ],
+      "correct": "einen",
+      "category": "Food & Drink"
+    },
+    {
+      "id": 45,
+      "question": "Today",
+      "options": [
+        "heute",
+        "morgen"
+      ],
+      "correct": "heute",
+      "category": "Time Words"
+    },
+    {
+      "id": 46,
+      "question": "Ich gehe _____ in die Schule. (I go to school tomorrow)",
+      "options": [
+        "morgen",
+        "gestern"
+      ],
+      "correct": "morgen",
+      "category": "Time Words"
+    },
+    {
+      "id": 47,
+      "question": "Yesterday",
+      "options": [
+        "gestern",
+        "heute"
+      ],
+      "correct": "gestern",
+      "category": "Time Words"
+    },
+    {
+      "id": 48,
+      "question": "Er isst _____. (He eats now)",
+      "options": [
+        "jetzt",
+        "später"
+      ],
+      "correct": "jetzt",
+      "category": "Time Words"
+    },
+    {
+      "id": 49,
+      "question": "Later",
+      "options": [
+        "später",
+        "immer"
+      ],
+      "correct": "später",
+      "category": "Time Words"
+    },
+    {
+      "id": 50,
+      "question": "Ich esse _____ Brot. (I always eat bread)",
+      "options": [
+        "immer",
+        "jetzt"
+      ],
+      "correct": "immer",
+      "category": "Time Words"
+    }
   ],
   "tag-2-sentences": [
-    { "id": 1, "question": "I learn German.", "options": ["Ich lerne Deutsch.", "Du lernst Deutsch."], "correct": "Ich lerne Deutsch.", "category": "Translate to German" },
-    { "id": 2, "question": "You live here.", "options": ["Du wohnst hier.", "Ich wohne hier."], "correct": "Du wohnst hier.", "category": "Translate to German" },
-    { "id": 3, "question": "He works today.", "options": ["Er arbeitet heute.", "Sie arbeitet heute."], "correct": "Er arbeitet heute.", "category": "Translate to German" },
-    { "id": 4, "question": "We eat bread.", "options": ["Wir essen Brot.", "Ihr esst Brot."], "correct": "Wir essen Brot.", "category": "Translate to German" },
-    { "id": 5, "question": "She plays.", "options": ["Sie spielt.", "Er spielt."], "correct": "Sie spielt.", "category": "Translate to German" },
-    { "id": 6, "question": "They buy coffee.", "options": ["Sie kaufen Kaffee.", "Wir kaufen Kaffee."], "correct": "Sie kaufen Kaffee.", "category": "Translate to German" },
-    { "id": 7, "question": "I sleep now.", "options": ["Ich schlafe jetzt.", "Du schläfst jetzt."], "correct": "Ich schlafe jetzt.", "category": "Translate to German" },
-    { "id": 8, "question": "You (formal) say hello.", "options": ["Sie sagen Hallo.", "Ihr sagt Hallo."], "correct": "Sie sagen Hallo.", "category": "Translate to German" },
-    { "id": 9, "question": "I am very tired.", "options": ["Ich bin sehr müde.", "Du bist sehr müde."], "correct": "Ich bin sehr müde.", "category": "Translate to German" },
-    { "id": 10, "question": "He is also German.", "options": ["Er ist auch deutsch.", "Sie ist auch deutsch."], "correct": "Er ist auch deutsch.", "category": "Translate to German" },
-    { "id": 11, "question": "Ich _____ heute. (I work today)", "options": ["arbeite", "arbeitest"], "correct": "arbeite", "category": "Fill in the Blanks" },
-    { "id": 12, "question": "Du _____ Wasser. (You drink water)", "options": ["trinkst", "trinkt"], "correct": "trinkst", "category": "Fill in the Blanks" },
-    { "id": 13, "question": "Sie _____ das Buch. (She reads the book)", "options": ["liest", "lesen"], "correct": "liest", "category": "Fill in the Blanks" },
-    { "id": 14, "question": "Wir _____ hier. (We live here)", "options": ["wohnen", "wohnt"], "correct": "wohnen", "category": "Fill in the Blanks" },
-    { "id": 15, "question": "Ihr _____ immer. (You all play always)", "options": ["spielt", "spielen"], "correct": "spielt", "category": "Fill in the Blanks" },
-    { "id": 16, "question": "Er _____ nie. (He sleeps never)", "options": ["schläft", "schlafen"], "correct": "schläft", "category": "Fill in the Blanks" },
-    { "id": 17, "question": "Ich _____ Musik. (I listen to music)", "options": ["höre", "hörst"], "correct": "höre", "category": "Fill in the Blanks" },
-    { "id": 18, "question": "Du _____ später. (You come later)", "options": ["kommst", "kommt"], "correct": "kommst", "category": "Fill in the Blanks" },
-    { "id": 19, "question": "Sie _____ Deutsch. (They learn German)", "options": ["lernen", "lernt"], "correct": "lernen", "category": "Fill in the Blanks" },
-    { "id": 20, "question": "Ich _____ morgen. (I go tomorrow)", "options": ["gehe", "gehst"], "correct": "gehe", "category": "Fill in the Blanks" },
-    { "id": 21, "question": "I am a student. I learn German.", "options": ["Ich bin Student. Ich lerne Deutsch.", "Du bist Student. Du lernst Deutsch."], "correct": "Ich bin Student. Ich lerne Deutsch.", "category": "Match Sentences" },
-    { "id": 22, "question": "She is tired. She sleeps now.", "options": ["Sie ist müde. Sie schläft jetzt.", "Er ist müde. Er schläft jetzt."], "correct": "Sie ist müde. Sie schläft jetzt.", "category": "Match Sentences" },
-    { "id": 23, "question": "We work here. We are busy.", "options": ["Wir arbeiten hier. Wir sind beschäftigt.", "Ihr arbeitet hier. Ihr seid beschäftigt."], "correct": "Wir arbeiten hier. Wir sind beschäftigt.", "category": "Match Sentences" },
-    { "id": 24, "question": "He eats bread. He drinks water.", "options": ["Er isst Brot. Er trinkt Wasser.", "Sie isst Brot. Sie trinkt Wasser."], "correct": "Er isst Brot. Er trinkt Wasser.", "category": "Match Sentences" },
-    { "id": 25, "question": "You play today. You are happy.", "options": ["Du spielst heute. Du bist glücklich.", "Ich spiele heute. Ich bin glücklich."], "correct": "Du spielst heute. Du bist glücklich.", "category": "Match Sentences" },
-    { "id": 26, "question": "They buy coffee. They drink coffee.", "options": ["Sie kaufen Kaffee. Sie trinken Kaffee.", "Wir kaufen Kaffee. Wir trinken Kaffee."], "correct": "Sie kaufen Kaffee. Sie trinken Kaffee.", "category": "Match Sentences" },
-    { "id": 27, "question": "I work tomorrow. I am also tired.", "options": ["Ich arbeite morgen. Ich bin auch müde.", "Du arbeitest morgen. Du bist auch müde."], "correct": "Ich arbeite morgen. Ich bin auch müde.", "category": "Match Sentences" },
-    { "id": 28, "question": "She says hello. She is very nice.", "options": ["Sie sagt Hallo. Sie ist sehr nett.", "Er sagt Hallo. Er ist sehr nett."], "correct": "Sie sagt Hallo. Sie ist sehr nett.", "category": "Match Sentences" },
-    { "id": 29, "question": "We live here. We are German.", "options": ["Wir wohnen hier. Wir sind deutsch.", "Ihr wohnt hier. Ihr seid deutsch."], "correct": "Wir wohnen hier. Wir sind deutsch.", "category": "Match Sentences" },
-    { "id": 30, "question": "He reads the book. He is a student.", "options": ["Er liest das Buch. Er ist Student.", "Sie liest das Buch. Sie ist Studentin."], "correct": "Er liest das Buch. Er ist Student.", "category": "Match Sentences" }
+    {
+      "id": 1,
+      "question": "I learn German.",
+      "options": [
+        "Ich lerne Deutsch.",
+        "Du lernst Deutsch."
+      ],
+      "correct": "Ich lerne Deutsch.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 2,
+      "question": "You live here.",
+      "options": [
+        "Du wohnst hier.",
+        "Ich wohne hier."
+      ],
+      "correct": "Du wohnst hier.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 3,
+      "question": "He works today.",
+      "options": [
+        "Er arbeitet heute.",
+        "Sie arbeitet heute."
+      ],
+      "correct": "Er arbeitet heute.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 4,
+      "question": "We eat bread.",
+      "options": [
+        "Wir essen Brot.",
+        "Ihr esst Brot."
+      ],
+      "correct": "Wir essen Brot.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 5,
+      "question": "She plays.",
+      "options": [
+        "Sie spielt.",
+        "Er spielt."
+      ],
+      "correct": "Sie spielt.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 6,
+      "question": "They buy coffee.",
+      "options": [
+        "Sie kaufen Kaffee.",
+        "Wir kaufen Kaffee."
+      ],
+      "correct": "Sie kaufen Kaffee.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 7,
+      "question": "I sleep now.",
+      "options": [
+        "Ich schlafe jetzt.",
+        "Du schläfst jetzt."
+      ],
+      "correct": "Ich schlafe jetzt.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 8,
+      "question": "You (formal) say hello.",
+      "options": [
+        "Sie sagen Hallo.",
+        "Ihr sagt Hallo."
+      ],
+      "correct": "Sie sagen Hallo.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 9,
+      "question": "I am very tired.",
+      "options": [
+        "Ich bin sehr müde.",
+        "Du bist sehr müde."
+      ],
+      "correct": "Ich bin sehr müde.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 10,
+      "question": "He is also German.",
+      "options": [
+        "Er ist auch deutsch.",
+        "Sie ist auch deutsch."
+      ],
+      "correct": "Er ist auch deutsch.",
+      "category": "Translate to German"
+    },
+    {
+      "id": 11,
+      "question": "Ich _____ heute. (I work today)",
+      "options": [
+        "arbeite",
+        "arbeitest"
+      ],
+      "correct": "arbeite",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 12,
+      "question": "Du _____ Wasser. (You drink water)",
+      "options": [
+        "trinkst",
+        "trinkt"
+      ],
+      "correct": "trinkst",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 13,
+      "question": "Sie _____ das Buch. (She reads the book)",
+      "options": [
+        "liest",
+        "lesen"
+      ],
+      "correct": "liest",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 14,
+      "question": "Wir _____ hier. (We live here)",
+      "options": [
+        "wohnen",
+        "wohnt"
+      ],
+      "correct": "wohnen",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 15,
+      "question": "Ihr _____ immer. (You all play always)",
+      "options": [
+        "spielt",
+        "spielen"
+      ],
+      "correct": "spielt",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 16,
+      "question": "Er _____ nie. (He sleeps never)",
+      "options": [
+        "schläft",
+        "schlafen"
+      ],
+      "correct": "schläft",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 17,
+      "question": "Ich _____ Musik. (I listen to music)",
+      "options": [
+        "höre",
+        "hörst"
+      ],
+      "correct": "höre",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 18,
+      "question": "Du _____ später. (You come later)",
+      "options": [
+        "kommst",
+        "kommt"
+      ],
+      "correct": "kommst",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 19,
+      "question": "Sie _____ Deutsch. (They learn German)",
+      "options": [
+        "lernen",
+        "lernt"
+      ],
+      "correct": "lernen",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 20,
+      "question": "Ich _____ morgen. (I go tomorrow)",
+      "options": [
+        "gehe",
+        "gehst"
+      ],
+      "correct": "gehe",
+      "category": "Fill in the Blanks"
+    },
+    {
+      "id": 21,
+      "question": "I am a student. I learn German.",
+      "options": [
+        "Ich bin Student. Ich lerne Deutsch.",
+        "Du bist Student. Du lernst Deutsch."
+      ],
+      "correct": "Ich bin Student. Ich lerne Deutsch.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 22,
+      "question": "She is tired. She sleeps now.",
+      "options": [
+        "Sie ist müde. Sie schläft jetzt.",
+        "Er ist müde. Er schläft jetzt."
+      ],
+      "correct": "Sie ist müde. Sie schläft jetzt.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 23,
+      "question": "We work here. We are busy.",
+      "options": [
+        "Wir arbeiten hier. Wir sind beschäftigt.",
+        "Ihr arbeitet hier. Ihr seid beschäftigt."
+      ],
+      "correct": "Wir arbeiten hier. Wir sind beschäftigt.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 24,
+      "question": "He eats bread. He drinks water.",
+      "options": [
+        "Er isst Brot. Er trinkt Wasser.",
+        "Sie isst Brot. Sie trinkt Wasser."
+      ],
+      "correct": "Er isst Brot. Er trinkt Wasser.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 25,
+      "question": "You play today. You are happy.",
+      "options": [
+        "Du spielst heute. Du bist glücklich.",
+        "Ich spiele heute. Ich bin glücklich."
+      ],
+      "correct": "Du spielst heute. Du bist glücklich.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 26,
+      "question": "They buy coffee. They drink coffee.",
+      "options": [
+        "Sie kaufen Kaffee. Sie trinken Kaffee.",
+        "Wir kaufen Kaffee. Wir trinken Kaffee."
+      ],
+      "correct": "Sie kaufen Kaffee. Sie trinken Kaffee.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 27,
+      "question": "I work tomorrow. I am also tired.",
+      "options": [
+        "Ich arbeite morgen. Ich bin auch müde.",
+        "Du arbeitest morgen. Du bist auch müde."
+      ],
+      "correct": "Ich arbeite morgen. Ich bin auch müde.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 28,
+      "question": "She says hello. She is very nice.",
+      "options": [
+        "Sie sagt Hallo. Sie ist sehr nett.",
+        "Er sagt Hallo. Er ist sehr nett."
+      ],
+      "correct": "Sie sagt Hallo. Sie ist sehr nett.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 29,
+      "question": "We live here. We are German.",
+      "options": [
+        "Wir wohnen hier. Wir sind deutsch.",
+        "Ihr wohnt hier. Ihr seid deutsch."
+      ],
+      "correct": "Wir wohnen hier. Wir sind deutsch.",
+      "category": "Match Sentences"
+    },
+    {
+      "id": 30,
+      "question": "He reads the book. He is a student.",
+      "options": [
+        "Er liest das Buch. Er ist Student.",
+        "Sie liest das Buch. Sie ist Studentin."
+      ],
+      "correct": "Er liest das Buch. Er ist Student.",
+      "category": "Match Sentences"
+    }
   ],
   "tag-3-haben": [
-    { "id": 1, "question": "I have", "options": ["ich habe", "ich hast"], "correct": "ich habe", "category": "Basic Conjugation" },
-    { "id": 2, "question": "you have (informal)", "options": ["du hast", "du habe"], "correct": "du hast", "category": "Basic Conjugation" },
-    { "id": 3, "question": "he has", "options": ["er hat", "er hast"], "correct": "er hat", "category": "Basic Conjugation" },
-    { "id": 4, "question": "she has", "options": ["sie hat", "sie haben"], "correct": "sie hat", "category": "Basic Conjugation" },
-    { "id": 5, "question": "it has", "options": ["es hat", "es habt"], "correct": "es hat", "category": "Basic Conjugation" },
-    { "id": 6, "question": "we have", "options": ["wir haben", "wir habt"], "correct": "wir haben", "category": "Basic Conjugation" },
-    { "id": 7, "question": "you all have", "options": ["ihr habt", "ihr haben"], "correct": "ihr habt", "category": "Basic Conjugation" },
-    { "id": 8, "question": "they have", "options": ["sie haben", "sie habt"], "correct": "sie haben", "category": "Basic Conjugation" },
-    { "id": 9, "question": "you have (formal)", "options": ["Sie haben", "Sie hast"], "correct": "Sie haben", "category": "Basic Conjugation" },
-    { "id": 10, "question": "_____ Hunger. (I have hunger / I'm hungry)", "options": ["ich habe", "ich hast"], "correct": "ich habe", "category": "Basic Conjugation" },
-    { "id": 11, "question": "Du _____ Zeit. (you have time)", "options": ["hast", "habt"], "correct": "hast", "category": "Fill in the Blank" },
-    { "id": 12, "question": "Er _____ Durst. (he is thirsty)", "options": ["hat", "hast"], "correct": "hat", "category": "Fill in the Blank" },
-    { "id": 13, "question": "Wir _____ Glück. (we are lucky)", "options": ["haben", "habt"], "correct": "haben", "category": "Fill in the Blank" },
-    { "id": 14, "question": "Ihr _____ Angst. (you all are afraid)", "options": ["habt", "haben"], "correct": "habt", "category": "Fill in the Blank" },
-    { "id": 15, "question": "Sie _____ Spaß. (they have fun)", "options": ["haben", "habt"], "correct": "haben", "category": "Fill in the Blank" },
-    { "id": 16, "question": "Ich _____ Freizeit. (I have free time)", "options": ["habe", "hast"], "correct": "habe", "category": "Fill in the Blank" },
-    { "id": 17, "question": "Du _____ Recht. (you are right)", "options": ["hast", "hat"], "correct": "hast", "category": "Fill in the Blank" },
-    { "id": 18, "question": "Sie _____ Interesse. (she has interest)", "options": ["hat", "habe"], "correct": "hat", "category": "Fill in the Blank" },
-    { "id": 19, "question": "Wir _____ Probleme. (we have problems)", "options": ["haben", "habt"], "correct": "haben", "category": "Fill in the Blank" },
-    { "id": 20, "question": "Ihr _____ Ideen. (you all have ideas)", "options": ["habt", "hast"], "correct": "habt", "category": "Fill in the Blank" },
-    { "id": 21, "question": "Ich bin müde und ich _____ keine Zeit. (I am tired and I have no time)", "options": ["habe", "hast"], "correct": "habe", "category": "Mixed Practice" },
-    { "id": 22, "question": "_____ du Hunger? (are you hungry? / do you have hunger?)", "options": ["hast", "habt"], "correct": "hast", "category": "Mixed Practice" },
-    { "id": 23, "question": "Mein Freund _____ heute Arbeit. (my friend has work today)", "options": ["hat", "hast"], "correct": "hat", "category": "Mixed Practice" },
-    { "id": 24, "question": "Wir _____ viel Spaß hier! (we have a lot of fun here!)", "options": ["haben", "habt"], "correct": "haben", "category": "Mixed Practice" },
-    { "id": 25, "question": "_____ ihr Zeit morgen? (do you all have time tomorrow?)", "options": ["habt", "haben"], "correct": "habt", "category": "Mixed Practice" },
-    { "id": 26, "question": "Meine Freunde _____ keine Angst. (my friends are not afraid)", "options": ["haben", "habt"], "correct": "haben", "category": "Mixed Practice" },
-    { "id": 27, "question": "Du _____ Glück aber ich _____ kein Glück. (you are lucky but I'm not lucky)", "options": ["hast / habe", "habt / hast"], "correct": "hast / habe", "category": "Mixed Practice" },
-    { "id": 28, "question": "Er _____ immer Durst. (he is always thirsty)", "options": ["hat", "habe"], "correct": "hat", "category": "Mixed Practice" },
-    { "id": 29, "question": "Wir _____ heute keine Freizeit. (we don't have free time today)", "options": ["haben", "habt"], "correct": "haben", "category": "Mixed Practice" },
-    { "id": 30, "question": "Sie _____ viele Fragen. (she has many questions)", "options": ["hat", "hast"], "correct": "hat", "category": "Mixed Practice" }
+    {
+      "id": 1,
+      "question": "ich ______ (I have)",
+      "options": [
+        "habe",
+        "hast"
+      ],
+      "correct": "habe",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 2,
+      "question": "du ______ (you have)",
+      "options": [
+        "hast",
+        "habe"
+      ],
+      "correct": "hast",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 3,
+      "question": "er ______ (he has)",
+      "options": [
+        "hat",
+        "hast"
+      ],
+      "correct": "hat",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 4,
+      "question": "sie ______ (she has)",
+      "options": [
+        "hat",
+        "haben"
+      ],
+      "correct": "hat",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 5,
+      "question": "es ______ (it has)",
+      "options": [
+        "hat",
+        "habt"
+      ],
+      "correct": "hat",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 6,
+      "question": "wir ______ (we have)",
+      "options": [
+        "haben",
+        "habt"
+      ],
+      "correct": "haben",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 7,
+      "question": "ihr ______ (you all have)",
+      "options": [
+        "habt",
+        "haben"
+      ],
+      "correct": "habt",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 8,
+      "question": "sie ______ (they have)",
+      "options": [
+        "haben",
+        "habt"
+      ],
+      "correct": "haben",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 9,
+      "question": "Sie ______ (you have)",
+      "options": [
+        "haben",
+        "hast"
+      ],
+      "correct": "haben",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 10,
+      "question": "_____ Hunger. (I have hunger / I'm hungry)",
+      "options": [
+        "ich habe",
+        "ich hast"
+      ],
+      "correct": "ich habe",
+      "category": "Basic Conjugation"
+    },
+    {
+      "id": 11,
+      "question": "Du _____ Zeit. (you have time)",
+      "options": [
+        "hast",
+        "habt"
+      ],
+      "correct": "hast",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 12,
+      "question": "Er _____ Durst. (he is thirsty)",
+      "options": [
+        "hat",
+        "hast"
+      ],
+      "correct": "hat",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 13,
+      "question": "Wir _____ Glück. (we are lucky)",
+      "options": [
+        "haben",
+        "habt"
+      ],
+      "correct": "haben",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 14,
+      "question": "Ihr _____ Angst. (you all are afraid)",
+      "options": [
+        "habt",
+        "haben"
+      ],
+      "correct": "habt",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 15,
+      "question": "Sie _____ Spaß. (they have fun)",
+      "options": [
+        "haben",
+        "habt"
+      ],
+      "correct": "haben",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 16,
+      "question": "Ich _____ Freizeit. (I have free time)",
+      "options": [
+        "habe",
+        "hast"
+      ],
+      "correct": "habe",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 17,
+      "question": "Du _____ Recht. (you are right)",
+      "options": [
+        "hast",
+        "hat"
+      ],
+      "correct": "hast",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 18,
+      "question": "Sie _____ Interesse. (she has interest)",
+      "options": [
+        "hat",
+        "habe"
+      ],
+      "correct": "hat",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 19,
+      "question": "Wir _____ Probleme. (we have problems)",
+      "options": [
+        "haben",
+        "habt"
+      ],
+      "correct": "haben",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 20,
+      "question": "Ihr _____ Ideen. (you all have ideas)",
+      "options": [
+        "habt",
+        "hast"
+      ],
+      "correct": "habt",
+      "category": "Fill in the Blank"
+    },
+    {
+      "id": 21,
+      "question": "Ich bin müde und ich _____ keine Zeit. (I am tired and I have no time)",
+      "options": [
+        "habe",
+        "hast"
+      ],
+      "correct": "habe",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 22,
+      "question": "_____ du Hunger? (are you hungry? / do you have hunger?)",
+      "options": [
+        "hast",
+        "habt"
+      ],
+      "correct": "hast",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 23,
+      "question": "Mein Freund _____ heute Arbeit. (my friend has work today)",
+      "options": [
+        "hat",
+        "hast"
+      ],
+      "correct": "hat",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 24,
+      "question": "Wir _____ viel Spaß hier! (we have a lot of fun here!)",
+      "options": [
+        "haben",
+        "habt"
+      ],
+      "correct": "haben",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 25,
+      "question": "_____ ihr Zeit morgen? (do you all have time tomorrow?)",
+      "options": [
+        "habt",
+        "haben"
+      ],
+      "correct": "habt",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 26,
+      "question": "Meine Freunde _____ keine Angst. (my friends are not afraid)",
+      "options": [
+        "haben",
+        "habt"
+      ],
+      "correct": "haben",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 27,
+      "question": "Du _____ Glück aber ich _____ kein Glück. (you are lucky but I'm not lucky)",
+      "options": [
+        "hast / habe",
+        "habt / hast"
+      ],
+      "correct": "hast / habe",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 28,
+      "question": "Er _____ immer Durst. (he is always thirsty)",
+      "options": [
+        "hat",
+        "habe"
+      ],
+      "correct": "hat",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 29,
+      "question": "Wir _____ heute keine Freizeit. (we don't have free time today)",
+      "options": [
+        "haben",
+        "habt"
+      ],
+      "correct": "haben",
+      "category": "Mixed Practice"
+    },
+    {
+      "id": 30,
+      "question": "Sie _____ viele Fragen. (she has many questions)",
+      "options": [
+        "hat",
+        "hast"
+      ],
+      "correct": "hat",
+      "category": "Mixed Practice"
+    }
   ],
   "tag-3-vocabulary": [
-    { "id": 1, "question": "to wait", "options": ["warten", "wohnen"], "correct": "warten", "category": "Verb - WARTEN" },
-    { "id": 2, "question": "I wait", "options": ["ich warte", "ich wartest"], "correct": "ich warte", "category": "Verb - WARTEN" },
-    { "id": 3, "question": "you wait (informal)", "options": ["du wartest", "du warte"], "correct": "du wartest", "category": "Verb - WARTEN" },
-    { "id": 4, "question": "he waits", "options": ["er wartet", "er warten"], "correct": "er wartet", "category": "Verb - WARTEN" },
-    { "id": 5, "question": "we wait", "options": ["wir warten", "wir wartet"], "correct": "wir warten", "category": "Verb - WARTEN" },
-    { "id": 6, "question": "you all wait", "options": ["ihr wartet", "ihr warten"], "correct": "ihr wartet", "category": "Verb - WARTEN" },
-    { "id": 7, "question": "Ich _____ hier. (I wait here)", "options": ["warte", "wartest"], "correct": "warte", "category": "Verb - WARTEN" },
-    { "id": 8, "question": "Du _____ dort. (you wait there)", "options": ["wartest", "wartet"], "correct": "wartest", "category": "Verb - WARTEN" },
-    { "id": 9, "question": "Wir _____ immer. (we always wait)", "options": ["warten", "wartet"], "correct": "warten", "category": "Verb - WARTEN" },
-    { "id": 10, "question": "Sie _____ heute. (she waits today)", "options": ["wartet", "warte"], "correct": "wartet", "category": "Verb - WARTEN" },
-    { "id": 11, "question": "but", "options": ["aber", "oder"], "correct": "aber", "category": "Function Words" },
-    { "id": 12, "question": "Ich bin müde _____ ich arbeite. (I am tired but I work)", "options": ["aber", "oder"], "correct": "aber", "category": "Function Words" },
-    { "id": 13, "question": "or", "options": ["oder", "aber"], "correct": "oder", "category": "Function Words" },
-    { "id": 14, "question": "Kaffee _____ Tee? (coffee or tea?)", "options": ["oder", "aber"], "correct": "oder", "category": "Function Words" },
-    { "id": 15, "question": "then", "options": ["dann", "denn"], "correct": "dann", "category": "Function Words" },
-    { "id": 16, "question": "Ich lerne und _____ ich schlafe. (I study and then I sleep)", "options": ["dann", "denn"], "correct": "dann", "category": "Function Words" },
-    { "id": 17, "question": "sometimes", "options": ["manchmal", "immer"], "correct": "manchmal", "category": "Function Words" },
-    { "id": 18, "question": "often", "options": ["oft", "nie"], "correct": "oft", "category": "Function Words" },
-    { "id": 19, "question": "hunger", "options": ["Hunger", "Durst"], "correct": "Hunger", "category": "Feelings/States" },
-    { "id": 20, "question": "Ich habe _____. (I am hungry)", "options": ["Hunger", "Durst"], "correct": "Hunger", "category": "Feelings/States" },
-    { "id": 21, "question": "thirst", "options": ["Durst", "Hunger"], "correct": "Durst", "category": "Feelings/States" },
-    { "id": 22, "question": "Du hast _____. (you are thirsty)", "options": ["Durst", "Hunger"], "correct": "Durst", "category": "Feelings/States" },
-    { "id": 23, "question": "time", "options": ["Zeit", "Arbeit"], "correct": "Zeit", "category": "Feelings/States" },
-    { "id": 24, "question": "Ich habe keine _____. (I have no time)", "options": ["Zeit", "Arbeit"], "correct": "Zeit", "category": "Feelings/States" },
-    { "id": 25, "question": "fear", "options": ["Angst", "Freude"], "correct": "Angst", "category": "Feelings/States" },
-    { "id": 26, "question": "Er hat _____. (he is afraid)", "options": ["Angst", "Glück"], "correct": "Angst", "category": "Feelings/States" },
-    { "id": 27, "question": "luck/happiness", "options": ["Glück", "Spaß"], "correct": "Glück", "category": "Feelings/States" },
-    { "id": 28, "question": "Wir haben _____! (we are lucky!)", "options": ["Glück", "Recht"], "correct": "Glück", "category": "Feelings/States" },
-    { "id": 29, "question": "fun", "options": ["Spaß", "Angst"], "correct": "Spaß", "category": "More Feelings" },
-    { "id": 30, "question": "Ihr habt _____. (you all have fun)", "options": ["Spaß", "Lust"], "correct": "Spaß", "category": "More Feelings" },
-    { "id": 31, "question": "to be right", "options": ["Recht haben", "Zeit haben"], "correct": "Recht haben", "category": "More Feelings" },
-    { "id": 32, "question": "Du hast _____! (you are right!)", "options": ["Recht", "Glück"], "correct": "Recht", "category": "More Feelings" },
-    { "id": 33, "question": "desire/feel like", "options": ["Lust", "Angst"], "correct": "Lust", "category": "More Feelings" },
-    { "id": 34, "question": "Ich habe _____ zu tanzen. (I feel like dancing)", "options": ["Lust", "Spaß"], "correct": "Lust", "category": "More Feelings" },
-    { "id": 35, "question": "interest", "options": ["Interesse", "Ideen"], "correct": "Interesse", "category": "More Feelings" },
-    { "id": 36, "question": "Sie hat _____. (she has interest / she is interested)", "options": ["Interesse", "Freude"], "correct": "Interesse", "category": "More Feelings" },
-    { "id": 37, "question": "joy", "options": ["Freude", "Angst"], "correct": "Freude", "category": "More Feelings" },
-    { "id": 38, "question": "Wir haben _____. (we have joy)", "options": ["Freude", "Probleme"], "correct": "Freude", "category": "More Feelings" },
-    { "id": 39, "question": "to sleep", "options": ["schlafen", "lachen"], "correct": "schlafen", "category": "Intransitive Verbs" },
-    { "id": 40, "question": "Ich _____. (I sleep)", "options": ["schlafe", "tanze"], "correct": "schlafe", "category": "Intransitive Verbs" },
-    { "id": 41, "question": "to dance", "options": ["tanzen", "singen"], "correct": "tanzen", "category": "Intransitive Verbs" },
-    { "id": 42, "question": "Du _____. (you dance)", "options": ["tanzt", "singst"], "correct": "tanzt", "category": "Intransitive Verbs" },
-    { "id": 43, "question": "to laugh", "options": ["lachen", "weinen"], "correct": "lachen", "category": "Intransitive Verbs" },
-    { "id": 44, "question": "Er _____. (he laughs)", "options": ["lacht", "weint"], "correct": "lacht", "category": "Intransitive Verbs" },
-    { "id": 45, "question": "to cry", "options": ["weinen", "lachen"], "correct": "weinen", "category": "Intransitive Verbs" },
-    { "id": 46, "question": "Sie _____. (she cries)", "options": ["weint", "singt"], "correct": "weint", "category": "Intransitive Verbs" },
-    { "id": 47, "question": "to swim", "options": ["schwimmen", "laufen"], "correct": "schwimmen", "category": "More Verbs" },
-    { "id": 48, "question": "Wir _____. (we swim)", "options": ["schwimmen", "laufen"], "correct": "schwimmen", "category": "More Verbs" },
-    { "id": 49, "question": "to run", "options": ["laufen", "reisen"], "correct": "laufen", "category": "More Verbs" },
-    { "id": 50, "question": "Ihr _____. (you all run)", "options": ["lauft", "singt"], "correct": "lauft", "category": "More Verbs" },
-    { "id": 51, "question": "to sing", "options": ["singen", "tanzen"], "correct": "singen", "category": "More Verbs" },
-    { "id": 52, "question": "Sie _____. (they sing)", "options": ["singen", "tanzen"], "correct": "singen", "category": "More Verbs" },
-    { "id": 53, "question": "to travel", "options": ["reisen", "warten"], "correct": "reisen", "category": "More Verbs" },
-    { "id": 54, "question": "Ich _____ oft. (I travel often)", "options": ["reise", "warte"], "correct": "reise", "category": "More Verbs" },
-    { "id": 55, "question": "today", "options": ["heute", "morgen"], "correct": "heute", "category": "Time/Frequency" },
-    { "id": 56, "question": "Ich arbeite _____. (I work today)", "options": ["heute", "gestern"], "correct": "heute", "category": "Time/Frequency" },
-    { "id": 57, "question": "tomorrow", "options": ["morgen", "heute"], "correct": "morgen", "category": "Time/Frequency" },
-    { "id": 58, "question": "Du lernst _____. (you study tomorrow)", "options": ["morgen", "jetzt"], "correct": "morgen", "category": "Time/Frequency" },
-    { "id": 59, "question": "now", "options": ["jetzt", "später"], "correct": "jetzt", "category": "Time/Frequency" },
-    { "id": 60, "question": "Wir gehen _____. (we go now)", "options": ["jetzt", "nie"], "correct": "jetzt", "category": "Time/Frequency" },
-    { "id": 61, "question": "always", "options": ["immer", "nie"], "correct": "immer", "category": "Time/Frequency" },
-    { "id": 62, "question": "Er ist _____ müde. (he is always tired)", "options": ["immer", "manchmal"], "correct": "immer", "category": "Time/Frequency" },
-    { "id": 63, "question": "never", "options": ["nie", "immer"], "correct": "nie", "category": "Time/Frequency" },
-    { "id": 64, "question": "work", "options": ["Arbeit", "Freizeit"], "correct": "Arbeit", "category": "Abstract Nouns" },
-    { "id": 65, "question": "Ich habe _____. (I have work)", "options": ["Arbeit", "Zeit"], "correct": "Arbeit", "category": "Abstract Nouns" },
-    { "id": 66, "question": "free time", "options": ["Freizeit", "Arbeit"], "correct": "Freizeit", "category": "Abstract Nouns" },
-    { "id": 67, "question": "Du hast _____. (you have free time)", "options": ["Freizeit", "Probleme"], "correct": "Freizeit", "category": "Abstract Nouns" },
-    { "id": 68, "question": "problems", "options": ["Probleme", "Ideen"], "correct": "Probleme", "category": "Abstract Nouns" },
-    { "id": 69, "question": "Er hat _____. (he has problems)", "options": ["Probleme", "Fragen"], "correct": "Probleme", "category": "Abstract Nouns" },
-    { "id": 70, "question": "ideas", "options": ["Ideen", "Interesse"], "correct": "Ideen", "category": "Abstract Nouns" },
-    { "id": 71, "question": "Wir haben _____. (we have ideas)", "options": ["Ideen", "Angst"], "correct": "Ideen", "category": "Abstract Nouns" },
-    { "id": 72, "question": "questions", "options": ["Fragen", "Ideen"], "correct": "Fragen", "category": "Abstract Nouns" },
-    { "id": 73, "question": "Ihr habt _____. (you all have questions)", "options": ["Fragen", "Recht"], "correct": "Fragen", "category": "Abstract Nouns" }
+    {
+      "id": 1,
+      "question": "warten (to wait)",
+      "options": [
+        "warten",
+        "wohnen"
+      ],
+      "correct": "warten",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 2,
+      "question": "ich ______ (I wait)",
+      "options": [
+        "warte",
+        "wartest"
+      ],
+      "correct": "warte",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 3,
+      "question": "du ______ (you wait)",
+      "options": [
+        "wartest",
+        "warte"
+      ],
+      "correct": "wartest",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 4,
+      "question": "er ______ (he waits)",
+      "options": [
+        "wartet",
+        "warten"
+      ],
+      "correct": "wartet",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 5,
+      "question": "wir ______ (we wait)",
+      "options": [
+        "warten",
+        "wartet"
+      ],
+      "correct": "warten",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 6,
+      "question": "ihr ______ (you all wait)",
+      "options": [
+        "wartet",
+        "warten"
+      ],
+      "correct": "wartet",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 7,
+      "question": "Ich _____ hier. (I wait here)",
+      "options": [
+        "warte",
+        "wartest"
+      ],
+      "correct": "warte",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 8,
+      "question": "Du _____ dort. (you wait there)",
+      "options": [
+        "wartest",
+        "wartet"
+      ],
+      "correct": "wartest",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 9,
+      "question": "Wir _____ immer. (we always wait)",
+      "options": [
+        "warten",
+        "wartet"
+      ],
+      "correct": "warten",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 10,
+      "question": "Sie _____ heute. (she waits today)",
+      "options": [
+        "wartet",
+        "warte"
+      ],
+      "correct": "wartet",
+      "category": "Verb - WARTEN"
+    },
+    {
+      "id": 11,
+      "question": "but",
+      "options": [
+        "aber",
+        "oder"
+      ],
+      "correct": "aber",
+      "category": "Function Words"
+    },
+    {
+      "id": 12,
+      "question": "Ich bin müde _____ ich arbeite. (I am tired but I work)",
+      "options": [
+        "aber",
+        "oder"
+      ],
+      "correct": "aber",
+      "category": "Function Words"
+    },
+    {
+      "id": 13,
+      "question": "or",
+      "options": [
+        "oder",
+        "aber"
+      ],
+      "correct": "oder",
+      "category": "Function Words"
+    },
+    {
+      "id": 14,
+      "question": "Kaffee _____ Tee? (coffee or tea?)",
+      "options": [
+        "oder",
+        "aber"
+      ],
+      "correct": "oder",
+      "category": "Function Words"
+    },
+    {
+      "id": 15,
+      "question": "then",
+      "options": [
+        "dann",
+        "denn"
+      ],
+      "correct": "dann",
+      "category": "Function Words"
+    },
+    {
+      "id": 16,
+      "question": "Ich lerne und _____ ich schlafe. (I study and then I sleep)",
+      "options": [
+        "dann",
+        "denn"
+      ],
+      "correct": "dann",
+      "category": "Function Words"
+    },
+    {
+      "id": 17,
+      "question": "sometimes",
+      "options": [
+        "manchmal",
+        "immer"
+      ],
+      "correct": "manchmal",
+      "category": "Function Words"
+    },
+    {
+      "id": 18,
+      "question": "often",
+      "options": [
+        "oft",
+        "nie"
+      ],
+      "correct": "oft",
+      "category": "Function Words"
+    },
+    {
+      "id": 19,
+      "question": "hunger",
+      "options": [
+        "Hunger",
+        "Durst"
+      ],
+      "correct": "Hunger",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 20,
+      "question": "Ich habe _____. (I am hungry)",
+      "options": [
+        "Hunger",
+        "Durst"
+      ],
+      "correct": "Hunger",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 21,
+      "question": "thirst",
+      "options": [
+        "Durst",
+        "Hunger"
+      ],
+      "correct": "Durst",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 22,
+      "question": "Du hast _____. (you are thirsty)",
+      "options": [
+        "Durst",
+        "Hunger"
+      ],
+      "correct": "Durst",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 23,
+      "question": "time",
+      "options": [
+        "Zeit",
+        "Arbeit"
+      ],
+      "correct": "Zeit",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 24,
+      "question": "Ich habe keine _____. (I have no time)",
+      "options": [
+        "Zeit",
+        "Arbeit"
+      ],
+      "correct": "Zeit",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 25,
+      "question": "fear",
+      "options": [
+        "Angst",
+        "Freude"
+      ],
+      "correct": "Angst",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 26,
+      "question": "Er hat _____. (he is afraid)",
+      "options": [
+        "Angst",
+        "Glück"
+      ],
+      "correct": "Angst",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 27,
+      "question": "luck/happiness",
+      "options": [
+        "Glück",
+        "Spaß"
+      ],
+      "correct": "Glück",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 28,
+      "question": "Wir haben _____! (we are lucky!)",
+      "options": [
+        "Glück",
+        "Recht"
+      ],
+      "correct": "Glück",
+      "category": "Feelings/States"
+    },
+    {
+      "id": 29,
+      "question": "fun",
+      "options": [
+        "Spaß",
+        "Angst"
+      ],
+      "correct": "Spaß",
+      "category": "More Feelings"
+    },
+    {
+      "id": 30,
+      "question": "Ihr habt _____. (you all have fun)",
+      "options": [
+        "Spaß",
+        "Lust"
+      ],
+      "correct": "Spaß",
+      "category": "More Feelings"
+    },
+    {
+      "id": 31,
+      "question": "to be right",
+      "options": [
+        "Recht haben",
+        "Zeit haben"
+      ],
+      "correct": "Recht haben",
+      "category": "More Feelings"
+    },
+    {
+      "id": 32,
+      "question": "Du hast _____! (you are right!)",
+      "options": [
+        "Recht",
+        "Glück"
+      ],
+      "correct": "Recht",
+      "category": "More Feelings"
+    },
+    {
+      "id": 33,
+      "question": "desire/feel like",
+      "options": [
+        "Lust",
+        "Angst"
+      ],
+      "correct": "Lust",
+      "category": "More Feelings"
+    },
+    {
+      "id": 34,
+      "question": "Ich habe _____ zu tanzen. (I feel like dancing)",
+      "options": [
+        "Lust",
+        "Spaß"
+      ],
+      "correct": "Lust",
+      "category": "More Feelings"
+    },
+    {
+      "id": 35,
+      "question": "interest",
+      "options": [
+        "Interesse",
+        "Ideen"
+      ],
+      "correct": "Interesse",
+      "category": "More Feelings"
+    },
+    {
+      "id": 36,
+      "question": "Sie hat _____. (she has interest / she is interested)",
+      "options": [
+        "Interesse",
+        "Freude"
+      ],
+      "correct": "Interesse",
+      "category": "More Feelings"
+    },
+    {
+      "id": 37,
+      "question": "joy",
+      "options": [
+        "Freude",
+        "Angst"
+      ],
+      "correct": "Freude",
+      "category": "More Feelings"
+    },
+    {
+      "id": 38,
+      "question": "Wir haben _____. (we have joy)",
+      "options": [
+        "Freude",
+        "Probleme"
+      ],
+      "correct": "Freude",
+      "category": "More Feelings"
+    },
+    {
+      "id": 39,
+      "question": "to sleep",
+      "options": [
+        "schlafen",
+        "lachen"
+      ],
+      "correct": "schlafen",
+      "category": "Intransitive Verbs"
+    },
+    {
+      "id": 40,
+      "question": "Ich _____. (I sleep)",
+      "options": [
+        "schlafe",
+        "tanze"
+      ],
+      "correct": "schlafe",
+      "category": "Intransitive Verbs"
+    },
+    {
+      "id": 41,
+      "question": "to dance",
+      "options": [
+        "tanzen",
+        "singen"
+      ],
+      "correct": "tanzen",
+      "category": "Intransitive Verbs"
+    },
+    {
+      "id": 42,
+      "question": "Du _____. (you dance)",
+      "options": [
+        "tanzt",
+        "singst"
+      ],
+      "correct": "tanzt",
+      "category": "Intransitive Verbs"
+    },
+    {
+      "id": 43,
+      "question": "to laugh",
+      "options": [
+        "lachen",
+        "weinen"
+      ],
+      "correct": "lachen",
+      "category": "Intransitive Verbs"
+    },
+    {
+      "id": 44,
+      "question": "Er _____. (he laughs)",
+      "options": [
+        "lacht",
+        "weint"
+      ],
+      "correct": "lacht",
+      "category": "Intransitive Verbs"
+    },
+    {
+      "id": 45,
+      "question": "to cry",
+      "options": [
+        "weinen",
+        "lachen"
+      ],
+      "correct": "weinen",
+      "category": "Intransitive Verbs"
+    },
+    {
+      "id": 46,
+      "question": "Sie _____. (she cries)",
+      "options": [
+        "weint",
+        "singt"
+      ],
+      "correct": "weint",
+      "category": "Intransitive Verbs"
+    },
+    {
+      "id": 47,
+      "question": "to swim",
+      "options": [
+        "schwimmen",
+        "laufen"
+      ],
+      "correct": "schwimmen",
+      "category": "More Verbs"
+    },
+    {
+      "id": 48,
+      "question": "Wir _____. (we swim)",
+      "options": [
+        "schwimmen",
+        "laufen"
+      ],
+      "correct": "schwimmen",
+      "category": "More Verbs"
+    },
+    {
+      "id": 49,
+      "question": "to run",
+      "options": [
+        "laufen",
+        "reisen"
+      ],
+      "correct": "laufen",
+      "category": "More Verbs"
+    },
+    {
+      "id": 50,
+      "question": "Ihr _____. (you all run)",
+      "options": [
+        "lauft",
+        "singt"
+      ],
+      "correct": "lauft",
+      "category": "More Verbs"
+    },
+    {
+      "id": 51,
+      "question": "to sing",
+      "options": [
+        "singen",
+        "tanzen"
+      ],
+      "correct": "singen",
+      "category": "More Verbs"
+    },
+    {
+      "id": 52,
+      "question": "Sie _____. (they sing)",
+      "options": [
+        "singen",
+        "tanzen"
+      ],
+      "correct": "singen",
+      "category": "More Verbs"
+    },
+    {
+      "id": 53,
+      "question": "to travel",
+      "options": [
+        "reisen",
+        "warten"
+      ],
+      "correct": "reisen",
+      "category": "More Verbs"
+    },
+    {
+      "id": 54,
+      "question": "Ich _____ oft. (I travel often)",
+      "options": [
+        "reise",
+        "warte"
+      ],
+      "correct": "reise",
+      "category": "More Verbs"
+    },
+    {
+      "id": 55,
+      "question": "today",
+      "options": [
+        "heute",
+        "morgen"
+      ],
+      "correct": "heute",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 56,
+      "question": "Ich arbeite _____. (I work today)",
+      "options": [
+        "heute",
+        "gestern"
+      ],
+      "correct": "heute",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 57,
+      "question": "tomorrow",
+      "options": [
+        "morgen",
+        "heute"
+      ],
+      "correct": "morgen",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 58,
+      "question": "Du lernst _____. (you study tomorrow)",
+      "options": [
+        "morgen",
+        "jetzt"
+      ],
+      "correct": "morgen",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 59,
+      "question": "now",
+      "options": [
+        "jetzt",
+        "später"
+      ],
+      "correct": "jetzt",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 60,
+      "question": "Wir gehen _____. (we go now)",
+      "options": [
+        "jetzt",
+        "nie"
+      ],
+      "correct": "jetzt",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 61,
+      "question": "always",
+      "options": [
+        "immer",
+        "nie"
+      ],
+      "correct": "immer",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 62,
+      "question": "Er ist _____ müde. (he is always tired)",
+      "options": [
+        "immer",
+        "manchmal"
+      ],
+      "correct": "immer",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 63,
+      "question": "never",
+      "options": [
+        "nie",
+        "immer"
+      ],
+      "correct": "nie",
+      "category": "Time/Frequency"
+    },
+    {
+      "id": 64,
+      "question": "work",
+      "options": [
+        "Arbeit",
+        "Freizeit"
+      ],
+      "correct": "Arbeit",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 65,
+      "question": "Ich habe _____. (I have work)",
+      "options": [
+        "Arbeit",
+        "Zeit"
+      ],
+      "correct": "Arbeit",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 66,
+      "question": "free time",
+      "options": [
+        "Freizeit",
+        "Arbeit"
+      ],
+      "correct": "Freizeit",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 67,
+      "question": "Du hast _____. (you have free time)",
+      "options": [
+        "Freizeit",
+        "Probleme"
+      ],
+      "correct": "Freizeit",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 68,
+      "question": "problems",
+      "options": [
+        "Probleme",
+        "Ideen"
+      ],
+      "correct": "Probleme",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 69,
+      "question": "Er hat _____. (he has problems)",
+      "options": [
+        "Probleme",
+        "Fragen"
+      ],
+      "correct": "Probleme",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 70,
+      "question": "ideas",
+      "options": [
+        "Ideen",
+        "Interesse"
+      ],
+      "correct": "Ideen",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 71,
+      "question": "Wir haben _____. (we have ideas)",
+      "options": [
+        "Ideen",
+        "Angst"
+      ],
+      "correct": "Ideen",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 72,
+      "question": "questions",
+      "options": [
+        "Fragen",
+        "Ideen"
+      ],
+      "correct": "Fragen",
+      "category": "Abstract Nouns"
+    },
+    {
+      "id": 73,
+      "question": "Ihr habt _____. (you all have questions)",
+      "options": [
+        "Fragen",
+        "Recht"
+      ],
+      "correct": "Fragen",
+      "category": "Abstract Nouns"
+    }
   ],
   "tag-3-sentences": [
-    { "id": 74, "question": "I am hungry", "options": ["ich habe Hunger", "ich bin Hunger"], "correct": "ich habe Hunger", "category": "HABEN with Feelings" },
-    { "id": 75, "question": "you are thirsty (informal)", "options": ["du hast Durst", "du bist Durst"], "correct": "du hast Durst", "category": "HABEN with Feelings" },
-    { "id": 76, "question": "he has time", "options": ["er hat Zeit", "er ist Zeit"], "correct": "er hat Zeit", "category": "HABEN with Feelings" },
-    { "id": 77, "question": "we are afraid", "options": ["wir haben Angst", "wir sind Angst"], "correct": "wir haben Angst", "category": "HABEN with Feelings" },
-    { "id": 78, "question": "you all are lucky", "options": ["ihr habt Glück", "ihr seid Glück"], "correct": "ihr habt Glück", "category": "HABEN with Feelings" },
-    { "id": 79, "question": "Ich bin müde und ich _____ Hunger. (I am tired and I am hungry)", "options": ["habe", "bin"], "correct": "habe", "category": "HABEN with Feelings" },
-    { "id": 80, "question": "Du _____ glücklich aber du hast Angst. (you are happy but you are afraid)", "options": ["bist", "hast"], "correct": "bist", "category": "HABEN with Feelings" },
-    { "id": 81, "question": "Er ist krank und er _____ keine Zeit. (he is sick and he has no time)", "options": ["hat", "ist"], "correct": "hat", "category": "HABEN with Feelings" },
-    { "id": 82, "question": "Wir _____ heute Freizeit und wir sind sehr glücklich. (we have free time today and we are very happy)", "options": ["haben", "sind"], "correct": "haben", "category": "HABEN with Feelings" },
-    { "id": 83, "question": "Ihr seid jung _____ ihr habt viel Spaß. (you all are young and you all have a lot of fun)", "options": ["und", "oder"], "correct": "und", "category": "HABEN with Feelings" },
-    { "id": 84, "question": "Ich habe _____ heute. (I have work today)", "options": ["Arbeit", "Freizeit"], "correct": "Arbeit", "category": "HABEN with Work/Time" },
-    { "id": 85, "question": "Du hast _____ morgen. (you have free time tomorrow)", "options": ["Freizeit", "Arbeit"], "correct": "Freizeit", "category": "HABEN with Work/Time" },
-    { "id": 86, "question": "Er hat _____ aber ich habe Arbeit. (he has free time but I have work)", "options": ["Freizeit", "Zeit"], "correct": "Freizeit", "category": "HABEN with Work/Time" },
-    { "id": 87, "question": "Wir haben keine _____ jetzt. (we have no time now)", "options": ["Zeit", "Arbeit"], "correct": "Zeit", "category": "HABEN with Work/Time" },
-    { "id": 88, "question": "Ihr habt _____ und ihr seid nervös. (you all have problems and you all are nervous)", "options": ["Probleme", "Ideen"], "correct": "Probleme", "category": "HABEN with Work/Time" },
-    { "id": 89, "question": "Ich bin Student und ich habe _____ Arbeit. (I am a student and I have a lot of work)", "options": ["viel", "ohne"], "correct": "viel", "category": "HABEN with Work/Time" },
-    { "id": 90, "question": "Du arbeitest heute _____ du hast keine Freizeit. (you work today and you have no free time)", "options": ["und", "oder"], "correct": "und", "category": "HABEN with Work/Time" },
-    { "id": 91, "question": "Sie ist Lehrerin und sie hat _____ Fragen. (she is a teacher and she has many questions)", "options": ["viele", "ohne"], "correct": "viele", "category": "HABEN with Work/Time" },
-    { "id": 92, "question": "Wir haben _____ und wir sind sehr intelligent. (we have ideas and we are very intelligent)", "options": ["Ideen", "Probleme"], "correct": "Ideen", "category": "HABEN with Work/Time" },
-    { "id": 93, "question": "Ihr habt Zeit _____ ihr habt keine Lust. (you all have time but you all don't feel like it)", "options": ["aber", "und"], "correct": "aber", "category": "HABEN with Work/Time" },
-    { "id": 94, "question": "Ich warte _____ und dann ich gehe. (I wait here and then I go)", "options": ["hier", "dort"], "correct": "hier", "category": "Combining Verbs and Time" },
-    { "id": 95, "question": "Du schläfst _____ und du arbeitest morgen. (you sleep today and you work tomorrow)", "options": ["heute", "gestern"], "correct": "heute", "category": "Combining Verbs and Time" },
-    { "id": 96, "question": "Er tanzt _____ aber er singt nie. (he dances often but he never sings)", "options": ["oft", "nie"], "correct": "oft", "category": "Combining Verbs and Time" },
-    { "id": 97, "question": "Wir lachen _____ und wir haben Spaß. (we always laugh and we have fun)", "options": ["immer", "manchmal"], "correct": "immer", "category": "Combining Verbs and Time" },
-    { "id": 98, "question": "Ihr schwimmt _____ und ihr seid gesund. (you all swim sometimes and you all are healthy)", "options": ["manchmal", "nie"], "correct": "manchmal", "category": "Combining Verbs and Time" },
-    { "id": 99, "question": "Ich reise _____ und ich bin sehr glücklich. (I travel a lot and I am very happy)", "options": ["viel", "ohne"], "correct": "viel", "category": "Combining Verbs and Time" },
-    { "id": 100, "question": "Du läufst _____ im Park. (you run often in the park)", "options": ["oft", "nie"], "correct": "oft", "category": "Combining Verbs and Time" },
-    { "id": 101, "question": "Sie weint _____ aber sie ist nicht traurig. (she cries sometimes but she is not sad)", "options": ["manchmal", "immer"], "correct": "manchmal", "category": "Combining Verbs and Time" },
-    { "id": 102, "question": "Wir warten hier _____ wir gehen zur Schule. (we wait here and then we go to school)", "options": ["und dann", "oder"], "correct": "und dann", "category": "Combining Verbs and Time" },
-    { "id": 103, "question": "Ihr singt _____ und ihr habt viel Freude. (you all sing today and you all have a lot of joy)", "options": ["heute", "gestern"], "correct": "heute", "category": "Combining Verbs and Time" },
-    { "id": 104, "question": "Ich bin Student und ich _____ viel aber ich habe manchmal Freizeit. (I am a student and I work a lot but I sometimes have free time)", "options": ["arbeite", "schlafe"], "correct": "arbeite", "category": "Complex Sentences" },
-    { "id": 105, "question": "Du bist müde _____ du schläfst nicht. (you are tired but you don't sleep)", "options": ["aber", "und"], "correct": "aber", "category": "Complex Sentences" },
-    { "id": 106, "question": "Er ist deutsch und er _____ in Berlin. (he is German and he lives in Berlin)", "options": ["wohnt", "reist"], "correct": "wohnt", "category": "Complex Sentences" },
-    { "id": 107, "question": "Wir sind glücklich _____ wir haben viel Spaß heute. (we are happy and we have a lot of fun today)", "options": ["und", "oder"], "correct": "und", "category": "Complex Sentences" },
-    { "id": 108, "question": "Ihr _____ heute aber ihr arbeitet morgen. (you all wait today but you all work tomorrow)", "options": ["wartet", "tanzt"], "correct": "wartet", "category": "Complex Sentences" },
-    { "id": 109, "question": "Ich habe Hunger _____ ich habe keine Zeit jetzt. (I am hungry but I have no time now)", "options": ["aber", "und"], "correct": "aber", "category": "Complex Sentences" },
-    { "id": 110, "question": "Du tanzt oft und du _____ manchmal. (you dance often and you sing sometimes)", "options": ["singst", "weinst"], "correct": "singst", "category": "Complex Sentences" },
-    { "id": 111, "question": "Sie hat Angst _____ sie ist sehr ruhig. (she is afraid but she is very calm)", "options": ["aber", "und"], "correct": "aber", "category": "Complex Sentences" },
-    { "id": 112, "question": "Wir lernen Deutsch und wir _____ manchmal Probleme. (we learn German and we sometimes have problems)", "options": ["haben", "sind"], "correct": "haben", "category": "Complex Sentences" },
-    { "id": 113, "question": "Ihr seid jung und ihr _____ immer. (you all are young and you all always laugh)", "options": ["lacht", "weint"], "correct": "lacht", "category": "Complex Sentences" }
+    {
+      "id": 74,
+      "question": "ich ______ Hunger (I am hungry)",
+      "options": [
+        "habe",
+        "ich bin Hunger"
+      ],
+      "correct": "habe",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 75,
+      "question": "du ______ Durst (you are thirsty)",
+      "options": [
+        "hast",
+        "du bist Durst"
+      ],
+      "correct": "hast",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 76,
+      "question": "er ______ Zeit (he has time)",
+      "options": [
+        "hat",
+        "er ist Zeit"
+      ],
+      "correct": "hat",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 77,
+      "question": "wir ______ Angst (we are afraid)",
+      "options": [
+        "haben",
+        "wir sind Angst"
+      ],
+      "correct": "haben",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 78,
+      "question": "ihr ______ Glück (you all are lucky)",
+      "options": [
+        "habt",
+        "ihr seid Glück"
+      ],
+      "correct": "habt",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 79,
+      "question": "Ich bin müde und ich _____ Hunger. (I am tired and I am hungry)",
+      "options": [
+        "habe",
+        "bin"
+      ],
+      "correct": "habe",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 80,
+      "question": "Du _____ glücklich aber du hast Angst. (you are happy but you are afraid)",
+      "options": [
+        "bist",
+        "hast"
+      ],
+      "correct": "bist",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 81,
+      "question": "Er ist krank und er _____ keine Zeit. (he is sick and he has no time)",
+      "options": [
+        "hat",
+        "ist"
+      ],
+      "correct": "hat",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 82,
+      "question": "Wir _____ heute Freizeit und wir sind sehr glücklich. (we have free time today and we are very happy)",
+      "options": [
+        "haben",
+        "sind"
+      ],
+      "correct": "haben",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 83,
+      "question": "Ihr seid jung _____ ihr habt viel Spaß. (you all are young and you all have a lot of fun)",
+      "options": [
+        "und",
+        "oder"
+      ],
+      "correct": "und",
+      "category": "HABEN with Feelings"
+    },
+    {
+      "id": 84,
+      "question": "Ich habe _____ heute. (I have work today)",
+      "options": [
+        "Arbeit",
+        "Freizeit"
+      ],
+      "correct": "Arbeit",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 85,
+      "question": "Du hast _____ morgen. (you have free time tomorrow)",
+      "options": [
+        "Freizeit",
+        "Arbeit"
+      ],
+      "correct": "Freizeit",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 86,
+      "question": "Er hat _____ aber ich habe Arbeit. (he has free time but I have work)",
+      "options": [
+        "Freizeit",
+        "Zeit"
+      ],
+      "correct": "Freizeit",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 87,
+      "question": "Wir haben keine _____ jetzt. (we have no time now)",
+      "options": [
+        "Zeit",
+        "Arbeit"
+      ],
+      "correct": "Zeit",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 88,
+      "question": "Ihr habt _____ und ihr seid nervös. (you all have problems and you all are nervous)",
+      "options": [
+        "Probleme",
+        "Ideen"
+      ],
+      "correct": "Probleme",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 89,
+      "question": "Ich bin Student und ich habe _____ Arbeit. (I am a student and I have a lot of work)",
+      "options": [
+        "viel",
+        "ohne"
+      ],
+      "correct": "viel",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 90,
+      "question": "Du arbeitest heute _____ du hast keine Freizeit. (you work today and you have no free time)",
+      "options": [
+        "und",
+        "oder"
+      ],
+      "correct": "und",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 91,
+      "question": "Sie ist Lehrerin und sie hat _____ Fragen. (she is a teacher and she has many questions)",
+      "options": [
+        "viele",
+        "ohne"
+      ],
+      "correct": "viele",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 92,
+      "question": "Wir haben _____ und wir sind sehr intelligent. (we have ideas and we are very intelligent)",
+      "options": [
+        "Ideen",
+        "Probleme"
+      ],
+      "correct": "Ideen",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 93,
+      "question": "Ihr habt Zeit _____ ihr habt keine Lust. (you all have time but you all don't feel like it)",
+      "options": [
+        "aber",
+        "und"
+      ],
+      "correct": "aber",
+      "category": "HABEN with Work/Time"
+    },
+    {
+      "id": 94,
+      "question": "Ich warte _____ und dann ich gehe. (I wait here and then I go)",
+      "options": [
+        "hier",
+        "dort"
+      ],
+      "correct": "hier",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 95,
+      "question": "Du schläfst _____ und du arbeitest morgen. (you sleep today and you work tomorrow)",
+      "options": [
+        "heute",
+        "gestern"
+      ],
+      "correct": "heute",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 96,
+      "question": "Er tanzt _____ aber er singt nie. (he dances often but he never sings)",
+      "options": [
+        "oft",
+        "nie"
+      ],
+      "correct": "oft",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 97,
+      "question": "Wir lachen _____ und wir haben Spaß. (we always laugh and we have fun)",
+      "options": [
+        "immer",
+        "manchmal"
+      ],
+      "correct": "immer",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 98,
+      "question": "Ihr schwimmt _____ und ihr seid gesund. (you all swim sometimes and you all are healthy)",
+      "options": [
+        "manchmal",
+        "nie"
+      ],
+      "correct": "manchmal",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 99,
+      "question": "Ich reise _____ und ich bin sehr glücklich. (I travel a lot and I am very happy)",
+      "options": [
+        "viel",
+        "ohne"
+      ],
+      "correct": "viel",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 100,
+      "question": "Du läufst _____ im Park. (you run often in the park)",
+      "options": [
+        "oft",
+        "nie"
+      ],
+      "correct": "oft",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 101,
+      "question": "Sie weint _____ aber sie ist nicht traurig. (she cries sometimes but she is not sad)",
+      "options": [
+        "manchmal",
+        "immer"
+      ],
+      "correct": "manchmal",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 102,
+      "question": "Wir warten hier _____ wir gehen zur Schule. (we wait here and then we go to school)",
+      "options": [
+        "und dann",
+        "oder"
+      ],
+      "correct": "und dann",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 103,
+      "question": "Ihr singt _____ und ihr habt viel Freude. (you all sing today and you all have a lot of joy)",
+      "options": [
+        "heute",
+        "gestern"
+      ],
+      "correct": "heute",
+      "category": "Combining Verbs and Time"
+    },
+    {
+      "id": 104,
+      "question": "Ich bin Student und ich _____ viel aber ich habe manchmal Freizeit. (I am a student and I work a lot but I sometimes have free time)",
+      "options": [
+        "arbeite",
+        "schlafe"
+      ],
+      "correct": "arbeite",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 105,
+      "question": "Du bist müde _____ du schläfst nicht. (you are tired but you don't sleep)",
+      "options": [
+        "aber",
+        "und"
+      ],
+      "correct": "aber",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 106,
+      "question": "Er ist deutsch und er _____ in Berlin. (he is German and he lives in Berlin)",
+      "options": [
+        "wohnt",
+        "reist"
+      ],
+      "correct": "wohnt",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 107,
+      "question": "Wir sind glücklich _____ wir haben viel Spaß heute. (we are happy and we have a lot of fun today)",
+      "options": [
+        "und",
+        "oder"
+      ],
+      "correct": "und",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 108,
+      "question": "Ihr _____ heute aber ihr arbeitet morgen. (you all wait today but you all work tomorrow)",
+      "options": [
+        "wartet",
+        "tanzt"
+      ],
+      "correct": "wartet",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 109,
+      "question": "Ich habe Hunger _____ ich habe keine Zeit jetzt. (I am hungry but I have no time now)",
+      "options": [
+        "aber",
+        "und"
+      ],
+      "correct": "aber",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 110,
+      "question": "Du tanzt oft und du _____ manchmal. (you dance often and you sing sometimes)",
+      "options": [
+        "singst",
+        "weinst"
+      ],
+      "correct": "singst",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 111,
+      "question": "Sie hat Angst _____ sie ist sehr ruhig. (she is afraid but she is very calm)",
+      "options": [
+        "aber",
+        "und"
+      ],
+      "correct": "aber",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 112,
+      "question": "Wir lernen Deutsch und wir _____ manchmal Probleme. (we learn German and we sometimes have problems)",
+      "options": [
+        "haben",
+        "sind"
+      ],
+      "correct": "haben",
+      "category": "Complex Sentences"
+    },
+    {
+      "id": 113,
+      "question": "Ihr seid jung und ihr _____ immer. (you all are young and you all always laugh)",
+      "options": [
+        "lacht",
+        "weint"
+      ],
+      "correct": "lacht",
+      "category": "Complex Sentences"
+    }
   ]
 }
