@@ -9,13 +9,6 @@ let exercises = [];
 let allQuestionsData = {};
 
 // ============================================
-// ELEVEN LABS API CONFIGURATION
-// ============================================
-const ELEVEN_LABS_API_KEY = 'sk_9b0722f8318df9e86d7cf402192d3870bcf9c2ba9ca2d4c4';
-const ELEVEN_LABS_VOICE_ID = '21m00Tcm4TlvDq8ikWAM'; // Rachel voice (default)
-let currentAudio = null; // Track currently playing audio
-
-// ============================================
 // STATE MANAGEMENT
 // ============================================
 let answeredCount = 0;
